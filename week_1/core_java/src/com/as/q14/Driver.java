@@ -1,6 +1,8 @@
 package com.as.q14;
 
-import java.util.Calendar;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class Driver {
 	
@@ -25,8 +27,10 @@ public class Driver {
 			System.out.println(sqrtNum);
 			break;
 		case 2:
+			DateFormat f = new SimpleDateFormat("YYYY.MM.dd");
+			Date d = new Date();
 			
-			System.out.println();
+			System.out.println(f.format(d));
 			break;
 		case 3:
 			strArray = str.split(" ");
