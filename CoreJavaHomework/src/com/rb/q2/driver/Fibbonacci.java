@@ -1,4 +1,4 @@
-package q2;
+package com.rb.q2.driver;
 
 public class Fibbonacci {
 	

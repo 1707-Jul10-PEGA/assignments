@@ -1,4 +1,4 @@
-package q1;
+package com.rb.q1.driver;
 
 public class BubbleSort {
 	

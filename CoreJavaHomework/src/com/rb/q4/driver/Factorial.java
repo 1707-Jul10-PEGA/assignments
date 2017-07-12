@@ -1,4 +1,4 @@
-package q4;
+package com.rb.q4.driver;
 
 import java.util.Scanner;
 

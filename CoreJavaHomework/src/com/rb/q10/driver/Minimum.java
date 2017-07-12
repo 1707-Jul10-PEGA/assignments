@@ -1,4 +1,4 @@
-package q10;
+package com.rb.q10.driver;
 
 import java.util.Scanner;
 

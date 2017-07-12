@@ -1,4 +1,4 @@
-package q12;
+package com.rb.q12.driver;
 
 public class ArrayEvens {
 	public static void main(String args[]){

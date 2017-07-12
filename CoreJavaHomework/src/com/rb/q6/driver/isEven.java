@@ -1,4 +1,4 @@
-package q6;
+package com.rb.q6.driver;
 
 import java.util.Scanner;
 
