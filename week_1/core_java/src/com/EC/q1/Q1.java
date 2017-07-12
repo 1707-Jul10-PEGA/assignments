@@ -1,6 +1,15 @@
 package com.EC.q1;
 
-public class BubbleSort {
+public class Q1 {
+	
+	public static void main(String[] args){
+		int[] test = { 1, 0, 5, 6, 3, 2, 3, 7, 9, 8, 4 };
+		System.out.println("Before Bubble Sort");
+		printArray(test);
+		bubbleSort(test);
+		System.out.println("After Bubble Sort");
+		printArray(test);
+	}
 
 	public static void bubbleSort(int[] array) {
 

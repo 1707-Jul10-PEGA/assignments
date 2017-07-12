@@ -1,6 +1,10 @@
 package com.EC.q2;
 
-public class Fibonacii {
+public class Q2 {
+	
+	public static void main(String[] args){
+		printFibonacci(25);
+	}
 
 	public static void printFibonacci(int x) {
 		//seed values F(0)=0 and F(1)=1
