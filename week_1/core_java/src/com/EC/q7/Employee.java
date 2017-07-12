@@ -36,7 +36,10 @@ public class Employee {
 	public void setDepartment(String department) {
 		this.department = department;
 	}
+	@Override
+	public String toString(){
+		return "[Name: " + getName() + ", Department: " + getDepartment() + ", Age: " + getAge() + "]";
+	}
 	
-	public static void sortEmployees
 	
 }
