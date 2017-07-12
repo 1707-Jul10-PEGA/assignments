@@ -15,10 +15,6 @@ public class Driver {
 	 * find the minimum of two numbers
 	 */
 	private static int min(int x, int y){
-		if (x < y) {
-			return x;
-		} else {
-			return y;
-		}
+		return x < y ? x : y;
 	}
 }
