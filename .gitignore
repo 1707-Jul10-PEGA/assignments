@@ -37,6 +37,7 @@ hs_err_pid*
 /Servers/
 /target/
 /RemoteSystemsTempFiles/
+/Week_1/RemoteSystemsTempFiles/
 /External Files/
 
 .idea
