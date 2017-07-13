@@ -8,7 +8,7 @@ public class Driver {
 
 		int[] array = { 1, 0, 5, 6, 3, 2, 3, 7, 9, 8, 4 }; // array to sort
 
-		//bubbleSort(array); // Q1 call bubbleSort with array
+		bubbleSort(array); // Q1 call bubbleSort with array
 
 	}
 
