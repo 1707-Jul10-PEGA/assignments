@@ -1,6 +1,6 @@
 package com.cg.q18;
 
-public class Main {
+public class TestAB {
 	public static void main(String [] args) {
 		B b = new B();
 		
