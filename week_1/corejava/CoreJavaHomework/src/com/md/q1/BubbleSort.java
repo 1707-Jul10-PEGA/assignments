@@ -1,8 +1,8 @@
-package com.md.q1.driver;
+package com.md.q1;
 
 import java.util.Arrays;
 
-public class Driver {
+public class BubbleSort {
 	
 	public static void main(String[] args) {
 
