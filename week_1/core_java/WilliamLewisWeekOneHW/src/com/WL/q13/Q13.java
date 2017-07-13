@@ -7,7 +7,7 @@ public class Q13 {
 		String myBinary = "010101010101010101010101";
 		String myBinaryShort = "0 1 ";
 		String myBinary2 = "0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1";
-		for(int i = 0, j = 0; i < 15; i++){
+		for(int i = 0, j = 0; i < 5; i++){
 			
 				//Indexes are hit according to neighboring members of the sequence T_n = The summation of the first n integers
 				//System.out.println(myBinary.substring(j, (j = j + i) ));
