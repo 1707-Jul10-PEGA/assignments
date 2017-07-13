@@ -17,7 +17,6 @@ public class EvenNumber {
 	
 	public static void getUserInput() {
 		int num = 0;
-		boolean evenNumber = false;
 		Scanner read = new Scanner(System.in);
 		
 		System.out.println("Enter a number: ");
@@ -28,6 +27,8 @@ public class EvenNumber {
 		} else {
 			System.out.println(num + " is odd.");
 		}
+		
+		read.close();
 	}
 	
 	public static void main(String[] args) {
