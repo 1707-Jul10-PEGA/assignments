@@ -1,0 +1,4 @@
+Micky:Mouse:35:Arizona
+Hulk:Hogan:50:Virgiia
+Roger:Rabbit:22:Califorina
+Wonder:Woman:18:Montana
