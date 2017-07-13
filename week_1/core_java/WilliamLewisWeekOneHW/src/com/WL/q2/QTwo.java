@@ -5,6 +5,18 @@ public class QTwo {
 	
 	public static void main(String[] args) {
 		int myInt = 25;
+		printFib(myInt);
+		sassyAnswer(myInt);
+	}
+	//Assuming we begin with both values as 0.
+	public static void sassyAnswer(int length){
+		for(int i = 0; i < length+1; i++)
+			System.out.print(0 + " ");
+	}
+	
+	//assuming start values are 0, and 1.
+	public static void printFib(int i)
+	{
 		int a = 0;
 		int b = 1;
 		int count = 0;
@@ -14,12 +26,8 @@ public class QTwo {
 			a = b;
 			b = temp;
 			count++;
-		}while(count < myInt);
-	}
-	//Assuming we begin with both values as 0.
-	public static void sassyAnswer(int length){
-		for(int i = 0; i < length+1; i++)
-			System.out.print(0 + " ");
+		}while(count < i);
+		System.out.println(" ");
 	}
 
 }

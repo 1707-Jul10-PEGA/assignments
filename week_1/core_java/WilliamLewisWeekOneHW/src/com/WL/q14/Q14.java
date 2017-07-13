@@ -5,10 +5,10 @@ import java.time.LocalDate;
 public class Q14 {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		int x = 1;
+		// Switch Case variable
+		int switchControl = 1;
 		
-		switch (x) {
+		switch (switchControl) {
 		case 1:
 			System.out.println(Math.sqrt(49.3));
 			break;

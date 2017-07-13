@@ -27,6 +27,7 @@ public class q6 {
 		}
 		
 		}
+	//Helper method to find the last digit of a passed int.
 	public static int lastNumber(int myVal){
 	    int myPlace = myVal / 10;
 	    myPlace = myVal - myPlace * 10;

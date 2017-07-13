@@ -1,7 +1,7 @@
 package com.WL.q7;
 
-import java.util.Comparator;
 
+//Pojo employee class
 public class Employee {
 	int age;
 	String name;

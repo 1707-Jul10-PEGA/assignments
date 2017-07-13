@@ -9,6 +9,7 @@ public class q7 {
 
 		ArrayList<Employee> myStaff = new ArrayList<Employee>();
 
+		//Some test cases to try out
 		Employee joe = new Employee(20, "joe", "physics");
 		Employee joeClone = new Employee(20, "joe", "physics");
 		Employee joeTwin = new Employee(20, "joe", "Chemistry");

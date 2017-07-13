@@ -10,6 +10,7 @@ public class Q9 {
 		//Check values 0-100 and add them to an arraylist!
 		for(int i = 1; i <= 100; i++)
 		{
+			//Print if prime
 			if(isPrime(i))
 			{
 				System.out.print(i + " ");

@@ -5,7 +5,7 @@ import java.util.Comparator;
 public class EmployeeComparator implements Comparator<Employee>{
 	
 	
-	
+	//Sort by age if possible, if not, we sort lexiconally by department, then by name, if all cases match we return 0.
 	public int compare(Employee a, Employee b)
 	{
 		if(a.getAge() > b.getAge())
