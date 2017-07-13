@@ -1,2 +1,2 @@
-# Assignments
-For turning in weekly assignments
+# Bryan's Assignments
+Bryan's Weekly assignments
