@@ -1,4 +1,4 @@
-package com.cg.q9;
+package com.cg.q9TODO;
 
 public class Primes {
 	public static int [] createArray(int n){
