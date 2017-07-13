@@ -22,11 +22,13 @@ public class ParseData {
 		}
 		
 		while(data.hasNextLine()){
-			Scanner read = new Scanner(data.nextLine()).useDelimiter(":");
+			Scanner parse = new Scanner(data.nextLine());
+			Scanner read = parse.useDelimiter(":");
 			System.out.println("Name: " + read.next() + " " + read.next());
 			System.out.println("Age: " + read.nextInt() + " years");
 			System.out.println("State: " + read.next() + " State\n");
 			read.close();
+			parse.close();
 		}
 		
 		data.close();
