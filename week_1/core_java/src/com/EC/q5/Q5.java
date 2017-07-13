@@ -4,9 +4,9 @@ public class Q5 {
 
 	public static void main(String[] args) {
 		
-		String str = "Hello";
+		String str = "dide";
 		
-		String subString = subString(str,str.length()-2);
+		String subString = subString(str,3);
 		
 		System.out.println(subString);
 
