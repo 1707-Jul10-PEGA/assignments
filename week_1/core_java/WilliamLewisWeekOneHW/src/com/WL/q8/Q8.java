@@ -23,42 +23,59 @@ public class Q8 {
 		myWords.add("did");
 		
 		myPallys = returnPalindromes(myWords);
-		for(String x : myPallys)
-		{
-			System.out.println(x);
-		}
+		System.out.println(myWords);
+		System.out.println(myPallys);
+		
 		
 		
 		
 	}
-	
+	/**
+	 * 
+	 * @param myString takes a list of Strings 
+	 * @return an arraylist of palindromes contained in said list
+	 */
 	public static ArrayList<String> returnPalindromes(ArrayList<String> myString)
 	{
 		ArrayList<String> myPalins = new ArrayList<String>();
 		
 		for(String str : myString)
 		{
+
 			if(isPalindrome(str))
 			{
 				myPalins.add(str);
 			}
 		}
-		System.out.println(myPalins);
+		//System.out.println(myPalins);
 		return myPalins;
 	}
-	
+//Olderversion that didn't quite work.
+//	public static boolean isPalindromeOld(String str)
+//	{
+//		char[] myChars = str.toCharArray();
+//		for(int i = 0; i <= (str.length()/2); i++)
+//		{
+//			if(!(myChars[i] == myChars[((str.length() - i) - 1)]));
+//			{
+//				return false;
+//			}
+//			 
+//		}
+//		return true; 
+//	}
+	/**
+	 * Helper method which determines if a string is a palindrome
+	 * @param str- string to check
+	 * @return true if Palindrome, false if not, 
+	 */
 	public static boolean isPalindrome(String str)
 	{
-		char[] myChars = str.toCharArray();
-		for(int i = 0; i < str.length()/2-1; i++)
-		{
-			if(!(myChars[i] == myChars[(str.length() - i - 1)]));
-			{
-				return false;
-			}
-			 
-		}
-		return true; 
+		StringBuffer myBuff = new StringBuffer(str);
+		StringBuffer rev = new StringBuffer(str);
+		myBuff.reverse();
+		
+		return (str.equals(myBuff.toString()));
 	}
 
 }
