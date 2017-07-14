@@ -1,0 +1,11 @@
+package com.md.q11;
+
+import com.md.q11.testpackage.PackageVisibilityHelper;;
+
+public class PackageVisibility {
+
+	public static void main(String[] args) {
+		
+	}
+	
+}

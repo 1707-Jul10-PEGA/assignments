@@ -1,0 +1,29 @@
+package com.md.q13;
+
+/**
+ * Display the triangle on the console as follows using any type of loop. Do not
+ * use simple group of print statements to acomplish this.
+ * 
+ * @author Martin Delira
+ *
+ */
+public class TrianglePattern {
+
+	public static void main(String[] args) {
+		triangle(5);
+	}
+
+	public static void triangle(int depth) {
+
+		while ((depth--) > 0) {
+			
+			for(Integ i = (byte) 16 ; i > 0; i = (byte) (i << 2)) {
+				System.out.println();
+				
+			}
+			
+		}
+
+	}
+
+}

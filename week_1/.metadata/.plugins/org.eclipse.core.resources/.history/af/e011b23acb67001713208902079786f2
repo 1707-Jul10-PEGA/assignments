@@ -1,0 +1,28 @@
+package com.md.q8;
+
+import java.util.ArrayList;
+
+/*
+ * Write a program that store the following strings 
+ * in an ArrayList and saves all of the palindromes
+ * in another ArrayList
+ */
+
+public class Palindrome {
+	public static void main(String[] args) {
+
+		ArrayList<String> words = new ArrayList<String>();
+		words.add("karan");
+		
+	}
+	
+	
+	public static ArrayList<String> palindrome(){
+		ArrayList<String> palindrome = new ArrayList<Stringn>();
+		
+		
+		return palindrome;
+		
+	}
+	
+}

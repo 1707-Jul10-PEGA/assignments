@@ -1,0 +1,26 @@
+package com.md.q2.driver;
+
+public class Driver {
+
+	public static void main(String[] args) {
+		fib(0,5);
+	}
+	
+	public static int fib(int n) {
+		//base case
+		if(n == 0) {
+			return n;
+		}
+		
+		//recursive case
+		else {
+			System.out.println("Fib of " + n);
+			return fib(n) + fib(n-1);
+		}
+			
+		
+		
+	}
+	
+	
+}

@@ -1,0 +1,14 @@
+package com.md.q9;
+
+/**
+ * Find the minimum of two numers using ternary operators
+ * @author Martin Delira
+ *
+ */
+public class Ternary {
+
+	public static void main(String[] args) {
+		
+	}
+	
+}

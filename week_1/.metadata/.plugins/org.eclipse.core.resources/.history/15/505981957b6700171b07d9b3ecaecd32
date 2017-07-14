@@ -1,0 +1,22 @@
+package com.md.q5;
+
+/*
+ * Write a substring method that accepts a string and an integer index 
+ * and returns the substring contained between 0 and index-1 (inclusive). 
+ * DO NOT use any of the existing substring methods in the String,
+ * StringBuilder or StringBuffer APIs
+ */
+public class Subsrting {
+	public static void main(String[] args) {
+		int index = 5;
+		System.out.println(substringOf("murcielago", index));
+	}
+	
+	public static String substringOf(String str, int index) {
+		StringBuilder strB = new StringBuilder();
+		
+		
+		return str;
+	}
+	
+}

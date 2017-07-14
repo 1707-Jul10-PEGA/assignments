@@ -1,0 +1,5 @@
+package com.md.q7;
+
+public class AgeComparator implements Comparator<Employee> {
+
+}

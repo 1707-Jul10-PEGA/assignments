@@ -1,0 +1,7 @@
+package com.md.q20;
+
+public interface PersonInterface {
+
+	
+	
+}

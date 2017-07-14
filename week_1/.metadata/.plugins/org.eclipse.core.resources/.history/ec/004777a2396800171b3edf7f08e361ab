@@ -1,0 +1,8 @@
+package com.md.q18;
+
+public class AbstractClassParent {
+	
+	public boolean checkUpperCase(String s);
+	
+	
+}

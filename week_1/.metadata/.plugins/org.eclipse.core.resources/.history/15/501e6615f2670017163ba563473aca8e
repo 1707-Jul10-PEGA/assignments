@@ -1,0 +1,8 @@
+package com.md.q11.testpackage;
+
+public float getMe = 20.5;
+
+
+public class PackageVisibilityHelper {
+
+}

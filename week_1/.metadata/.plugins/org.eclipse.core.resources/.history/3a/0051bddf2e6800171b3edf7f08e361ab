@@ -1,0 +1,9 @@
+package com.md.q16;
+
+public class CommandLineTest {
+	public static void main(String[] args) {
+		
+		System.err.println("Number of characters in " + args[0]);
+		
+	}
+}

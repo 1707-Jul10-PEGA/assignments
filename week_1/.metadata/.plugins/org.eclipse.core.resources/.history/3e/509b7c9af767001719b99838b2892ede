@@ -1,0 +1,7 @@
+package com.md.q11.testpackage;
+
+private float floatVar1 = f20.0;
+
+public class PackageVisibilityHelper {
+
+}

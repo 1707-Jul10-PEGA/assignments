@@ -1,0 +1,22 @@
+package com.md.q6;
+
+/*
+ * Write a program to determine if an integer is even without 
+ * using the modulus operator (%)
+ */
+public class EvenOrOdd {
+
+	public static void main(String[] args) {
+		
+	}
+
+	public static boolean isEven(int n) {
+
+		if ((n & 1) == 0) {
+			return true;
+		} else
+			return false;
+
+	}
+
+}

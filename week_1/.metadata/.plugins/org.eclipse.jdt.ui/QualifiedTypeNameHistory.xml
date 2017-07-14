@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="java.lang.reflect.Array"/>
+<fullyQualifiedTypeName name="com.md.q2.Fibonacci"/>
+<fullyQualifiedTypeName name="com.md.q11.testpackage.PackageVisibilityHelper"/>
+<fullyQualifiedTypeName name="com.md.q13.TrianglePattern"/>
+<fullyQualifiedTypeName name="java.text.SimpleDateFormat"/>
+<fullyQualifiedTypeName name="java.util.Date"/>
+<fullyQualifiedTypeName name="com.md.q15.CalculatorInterface"/>
+<fullyQualifiedTypeName name="com.md.q15.Calculator"/>
+<fullyQualifiedTypeName name="java.lang.Math"/>
+<fullyQualifiedTypeName name="com.md.q14.SwitchCase"/>
+<fullyQualifiedTypeName name="java.lang.System"/>
+<fullyQualifiedTypeName name="com.md.q18.AbstractClassParent"/>
+<fullyQualifiedTypeName name="com.md.q18.ChildClass"/>
+<fullyQualifiedTypeName name="java.util.Scanner"/>
+<fullyQualifiedTypeName name="java.util.Arrays"/>
+<fullyQualifiedTypeName name="com.md.q6.EvenOrOdd"/>
+<fullyQualifiedTypeName name="com.md.q9.PrimeNumbers"/>
+<fullyQualifiedTypeName name="java.util.Iterator"/>
+<fullyQualifiedTypeName name="com.md.q19.ArrayListOperations"/>
+<fullyQualifiedTypeName name="java.lang.Integer"/>
+<fullyQualifiedTypeName name="java.io.FileReader"/>
+<fullyQualifiedTypeName name="java.io.File"/>
+<fullyQualifiedTypeName name="java.io.BufferedReader"/>
+<fullyQualifiedTypeName name="java.lang.StringBuilder"/>
+<fullyQualifiedTypeName name="java.lang.Comparable"/>
+<fullyQualifiedTypeName name="com.md.q7.Employee"/>
+<fullyQualifiedTypeName name="java.awt.List"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="com.md.q20.Person"/>
+<fullyQualifiedTypeName name="java.util.Comparator"/>
+<fullyQualifiedTypeName name="java.util.Collections"/>
+<fullyQualifiedTypeName name="com.md.q7.NameComparator"/>
+<fullyQualifiedTypeName name="javax.crypto.spec.DESedeKeySpec"/>
+<fullyQualifiedTypeName name="com.md.q7.DepartmentComparator"/>
+<fullyQualifiedTypeName name="com.md.q7.AgeComparator"/>
+</qualifiedTypeNameHistroy>

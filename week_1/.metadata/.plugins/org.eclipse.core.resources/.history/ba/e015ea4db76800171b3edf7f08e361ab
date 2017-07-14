@@ -1,0 +1,23 @@
+package com.md.q7;
+
+import java.util.Comparator;
+
+/**
+ * Sort two employees based on their name, department and age using the 
+ * Comparator interface
+ * @author Martin Delira
+ *
+ */
+public class SortByComparator {
+
+	public static void main(String[] args) {
+		
+		Employee e1 = new Employee("Martin Delira","IT",26);
+		Employee e2 = new Employee("Joane Smith","Engineering",29);
+		Employee e3 = new Employee("Edgar Jimenez","Process Engineer",32);
+		
+	}
+
+		
+	
+}

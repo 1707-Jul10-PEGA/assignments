@@ -1,0 +1,29 @@
+package com.md.q3;
+
+/*
+ * Reverse a string without using a temporary variable. Do not use reverse()
+ * in the StringBuffer or StringBuilder API
+ * */
+public class ReverseString {
+
+	public static void main(String[] args) {
+		
+		
+	}
+	
+	
+	public static String reverse(String myString) {
+		
+		StringBuilder strB = new StringBuilder();
+		int stringLengt = myString.length();
+		
+		while(stringLengt > 0) {
+			
+		}
+		
+		
+		return "";
+	}
+	
+	
+}

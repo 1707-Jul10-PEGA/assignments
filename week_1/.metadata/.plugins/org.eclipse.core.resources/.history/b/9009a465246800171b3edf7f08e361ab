@@ -1,0 +1,13 @@
+package com.md.q12;
+
+public class EvenNumbers {
+public static void main(String[] args) {
+	
+	int[] myarray = new int[100];
+	
+	
+}
+
+
+
+}

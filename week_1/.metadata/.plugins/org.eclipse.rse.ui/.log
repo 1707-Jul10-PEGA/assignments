@@ -1,0 +1,23 @@
+Thu Jul 13 19:34:57 EDT 2017
+ERROR org.eclipse.rse.ui  Error creating temp project
+org.eclipse.core.internal.resources.ResourceException: Problems encountered while deleting resources.
+	at org.eclipse.core.internal.resources.Resource.delete(Resource.java:773)
+	at org.eclipse.core.internal.resources.Project.delete(Project.java:324)
+	at org.eclipse.rse.internal.files.ui.resources.SystemRemoteEditManager.createRemoteEditProject(SystemRemoteEditManager.java:343)
+	at org.eclipse.rse.internal.files.ui.resources.SystemRemoteEditManager.getRemoteEditProject(SystemRemoteEditManager.java:284)
+	at org.eclipse.rse.internal.files.ui.Activator$InitRemoteEditJob.run(Activator.java:73)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:56)
+Contains: Error deleting resource '/RemoteSystemsTempFiles' from the workspace tree.
+org.eclipse.core.internal.resources.ResourceException: Could not delete metadata for '/RemoteSystemsTempFiles'.
+	at org.eclipse.core.internal.resources.LocalMetaArea.delete(LocalMetaArea.java:105)
+	at org.eclipse.core.internal.resources.Project.deleteResource(Project.java:333)
+	at org.eclipse.core.internal.resources.ResourceTree.deletedProject(ResourceTree.java:173)
+	at org.eclipse.core.internal.resources.ResourceTree.standardDeleteProject(ResourceTree.java:883)
+	at org.eclipse.core.internal.resources.Resource.unprotectedDelete(Resource.java:1785)
+	at org.eclipse.core.internal.resources.Resource.delete(Resource.java:760)
+	at org.eclipse.core.internal.resources.Project.delete(Project.java:324)
+	at org.eclipse.rse.internal.files.ui.resources.SystemRemoteEditManager.createRemoteEditProject(SystemRemoteEditManager.java:343)
+	at org.eclipse.rse.internal.files.ui.resources.SystemRemoteEditManager.getRemoteEditProject(SystemRemoteEditManager.java:284)
+	at org.eclipse.rse.internal.files.ui.Activator$InitRemoteEditJob.run(Activator.java:73)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:56)
+--------------------------------------------

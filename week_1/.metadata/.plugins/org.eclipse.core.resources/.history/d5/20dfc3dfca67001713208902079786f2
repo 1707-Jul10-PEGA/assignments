@@ -1,0 +1,19 @@
+package com.md.q8;
+
+/*
+ * Write a program that store the following strings 
+ * in an ArrayList and saves all of the palindromes
+ * in another ArrayList
+ */
+
+public class Palindrome {
+	public static void main(String[] args) {
+
+	}
+	
+	
+	public static ArrayList<String> palindrome(){
+		
+	}
+	
+}

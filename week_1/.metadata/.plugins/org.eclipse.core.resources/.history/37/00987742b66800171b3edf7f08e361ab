@@ -1,0 +1,13 @@
+package com.md.q7;
+
+import java.util.Comparator;
+
+public class SortByComparator {
+
+	public static void main(String[] args) {
+		
+	}
+
+		
+	
+}
