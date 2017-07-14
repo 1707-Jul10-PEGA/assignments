@@ -58,7 +58,7 @@ public class Primes {
 	}
 
 	public static void main(String[] args) {
-		printPrimes(createArray(100003));
+		printPrimes(createArray(100000));
 	}
 
 }

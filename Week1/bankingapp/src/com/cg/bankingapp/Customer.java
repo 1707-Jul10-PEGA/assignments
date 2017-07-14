@@ -18,9 +18,13 @@ public class Customer extends User{
 	public void setBalance(double balance) {
 		this.balance = balance;
 	}
-	
-	/*public String toString(){
-		return User.to
-	}*/
+	@Override
+	public String toString(){
+		return "Name: " + this.getName() + "[" 
+						+ this.getUsername()+ ","
+						+ this.getPassword()+ ","
+						+ this.getUserType()+ ","
+						+ this.getBalance() + "]";
+	}
 }
 	

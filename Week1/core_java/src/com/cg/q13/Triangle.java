@@ -1,7 +1,17 @@
 package com.cg.q13;
 
 public class Triangle {
-	public static void printTriangle(int n){
+	
+	public static void main(String [] args){
+		Triangle t = new Triangle();
+		t.printTriangle(4);
+		t.printTriangle(5);
+	}
+	
+	/*Print triangle uses a flag to 
+	 * Alternate between 1 and 0
+	 */
+	public void printTriangle(int n){
 		boolean onOff = false;
 		for(int i = 0; i < n; i++){
 			for(int j = 0; j <= i; j++){
@@ -15,10 +25,5 @@ public class Triangle {
 			}
 			System.out.println();
 		}
-	}
-	
-	public static void main(String [] args){
-		printTriangle(4);
-		printTriangle(5);
 	}
 }

@@ -1,6 +1,6 @@
 package com.cg.bankingapp;
 
-public class User{
+public abstract class User{
 
 
 	// Variables
@@ -111,6 +111,8 @@ public class User{
 			return false;
 		return true;
 	}
+	
+	public abstract String toString();
 
 
 	

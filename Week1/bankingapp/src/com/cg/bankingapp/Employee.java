@@ -11,6 +11,14 @@ public class Employee extends User implements Serializable{
 		super(name, username, password, userType);
 		
 	}
+
+	@Override
+	public String toString() {
+		return "Name: " + this.getName() + "[" 
+				+ this.getUsername()+ ","
+				+ this.getPassword()+ ","
+				+ this.getUserType()+ "]";
+	}
 	
 	
 	
