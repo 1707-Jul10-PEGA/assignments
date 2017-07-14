@@ -14,6 +14,9 @@ public class Question4 {
 	
 	public static final void main(String[] args){
 		Question4 q4 = new Question4();
-		System.out.println("Result of 25!: " + q4.factorial(13));
+		System.out.println("Result of 4!: " + q4.factorial(4));
+		System.out.println("Result of 8!: " + q4.factorial(8));
+		System.out.println("Result of 9!: " + q4.factorial(9));
+		System.out.println("Result of 10!: " + q4.factorial(10));
 	}
 }

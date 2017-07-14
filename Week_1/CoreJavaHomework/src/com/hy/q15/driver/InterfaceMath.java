@@ -1,8 +1,9 @@
 package com.hy.q15.driver;
 
-interface InterfaceMath {
-	int addition(int a, int b);
-	int subtraction(int a, int b);
-	int multiplication(int a, int b);
-	int division(int a, int b);
+interface InterfaceMath <T extends Number> {
+	T addition(Number a, Number b);
+	T subtraction(Number a, Number b);
+	T multiplication(Number a, Number b);
+	T division(Number a, Number b);
+
 }
