@@ -1,7 +1,0 @@
-package com.md.q15;
-
-public interface CalculatorInterface {
-
-	substraction(int a, int b);
-	
-}

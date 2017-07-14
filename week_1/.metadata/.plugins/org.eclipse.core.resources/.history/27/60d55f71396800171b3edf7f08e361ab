@@ -1,9 +1,0 @@
-package com.md.q18;
-
-public class AbstractClassParent {
-	
-	public abstract checkUpperCase() {
-		
-	}
-
-}

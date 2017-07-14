@@ -1,8 +1,0 @@
-package com.md.q11.testpackage;
-
-public class PackageVisibilityHelper {
-
-	private float floatvar1 = 0.2f;
-	private float floatvar2 = 3.3f;
-	
-}

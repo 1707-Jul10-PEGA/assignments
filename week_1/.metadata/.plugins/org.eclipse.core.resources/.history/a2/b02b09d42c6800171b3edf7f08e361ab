@@ -1,7 +1,0 @@
-package com.md.q15;
-
-public class Calculator implements CalculatorInterface {
-
-	
-	
-}

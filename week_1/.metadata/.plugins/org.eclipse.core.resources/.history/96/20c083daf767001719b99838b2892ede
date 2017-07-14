@@ -1,9 +1,0 @@
-package com.md.q11;
-
-public class PackageVisibility {
-
-	public static void main(String[] args) {
-		
-	}
-	
-}

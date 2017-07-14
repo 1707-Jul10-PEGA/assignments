@@ -1,7 +1,0 @@
-package com.md.q7;
-
-import java.util.Comparator;
-
-public class NameComparator implements Comparator<Person> {
-
-}
