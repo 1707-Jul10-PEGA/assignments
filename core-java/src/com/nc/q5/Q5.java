@@ -13,7 +13,8 @@ public class Q5 {
 			int idx = sc.nextInt();
 			
 			//Display result
-			System.out.println(substring(str, idx));
+			str = substring(str, idx);
+			System.out.println(str);
 	   }
 
 	   //Return a substring
@@ -28,6 +29,7 @@ public class Q5 {
 			   subSTR.add(word[x]); 
 		   }
 		   //Return result
-		   return subSTR.toString();
+		   str = subSTR.toString();
+		   return str;
 	   }
 }
