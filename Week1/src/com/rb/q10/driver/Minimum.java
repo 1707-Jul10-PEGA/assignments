@@ -13,8 +13,11 @@ public class Minimum {
 		int n2 = inStream.nextInt();
 		inStream.close();
 		
+		// the ternary operator puts n into min if n is less than
+		// n2, and puts n2 into min otherwise.
 		int min = (n<n2) ? n : n2;
 		
+		// print out result
 		System.out.println("The minimum value is " + min);
 	}
 }

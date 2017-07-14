@@ -16,6 +16,10 @@ public class BubbleSort {
 		
 		boolean done = true;
 		do{
+			// each pass, swap adjacent elements if needed
+			// if elements are swapped, done = false so the
+			// next pass will execute. Otherwise, the loop
+			// will end
 			done = true;
 			for(int i = 1; i < toSort.length; i++){
 				if(toSort[i-1] > toSort[i]){
@@ -27,6 +31,8 @@ public class BubbleSort {
 			}
 		}while(!done);
 		
+		
+		// Print out the full array
 		System.out.print(toSort[0]);
 		for(int i = 1; i < toSort.length; i++){
 			System.out.print(", " + toSort[i]);

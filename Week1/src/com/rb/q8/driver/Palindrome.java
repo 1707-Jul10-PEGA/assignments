@@ -16,6 +16,8 @@ public class Palindrome {
 	}
 	
 	public Palindrome(){
+		
+		//Create the input array
 		list = new ArrayList<String>();
 		output = new ArrayList<String>();
 		list.add("karan");
@@ -34,6 +36,9 @@ public class Palindrome {
 	
 	private void find(){
 		for(String check : list){
+			// add the element to a buffer, reverse it, and
+			// check if the result is the same as the input.
+			// if so, add to output
 			StringBuffer reverse = new StringBuffer(check);
 			reverse = reverse.reverse();
 			if(check.equals(reverse.toString())){
@@ -41,6 +46,7 @@ public class Palindrome {
 			}
 		}
 		
+		// print output
 		System.out.println(output);
 		
 	}

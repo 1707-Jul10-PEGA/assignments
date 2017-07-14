@@ -7,12 +7,13 @@ import java.util.Scanner;
 public class ParseData {
 
 	public static void main(String args[]) {
-		// TODO Auto-generated method stub
 		
+		// create file input and a null scanner
 		File input = new File("data.txt");
-		
-		
 		Scanner data = null;
+		
+		// try to create a scanner from the file
+		// if the file isn't there, catch and print error
 		
 		try{
 			data = new Scanner(input);
@@ -21,6 +22,10 @@ public class ParseData {
 			System.out.println("File not found");
 		}
 		
+		
+		// for each line, delimit the string on the colon
+		// and pass that to another scanner. From that scanner
+		// read each part in and format each line
 		while(data.hasNextLine()){
 			Scanner parse = new Scanner(data.nextLine());
 			Scanner read = parse.useDelimiter(":");
