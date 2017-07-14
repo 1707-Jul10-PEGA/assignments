@@ -5,7 +5,6 @@ import java.util.Date;
 public class Account {
 
 	private String email;
-	private String userName;
 	private String password;
 	private Date lastLogin;
 	
@@ -13,8 +12,7 @@ public class Account {
 		super();
 	}
 	
-	public Account(String userName, String email, String password, Date lastLogin){
-		setUserName(userName);
+	public Account(String email, String password, Date lastLogin){
 		setEmail(email);
 		setPassword(password);
 		setLastLogin(lastLogin);
@@ -26,12 +24,6 @@ public class Account {
 	}
 	public void setEmail(String email) {
 		this.email = email;
-	}
-	public String getUserName() {
-		return userName;
-	}
-	public void setUserName(String userName) {
-		this.userName = userName;
 	}
 	public String getPassword() {
 		return password;

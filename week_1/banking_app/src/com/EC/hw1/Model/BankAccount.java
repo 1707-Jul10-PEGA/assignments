@@ -12,9 +12,9 @@ public class BankAccount extends Account {
 		super();
 	}
 
-	public BankAccount(String userName, String email, String password, Date lastLogin, double cashAccount, double savingAccount,
+	public BankAccount(String email, String password, Date lastLogin, double cashAccount, double savingAccount,
 			double creditAccount) {
-		super(userName, email, password, lastLogin);
+		super(email, password, lastLogin);
 		setCashAccount(cashAccount);
 		setSavingAccount(savingAccount);
 		setCreditAccount(creditAccount);

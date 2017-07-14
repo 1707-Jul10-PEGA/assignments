@@ -11,17 +11,19 @@ public class User implements Serializable {
 	//private String role;
 	private String firstName;
 	private String lastName;
+	private String userName;
 	
 		
 	public User() {
 		super();
 	}
 
-	public User(String firstName, String lastName) {
+	public User(String firstName, String lastName,String userName) {
 		super();
 		//this.role = role;
 		this.firstName = firstName;
 		this.lastName = lastName;
+		this.userName = userName;
 	}
 	
 //	public String getRole() {
@@ -38,6 +40,14 @@ public class User implements Serializable {
 	}
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 	
 	
