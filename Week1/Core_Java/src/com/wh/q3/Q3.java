@@ -9,20 +9,20 @@ package com.wh.q3;
  */
 public class Q3 {
 
-	/**
-	 * @param args
-	 *            - the String to be reversed
-	 * @return the reversed String
-	 */
-	private static String myReverse(String args) {
-		if (args.length() == 0) {
-			return "";
-		}
-		return args.substring(args.length() - 1).concat(myReverse(args.substring(0, args.length() - 1)));
+    /**
+     * @param args
+     *            - the String to be reversed
+     * @return the reversed String
+     */
+    private static String myReverse(String args) {
+	if (args.length() == 0) {
+	    return "";
 	}
+	return args.substring(args.length() - 1).concat(myReverse(args.substring(0, args.length() - 1)));
+    }
 
-	public static void main(String[] args) {
-		System.out.print(myReverse("Temporary"));
-	}
+    public static void main(String[] args) {
+	System.out.print(myReverse("Temporary"));
+    }
 
 }

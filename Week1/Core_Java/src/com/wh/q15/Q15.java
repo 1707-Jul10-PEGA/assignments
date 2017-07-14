@@ -12,11 +12,39 @@ package com.wh.q15;
  */
 public interface Q15 {
 
-	public int addition(int x, int y);
+    /**
+     * @param x
+     *            - a value
+     * @param y
+     *            - another value
+     * @return the sum of the two values
+     */
+    public int addition(int x, int y);
 
-	public int subtraction(int x, int y);
+    /**
+     * @param x
+     *            - a value
+     * @param y
+     *            - another value
+     * @return the difference of the two values
+     */
+    public int subtraction(int x, int y);
 
-	public int multiplication(int x, int y);
+    /**
+     * @param x
+     *            - a value
+     * @param y
+     *            - another value
+     * @return the product of the two values
+     */
+    public int multiplication(int x, int y);
 
-	public int division(int x, int y);
+    /**
+     * @param x
+     *            - the dividend
+     * @param y
+     *            - the divisor
+     * @return the quotient of the two values
+     */
+    public int division(int x, int y);
 }

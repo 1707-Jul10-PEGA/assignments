@@ -11,7 +11,7 @@ package com.wh.q18;
  * 2. Convert all of the lower case characters to uppercase in the input string,
  * and return the result.
  * 
- * 3. Conver the input string to integer and add10, output the result to the
+ * 3. Convert the input string to integer and add10, output the result to the
  * console.
  * 
  * Create an appropriate class having a main method to test the above setup.
@@ -22,20 +22,32 @@ package com.wh.q18;
 
 public abstract class Q18 {
 
-	/**
-	 * @param str
-	 * @return
-	 */
-	public abstract boolean hasUpperCase(String str);
+    /**
+     * Check for uppercase characters in a string, and return 'true' or 'false'
+     * depending if any are found.
+     * 
+     * @param str
+     *            - a String value.
+     * @return true if uppercase character is found; false otherwise.
+     */
+    public abstract boolean hasUpperCase(String str);
 
-	/**
-	 * @param str
-	 * @return
-	 */
-	public abstract String toUpperCase(String str);
+    /**
+     * Convert all of the lower case characters to uppercase in the input
+     * string, and return the result.
+     * 
+     * @param str
+     *            - a String value.
+     * @return the String value but with all uppercase characters.
+     */
+    public abstract String toUpperCase(String str);
 
-	/**
-	 * @param str
-	 */
-	public abstract void toIntAddTen(String str);
+    /**
+     * Convert the input string to integer and add10, output the result to the
+     * console.
+     * 
+     * @param str
+     *            - A String value.
+     */
+    public abstract void toIntAddTen(String str);
 }

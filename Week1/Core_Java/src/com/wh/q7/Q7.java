@@ -13,16 +13,16 @@ import java.util.List;
  */
 public class Q7 {
 
-	public static void main(String[] args) {
+    public static void main(String[] args) {
 
-		List<Employee> employeeList = new ArrayList<Employee>(4);
-		employeeList.add(new Employee("Bruce Wayne", "Batman", 25));
-		employeeList.add(new Employee("Adam West", "Batman", 50));
-		EmployeeComparator comp = new EmployeeComparator();
+	List<Employee> employeeList = new ArrayList<Employee>(4);
+	employeeList.add(new Employee("Bruce Wayne", "Batman", 25));
+	employeeList.add(new Employee("Adam West", "Batman", 50));
+	EmployeeComparator comp = new EmployeeComparator();
 
-		Collections.sort(employeeList, comp);
-		System.out.println(employeeList);
+	Collections.sort(employeeList, comp);
+	System.out.println(employeeList);
 
-	}
+    }
 
 }

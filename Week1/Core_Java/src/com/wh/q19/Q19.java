@@ -14,40 +14,47 @@ import java.util.Iterator;
  */
 public class Q19 {
 
-	private static boolean prime(int x) {
-		for (int i = 2; i <= Math.sqrt(x); i++) {
-			if (x % i == 0) {
-				return false;
-			}
-		}
-		return true;
+    /**
+     * A method to check if a value is prime or not.
+     * 
+     * @param x
+     *            - a value.
+     * @return false if the value is not a prime; true otherwise.
+     */
+    private static boolean prime(int x) {
+	for (int i = 2; i <= Math.sqrt(x); i++) {
+	    if (x % i == 0) {
+		return false;
+	    }
+	}
+	return true;
+    }
+
+    public static void main(String[] args) {
+	ArrayList<Integer> nums = new ArrayList<Integer>(10);
+	for (int i = 1; i <= 10; i++) {
+	    nums.add(i);
 	}
 
-	public static void main(String[] args) {
-		ArrayList<Integer> nums = new ArrayList<Integer>(10);
-		for (int i = 1; i <= 10; i++) {
-			nums.add(i);
-		}
+	System.out.println("original list: " + nums);
+	int even = 0;
+	int odd = 0;
 
-		System.out.println("original list: " + nums);
-		int even = 0;
-		int odd = 0;
-
-		Iterator<Integer> itNums = nums.iterator();
-		while (itNums.hasNext()) {
-			int i = itNums.next();
-			if (i % 2 == 0) {
-				even += i;
-			} else {
-				odd += i;
-			}
-			if (prime(i)) {
-				itNums.remove();
-			}
-		}
-
-		System.out.println("sum of evens: " + even);
-		System.out.println("sum of odds: " + odd);
-		System.out.println("List after removing primes: " + nums);
+	Iterator<Integer> itNums = nums.iterator();
+	while (itNums.hasNext()) {
+	    int i = itNums.next();
+	    if (i % 2 == 0) {
+		even += i;
+	    } else {
+		odd += i;
+	    }
+	    if (prime(i)) {
+		itNums.remove();
+	    }
 	}
+
+	System.out.println("sum of evens: " + even);
+	System.out.println("sum of odds: " + odd);
+	System.out.println("List after removing primes: " + nums);
+    }
 }

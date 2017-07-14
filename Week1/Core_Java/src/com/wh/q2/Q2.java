@@ -9,21 +9,21 @@ import java.util.ArrayList;
 
 public class Q2 {
 
-	public static void main(String args[]) {
+    public static void main(String args[]) {
 
-		// Create our ArrayList to store Fibonacci numbers.
-		ArrayList<Integer> fibNums = new ArrayList<Integer>();
+	// Create our ArrayList to store Fibonacci numbers.
+	ArrayList<Integer> fibNums = new ArrayList<Integer>();
 
-		// Give first 2 Fibonacci numbers starting with 0;
-		fibNums.add(0);
-		fibNums.add(1);
+	// Give first 2 Fibonacci numbers starting with 0;
+	fibNums.add(0);
+	fibNums.add(1);
 
-		// Add Fibonacci numbers to ArrayList.
-		for (int i = 1; i < 24; i++) {
-			fibNums.add(fibNums.get(i) + fibNums.get(i - 1));
-		}
-
-		// Print out numbers in ArrayList
-		System.out.print(fibNums.toString());
+	// Add Fibonacci numbers to ArrayList.
+	for (int i = 1; i < 24; i++) {
+	    fibNums.add(fibNums.get(i) + fibNums.get(i - 1));
 	}
+
+	// Print out numbers in ArrayList
+	System.out.print(fibNums.toString());
+    }
 }

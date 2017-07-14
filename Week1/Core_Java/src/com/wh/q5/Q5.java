@@ -11,24 +11,24 @@ package com.wh.q5;
  */
 public class Q5 {
 
-	/**
-	 * @param str
-	 *            string to be subString.
-	 * @param idx
-	 *            index of where to end the subString.
-	 * @return the subString of str.
-	 */
-	private static String subString(String str, Integer idx) {
-		char[] temp = new char[idx];
-		for (int i = 0; i < idx; i++) {
-			temp[i] = str.charAt(i);
-		}
-		String answer = new String(temp);
-		return answer;
+    /**
+     * @param str
+     *            - a String value.
+     * @param idx
+     *            - index of where to end the subString.
+     * @return the subString of the String Value.
+     */
+    private static String subString(String str, Integer idx) {
+	char[] temp = new char[idx];
+	for (int i = 0; i < idx; i++) {
+	    temp[i] = str.charAt(i);
 	}
+	String answer = new String(temp);
+	return answer;
+    }
 
-	public static void main(String[] args) {
-		System.out.println(subString("ThisIsATest", 6));
-	}
+    public static void main(String[] args) {
+	System.out.println(subString("ThisIsATest", 6));
+    }
 
 }
