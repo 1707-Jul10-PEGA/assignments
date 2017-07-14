@@ -1,6 +1,8 @@
 package com.nc.q15;
 
 public class impMath implements mathInterface{
+	
+	//define the abstract method
 
 	public float addition(float num1, float num2) {
 		// TODO Auto-generated method stub

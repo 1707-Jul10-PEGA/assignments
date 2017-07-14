@@ -1,5 +1,6 @@
 package com.nc.q5;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Q5 {
@@ -17,8 +18,16 @@ public class Q5 {
 
 	   //Return a substring
 	   public static String substring(String str, int idx) {
-		   //How do I return a substring without using substring
-		   String subStr = str.substring(0, idx -1);
-		   return subStr; 
+		   //convert string to array
+		   char[] word = str.toCharArray();
+		   //hold substring
+		   ArrayList subSTR = new ArrayList();
+		   //put the substring into the holder
+		   for(int x = 0; x <= idx-1; x++)
+		   {
+			   subSTR.add(word[x]); 
+		   }
+		   //Return result
+		   return subSTR.toString();
 	   }
 }
