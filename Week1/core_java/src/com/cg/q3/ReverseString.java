@@ -7,11 +7,13 @@ public class ReverseString {
 	 * from right to the left
 	 */
 	public String reverseString(String str) {
-
-		for (int i = str.length() - 1; i >= 0; i--) {
-			str = str.concat(String.valueOf(str.charAt(i)));
+		//Base Case
+		if(str.length() == 1) {
+			return str;
+		}else {
+			return str.substring(str.length()-1, str.length()) + reverseString(str.substring(0, str.length()-1));
 		}
-		return str.substring(str.length() / 2);
+			
 
 	}
 }
