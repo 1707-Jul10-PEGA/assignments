@@ -38,6 +38,12 @@ public class Account implements Serializable{
 	public void setLastLogin() {
 		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd/  HH:mm:ss");
 		this.lastLogin = dateFormat.format(new Date()) ;
-	}	
+	}
+	
+	@Override
+	public String toString(){
+		return "Email: "+ this.email ;
+		
+	}
 	
 }

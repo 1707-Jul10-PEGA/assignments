@@ -2,6 +2,7 @@ package com.EC.hw1.driver;
 
 import java.util.Scanner;
 
+import com.EC.hw1.Model.Admin;
 import com.EC.hw1.Model.BankAccount;
 import com.EC.hw1.Model.Customer;
 import com.EC.hw1.Model.Employee;
@@ -66,7 +67,7 @@ public class Driver {
 			System.out.println("username: ");
 			username = scan.next();
 			Customer c2 = (Customer) BankUtilities.readUser(username);
-			if (c2!=null) {
+			if (c2 != null) {
 				System.out.println("This username already exist. Please choose another one");
 			} else {
 				valid = false;
@@ -78,21 +79,22 @@ public class Driver {
 		for (boolean valid = true; valid;) {
 			System.out.println("email: ");
 			email = scan.next();
-			if(email.contains("@")){
-				valid=false;
-			}else{
+			if (email.contains("@")) {
+				valid = false;
+			} else {
 				System.out.println("please enter a valid email address");
 			}
 		}
-		BankAccount ba = new BankAccount(email,0,0,0);
-		Customer c = new Customer(firstName,lastName,username,password,ba);
-		if(BankUtilities.assignBanker(c)){
-			
-			System.out.println("A banker is looking at your application now. Please wait for us to contact you.\nThanks!");
-		}else{
+		BankAccount ba = new BankAccount(email, 0, 0, 0);
+		Customer c = new Customer(firstName, lastName, username, password, ba);
+		if (BankUtilities.assignBanker(c)) {
+
+			System.out.println(
+					"A banker is looking at your application now. Please wait for us to contact you.\nThanks!");
+		} else {
 			System.out.println("Our bank is currently unemployeed. Please come back when we hire someone");
 		}
-		
+
 	}
 
 	private static void login() {
@@ -136,16 +138,66 @@ public class Driver {
 	}
 
 	private static void adminLogic() {
-		// TODO Auto-generated method stub
-		
+		User u = (User) getUserAccount();
+		boolean valid = true;
+		Admin admin = null;
+		if (u == null) {
+			return;
+		} else if (u instanceof Admin) {
+			admin = (Admin) u;
+		} else {
+			System.out.println("You are not a Administrator!");
+			return;
+		}
+		System.out.println("Last Login: " + admin.getAccount().getLastLogin());
+		admin.getAccount().setLastLogin();
+		BankUtilities.writeUser(admin);
+		while (valid) {
+			printAdminOptions();
+			if (scan.hasNextInt()) {
+				int tmp = scan.nextInt();
+				if (tmp >= 1 && tmp <= 4) {
+					// switch case
+					switch (tmp) {
+					case 1:
+						admin.viewAllAccounts();
+						break;
+					case 2:
+
+						break;
+					case 3:
+
+						break;
+					case 4:
+						valid = false;
+						break;
+					}
+				} else {
+					printAdminOptions();
+				}
+			} else {
+				printAdminOptions();
+				// clear invalid input
+				scan.next();
+			}
+
+		}
+
 	}
 
 	private static void employeeLogic() {
-		Employee e = (Employee) getUserAccount();
+		User u = (User) getUserAccount();
+		Employee e = null;
 		boolean valid = true;
-		if (e == null) {
+		if (u == null) {
+			return;
+		} else if (u instanceof Employee) {
+			e = (Employee) u;
+		} else {
+			System.out.println("You are not an employee");
 			return;
 		}
+
 		System.out.println("Last Login: " + e.getAccount().getLastLogin());
 		e.getAccount().setLastLogin();
 		BankUtilities.writeUser(e);
@@ -158,13 +210,15 @@ public class Driver {
 					// switch case
 					switch (tmp) {
 					case 1:
-						
+						e.checkApplications();
 						break;
 					case 2:
-						
+						System.out.println("Customer's username:");
+						String cusUserName = scan.next();
+						e.viewCustomerAsset(cusUserName);
 						break;
 					case 3:
-						
+						e.viewCustomerList();
 						break;
 					case 4:
 						valid = false;
@@ -180,13 +234,19 @@ public class Driver {
 			}
 
 		}
-		
+
 	}
 
 	private static void customerLogic() {
-		Customer c = (Customer) getUserAccount();
+		User u = (User) getUserAccount();
 		boolean valid = true;
-		if (c == null) {
+		Customer c = null;
+		if (u == null) {
+			return;
+		} else if (u instanceof Customer) {
+			c = (Customer) u;
+		} else {
+			System.out.println("You are not a customer!");
 			return;
 		}
 		System.out.println("Last Login: " + c.getBankAccount().getLastLogin());
@@ -232,7 +292,6 @@ public class Driver {
 			}
 
 		}
-
 	}
 
 	private static void printLogin() {
@@ -250,6 +309,13 @@ public class Driver {
 		System.out.println("(3)Close App");
 	}
 
+	private static void printAdminOptions() {
+		System.out.println("Please enter a number between 1-3 to continue");
+		System.out.println("(1)View All Accounts");
+		System.out.println("(2)Edit an account");
+		System.out.println("(3)Logout");
+	}
+
 	private static void printCustomerOptions() {
 		System.out.println("Please pick a number between 1-4");
 		System.out.println("(1)Deposit Money");
@@ -258,15 +324,15 @@ public class Driver {
 		System.out.println("(4)Logout");
 
 	}
-	
-	private static void printEmployeeOptions(){
+
+	private static void printEmployeeOptions() {
 		System.out.println("Please enter a number between 1-4 to continue");
 		System.out.println("(1)Check Applications");
 		System.out.println("(2)View a Customer's Asset");
 		System.out.println("(3)Look at list of clients");
 		System.out.println("(4)Logout");
 	}
-	
+
 	private static User getUserAccount() {
 		System.out.println("Please enter your user name");
 		String username = scan.next();
@@ -277,10 +343,10 @@ public class Driver {
 			return null;
 		}
 		if (u.getPassword().equals(password)) {
-
 			return u;
 		} else {
-			return u;
+			System.out.println("Incorrect password!");
+			return null;
 		}
 
 	}

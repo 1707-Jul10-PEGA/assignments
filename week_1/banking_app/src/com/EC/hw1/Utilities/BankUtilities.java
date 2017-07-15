@@ -7,6 +7,10 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.nio.file.DirectoryNotEmptyException;
+import java.nio.file.Files;
+import java.nio.file.NoSuchFileException;
+import java.nio.file.Path;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -39,8 +43,15 @@ public class BankUtilities {
 	}
 
 	// read user text files
-	public static User readUser(String username) {
-		String filename = "Users/" + username + ".txt";
+	public static User readUser(String path) {
+		
+		String filename = null;
+		if(path.contains(".txt")){
+			filename = path;
+		}else{
+			filename = "Users/" + path + ".txt";
+		}
+		
 		try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(filename))) {
 			User u = (User) ois.readObject();
 			return u;
@@ -88,4 +99,35 @@ public class BankUtilities {
 		return true;
 
 	}
+
+	//Delete a user by path
+	public static boolean deleteUser(Path path){
+		
+		try {
+		    Files.delete(path);
+		    return true;
+		} catch (NoSuchFileException x) {
+		    System.err.format("%s: no such" + " file or directory%n", path);
+		    return false;
+		} catch (DirectoryNotEmptyException x) {
+		    System.err.format("%s not empty%n", path);
+		    return false;
+		} catch (IOException x) {
+		    // File permission problems are caught here.
+		    System.err.println(x);
+		    return false;
+		}
+	}
+	
+	public static boolean accountExist(String username) {
+
+		Customer c2 = (Customer) BankUtilities.readUser(username);
+		if (c2 != null) {
+			return false;
+		} else {
+			return true;
+		}
+
+	}
+
 }

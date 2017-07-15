@@ -62,7 +62,7 @@ public class User implements Serializable {
 
 	@Override
 	public String toString() {
-		return "FirstName=" + firstName + "\nlastName=" + lastName + "\nuserName=" + userName+"\n";
+		return "First Name: " + firstName + "\nLast Name: " + lastName + "\nUsername: " + userName;
 	}
 	
 	

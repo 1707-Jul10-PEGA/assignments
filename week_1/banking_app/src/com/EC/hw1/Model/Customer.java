@@ -42,7 +42,7 @@ public class Customer extends User implements CustomerInterface {
 		System.out.println(("CASH ACCOUNT: $"+df2.format(this.bankAccount.getCashAccount()+this.bankAccount.getSavingAccount())));
 		System.out.println("CHECKING: $" + df2.format(this.bankAccount.getCashAccount()));
 		System.out.println("SAVING: $" + df2.format(this.bankAccount.getSavingAccount()));
-		System.out.println("CREDIT: $"+df2.format(this.bankAccount.getCreditAccount()));
+		System.out.println("CREDIT: $"+df2.format(this.bankAccount.getCreditAccount()) + "\n");
 		
 
 	}

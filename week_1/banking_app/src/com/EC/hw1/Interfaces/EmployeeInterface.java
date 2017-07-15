@@ -2,8 +2,8 @@ package com.EC.hw1.Interfaces;
 
 public interface EmployeeInterface {
 	
-	public void approveOrDenyApp();
-	public void viewCustomerAsset();
+	public void checkApplications();
+	public void viewCustomerAsset(String username);
 	public void viewCustomerList();
 	
 }
