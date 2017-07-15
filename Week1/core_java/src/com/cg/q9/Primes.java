@@ -5,12 +5,6 @@ import java.util.ArrayList;
 import com.cg.q6.Even;
 
 public class Primes {
-	public static void main(String[] args) {
-		Primes p = new Primes();
-		
-		//Create array, if array contain primes and print it
-		p.printPrimes(p.checkForPrimes(p.createArray(100)));
-	}
 
 	// Creates an Array list of size n and add numbers  1...n
 	public ArrayList<Integer> createArray(int n) {

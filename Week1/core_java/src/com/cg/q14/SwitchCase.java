@@ -3,14 +3,7 @@ package com.cg.q14;
 import java.time.LocalDate;
 
 public class SwitchCase {
-	public static void main(String[] args) {
-		SwitchCase sw = new SwitchCase();
-
-		for (int i = 1; i < 4; i++) {
-			sw.switchCase(i);
-		}
-
-	}
+	
 	//Call methods depending on user choice
 	public void switchCase(int choice) {
 		switch (choice) {

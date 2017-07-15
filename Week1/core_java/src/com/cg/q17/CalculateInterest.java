@@ -4,13 +4,6 @@ import java.util.Scanner;
 
 public class CalculateInterest {
 
-	public static void main(String[] args) {
-
-		CalculateInterest calculate = new CalculateInterest();
-
-		System.out.println("Interest = " + calculate.getInterest());
-	}
-
 	// Variables
 	private double interest;
 	private double principal;

@@ -8,16 +8,29 @@ import java.util.ArrayList;
 
 public class ReadFile {
 
-	public static void main(String[] args) {
-		String filename = "/Users/carlosgastelum/Documents/Revature/assignments/Week1/core_java/src/com/cg/q20/Data.txt";
-		String temp;
-		String firstName = null;
-		String lastName = null;
-		String age = null;
-		String state = null;
-		ArrayList<String> fileContent = new ArrayList<String>();
-
-		try (BufferedReader input = new BufferedReader(new FileReader(filename))) {
+	//Variables
+	private String fileLocation;
+	private String temp;
+	private String firstName;
+	private String lastName;
+	private String age;
+	private String state;
+	private ArrayList<String> fileContent;
+	
+	//Constructor
+	public ReadFile(String fileLocation) {
+		this.fileLocation = fileLocation;
+	}
+	
+	/*
+	 * Open and read file line by line using BufferedReader
+	 * save content to an ArrayList of strings
+	 * 
+	 */
+	public void openFile() {
+		fileContent = new ArrayList<String>();
+		
+		try (BufferedReader input = new BufferedReader(new FileReader(fileLocation))) {
 
 			while ((temp = input.readLine()) != null) {
 				fileContent.add(temp);
@@ -29,7 +42,14 @@ public class ReadFile {
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
-
+	}
+	
+	/*
+	 * Use string split method to split the strings 
+	 * every time it encounters a semicolon
+	 */
+	public void displayFileContent() {
+		//Iterate through the strings
 		for (String i : fileContent) {
 
 			String[] string = i.split(":");
@@ -46,6 +66,7 @@ public class ReadFile {
 				}
 
 			}
+			//Ensure that the string contain something
 			if (firstName != null && lastName != null && age != null && state != null) {
 				System.out.println("Name: " + firstName + " " + lastName);
 				System.out.println("Age: " + age + " years");

@@ -2,11 +2,6 @@ package com.cg.q2;
 
 public class Fibonnacci {
 
-	public static void main(String[] args) {
-		Fibonnacci f = new Fibonnacci();
-		f.printFibonnaci(100);
-	}
-
 	//Prints out the fibonnaci sequence
 	public void printFibonnaci(int n) {
 		for (int i = 0; i < n; i++) {

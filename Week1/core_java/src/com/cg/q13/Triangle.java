@@ -2,12 +2,6 @@ package com.cg.q13;
 
 public class Triangle {
 	
-	public static void main(String [] args){
-		Triangle t = new Triangle();
-		t.printTriangle(4);
-		t.printTriangle(5);
-	}
-	
 	/*Print triangle uses a flag to 
 	 * Alternate between 1 and 0
 	 */

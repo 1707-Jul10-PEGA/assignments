@@ -1,31 +1,35 @@
 package com.cg.q8;
 
+import java.util.ArrayList;
+
 public class StoreStrings {
 
-	public static void main(String[] args) {
-		StoreStrings ss = new StoreStrings();
-		
-		String[] words = { "karan", "madam", "tom", "civic", "radar", "sexes", "jimmy", "kayak", "john", "refer",
-				"billy", "did", "noon" };
+	// Variables
+	private ArrayList<String> palidromes;
+	private ArrayList<String> nonpalidromes;
+	private ArrayList<String> strings;
 
-		ss.checkStrings(words);
+	// Constructor
+	public StoreStrings() {
+		palidromes = new ArrayList<String>();
+		nonpalidromes = new ArrayList<String>();
+		strings = new ArrayList<String>();
 	}
 
-	// Variables
-	private static String[] palidromes = new String[13];
-	private static String[] nonpalidromes = new String[13];
+	// Create an array list with the provided strings
+	public void createArrayList(String[] strings) {
+		for (String i : strings) {
+			this.strings.add(i);
+		}
 
-	//
-	public void checkStrings(String[] args) {
-		int counter = 0;
+	}
 
-		for (String i : args) {
+	// Save string to their corresponding array
+	public void checkStrings() {
+		for (String i : strings) {
 			boolean flag = true;
 
 			for (int j = 0, k = i.length() - 1; j < i.length(); j++, k--) {
-
-				System.out.print(i.charAt(j));
-				System.out.println(" " + i.charAt(k));
 				if (i.charAt(j) != i.charAt(k)) {
 					flag = false;
 					break;
@@ -33,21 +37,46 @@ public class StoreStrings {
 			}
 
 			if (flag) {
-				palidromes[counter] = i;
+				palidromes.add(i);
 			} else {
-				nonpalidromes[counter] = i;
+				nonpalidromes.add(i);
 			}
-			counter++;
 		}
-		System.out.println("Nonpalidromes");
-		for (String i : nonpalidromes) {
-			System.out.print(i + ", ");
-		}
+	}
 
-		System.out.println();
-		System.out.println("Palidromes");
-		for (String i : palidromes) {
-			System.out.print(i + ", ");
-		}
+	// Display the strings pass by user
+	public void printStrings() {
+		System.out.print("Original: ");
+		System.out.println(palidromes);
+	}
+
+	// Display Palidromes
+	public void printPalidromes() {
+		System.out.print("Palidromes: ");
+		System.out.println(palidromes);
+	}
+
+	// Display Nonpalidromes
+	public void printNonPalidromes() {
+		System.out.print("Nonpalidromes: ");
+		System.out.println(nonpalidromes);
+	}
+
+	// Getters
+	public ArrayList<String> getPalidromes() {
+		return palidromes;
+	}
+
+	public ArrayList<String> getNonpalidromes() {
+		return nonpalidromes;
+	}
+
+	// Setters
+	public void setPalidromes(ArrayList<String> palidromes) {
+		this.palidromes = palidromes;
+	}
+
+	public void setNonpalidromes(ArrayList<String> nonpalidromes) {
+		this.nonpalidromes = nonpalidromes;
 	}
 }

@@ -4,14 +4,6 @@ import com.cg.q6.Even;
 
 public class EvenNumbers {
 	
-	public static void main(String[] args) {
-		EvenNumbers e = new EvenNumbers();
-		
-		//Test the create array and print methods
-		e.printEvenNumber(e.createArray(100));
-		
-	}
-	
 	//Creates an array from 1 to n
 	public int [] createArray(int n){
 		int [] arr = new int [n] ;

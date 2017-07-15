@@ -2,7 +2,7 @@ package com.cg.q4;
 
 public class NFactorial {
 
-	public static int nFactorial(int n){
+	public int nFactorial(int n){
 		
 		//Base Cases
 		if(n == 1 || n == 0){
@@ -16,8 +16,6 @@ public class NFactorial {
 			return n*nFactorial(n-1);
 		}
 	}
-	public static void main(String[] args) {
-		System.out.println(nFactorial(4));
-	}
+	
 
 }
