@@ -15,7 +15,9 @@ public class Q12 {
 	    nums[i] = i + 1;
 	}
 	for (int i : nums) {
-	    System.out.println(i);
+	    if (i % 2 == 0) {
+		System.out.println(i);
+	    }
 	}
     }
 }
