@@ -3,8 +3,7 @@ package com.cg.q3;
 public class ReverseString {
 	
 	/*
-	 * Reverse string by concating one character at a time
-	 * from right to the left
+	 * Reverse string 
 	 */
 	public String reverseString(String str) {
 		//Base Case
