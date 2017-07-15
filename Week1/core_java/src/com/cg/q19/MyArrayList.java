@@ -2,16 +2,37 @@ package com.cg.q19;
 
 import java.util.ArrayList;
 
-public class MyArrayList {
-	public static void main(String[] args) {
-		ArrayList<Integer> myArrayList = new ArrayList<Integer>();
-		int even = 0;
-		int odd = 0;
+import com.cg.q9.Primes;
 
-		for (int i = 1; i <= 10; i++) {
+public class MyArrayList {
+
+	//Variables
+	private int even;
+	private int odd;
+	ArrayList<Integer> myArrayList;
+
+	//Constructor
+	public MyArrayList() {
+		even = 0;
+		odd = 0;
+		myArrayList = new ArrayList<Integer>();
+	}
+
+	//Creates array list with numbers from 1...n
+	public void createArrayList(int n) {
+		for (int i = 1; i <= n; i++) {
 			myArrayList.add(i);
 		}
+	}
 
+	//Removes all primes inside array list
+	public void removePrimes() {
+		Primes p = new Primes();
+		myArrayList.removeAll(p.checkForPrimes(myArrayList));
+	}
+
+	//Sums the even and odd numbers
+	public void sumEvenOdd() {
 		for (Integer i : myArrayList) {
 			if ((i % 2) == 0) {
 				even += i;
@@ -19,10 +40,29 @@ public class MyArrayList {
 				odd += i;
 			}
 		}
-
-		System.out.println("The sum of all the even numbers is " + even);
-		System.out.println("The sum of all the odd numbers is " + odd);
-		
-		//Todo Prime
 	}
+
+	//Getters
+	public ArrayList<Integer> getMyArrayList() {
+		return myArrayList;
+	}
+	public int getEven() {
+		return even;
+	}
+	public int getOdd() {
+		return odd;
+	}
+
+	//Setters
+	public void setOdd(int odd) {
+		this.odd = odd;
+	}
+	
+	public void setEven(int even) {
+		this.even = even;
+	}
+	public void setMyArrayList(ArrayList<Integer> myArrayList) {
+		this.myArrayList = myArrayList;
+	}
+	
 }

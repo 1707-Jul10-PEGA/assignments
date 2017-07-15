@@ -1,9 +1,14 @@
 package com.cg.q6;
 
 public class Even {
-	public static boolean even(int x){
+	
+	//Check if the value enter is even 
+	public boolean even(int x){
+		
+		//Rounds the value to the nearest integer
 		int y = Math.round((float)x / 2 - x/2);
 		
+		//The number is even if it's 0
 		if(y == 0){
 			return true;
 		}else{
@@ -14,6 +19,7 @@ public class Even {
 	
 	public static void main(String[] args) {
 		int n = 4;
-		System.out.println("Is " + n + " even? " + even(n));
+		Even e = new Even();
+		System.out.println("Is " + n + " even? " + e.even(n));
 	}
 }
