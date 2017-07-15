@@ -1,116 +1,20 @@
 package com.EC.hw1.Utilities;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.LinkedList;
+import java.util.List;
 
-import com.EC.hw1.ImplementationsAndInterfaces.AdminImpl;
-import com.EC.hw1.ImplementationsAndInterfaces.CustomerImpl;
-import com.EC.hw1.ImplementationsAndInterfaces.EmployeeImpl;
+import com.EC.hw1.Model.Customer;
+import com.EC.hw1.Model.Employee;
 import com.EC.hw1.Model.User;
 
 public class BankUtilities {
-
-	/*
-	 * //Create and update files public static void writeCustomer(Customer c){
-	 * String customerFile =
-	 * "Customers/"+c.getBankAccount().getUserName()+".txt";
-	 * try(ObjectOutputStream oos = new ObjectOutputStream(new
-	 * FileOutputStream(customerFile))){
-	 * System.out.println("Attempting to write customer to file");
-	 * oos.writeObject(c);
-	 * System.out.println("Successfully wrote customer to file"); } catch
-	 * (FileNotFoundException e) { // TODO Auto-generated catch block
-	 * e.printStackTrace(); } catch (IOException e) { // TODO Auto-generated
-	 * catch block e.printStackTrace(); } }
-	 * 
-	 * public static void writeEmployee(Employee emp){ String customerFile =
-	 * "Employees/"+emp.getAccount().getUserName()+".txt";
-	 * try(ObjectOutputStream oos = new ObjectOutputStream(new
-	 * FileOutputStream(customerFile))){
-	 * System.out.println("Attempting to write employee to file");
-	 * oos.writeObject(emp);
-	 * System.out.println("Successfully wrote employee to file"); } catch
-	 * (FileNotFoundException e) { // TODO Auto-generated catch block
-	 * e.printStackTrace(); } catch (IOException e) { // TODO Auto-generated
-	 * catch block e.printStackTrace(); } }
-	 * 
-	 * public static void writeAdmin(Admin a){ String customerFile =
-	 * "Admin/"+a.getAccount().getUserName()+".txt"; try(ObjectOutputStream oos
-	 * = new ObjectOutputStream(new FileOutputStream(customerFile))){
-	 * System.out.println("Attempting to write admin to file");
-	 * oos.writeObject(a);
-	 * System.out.println("Successfully wrote admin to file"); } catch
-	 * (FileNotFoundException e) { // TODO Auto-generated catch block
-	 * e.printStackTrace(); } catch (IOException e) { // TODO Auto-generated
-	 * catch block e.printStackTrace(); } }
-	 * 
-	 * public static void updateCustomerConfig(Set<Customer> config){ String
-	 * customerFile = "Customers/config.txt"; try(ObjectOutputStream oos = new
-	 * ObjectOutputStream(new FileOutputStream(customerFile))){
-	 * System.out.println("Attempting to write customer's configuration file");
-	 * oos.writeObject(config);
-	 * System.out.println("Successfully updated customer's configuration file");
-	 * } catch (FileNotFoundException e) { // TODO Auto-generated catch block
-	 * e.printStackTrace(); } catch (IOException e) { // TODO Auto-generated
-	 * catch block e.printStackTrace(); } }
-	 * 
-	 * public static void updateEmployeeConfig(Set<Employee> config){ String
-	 * customerFile = "Employee/config.txt"; try(ObjectOutputStream oos = new
-	 * ObjectOutputStream(new FileOutputStream(customerFile))){
-	 * System.out.println("Attempting to write customer's configuration file");
-	 * oos.writeObject(config);
-	 * System.out.println("Successfully updated customer's configuration file");
-	 * } catch (FileNotFoundException e) { // TODO Auto-generated catch block
-	 * e.printStackTrace(); } catch (IOException e) { // TODO Auto-generated
-	 * catch block e.printStackTrace(); } }
-	 * 
-	 * public static void updateUserConfig(Set<User> config){ String usersFile =
-	 * "Users/config.txt"; try(ObjectOutputStream oos = new
-	 * ObjectOutputStream(new FileOutputStream(usersFile))){
-	 * System.out.println("Attempting to write user's configuration file");
-	 * oos.writeObject(config);
-	 * System.out.println("Successfully updated user's configuration file"); }
-	 * catch (FileNotFoundException e) { // TODO Auto-generated catch block
-	 * e.printStackTrace(); } catch (IOException e) { // TODO Auto-generated
-	 * catch block e.printStackTrace(); } }
-	 * 
-	 * //Read files public static Customer readCustomer(String username){ String
-	 * customerFile = "Customers/"+username+".txt"; try(ObjectInputStream ois =
-	 * new ObjectInputStream(new FileInputStream(customerFile))){ try {
-	 * System.out.println("Trying to access customer account"); Customer c =
-	 * (Customer) ois.readObject();
-	 * System.out.println("Successfully access customer account"); return c; }
-	 * catch (ClassNotFoundException e) { // TODO Auto-generated catch block
-	 * e.printStackTrace(); } } catch (FileNotFoundException e) { // TODO
-	 * Auto-generated catch block e.printStackTrace(); } catch (IOException e) {
-	 * // TODO Auto-generated catch block e.printStackTrace(); } return null; }
-	 * 
-	 * public static Employee readEmployee(String username){ String customerFile
-	 * = "Employees/"+username+".txt"; try(ObjectInputStream ois = new
-	 * ObjectInputStream(new FileInputStream(customerFile))){ try {
-	 * System.out.println("Trying to access employee account"); Employee emp =
-	 * (Employee) ois.readObject();
-	 * System.out.println("Successfully access employee account"); return emp; }
-	 * catch (ClassNotFoundException e) { // TODO Auto-generated catch block
-	 * e.printStackTrace(); } } catch (FileNotFoundException e) { // TODO
-	 * Auto-generated catch block e.printStackTrace(); } catch (IOException e) {
-	 * // TODO Auto-generated catch block e.printStackTrace(); } return null; }
-	 * 
-	 * public static Admin readAdmin(String username, String password){ String
-	 * customerFile = "Admin/"+username+".txt"; try(ObjectInputStream ois = new
-	 * ObjectInputStream(new FileInputStream(customerFile))){ try {
-	 * System.out.println("Trying to access employee account"); Admin a =
-	 * (Admin) ois.readObject();
-	 * System.out.println("Successfully access employee account"); return a; }
-	 * catch (ClassNotFoundException e) { // TODO Auto-generated catch block
-	 * e.printStackTrace(); } } catch (FileNotFoundException e) { // TODO
-	 * Auto-generated catch block e.printStackTrace(); } catch (IOException e) {
-	 * // TODO Auto-generated catch block e.printStackTrace(); } return null; }
-	 */
 
 	// Write and update user's txt file
 
@@ -123,15 +27,26 @@ public class BankUtilities {
 			e.printStackTrace();
 		}
 	}
-	
-	public static User readUser(String username){
-		String filename = "Users/"+username+".txt";
-		try(ObjectInputStream ois = new ObjectInputStream(new FileInputStream(filename))){
-			User u = (User)ois.readObject();
+
+	public static void writeEmployee(Employee emp) {
+		String filename = "Employees/" + emp.getUserName() + ".txt";
+		try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filename))) {
+			oos.writeObject(emp);
+			System.out.println("Successfully wrote to text file");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	// read user text files
+	public static User readUser(String username) {
+		String filename = "Users/" + username + ".txt";
+		try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(filename))) {
+			User u = (User) ois.readObject();
 			return u;
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("User does not exist.");
+			// e.printStackTrace();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -142,16 +57,35 @@ public class BankUtilities {
 		return null;
 	}
 
-	// return DAO objects
-	public static AdminImpl getAdminDAO() {
-		return new AdminImpl();
-	}
+	// assign customer to a banker randomly
+	public static boolean assignBanker(Customer c) {
+		File folder = new File("Employees/");
+		File[] listOfFiles = folder.listFiles();
+		List<Employee> empList = new LinkedList<Employee>();
+		for (File emp : listOfFiles) {
+			try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(emp.getPath()))) {
+				Employee e = (Employee) ois.readObject();
+				empList.add(e);
+			} catch (FileNotFoundException e) {
 
-	public static CustomerImpl getCustomnerDAO() {
-		return new CustomerImpl();
-	}
+			} catch (IOException e) {
 
-	public static EmployeeImpl getEmployeeDAO() {
-		return new EmployeeImpl();
+			} catch (ClassNotFoundException e) {
+
+			}
+		}
+		if (empList.size() == 0) {
+			return false;
+		}
+
+		int random = (int) (Math.random() * (empList.size() - 1));
+		empList.get(random).getCustList().add(c);
+		// update bank
+		System.out.println("Your personal banker name is: " + empList.get(random).getFirstName() + " "
+				+ empList.get(random).getLastName());
+		BankUtilities.writeUser(empList.get(random));
+		BankUtilities.writeEmployee(empList.get(random));
+		return true;
+
 	}
 }

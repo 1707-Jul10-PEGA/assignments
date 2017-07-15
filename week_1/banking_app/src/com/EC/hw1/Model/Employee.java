@@ -1,7 +1,9 @@
 package com.EC.hw1.Model;
 import java.util.LinkedList;
 import java.util.List;
-public class Employee extends User{
+
+import com.EC.hw1.Interfaces.EmployeeInterface;
+public class Employee extends User implements EmployeeInterface{
 	
 	/**
 	 * 
@@ -15,8 +17,8 @@ public class Employee extends User{
 		super();
 	}
 	
-	public Employee(String firstName, String lastName, String userName ,Account account,List<Customer> custList){
-		super(firstName,lastName, userName);
+	public Employee(String firstName, String lastName, String userName ,String password,Account account,LinkedList<Customer> custList){
+		super(firstName,lastName, userName, password);
 		this.account = account;
 		this.custList = custList;
 	}
@@ -35,6 +37,28 @@ public class Employee extends User{
 
 	public Account getAccount() {
 		return account;
+	}
+
+	@Override
+	public void approveOrDenyApp() {
+		for(Customer c : this.custList){
+			if(!c.isActive()){
+				
+			}
+		}
+		
+	}
+
+	@Override
+	public void viewCustomerAsset() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void viewCustomerList() {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	

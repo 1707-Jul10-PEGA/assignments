@@ -9,14 +9,15 @@ public class Admin extends Employee {
 	 * 
 	 */
 	private static final long serialVersionUID = 7689680374583441970L;
-	private List<Employee>empList = new LinkedList<Employee>();
-	
+	private List<Employee> empList = new LinkedList<Employee>();
+
 	public Admin() {
 		super();
 	}
 
-	public Admin(String firstName, String lastName, String userName ,Account account, List<Customer>cusList, List <Employee> emplList){
-		super(firstName,lastName,userName,account,cusList);
+	public Admin(String firstName, String lastName, String userName, String password, Account account,
+			List<Customer> cusList, List<Employee> emplList) {
+		super(firstName, lastName, userName, password, account, cusList);
 		this.empList = emplList;
 	}
 
@@ -28,5 +29,4 @@ public class Admin extends Employee {
 		this.empList = empList;
 	}
 
-	
 }

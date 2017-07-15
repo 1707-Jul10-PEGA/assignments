@@ -1,21 +1,26 @@
 package com.EC.hw1.Model;
 
+import java.io.Serializable;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class Account {
+public class Account implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2873087415539944901L;
 	private String email;
-	private String password;
-	private Date lastLogin;
+	private String lastLogin;
 	
 	public Account(){
 		super();
 	}
 	
-	public Account(String email, String password, Date lastLogin){
+	public Account(String email){
 		setEmail(email);
-		setPassword(password);
-		setLastLogin(lastLogin);
+		setLastLogin();
 	}
 	
 	
@@ -25,19 +30,14 @@ public class Account {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
-	}
 
-	public Date getLastLogin() {
+	public String getLastLogin() {
 		return lastLogin;
 	}
 
-	public void setLastLogin(Date lastLogin) {
-		this.lastLogin = lastLogin;
+	public void setLastLogin() {
+		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd/  HH:mm:ss");
+		this.lastLogin = dateFormat.format(new Date()) ;
 	}	
 	
 }

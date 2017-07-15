@@ -1,9 +1,11 @@
 package com.EC.hw1.Model;
 
-import java.util.Date;
-
 public class BankAccount extends Account {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8180240208218125726L;
 	private double cashAccount;
 	private double savingAccount;
 	private double creditAccount;
@@ -12,9 +14,8 @@ public class BankAccount extends Account {
 		super();
 	}
 
-	public BankAccount(String email, String password, Date lastLogin, double cashAccount, double savingAccount,
-			double creditAccount) {
-		super(email, password, lastLogin);
+	public BankAccount(String email, double cashAccount, double savingAccount, double creditAccount) {
+		super(email);
 		setCashAccount(cashAccount);
 		setSavingAccount(savingAccount);
 		setCreditAccount(creditAccount);
@@ -43,6 +44,5 @@ public class BankAccount extends Account {
 	public void setCreditAccount(double creditAccount) {
 		this.creditAccount = creditAccount;
 	}
-	
-	
+
 }
