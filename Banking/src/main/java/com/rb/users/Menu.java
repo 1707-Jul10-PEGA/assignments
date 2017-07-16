@@ -35,4 +35,17 @@ public abstract class Menu {
 		return input;
 	}
 	
+	protected static String readString(){
+		String input = null;
+		
+		try{
+			input = SCAN.nextLine();
+		}catch (Exception e){
+			// TODO logging
+		}
+		
+		return input;
+		
+	}
+	
 }

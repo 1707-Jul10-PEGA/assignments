@@ -8,7 +8,8 @@ public class Customer extends User {
 	Employee assignedTo;
 	ArrayList<Account> accounts;
 	
-	public Customer(Employee assignedTo){
+	Customer(Employee assignedTo, String name, String password){
+		super(name, password);
 		this.assignedTo = assignedTo;
 		this.accounts = new ArrayList<Account>();
 	}
@@ -25,22 +26,29 @@ public class Customer extends User {
 		return accounts.get(index);
 	}
 	
-	String printAccounts(){
+	void printAccounts(){
 		
 		if (accounts.isEmpty()) {
-			return "No accounts found. Please apply.";
+			System.out.println("No accounts found. Please apply.");
 		} else {
 			
 			String output = "";
 			
 			for( int i = 0; i < accounts.size(); i++ ) {
-				output += "  " + i + accounts.get(i).toString() + "\n";
+				output += "  " + (i + 1) + " - "+ accounts.get(i).toString() + "\n";
 			}
 			
-			return output;
+			System.out.println(output);
 		}
 		
 	}
 	
+	@Override
+	public String toString(){
+		
+		return "Username: " + getName() + "Customer ID: " + getUserID() 
+			+ "  Managing Employee " + assignedTo.toString();
+		
+	}
 	
 }

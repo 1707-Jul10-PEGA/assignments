@@ -2,7 +2,6 @@ package com.rb.users;
 
 import com.rb.accounts.Account;
 import com.rb.driver.Bank;
-import static com.rb.driver.Driver.SCAN;
 
 public abstract class User {
 	
@@ -18,15 +17,18 @@ public abstract class User {
 	
 	
 	
-	public User(){
+	User(String name, String password){
 		userID = Bank.getNEXT_USER_ID();
+		
+		this.name = name;
+		this.password = password;
 		
 		System.out.println();
 		
 	}
 	
-	public User(int access){
-		this();
+	User(int access, String name, String password){
+		this(name, password);
 		this.access = access;
 	}
 	
