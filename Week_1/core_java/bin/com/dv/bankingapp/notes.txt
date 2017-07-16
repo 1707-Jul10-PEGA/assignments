@@ -1,0 +1,20 @@
+Some obstacles I ran into:
+1) Trying to have multiple scanners. I tried having one scanner per method, but closing one would close System.in.
+	So I had to reference one scanner
+	
+2) I wanted to append objects to the text file with serialization but appending objects gave some errors.
+	To solve, I have to reference one list with all users
+	
+3) IOException for reading objects with object input stream.
+	It seems that there is no way for readObject to know how many bytes to read. Therefore, I had to catch the IOException to avoid
+	reaching the EOF.
+	
+	
+Things to try:
+1) Login> create ...
+	- Having separate method to write to file
+	- It could be that a user object is being written to the file, not the actual implementation?
+	
+2) Have login.prompt() return an int for the driver
+	- if user is verified, proceed to dashboard
+	- may have to return a verified int for create ... also
