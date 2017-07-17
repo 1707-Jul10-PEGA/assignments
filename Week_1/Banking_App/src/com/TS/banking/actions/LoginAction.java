@@ -9,7 +9,8 @@ import java.util.StringTokenizer;
 
 import org.apache.log4j.Logger;
 
-import com.TS.banking.pojo.Storage;
+import com.TS.banking.resources.Storage;
+import com.TS.banking.resources.UserInputTest;
 
 public class LoginAction {
 	public static boolean ERROR = false;
@@ -20,6 +21,9 @@ public class LoginAction {
 	private static Logger loginLog = Logger.getLogger("loginInfoLogger");
 	private static Logger balanceLog = Logger.getLogger("balanceInfoLogger");
 	
+	/*
+	 * Login screen where customers may login or apply for accounts
+	 */
 	public static boolean login()
 	{
 		Scanner scan = new Scanner(System.in);
@@ -27,21 +31,22 @@ public class LoginAction {
 		String onlineID;
 		String passcode;
 		
+		/*Asks if the user has an account*/
 		Log.trace("Hello, do you have an account?\n");
 		Log.trace("Y/N?: ");
 		String reply = scanline.nextLine();
 		
 		Log.info("\n");
 		
+		/*Asks the user for online id and passcode in order to log in*/
 		if("Y".equals(reply))
 		{
 			Log.trace("WELCOME!\n");
 			Log.trace("Online ID: ");
 			onlineID = scan.nextLine();
-			
 			Log.trace("Passcode : ");
 			passcode = scan.nextLine();
-			Log.trace("\n\n\n\n\n");
+			Log.trace("\n\n");
 			try {
 				if(searchBalanceInfo(onlineID, passcode))
 				{ return true; }
@@ -49,8 +54,10 @@ public class LoginAction {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			Log.error("Your online ID or passcode is incorrect, please try again\n");
 			return false;
 		}
+		/*Asks the user if he or she would like to make an account and creates an application if so*/
 		if("N".equals(reply))
 		{
 			Log.info("Would you like to apply for an account?\n");
@@ -60,6 +67,8 @@ public class LoginAction {
 			{
 				try {
 					apply();
+					privilege = 5;
+					return true;
 				} catch (FileNotFoundException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -70,10 +79,16 @@ public class LoginAction {
 				privilege = 4;
 				return true;
 			}
+			Log.error("Invalid choice\n");
 		}	
 		return false;
 	}
 	
+	/*
+	 * This method takes in the user's onlineID and passcode and checks it with the data
+	 * in LoginInfo.txt in order to see if the user is able to log in. Returns true if
+	 * the user put in the correct id and password associated with an account 
+	 */
 	private static boolean searchBalanceInfo(String id, String passcode) throws FileNotFoundException
 	{
 		BufferedReader br = new BufferedReader(new FileReader(filename));
@@ -81,6 +96,7 @@ public class LoginAction {
 		int stringChecker = 0;
 		int found = 0;
 		
+		/*Searches through LoginInfo.txt*/
 		try {
 		    String line = br.readLine();
 
@@ -89,7 +105,7 @@ public class LoginAction {
 				while (tokenizer.hasMoreTokens())
 				{
 					tokenizedString = tokenizer.nextToken();
-					//System.out.println(found);
+					
 					if (passcode.equals(tokenizedString) && found == 1 && stringChecker < 3)
 					{ found += 1; }
 					if (id.equals(tokenizedString) && found == 0 && stringChecker < 3)
@@ -135,6 +151,11 @@ public class LoginAction {
 		return false;
 	}
 	
+	/*
+	 * Allows the customer to apply for an account, all information inputted by the user
+	 * will be stored in the same file as the other accounts but will be flagged as
+	 * "unlooked". "Unlooked" accounts will be skipped until the application is approved
+	 */
 	private static void apply() throws FileNotFoundException
 	{
 		Scanner scanLine = new Scanner(System.in);
@@ -148,10 +169,25 @@ public class LoginAction {
 		boolean exists = true;
 		
 		Log.info("ACCOUNT APPLICATION START...\n");
+		/*Asks for online ID from user*/
+		int onlineIDCheck = 0;
 		do
 		{
-			Log.info("What will be your Online ID: ");
-			onlineID = scanLine.nextLine();
+			/*Checks to make sure there are no whitespaces in user input*/
+			do
+			{
+				Log.info("What will be your Online ID: ");
+				onlineID = scanLine.nextLine();
+				if(UserInputTest.testNoWhitespace(onlineID) == false)
+				{
+					Log.error("ID may not contain a space\n");
+					onlineIDCheck = 1;
+					continue;
+				}
+				onlineIDCheck = 0;
+				System.out.println(onlineIDCheck);
+			}while(onlineIDCheck == 1);
+			/*Checks to make sure online ID is not already registered*/
 			BufferedReader ch = new BufferedReader(new FileReader(filename));
 			String tokenizedString;
 			try {
@@ -183,17 +219,53 @@ public class LoginAction {
 			} 
 		}while(!exists);
 		
-		Log.info("What will be your passcode: ");
-		passcode = scanLine.nextLine();
+		/*Asks for passcode from user, checks to make sure there are no whitespaces*/
+		int passcodeCheck = 0;
+		do
+		{
+			Log.info("What will be your passcode: ");
+			passcode = scanLine.nextLine();
+			if(UserInputTest.testNoWhitespace(passcode) == false)
+			{
+				Log.error("Passcode may not contain a space\n");
+				passcodeCheck = 1;
+				continue;
+			}
+			passcodeCheck = 0;
+		}while(passcodeCheck == 1);
 		
-		Log.info("First Name: ");
-		firstName = scanLine.nextLine();
+		/*Asks for first name from user, checks to make sure there are no white spaces*/
+		int firstNameCheck = 0;
+		do
+		{
+			Log.info("First Name: ");
+			firstName = scanLine.nextLine();
+			if(UserInputTest.testNoWhitespace(firstName) == false)
+			{
+				Log.error("First Name may not contain a space\n");
+				firstNameCheck = 1;
+				continue;
+			}
+			firstNameCheck = 0;
+		}while(firstNameCheck == 1);
 		
-		Log.info("Last Name: ");
-		lastName = scanLine.nextLine();
+		/*Asks for last name from user, checks to make sure there are no white spaces*/
+		int lastNameCheck = 0;
+		do
+		{
+			Log.info("Last Name: ");
+			lastName = scanLine.nextLine();
+			if(UserInputTest.testNoWhitespace(lastName) == false)
+			{
+				Log.error("Last Name may not contain a space\n");
+				lastNameCheck = 1;
+				continue;
+			}
+			lastNameCheck = 0;
+		}while(lastNameCheck == 1);
 		
 		loginLog.trace(onlineID + " " + passcode + " " + 1);
-		balanceLog.trace("unlooked" + " " + onlineID + " " + " " + firstName + " " + lastName + " " + balance);
+		balanceLog.trace("unlooked" + " " + onlineID + " " + firstName + " " + lastName + " " + balance);
 	}
 	public static void error()
 	{

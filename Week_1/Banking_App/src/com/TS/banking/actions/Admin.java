@@ -12,56 +12,91 @@ import java.util.StringTokenizer;
 
 import org.apache.log4j.Logger;
 
-import com.TS.banking.pojo.Storage;
+import com.TS.banking.resources.Storage;
+import com.TS.banking.resources.UserInputTest;
 
+/*
+ * Admin class which gives function to a admin that has logged in
+ */
 public class Admin extends BalanceViewer{
 	private static Logger Log = Logger.getRootLogger();
 	
+	/*
+	 * Invokes a menu for admins that are logged in
+	 */
 	public static void menuAction() throws FileNotFoundException {
 		// TODO Auto-generated method stub
 		Scanner scan = new Scanner(System.in);
 		Scanner scanLine = new Scanner(System.in);
-		
+		String continueEdit = "Y";
 		Log.info("Hello " + Storage.userID + ", what would you like to do?:\n");
 		
+		/*Menu commands are looped until the admin exits*/
 		while(true)
 		{
 			Log.info("1. Edit an account's information\n");
 			Log.info("2. View a customer's account balance\n");
 			Log.info("3. Exit\n");
 			Log.info("Please choose: ");
-			int menuNumber = scan.nextInt();
-			Log.info("\n");
+			String menuNumber = scanLine.nextLine();
+			if(!UserInputTest.testIsInt(menuNumber))
+			{ 
+				Log.info("Invalid choice\n");
+				continue;
+			}
 			
-			switch(menuNumber)
+			switch(Integer.valueOf(menuNumber))
 			{
 			case 1:
-				Log.info("Which customer's account would you like to edit?: ");
-				String editCustomer = scanLine.nextLine();
-				try {
-					Log.trace(viewBalance(editCustomer));
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				Log.info("Which information would you like to edit?:\n");
-				Log.info("1. First Name\n");
-				Log.info("2. Last Name\n");
-				Log.info("3. Balance\n");
-				Log.info("Please choose: ");
-				int decision = scan.nextInt();
+				do
+				{
+					/*Outputs the balance information of the account that the user wishes to edit*/
+					Log.info("Which customer's account would you like to edit?: ");
+					String editCustomer = scanLine.nextLine();
+					try {
+						Log.trace(viewBalance(editCustomer));
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
+					/*Writes the editted information to a temporary file, then have that file rewrite to the main file*/
+					int informationCheck = 0;
+					String decision;
+					do
+					{
+						Log.info("\nWhich information would you like to edit?:\n");
+						Log.info("1. First Name\n");
+						Log.info("2. Last Name\n");
+						Log.info("3. Balance\n");
+						Log.info("Please choose: ");
+						decision = scanLine.nextLine();
+						if(!UserInputTest.testIsInt(decision))
+						{ 
+							Log.info("Invalid choice\n");
+							informationCheck = 1;
+							continue;
+						}
+						informationCheck = 0;
+					}while(informationCheck == 1);
+					
+					Log.info("Type in your changes: ");
+					String changedString = scanLine.nextLine();
+					try {
+						editAccounts(changedString, Integer.valueOf(decision), editCustomer);
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					
+					Log.info("Would you like to continue making changes?\n");
+					Log.info("Y/N?: ");
+					continueEdit = scanLine.nextLine();
+				}while("Y".equals(continueEdit));
 				Log.info("\n");
-				
-				Log.info("Type in your changes: ");
-				String changedString = scanLine.nextLine();
-				try {
-					editAccounts(changedString, decision, editCustomer);
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
 				break;
 			case 2:
+				/*Checks the user input, then views a customer's account balance*/
 				Log.info("Which customer's account balance would you like to view?: ");
 				String customer = scanLine.nextLine();
 				try {
@@ -80,6 +115,11 @@ public class Admin extends BalanceViewer{
 		}
 	}
 	
+	/*
+	 * Takes in a string as the string to edit, an int to signify which fields to edit, and
+	 * another string to search for the person's account to edit and then edits the account information
+	 * by writing to a temporary file and rewriting to the main file
+	 */
 	private static void editAccounts(String editThisString, int choice, String user) throws IOException
 	{
 		File File = new File("BalanceInfo.txt");
@@ -93,12 +133,13 @@ public class Admin extends BalanceViewer{
 		
 		String statusStore = "";
 		
+		/*reads from file and writes editted information to temporary file*/
 		String tokenizedString;
 		try {
 		    String line = br.readLine();
-
+		    
 		    while (line != null) {
-		    	
+		    	System.out.println(line);
 		    	StringTokenizer tokenizer = new StringTokenizer(line);
 				while (tokenizer.hasMoreTokens())
 				{
@@ -109,12 +150,13 @@ public class Admin extends BalanceViewer{
 						statusStore = tokenizedString;
 						break;
 					}
-					else
+					if(balanceInfoFields == 0 && "approved".equals(tokenizedString))
 					{
 						statusStore = "approved";
 					}
 					if(balanceInfoFields == 1 && !user.equals(tokenizedString))
 					{
+						balanceInfoFields = 0;
 						break;
 					}
 					/*balance fields writing to file*/
@@ -153,7 +195,6 @@ public class Admin extends BalanceViewer{
 					}
 					if(balanceInfoFields == 4)
 					{ 
-						System.out.println(tokenizedString);
 						if(choice == 3)
 						{
 							Storage.money = Double.valueOf(editThisString);
@@ -169,10 +210,6 @@ public class Admin extends BalanceViewer{
 					}
 					
 					balanceInfoFields += 1;
-//					if(!tokenizer.hasMoreTokens())
-//					{
-//						return;
-//					}
 				}
 				if (flag == false)
 				{
@@ -193,6 +230,7 @@ public class Admin extends BalanceViewer{
 				e.printStackTrace();
 			}
 		}
+		/*temporary file is rewritten to main file, then deleted*/
 		Storage.replaceFile();
 		tempFile.delete();
 	}

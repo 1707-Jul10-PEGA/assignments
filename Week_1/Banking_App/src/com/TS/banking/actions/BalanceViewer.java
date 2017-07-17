@@ -7,9 +7,16 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.StringTokenizer;
 
-import com.TS.banking.pojo.Storage;
+import com.TS.banking.resources.Storage;
 
+/*
+ * BalanceViewer is the class that is inherited by all user classes, able to view
+ * balance information
+ */
 public class BalanceViewer {
+	/*
+	 * Takes in a string, checks to see if that user exists, and returns the output String
+	 */
 	public static String viewBalance(String user) throws IOException
 	{
 		File searchFile = new File("BalanceInfo.txt");
@@ -17,6 +24,7 @@ public class BalanceViewer {
 		BufferedReader br = new BufferedReader(new FileReader(searchFile));
 		String tokenizedString;
 	
+		/*Searches through the file for the specific user and initializes the string to return*/
 		try {
 		    String line = br.readLine();
 

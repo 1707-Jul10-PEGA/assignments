@@ -32,6 +32,9 @@ public class Driver {
 		case 4:
 			System.out.println("\nI hope you will apply for my app next time, goodbye!\n");
 			return;
+		case 5:
+			System.out.println("\nApplication Submitted, thank you!\n");
+			return;
 		default:
 			LoginAction.error();
 			return;

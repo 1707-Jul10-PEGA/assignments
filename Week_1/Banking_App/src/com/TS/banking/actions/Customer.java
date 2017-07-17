@@ -3,7 +3,6 @@ package com.TS.banking.actions;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -12,20 +11,25 @@ import java.util.StringTokenizer;
 
 import org.apache.log4j.Logger;
 
-import com.TS.banking.pojo.Storage;
+import com.TS.banking.resources.Storage;
+import com.TS.banking.resources.UserInputTest;
 
+/*
+ * Customer class which gives function to a customer that has logged in
+ */
 public class Customer extends BalanceViewer{
 	private static Logger Log = Logger.getRootLogger();
-//	private static Logger loginLog = Logger.getLogger("loginInfoLogger");
-//	private static Logger balanceLog = Logger.getLogger("balanceInfoLogger");
-//	balanceLog.trace("This is the report log");
-//	loginLog.trace("This is the debug log");
 	
+	/*
+	 * Invokes a menu for customers that are logged in
+	 */
 	public static void menuAction() {
 		// TODO Auto-generated method stub
 		Scanner scan = new Scanner(System.in);
 		Scanner scanDouble = new Scanner(System.in);
+		Scanner scanLine = new Scanner(System.in);
 		
+		/*Loops through the menu commands until the customer exits*/
 		Log.info("Hello " + Storage.userID + ", what would you like to do?:\n");
 		while(true)
 		{
@@ -34,14 +38,18 @@ public class Customer extends BalanceViewer{
 			Log.info("3. Deposit money\n");
 			Log.info("4. Exit\n");
 			Log.info("Please choose: ");
-			int menuNumber = scan.nextInt();
-			System.out.println("Still Works");//
-			Log.info("\n");
+			/*Checks to make sure that the user input a number for the switch statement*/
+			String menuNumber = scan.nextLine();
+			if(!UserInputTest.testIsInt(menuNumber))
+			{ 
+				Log.info("Invalid choice\n");
+				continue;
+			}
 			
-			switch(menuNumber)
+			switch(Integer.valueOf(menuNumber))
 			{
 			case 1:
-				//viewBalance(userID)
+				/*Views customer's account balance*/
 				try {
 					Log.info(viewBalance(Storage.userID));
 				} catch (IOException e) {
@@ -51,24 +59,34 @@ public class Customer extends BalanceViewer{
 				Log.info("\n");
 				break;
 			case 2:
+				/*Checks to make sure that the user input a number for withdrawal*/
 				Log.info("How much money would you like to withdraw?: ");
-				double withdrawNumber = scanDouble.nextDouble();
-				Log.info("\n");
-				
+				String withdrawNumber = scanLine.nextLine();
+				if(!UserInputTest.testIsInt(withdrawNumber))
+				{ 
+					Log.info("Invalid choice\n");
+					continue;
+				}
+				/*Withdraws the money from the balance*/
 				try {
-					withdrawOrDeposit(withdrawNumber, "withdraw", Storage.userID);
+					withdrawOrDeposit(Double.valueOf(withdrawNumber), "withdraw", Storage.userID);
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				break;
 			case 3:
+				/*Checks to make sure that the user input a number for depositing*/
 				Log.info("How much money would you like to deposit?: ");
-				double depositNumber = scanDouble.nextDouble();
-				Log.info("\n");
-				
+				String depositNumber = scanLine.nextLine();
+				if(!UserInputTest.testIsInt(depositNumber))
+				{ 
+					Log.info("Invalid choice\n");
+					continue;
+				}
+				/*Deposits the money to the balance*/
 				try {
-					withdrawOrDeposit(depositNumber, "deposit", Storage.userID);
+					withdrawOrDeposit(Double.valueOf(depositNumber), "deposit", Storage.userID);
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -82,6 +100,10 @@ public class Customer extends BalanceViewer{
 		}
 	}
 	
+	/*
+	 * takes in the money, the command (withdraw or deposit), and the user's name in order to
+	 * iterate the file, find the user and his/her balance, and withdraw or deposit from the balance
+	 */
 	private static void withdrawOrDeposit(double money, String command, String user) throws IOException
 	{
 		File test = new File("test.txt"); /////////
@@ -94,8 +116,8 @@ public class Customer extends BalanceViewer{
 		int balanceInfoFields = 0;
 		boolean flag = false;
 		
-		String statusStore = "";
-		
+		String statusStore = ""; //Used for storing a specific output string (the appplication status)
+		/*finds the user in the file, and either deposits or withdraws from the balance*/
 		String tokenizedString;
 		try {
 		    String line = withdrawer.readLine();
@@ -139,16 +161,16 @@ public class Customer extends BalanceViewer{
 						Storage.lastName = tokenizedString; 
 						writer.write(Storage.lastName + " ");
 					}
+					/*This is where the withdrawal or deposit happens*/
 					if(balanceInfoFields == 4)
 					{ 
-						//Storage.money = Double.valueOf(tokenizedString);
 						double calculateMoney = 0.0;
 						if("deposit".equals(command))
 						{
 							calculateMoney = Double.valueOf(tokenizedString) + money;
 						}
 						
-						if((Double.valueOf(tokenizedString) - money) < 0)
+						if((Double.valueOf(tokenizedString) - money) < 0 && (!"deposit".equals(command)) )
 						{
 							Log.error("Your account balance is $" + tokenizedString + ", please enter an ammount less than that value...\n");
 							writer.write(tokenizedString + "\n");
@@ -168,10 +190,6 @@ public class Customer extends BalanceViewer{
 					}
 					
 					balanceInfoFields += 1;
-//					if(!tokenizer.hasMoreTokens())
-//					{
-//						return;
-//					}
 				}
 				if (flag == false)
 				{
@@ -192,8 +210,9 @@ public class Customer extends BalanceViewer{
 				e.printStackTrace();
 			}
 		}
+		/*Writes the value of the temporary file to the main file and then deletes the temporary file*/
 		Storage.replaceFile();
-		//tempFile.delete();
+		tempFile.delete();
 	}
 	
 	private Customer()

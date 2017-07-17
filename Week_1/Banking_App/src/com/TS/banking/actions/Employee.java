@@ -12,30 +12,43 @@ import java.util.StringTokenizer;
 
 import org.apache.log4j.Logger;
 
-import com.TS.banking.pojo.Storage;
+import com.TS.banking.resources.Storage;
+import com.TS.banking.resources.UserInputTest;
 
+/*
+ * Employee class which gives function to a employee that has logged in
+ */
 public class Employee extends BalanceViewer{
 	private static Logger Log = Logger.getRootLogger();
 	
+	/*
+	 * Invokes a menu for employees that are logged in
+	 */
 	public static void menuAction() {
 		// TODO Auto-generated method stub
 		Scanner scan = new Scanner(System.in);
 		Scanner scanLine = new Scanner(System.in);
 		
 		Log.info("Hello " + Storage.userID + ", what would you like to do?:\n");
-		
+		/*Loops through the menu commands until the employee exits*/
 		while(true)
 		{
-			Log.info("1. Approve/Deny applications\n");
+			Log.info("\n1. Approve/Deny applications\n");
 			Log.info("2. View a customer's account balance\n");
 			Log.info("3. Exit\n");
 			Log.info("Please choose: ");
-			int menuNumber = scan.nextInt();
-			Log.info("\n");
+			/*Checking user input before switch statement goes out*/
+			String menuNumber = scanLine.nextLine();
+			if(!UserInputTest.testIsInt(menuNumber))
+			{ 
+				Log.info("Invalid choice\n");
+				continue;
+			}
 			
-			switch(menuNumber)
+			switch(Integer.valueOf(menuNumber))
 			{
 			case 1:
+				/*Approve or deny applications.*/
 				try {
 					approveOrDeny();
 				} catch (IOException e1) {
@@ -44,6 +57,7 @@ public class Employee extends BalanceViewer{
 				}
 				break;
 			case 2:
+				/*Asks user which account he or she would like to view*/
 				Log.info("Which customer's account balance would you like to view?: ");
 				String customer = scanLine.nextLine();
 				try {
@@ -52,9 +66,10 @@ public class Employee extends BalanceViewer{
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				//viewBalance(customer);
+				Log.info("\n");
 				break;
 			case 3:
+				/*Exits the while loop*/
 				return;
 			default:
 				Log.error("Invalid choice\n");
@@ -63,6 +78,11 @@ public class Employee extends BalanceViewer{
 		
 	}
 	
+	/*
+	 * This method searches for every unlooked balance accounts. Employee will then be able to
+	 * approve or deny the unlooked accounts which will then be activated when approved. Unlooked
+	 * accounts are treated as applications
+	 */
 	private static void approveOrDeny() throws IOException
 	{
 		Scanner scanLine = new Scanner(System.in);
@@ -70,6 +90,7 @@ public class Employee extends BalanceViewer{
 		File tempFile = new File("tempBalanceInfo.txt");
 		BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile));
 		
+		/*Searches through the file and prints out the application, if any*/
 		int iterator = 0;
 		boolean unlookedFound = false;
 		BufferedReader approver = new BufferedReader(new FileReader("BalanceInfo.txt"));
@@ -82,8 +103,6 @@ public class Employee extends BalanceViewer{
 		    	{ break; }
 		    	StringTokenizer tokenizer = new StringTokenizer(line);
 		    	while(tokenizer.hasMoreTokens())
-//		    	if(!tokenizer.hasMoreTokens())
-//		    		break;
 		    	{
 		    		tokenizedString = tokenizer.nextToken();
 			        if("approved".equals(tokenizedString) || "denied".equals(tokenizedString))
@@ -105,7 +124,10 @@ public class Employee extends BalanceViewer{
 			        if(iterator == 4)
 			        {
 			        	Storage.money = Double.valueOf(tokenizedString);
-			        	Log.info(Storage.print());
+			        	Log.info("APPLICATION TO APPROVE...\n");
+			        	Log.info("Online ID : " + Storage.userID + "\n");
+			        	Log.info("First Name: " + Storage.firstName + "\n");
+			        	Log.info("Last Name : " + Storage.lastName + "\n");
 			        	iterator = 0;
 			        	unlookedFound = true;
 			        	break;
@@ -127,12 +149,15 @@ public class Employee extends BalanceViewer{
 				e.printStackTrace();
 			}
 		}
+		
+		/*exits if there are no applications to look at*/
 		if(!unlookedFound)
 		{ 
 			Log.info("There are currently no applications\n");
 			return;
 		}
 		
+		/*Finds the string to be replaced, and rewrites it to a temporary file. Rewrites to main file using temporary file*/
 		Log.info("\nApprove or Deny?: ");
 		String approval = scanLine.nextLine();
 		int balanceInfoFields = 0;
@@ -146,8 +171,6 @@ public class Employee extends BalanceViewer{
 			    while (line != null) {
 			    	StringTokenizer tokenizer = new StringTokenizer(line);
 			    	while(tokenizer.hasMoreTokens())
-//			    	if(!tokenizer.hasMoreTokens())
-//			    		break;
 			    	{
 			    		tokenizedString = tokenizer.nextToken();
 				        if(("approved".equals(tokenizedString) || "denied".equals(tokenizedString)))
@@ -207,6 +230,11 @@ public class Employee extends BalanceViewer{
 				}
 			}
 		}
+		else
+		{
+			Log.error("Invalid Choice\n");
+		}
+		/*replaces the temporary file with the main file and then deletes the temporary file*/
 		Storage.replaceFile();
 		tempFile.delete();
 	}
