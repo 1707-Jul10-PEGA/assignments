@@ -34,8 +34,9 @@ $ TRY
 	
 ==========	
 $ TODO
-1) Admin functionality
 2) Log/JUnit
+3) when employee is assigned a customer, and admin deletes the customer, reset employee's customer
+	Admin>deleteUser
 	
 DONT FORGET to delete data files for final submission
 

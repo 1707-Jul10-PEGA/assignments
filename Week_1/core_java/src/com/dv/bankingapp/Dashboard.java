@@ -14,13 +14,37 @@ public class Dashboard implements DashboardInterface {
 				((Customer) authUser).apply(authUser);
 				break;
 			case 2:
-				((Customer) authUser).viewBalance();
+
+				if(((Customer) authUser).getStatus() == 3) {
+					((Customer) authUser).viewBalance();
+				}
+				
+				else {
+					System.out.println("To access this feature, your account must be verified.");
+				}
+				
 				break;
 			case 3:
-				((Customer) authUser).deposit(authUser);
+
+				if(((Customer) authUser).getStatus() == 3) {
+					((Customer) authUser).deposit(authUser);
+				}
+				
+				else {
+					System.out.println("To access this feature, your account must be verified.");
+				}
+
 				break;
 			case 4:
-				((Customer) authUser).withdraw(authUser);
+
+				if(((Customer) authUser).getStatus() == 3) {
+					((Customer) authUser).withdraw(authUser);
+				}
+				
+				else {
+					System.out.println("To access this feature, your account must be verified.");
+				}
+
 				break;
 			default:
 				System.out.println("\nExiting ...");
@@ -44,7 +68,7 @@ public class Dashboard implements DashboardInterface {
 				((Employee) authUser).viewApplications();
 				break;
 			case 2:
-				((Employee) authUser).approveApp();
+				((Employee) authUser).approveApp(authUser);
 				break;
 			case 3:
 				((Employee) authUser).viewBalance();

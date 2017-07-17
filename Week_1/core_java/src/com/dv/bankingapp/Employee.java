@@ -41,19 +41,46 @@ public class Employee extends User {
 	 */
 	public void viewApplications() {
 		if(Driver.appRequestList.isEmpty()) {
-			System.out.println("There are no pending applications at this time.");
+			System.out.println("\nThere are no pending applications at this time.");
 		}
 		
 		else {
 			System.out.println(Driver.appRequestList);
 		}
 	}
+	
+	/* changeStatus
+	 * set the status for the customer
+	 */
+	public void changeStatus(Customer customer, int status) {
+		customer.setStatus(status);
+	}
+	
+	/* updateUser
+	 * updates the user's information and saves
+	 */
+	public void updateUser(User authUser) {
+		int i = 0;
+
+		// get correct index of the customer
+		while(!(Driver.userList.get(i).getUserName().equals(authUser.getUserName()))) {
+			i++;
+		}
+		
+		// remove the old user and save
+		Driver.userList.remove(i);
+		Driver.serialUser.writeUserList(Driver.userList);
+		
+		// update the new user and save
+		Driver.userList.add(authUser);
+		Driver.serialUser.writeUserList(Driver.userList);
+	}
 
 	/* approveApp
 	 * approve an application for a customer
 	 */
-	public void approveApp() {
-		int index = 0, i = 0;
+	public void approveApp(User authUser) {
+		int i = 0;
 		int userListSize = Driver.userList.size();
 		String customerName;
 		Customer customer;
@@ -63,7 +90,7 @@ public class Employee extends User {
 		}
 		
 		else if (Driver.appRequestList.isEmpty()){
-			System.out.println("There are no applications to approve at this time.");
+			System.out.println("\nThere are no applications to approve at this time.");
 		}
 		
 		else {
@@ -74,14 +101,18 @@ public class Employee extends User {
 			System.out.println("Assigning customer to you ...");
 		
 			// traverse the user list and grab the customer of the same name
-			while(!(customerName.equals(Driver.userList.get(index).getUserName()))) {
-				index++;
+			while(!(customerName.equals(Driver.userList.get(i).getUserName()))) {
+				i++;
 			}
 			
-			customer = (Customer) Driver.userList.get(index);
+			customer = (Customer) Driver.userList.get(i);
 			this.customer = customer;
 			
-			// reset indices and update employee in userList
+			changeStatus(customer, 3);
+			updateUser(authUser);
+			
+			// update employee in userList as well as the associated customer's status
+			i = 0;
 			while(i<userListSize) {
 				if(Driver.userList.get(i).getUserName().equals(this.getUserName())) {
 				
@@ -143,17 +174,29 @@ public class Employee extends User {
 	  * deny an application for a customer
 	  */
 	public void denyApp() {
+		int i = 0;
 		String customerName;
+		Customer customer;
 	
 		if(Driver.appRequestList.isEmpty()) {
-			System.out.println("There are no applications to deny at this time.");
+			System.out.println("\nThere are no applications to deny at this time.");
 		}
 		
 		else {
 			// assign first user in appRequestList to employee
 			customerName = Driver.appRequestList.get(0).getUserName();
 			System.out.println("Denying application for " + customerName + " ...");
-		
+
+			// traverse the user list and grab the customer of the same name
+			while(!(customerName.equals(Driver.userList.get(i).getUserName()))) {
+				i++;
+			}
+			
+			customer = (Customer) Driver.userList.get(i);
+			
+			changeStatus(customer, 0);
+			updateUser(customer);
+			
 			removeApps(customerName);
 		}
 

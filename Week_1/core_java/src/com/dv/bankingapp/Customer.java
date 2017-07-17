@@ -39,15 +39,16 @@ public class Customer extends User {
 				System.out.println("ATTENTION: You have not yet applied for an account.");
 				break;
 			case 1:	
-				System.out.println("Request pending.");
+				System.out.println("Application pending.");
 				break;
 			case 2:		
-				System.out.println("Account denied.");
+				System.out.println("Application denied.");
 				break;
 			case 3:		
-				System.out.println("Account verified.");
+				System.out.println("Application verified.");
+				break;
 			default:
-				System.out.println("WARNING: Unknown account status!");
+				System.out.println("WARNING: Unknown application status!");
 				break;
 		}
 
@@ -57,12 +58,28 @@ public class Customer extends User {
 	 * fill a request and change status to pending
 	 */
 	public void apply(User authUser) {
+		int index = 0;
 	
 		switch(getStatus()) {
 			case 0:
 				request = new ApplicationRequest();
 				request.setUserName(this.getUserName());
-				setStatus(1);
+				((Customer) authUser).setStatus(1);
+				
+				// get correct index of the customer
+				while(!(Driver.userList.get(index).getUserName().equals(authUser.getUserName()))) {
+					index++;
+				}
+				
+				// remove the old user and save
+				Driver.userList.remove(index);
+				Driver.serialUser.writeUserList(Driver.userList);
+				
+				// update the new user and save
+				Driver.userList.add(authUser);
+				Driver.serialUser.writeUserList(Driver.userList);
+				
+				// update the application request list
 				Driver.appRequestList.add(request);
 				Driver.serialAppRequest.writeAppRequestList(Driver.appRequestList);
 				System.out.println("You have submitted an application.");
@@ -70,9 +87,9 @@ public class Customer extends User {
 			case 1:
 				System.out.println("You already have submitted a request!");
 				break;
-			case 2:
-				System.out.println("Your application has been denied.");
-				break;
+//			case 2:
+//				System.out.println("Your application has been denied.");
+//				break;
 			case 3:
 				System.out.println("Your application has already been approved.");
 				break;

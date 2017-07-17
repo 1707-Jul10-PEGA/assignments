@@ -70,7 +70,7 @@ public class SerializeApplicationRequest {
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
-			System.out.println("Applications successfully loaded.\n");
+
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}

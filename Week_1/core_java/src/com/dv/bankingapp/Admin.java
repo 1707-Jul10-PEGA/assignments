@@ -29,10 +29,37 @@ public class Admin extends User {
 	 * print all the information about the user
 	 */
 	public void printUserInfo(User user) {
-		// view all info
-		// get type
-		// print different information to type
-		System.out.println(user.getUserName());
+		System.out.println("\n===== User Account Information =====");
+		System.out.println("Account Type: " + user.getType());
+		System.out.println("Username: " + user.getUserName());
+		System.out.println("Password: " + user.getPw());
+		
+		if(user instanceof Customer) {
+			switch(((Customer) user).getStatus()) {
+			case 0:
+				System.out.println("Status: Not yet applied");
+				break;
+			case 1:
+				System.out.println("Status: Pending");
+				break;
+			case 2:
+				System.out.println("Status: Denied");
+				break;
+			case 3:
+				System.out.println("Status: Verified");
+				break;
+			default:
+				System.out.println("Status: Unknown");
+				break;
+			
+			}
+
+			System.out.println("Balance: $" + ((Customer) user).getBalance());
+		}
+		
+		if(user instanceof Employee) {
+			System.out.println("Customer: " + ((Employee) user).getCustomer());
+		}
 	
 	}
 
@@ -45,7 +72,7 @@ public class Admin extends User {
 		String userName;
 		User user = null;
 	
-		System.out.println("List of accounts: ");
+		System.out.println("\nList of accounts: ");
 		viewAllAccounts();
 		
 		// enter userName of account
@@ -71,10 +98,70 @@ public class Admin extends User {
 
 	}
 	
+	/* deleteUser
+	 * delete the specified user from users.txt
+	 */
+	public void deleteUser(User user) {
+		int i = 0;
+		int userListSize = Driver.userList.size();
+		String associatedCustomer;
+		User currUser;
+	
+		// if customer to be deleted is associated with an employee
+		// remove the associated customer from the employee
+		if(user instanceof Customer) {
+			while(i<userListSize) {
+				currUser = (Driver.userList.get(i));
+				
+				if(currUser instanceof Employee) {
+					associatedCustomer = ((Employee) currUser).getCustomer().getUserName();
+					if(associatedCustomer.equals(user.getUserName())) {
+						((Employee) Driver.userList.get(i)).setCustomer(null);
+					}
+				}
+
+				i++;
+			}
+		}
+	
+		// update file
+		Driver.userList.remove(user);
+		Driver.serialUser.writeUserList(Driver.userList);
+		System.out.println("Successfully deleted user " + user.getUserName());
+	}
+	
 	/* deleteUserAccount
 	 * delete the account of a user
 	 */
 	public void deleteUserAccount() {
+		int i = 0;
+		int userListSize = Driver.userList.size();
+		String userName;
+		User user = null;
+		
+		System.out.println("\nList of accounts: ");
+		viewAllAccounts();
+		
+		// enter userName of account
+		System.out.print("Enter name of user to delete: ");
+		userName = Driver.read.nextLine();
+		
+		// search for user with userName and grab that user
+		while(i < userListSize) {
+			if(Driver.userList.get(i).getUserName().equals(userName)) {
+				user = Driver.userList.get(i);
+			}
+			
+			i++;
+		}
+		
+		if(user == null) {
+			System.out.println("User " + userName + " was not found!");
+		}
+		
+		else {
+			deleteUser(user);
+		}
 	
 	}
 	
