@@ -1,0 +1,6 @@
+admin:Alice:0:null:null
+employee:Bob:0:null:null
+employee:Charlie:0:null:null
+customer:Dave:1:100000:null
+customer:Erin:2:50:300
+customer:Frank:0:null:null
