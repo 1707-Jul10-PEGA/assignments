@@ -17,7 +17,7 @@ public class AdminEditCustMenu extends Menu {
             
             System.out.println("Choose an action:\n  1 - Add funds");
             System.out.println("  2 - Remove funds");
-            System.out.println("  4 - Create a new account\n");
+            System.out.println("  3 - Create a new account\n");
             System.out.println("  0 - Log out");
             
             mainMenuInput = readInput();

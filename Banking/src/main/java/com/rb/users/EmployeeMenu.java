@@ -1,5 +1,7 @@
 package com.rb.users;
 
+import static com.rb.driver.Driver.LOG;
+
 public class EmployeeMenu extends Menu {
 
     public static void employeeMenu(Employee employee) {
@@ -21,14 +23,14 @@ public class EmployeeMenu extends Menu {
 
             switch (mainMenuInput) {
             case 1:
-
+                
                 employee.viewApplications();
 
                 System.out.print("Choose option number to select account: ");
 
                 subMenuInput = readInput();
 
-                if (subMenuInput >= 0) {
+                if (subMenuInput >= 0 && subMenuInput < employee.appQueueSize()) {
 
                     employee.getApplication(subMenuInput - 1);
 
@@ -36,13 +38,13 @@ public class EmployeeMenu extends Menu {
                     System.out.println("  1 - Yes\n  2 - No");
 
                     thirdMenuInput = readInput();
-
+                    
                     if (thirdMenuInput == 1) {
                         employee.appDecision(subMenuInput - 1, true);
                     } else if (thirdMenuInput == 2) {
                         employee.appDecision(subMenuInput - 1, false);
                     } else {
-                        // TODO error and log
+                        System.out.println("Invalid selection.");
                     }
 
                 }
@@ -55,7 +57,7 @@ public class EmployeeMenu extends Menu {
                         "Which customer's accounts do you want to view?");
                 employee.printCustomers();
 
-                subMenuInput = readInput();
+                subMenuInput = readInput() - 1;
 
                 if (subMenuInput < 0) {
                     // TODO error and log

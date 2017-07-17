@@ -1,10 +1,16 @@
 package com.rb.users;
 
+import static com.rb.driver.Driver.LOG;
+
+import java.text.NumberFormat;
+
 public class CustomerMenu extends Menu {
 	
 	public static void customerMenu(Customer customer){
 		
 		boolean loggedIn = true;
+		
+		NumberFormat form = NumberFormat.getCurrencyInstance();
 		
 		do {
 			
@@ -36,6 +42,11 @@ public class CustomerMenu extends Menu {
 				if(subMenuInput < 0 || amount <= 0.0){
 					
 				} else {
+				    
+				    LOG.trace(customer.getName() + " deposited " 
+                            + form.format(amount) + " into account: " 
+                            + customer.accessAccount(subMenuInput).toString());
+				    
 					customer.accessAccount(subMenuInput).deposit(amount);
 				}
 				break;
@@ -57,6 +68,11 @@ public class CustomerMenu extends Menu {
 				        || amount <= 0.0){
 					// TODO error logging
 				} else {
+				    
+				    LOG.trace(customer.getName() + " withdrew " 
+				            + form.format(amount) + " from account: " 
+				            + customer.accessAccount(subMenuInput).toString());
+				    
 					customer.accessAccount(subMenuInput).withdraw(amount);
 				}
 				

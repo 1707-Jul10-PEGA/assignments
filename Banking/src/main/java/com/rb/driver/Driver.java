@@ -7,17 +7,25 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.Scanner;
 
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
+
 public class Driver {
 
     public static Scanner SCAN;
     
     public static Driver BANK_SYSTEM;
     
+    public static Logger LOG = Logger.getRootLogger();
+    
     public Bank theBank;
 
     public static void main(String[] args) {
 
         SCAN = new Scanner(System.in);
+        
+        String log4jConfPath = "src\\main\\resources\\log4j.properties";
+        PropertyConfigurator.configure(log4jConfPath);
 
         BANK_SYSTEM = new Driver();
 

@@ -2,6 +2,7 @@ package com.rb.users;
 
 import java.util.ArrayList;
 import com.rb.accounts.Account;
+import static com.rb.driver.Driver.LOG;
 
 public class Customer extends User {
 
@@ -9,7 +10,9 @@ public class Customer extends User {
      * 
      */
     private static final long serialVersionUID = 3918031600238817157L;
+    
     Employee assignedTo;
+    
     private ArrayList<Account> accounts;
 
     Customer(Employee assignedTo, String name, String password) {
@@ -19,7 +22,17 @@ public class Customer extends User {
     }
 
     void apply(int accountType) {
-
+        String log = getName() + " applied for a ";
+        
+        if(accountType == 1){
+            log += "checking account ";
+        }else if(accountType == 2){
+            log += "savings account ";
+        }
+        
+        LOG.trace(log + "and is waiting for " + assignedTo.getName() 
+            + "'s approval");
+        
         assignedTo.addApplicant(this, accountType);
 
     }

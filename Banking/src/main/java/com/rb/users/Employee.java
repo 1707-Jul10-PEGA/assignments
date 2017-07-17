@@ -3,6 +3,7 @@ package com.rb.users;
 import java.util.ArrayList;
 import com.rb.accounts.*;
 import static com.rb.driver.Driver.BANK_SYSTEM;
+import static com.rb.driver.Driver.LOG;
 
 
 public class Employee extends User {
@@ -21,6 +22,7 @@ public class Employee extends User {
 
     Employee(String name, String password) {
         super(1, name, password);
+        customers = new ArrayList<Customer>();
     }
 
     void newCustomer(String name, String pass) {
@@ -44,7 +46,7 @@ public class Employee extends User {
 
             String output = "";
 
-            output += (i + 1) + "  " + applicantQueue.get(i).toString()
+            output += (i + 1) + "  " + applicantQueue.get(i).getName()
                     + " wants to open a ";
 
             if (appTypeQueue.get(i) == 1) {
@@ -61,7 +63,7 @@ public class Employee extends User {
     void getApplication(int index) {
         String output = "";
 
-        output += (index + 1) + "  " + applicantQueue.get(index).toString()
+        output += (index + 1) + "  " + applicantQueue.get(index).getName()
                 + " wants to open a ";
 
         if (appTypeQueue.get(index) == 1) {
@@ -71,8 +73,13 @@ public class Employee extends User {
         }
 
         System.out.println(output);
+        
     }
-
+    
+    int appQueueSize(){
+        return applicantQueue.size();
+    }
+    
     void appDecision(int index, boolean approved) {
         Customer customer = applicantQueue.get(index);
         Integer type = appTypeQueue.get(index);
@@ -82,8 +89,12 @@ public class Employee extends User {
             Account newAccount = null;
 
             if (type == 1) {
+                LOG.trace( getName() + " approved " + customer.getName()
+                    + " for a checking account");
                 newAccount = new Checking();
             } else if (type == 2) {
+                LOG.trace( getName() + " approved " + customer.getName()
+                + " for a savings account");
                 newAccount = new Savings();
             } else {
                 System.out.println("Error in account type");
