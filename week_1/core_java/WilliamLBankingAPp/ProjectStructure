@@ -1,0 +1,45 @@
+Login/Abstract User
+	Fields
+		Name (Later Password)
+		Status (Admin, Customer, Employee) 
+	Methods
+	
+Customer
+	Submit Application
+	
+Status class to handle user privileges?
+
+
+
+
+
+AccountInterface	
+	Methods
+	void View(Account acc)
+	void Deposit(Account acc)	
+	void withdraw(Account acc)
+	
+Account (Can later make abstract for multiple account types "checking, saving, etc")
+	Fields
+		private double accountBalance;
+		private String accountHolder; (customer identity) 
+		private int accountID; (for data storage, move elsewhere?)
+		private int accountNumber; (for the customer/outside reference)
+		
+[Customer with accountNumber, Account with ID, Bank Data Class can check match. May not be needed yet.]
+
+Bank Data (Singleton?)
+	Fields
+		Accounts (Data Structure?) (Possible Map of <Customers, AccountID> or <AccountNumber, AccountID
+		Recognized Users (Data Structure?)
+
+		Possible Map of 
+
+Bank Data Serializer
+	Methods
+	Call upon sub-serializers
+	
+AccountData Serializer
+	Read/Write Accounts
+UserDataSerializer
+	Read/Write Users
