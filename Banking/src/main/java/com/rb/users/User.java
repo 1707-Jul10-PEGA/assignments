@@ -1,6 +1,7 @@
 package com.rb.users;
 
 import com.rb.driver.Bank;
+import static com.rb.driver.Driver.BANK_SYSTEM;
 
 public abstract class User {
 	
@@ -14,7 +15,7 @@ public abstract class User {
 	
 	
 	User(int access, String name, String password){
-		Bank bank = Bank.getBank();
+		
 		
 		this.userID = Bank.getNEXT_USER_ID();
 		
@@ -22,7 +23,7 @@ public abstract class User {
 		this.password = password;
 		this.access = access;
 		
-		bank.addUser(this);
+		BANK_SYSTEM.theBank.addUser(this);
 	}
 
 	public String getName() {

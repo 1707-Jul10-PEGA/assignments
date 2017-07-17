@@ -3,6 +3,10 @@ package com.rb.accounts;
 import java.text.NumberFormat;
 
 import com.rb.driver.Bank;
+import com.rb.users.Admin;
+import com.rb.users.User;
+
+import static com.rb.driver.Driver.BANK_SYSTEM;
 
 public abstract class Account {
 	
@@ -95,4 +99,17 @@ public abstract class Account {
 		return output;
 		
 	}
+
+    public void changeBalance(Admin admin, double amount) {
+        // TODO Auto-generated method stub
+        
+        String adminName = admin.getName();
+        
+        User adminCheck = BANK_SYSTEM.theBank.getUserFromMap(adminName);
+        
+        if(adminCheck.getAccess() == 2){
+            balance += amount;
+        }
+        
+    }
 }

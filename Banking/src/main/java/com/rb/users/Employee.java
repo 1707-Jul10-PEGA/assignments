@@ -57,9 +57,9 @@ public class Employee extends User {
                 + " wants to open a ";
 
         if (appTypeQueue.get(index) == 1) {
-            output += "savings account";
-        } else if (appTypeQueue.get(index) == 2) {
             output += "checking account";
+        } else if (appTypeQueue.get(index) == 2) {
+            output += "savings account";
         }
 
         System.out.println(output);

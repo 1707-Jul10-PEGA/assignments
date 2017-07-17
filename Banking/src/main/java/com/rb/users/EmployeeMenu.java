@@ -1,7 +1,5 @@
 package com.rb.users;
 
-import com.rb.driver.Bank;
-
 public class EmployeeMenu extends Menu {
 
     public static void employeeMenu(Employee employee) {
@@ -77,54 +75,15 @@ public class EmployeeMenu extends Menu {
             case 3:
 
                 String name;
-                String pass1;
-                String pass2;
-
-                boolean badName = true;
-                boolean badPass = true;
+                String password;
 
                 System.out.println("Thank you for choosing us!");
 
-                do {
-                    System.out.print("Please enter a username: ");
+                name = readUsername();
 
-                    name = readString();
+                password = readPassword();
 
-                    if (name == null) {
-                        System.out.println(
-                                "Invalid input, " + "please try again.");
-                    } else if (Bank.getUserFromMap(name) != null) {
-                        System.out.println(
-                                name + " is unavailable. Please try again.");
-                    } else {
-                        badName = false;
-                    }
-
-                } while (badName);
-
-                do {
-
-                    System.out.print("Please enter a password: ");
-
-                    pass1 = readString();
-
-                    System.out.print("Please confirm your password: ");
-
-                    pass2 = readString();
-
-                    if (pass1 == null || pass2 == null) {
-                        System.out.println(
-                                "Invalid input, " + "please try again.");
-                    } else if (pass1.equals(pass2)) {
-                        badPass = false;
-                    } else {
-                        System.out.println(
-                                "Password inputs do not match. Please try again.");
-                    }
-
-                } while (badPass);
-
-                employee.newCustomer(name, pass1);
+                employee.newCustomer(name, password);
 
                 System.out.println("Thank you, your account has been created.");
 

@@ -2,7 +2,8 @@ package com.rb.users;
 
 import java.util.ArrayList;
 
-import com.rb.driver.Bank;
+import static com.rb.driver.Driver.BANK_SYSTEM;
+
 
 public class AdminMenu extends Menu {
 
@@ -14,14 +15,17 @@ public class AdminMenu extends Menu {
 
             int mainMenuInput = -1;
             int subMenuInput = -1;
-            int thirdMenuInput = -1;
+            
+            String name = null;
+            String password = null;
             
             ArrayList<User> userGroup;
 
             System.out.println("Choose an action:");
             System.out.println("  1 - View/Edit customer accounts");
             System.out.println("  2 - View/Edit Employee accounts");
-            System.out.println("  3 - Create new employee/admin account");
+            System.out.println("  3 - Create new employee account");
+            System.out.println("  4 - Create new admin account");
             System.out.println("  0 - Log out");
 
             mainMenuInput = readInput();
@@ -29,7 +33,7 @@ public class AdminMenu extends Menu {
             switch (mainMenuInput) {
             case 1:
                 
-                userGroup = Bank.getAllUsers(0);
+                userGroup = BANK_SYSTEM.theBank.getAllUsers(0);
                 
                 System.out.println("Which customer do you want to view?");
                 
@@ -41,7 +45,7 @@ public class AdminMenu extends Menu {
                     
                     Customer customer = (Customer)userGroup.get(subMenuInput - 1);
                 
-                    customerEdit(customer);
+                    AdminEditCustMenu.customerEdit(admin, customer);
                 }else{
                     // TODO logging and error
                 }
@@ -49,7 +53,7 @@ public class AdminMenu extends Menu {
                 
             case 2:
                 
-                userGroup = Bank.getAllUsers(1);
+                userGroup = BANK_SYSTEM.theBank.getAllUsers(1);
                 
                 System.out.println("Which employee do you want to view?");
                 
@@ -61,15 +65,36 @@ public class AdminMenu extends Menu {
                     
                     Employee employee = (Employee)userGroup.get(subMenuInput - 1);
                 
-                    employeeEdit(employee);
+                    EmployeeMenu.employeeMenu(employee);
                 }else{
                     // TODO logging and error
                 }
                 break;
                 
             case 3:
+
+                name = readUsername();
+
+                password = readPassword();
+
+                new Employee(name, password);
+
+                System.out.println("Thank you, your account has been created.");
                 
                 break;
+                
+            case 4:
+                
+                name = readUsername();
+
+                password = readPassword();
+
+                new Admin(name, password);
+
+                System.out.println("Thank you, your account has been created.");
+                
+                break;
+                
             case 0:
                 System.out.println("Thank you. Goodbye.");
                 loggedIn = false;
@@ -83,22 +108,11 @@ public class AdminMenu extends Menu {
         } while (loggedIn);
 
     }
-
-    
-    private static void customerEdit(Customer customer) {
-        // TODO Auto-generated method stub
-        
-    }
-    
-    private static void employeeEdit(Employee employee) {
-        // TODO Auto-generated method stub
-        
-    }
     
     private static void userDisplay(ArrayList<User> userGroup) {
         
         if (userGroup.isEmpty()) {
-            System.out.println("No accounts found. Please apply.");
+            System.out.println("No accounts found.");
         } else {
 
             String output = "";

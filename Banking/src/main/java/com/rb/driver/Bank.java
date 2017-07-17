@@ -10,12 +10,7 @@ import static com.rb.driver.Driver.SCAN;
 
 public final class Bank {
 	
-	
-	private static Bank bank;
-	
-	private static boolean created = false;
-	
-	private static final HashMap<String, User> USER_MAP 
+	private final HashMap<String, User> USER_MAP 
 	    = new HashMap<String, User>();
 	
 	private static int NEXT_USER_ID = 0;
@@ -23,7 +18,7 @@ public final class Bank {
 	private static int NEXT_ACCOUNT_ID = 0;
 	
 	
-	private Bank() {
+	Bank() {
 		String name;
 		String pass1;
 		String pass2;
@@ -41,7 +36,7 @@ public final class Bank {
 			if (name == null) {
 				System.out.println("Invalid input, "
 					+ "please try again.");
-			} else if (Bank.getUserFromMap(name) != null) {
+			} else if (this.getUserFromMap(name) != null) {
 				System.out.println(name + " is unavailable. "
 					+ "Please try again.");
 			} else {
@@ -76,15 +71,6 @@ public final class Bank {
 		addUser(firstUser);
 	}
 	
-	public synchronized static Bank getBank() {
-		if (created) {
-			return bank;
-		} else {
-			bank = new Bank();
-			created = true;
-			return bank;
-		}
-	}
 	
 	private String readString(){
 		String input = null;
@@ -98,7 +84,7 @@ public final class Bank {
 		return input;
 	}
 	
-	public static User getUserFromMap(String name){
+	public User getUserFromMap(String name){
 		return USER_MAP.get(name);
 	}
 	
@@ -116,7 +102,7 @@ public final class Bank {
 		return NEXT_ACCOUNT_ID;
 	}
 	
-	public static ArrayList<User> getAllUsers(int userType){
+	public ArrayList<User> getAllUsers(int userType){
 	    ArrayList<User> userGroup = new ArrayList<User>();
 	    
 	    USER_MAP.forEach((k,v) -> {

@@ -30,7 +30,7 @@ public class CustomerMenu extends Menu {
 
 				System.out.println("How much are you depositing?");
 				
-				amount = readAmount();
+				amount = readAmount() - 1;
 				
 				
 				if(subMenuInput < 0 || amount <= 0.0){
@@ -46,15 +46,16 @@ public class CustomerMenu extends Menu {
 					+"to withdraw from?");
 				customer.printAccounts();
 				
-				subMenuInput = readInput();
+				subMenuInput = readInput() - 1;
 				
 				System.out.println("How much would you like to withdraw?");
 				
 				amount = readAmount();
 				
 				
-				if(subMenuInput < 0 || amount <= 0.0){
-					
+				if(subMenuInput < 0 || subMenuInput >= customer.accountTotal()
+				        || amount <= 0.0){
+					// TODO error logging
 				} else {
 					customer.accessAccount(subMenuInput).withdraw(amount);
 				}

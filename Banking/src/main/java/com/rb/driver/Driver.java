@@ -7,14 +7,18 @@ import java.util.Scanner;
 public class Driver {
 
     public static Scanner SCAN;
+    
+    public static Driver BANK_SYSTEM;
+    
+    public Bank theBank;
 
     public static void main(String[] args) {
 
         SCAN = new Scanner(System.in);
 
-        Driver bankSystem = new Driver();
+        BANK_SYSTEM = new Driver();
 
-        bankSystem.mainMenu();
+        BANK_SYSTEM.mainMenu();
 
         SCAN.close();
     }
@@ -23,7 +27,7 @@ public class Driver {
 
         boolean loop = true;
 
-        Bank.getBank();
+        theBank = new Bank();
 
         User activeUser = null;
 

@@ -45,6 +45,10 @@ public class Customer extends User {
     void addAccount(Account account) {
         accounts.add(account);
     }
+    
+    int accountTotal(){
+        return accounts.size();
+    }
 
     @Override
     public String toString() {

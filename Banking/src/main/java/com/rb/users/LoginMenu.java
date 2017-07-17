@@ -1,8 +1,7 @@
 package com.rb.users;
 
 import static com.rb.driver.Driver.SCAN;
-
-import com.rb.driver.Bank;
+import static com.rb.driver.Driver.BANK_SYSTEM;
 
 public class LoginMenu {
 	
@@ -14,7 +13,7 @@ public class LoginMenu {
 		System.out.print("Enter your password: ");
 		String pass = SCAN.nextLine();
 		
-		User loggingIn = Bank.getUserFromMap(name);
+		User loggingIn = BANK_SYSTEM.theBank.getUserFromMap(name);
 		
 		if (pass.equals(loggingIn.getPassword())) {
 			System.out.println("Welcome.");
