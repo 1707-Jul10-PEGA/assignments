@@ -3,6 +3,8 @@ package com.rb.driver;
 
 import com.rb.users.Admin;
 import com.rb.users.User;
+
+import java.util.ArrayList;
 import java.util.HashMap;
 import static com.rb.driver.Driver.SCAN;
 
@@ -113,4 +115,17 @@ public final class Bank {
 		NEXT_ACCOUNT_ID++;
 		return NEXT_ACCOUNT_ID;
 	}
+	
+	public static ArrayList<User> getAllUsers(int userType){
+	    ArrayList<User> userGroup = new ArrayList<User>();
+	    
+	    USER_MAP.forEach((k,v) -> {
+	        if(v.getAccess() == userType){
+	            userGroup.add(v);
+	        }
+	    });
+	    
+	    return userGroup;
+	}
+	
 }
