@@ -2,6 +2,9 @@ package com.rb.driver;
 
 import com.rb.users.*;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.Scanner;
 
 public class Driver {
@@ -27,7 +30,7 @@ public class Driver {
 
         boolean loop = true;
 
-        theBank = new Bank();
+        theBank = Bank.getBank();
 
         User activeUser = null;
 
@@ -75,7 +78,24 @@ public class Driver {
             }
 
         } while (loop);
-
+        
+        // Serialize data
+        
+        String fileLocation = "src\\main\\resources\\bankOutput.txt";
+        
+        try{
+            
+            FileOutputStream fileOut = new FileOutputStream(fileLocation);
+            ObjectOutputStream out = new ObjectOutputStream(fileOut);
+            out.writeObject(theBank);
+            out.close();
+            fileOut.close();
+            
+            System.out.println("Status successfully saved");
+        }catch(IOException e){
+            // TODO error logging
+        }
+        
     }
 
 }

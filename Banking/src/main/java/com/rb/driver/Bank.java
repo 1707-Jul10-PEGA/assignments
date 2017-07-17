@@ -4,21 +4,57 @@ package com.rb.driver;
 import com.rb.users.Admin;
 import com.rb.users.User;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
+
 import static com.rb.driver.Driver.SCAN;
 
-public final class Bank {
+public final class Bank implements Serializable {
 	
-	private final HashMap<String, User> USER_MAP 
+	/**
+     * 
+     */
+    private static final long serialVersionUID = -7287576941330520886L;
+
+    private final HashMap<String, User> USER_MAP 
 	    = new HashMap<String, User>();
 	
 	private static int NEXT_USER_ID = 0;
 	
 	private static int NEXT_ACCOUNT_ID = 0;
 	
+	static Bank getBank(){
+	    
+	    String fileLocation = "src\\main\\resources\\bankOutput.txt";
+	    Bank bank = null;
+	    
+	    try{
+	        
+	        FileInputStream fileIn = new FileInputStream(fileLocation);
+	        ObjectInputStream in = new ObjectInputStream(fileIn);
+	        bank = (Bank) in.readObject();
+	        in.close();
+	        fileIn.close();
+	        return bank;
+	    }catch(IOException e){
+	        // TODO error logging, file not found
+	        bank = new Bank();
+	        return bank;
+	    }catch(ClassNotFoundException e){
+	        //TODO error logging
+	        bank = new Bank();
+	        return bank;
+	        
+	    }
+	    
+	}
 	
-	Bank() {
+	
+	private Bank() {
 		String name;
 		String pass1;
 		String pass2;
