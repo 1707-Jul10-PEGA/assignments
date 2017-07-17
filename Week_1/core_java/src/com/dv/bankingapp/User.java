@@ -41,6 +41,6 @@ abstract public class User implements Serializable {
 
 	@Override
 	public String toString() {
-		return "\nAccount Type: " + this.type + "\nUsername: " + this.getUserName() + "\nPassword: " + this.getPw() + "\n";
+		return "\nAccount Type: " + this.type + "\nUsername: " + this.getUserName() + "\n";
 	}
 }

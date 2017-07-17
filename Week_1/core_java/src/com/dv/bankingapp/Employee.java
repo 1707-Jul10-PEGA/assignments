@@ -155,7 +155,6 @@ public class Employee extends User {
 			System.out.println("Denying application for " + customerName + " ...");
 		
 			removeApps(customerName);
-		
 		}
 
 	}

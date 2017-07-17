@@ -11,9 +11,6 @@ public class Customer extends User {
 	private int status = 0;
 	ApplicationRequest request = null;
 	
-	public Customer() {
-	}
-
 	public float getBalance() {
 		return balance;
 	}

@@ -143,7 +143,6 @@ public class Login implements LoginInterface {
 			saveUser(newCustomer, userName, pw, "Customer");
 			
 			return (Customer) newCustomer;
-		
 		}
 		
 		else {

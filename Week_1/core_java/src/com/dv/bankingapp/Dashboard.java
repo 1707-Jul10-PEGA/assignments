@@ -71,13 +71,13 @@ public class Dashboard implements DashboardInterface {
 				((Admin) authUser).viewAccount();
 				break;
 			case 1:
-				((Admin) authUser).viewAccount();
+				((Admin) authUser).viewAllAccounts();
 				break;
 			case 2:
-				// edit user
+				((Admin) authUser).viewUserAccount();
 				break;
 			case 3:
-				// delete user
+				((Admin) authUser).deleteUserAccount();
 				break;
 			default:
 				System.out.println("\nExiting ...");
@@ -104,7 +104,6 @@ public class Dashboard implements DashboardInterface {
 				System.out.println("Input entered was not a number.");
 				System.out.println("Enter one of the following codes above.");
 			}
-		
 		}
 		
 		return code;
@@ -141,10 +140,10 @@ public class Dashboard implements DashboardInterface {
 	@Override
 	public int getAdminOptions() {
 		System.out.println("\n===== Admin Account Options =====");
-		System.out.println("0: View account status");
-		System.out.println("1: View account for user");
-		System.out.println("2: Edit a user");
-		System.out.println("3: Delete a user");
+		System.out.println("0: View account information");
+		System.out.println("1: View all accounts");
+		System.out.println("2: View user information");
+		System.out.println("3: Delete user");
 		System.out.println("Enter any other number to exit.\n");
 		
 		return getIntegerCode();

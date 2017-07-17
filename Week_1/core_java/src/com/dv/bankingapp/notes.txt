@@ -1,44 +1,44 @@
-Some obstacles I ran into:
+$ OBSTACLES
+
 1) Trying to have multiple scanners. I tried having one scanner per method, but closing one would close System.in.
 	So I had to reference one scanner
 	
+	SOLVED: driver will hold static scanner, as well as static lists
+	
 2) I wanted to append objects to the text file with serialization but appending objects gave some errors.
 	To solve, I have to reference one list with all users
+	
+	SOLVED: I have to keep updating the list wherever an object is removed or added
+	
+** Using one scanner, lists, serial objects all in the driver and reference them in the classes
+	- only closing streams when program exits
+	- creating the text files here as well
 	
 3) IOException for reading objects with object input stream.
 	It seems that there is no way for readObject to know how many bytes to read. Therefore, I had to catch the IOException to avoid
 	reaching the EOF.
 	- log this
-	
-4) Using one scanner, lists, serial objects all in the driver and reference them in the classes
-	- only closing streams when program exits
 
-5) customer>deposit
+4) customer>deposit
 	- get index kept giving -1, so i had to create a loop to get the correct index of matching user
 	
+5) Customer>apply
+	- For some reason, the customer won't keep track of its application status after the program closes
+	- this can result in multiple applications from the same user after they exited the program
+	- because of this, i implemented methods for employee to remove all pending applications under the same name
+		if they are approved/denied.
 	
-Things to try:
-1) Login> create ...
-	- Having separate method to write to file
-	- It could be that a user object is being written to the file, not the actual implementation?
+==========	
+$ TRY
 	
-2) Have login.prompt() return an int for the driver
-	- if user is verified, proceed to dashboard
-	- may have to return a verified int for create ... also
 	
-3) constructors for all users
+==========	
+$ TODO
+1) Admin functionality
+2) Log/JUnit
+	
+DONT FORGET to delete data files for final submission
 
-4) right now, i have users stored into a serial arraylist
-	- after user submits changes to account dashboard, ill have to traverse the list and find the specific user
-		who made the change. once user is found, add and save account information
-		
-5) Have main hold public serial objects as well as being responsible for creating the txt files
-	
-	
-TODO
-X) Remove print statements in SerializeUser
-	- IOException
-2) Remove print stmts in Login>create ...
 
-3) fix Customer> apply
-	- right now: multiple requests
+
+
