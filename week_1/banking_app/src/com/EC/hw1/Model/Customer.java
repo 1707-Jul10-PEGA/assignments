@@ -3,6 +3,8 @@ package com.EC.hw1.Model;
 import java.text.DecimalFormat;
 import java.util.Scanner;
 
+import org.apache.log4j.Logger;
+
 import com.EC.hw1.Interfaces.CustomerInterface;
 
 public class Customer extends User implements CustomerInterface {
@@ -11,6 +13,7 @@ public class Customer extends User implements CustomerInterface {
 	 * 
 	 */
 	private static final long serialVersionUID = 6016377397393863930L;
+	private static Logger log = Logger.getRootLogger();
 	private static Scanner scan = new Scanner(System.in);
 	private BankAccount bankAccount;
 	private boolean active;
@@ -63,14 +66,17 @@ public class Customer extends User implements CustomerInterface {
 					case 1:
 						this.bankAccount.setCashAccount(this.bankAccount.getCashAccount() + money);
 						valid=false;
+						log.trace(this.getUserName() + " deposited " + money + " into checking account");
 						break;
 					case 2:
 						this.bankAccount.setSavingAccount(this.bankAccount.getSavingAccount() + money);
 						valid=false;
+						log.trace(this.getUserName() + " deposited " + money + " saving into account");
 						break;
 					case 3:
 						this.bankAccount.setCreditAccount(this.bankAccount.getCreditAccount() - money);
 						valid=false;
+						log.trace(this.getUserName() + " deposited " + money + " credit account");
 						break;
 					case 4:
 						valid=false;
@@ -110,6 +116,7 @@ public class Customer extends User implements CustomerInterface {
 							return;
 						}
 						this.bankAccount.setCashAccount(this.bankAccount.getCashAccount() - money);
+						log.trace(this.getUserName() + " withdrew " + money + " from checking account");
 						valid=false;
 						break;
 					case 2:
@@ -119,10 +126,15 @@ public class Customer extends User implements CustomerInterface {
 							return;
 						}
 						this.bankAccount.setSavingAccount(this.bankAccount.getSavingAccount() - money);
+						log.trace(this.getUserName() + " withdrew " + money + " from saving account");
+
 						valid=false;
 						break;
 					case 3:
+						log.trace(this.getUserName() + " withdrew " + money + " from credit account");
 						this.bankAccount.setCreditAccount(this.bankAccount.getCreditAccount()+money);
+						valid=false;
+						break;
 					}
 
 

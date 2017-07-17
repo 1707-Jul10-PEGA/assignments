@@ -2,7 +2,7 @@ package com.EC.hw1.Model;
 
 import java.io.Serializable;
 
-public class User implements Serializable {
+public class User implements Serializable,Comparable<User>{
 	
 	/**
 	 * 
@@ -65,6 +65,17 @@ public class User implements Serializable {
 		return "First Name: " + firstName + "\nLast Name: " + lastName + "\nUsername: " + userName;
 	}
 	
+
+	@Override
+	public int compareTo(User o) {
+		if(this instanceof Admin){
+			return 1;
+		}else if(this instanceof Employee){
+			return 0;
+		}else{
+			return -1;
+		}	
+	}
 	
 	
 	

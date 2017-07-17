@@ -4,6 +4,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 
+import org.apache.log4j.Logger;
+
 import com.EC.hw1.Interfaces.EmployeeInterface;
 import com.EC.hw1.Utilities.BankUtilities;
 public class Employee extends User implements EmployeeInterface{
@@ -12,6 +14,7 @@ public class Employee extends User implements EmployeeInterface{
 	 * 
 	 */
 	private static final long serialVersionUID = 6075316305104448561L;
+	private static Logger log = Logger.getRootLogger();
 	private static Scanner scan = new Scanner(System.in);
 	private Account account;
 	private List<Customer> custList = new LinkedList<Customer>();
@@ -63,6 +66,7 @@ public class Employee extends User implements EmployeeInterface{
 							BankUtilities.writeEmployee(this);
 							BankUtilities.writeUser(this);
 							BankUtilities.writeUser(c);
+							log.trace(this.getUserName() + " approved " + c.getFirstName() + "'s application");
 							valid = false;
 							break;
 						case 2:
@@ -70,6 +74,7 @@ public class Employee extends User implements EmployeeInterface{
 							BankUtilities.writeEmployee(this);
 							BankUtilities.writeUser(this);
 							valid = false;
+							log.trace(this.getUserName() + " denied " + c.getFirstName() + "'s application");
 							break;
 						}
 						
@@ -97,9 +102,14 @@ public class Employee extends User implements EmployeeInterface{
 
 	@Override
 	public void viewCustomerList() {
-		for(Customer c : this.custList){
-			System.out.println(c.toString());
-			System.out.println("Account Activated:" + c.isActive()+"\n");
+		if(this.custList.size()==0){
+			System.out.println("No customers");
+		}else{
+			for(Customer c : this.custList){
+				System.out.println(c.toString());
+				System.out.println("Account Activated:" + c.isActive()+"\n");
+			}
+			
 		}
 		
 	}

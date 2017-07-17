@@ -2,6 +2,8 @@ package com.EC.hw1.driver;
 
 import java.util.Scanner;
 
+import org.apache.log4j.Logger;
+
 import com.EC.hw1.Model.Admin;
 import com.EC.hw1.Model.BankAccount;
 import com.EC.hw1.Model.Customer;
@@ -13,7 +15,7 @@ public class Driver {
 
 	// private Set<Employee> empList = new HashSet<Employee>();
 	private static Scanner scan = new Scanner(System.in);
-
+	private static Logger log = Logger.getRootLogger();
 	public static void main(String[] args) {
 
 		startApp();
@@ -42,12 +44,8 @@ public class Driver {
 						System.out.println("Good-bye!");
 						valid = false;
 					}
-				} else {
-					printWelcome();
-
-				}
+				} 
 			} else {
-				printWelcome();
 				// clear invalid input
 				scan.next();
 			}
@@ -88,9 +86,8 @@ public class Driver {
 		BankAccount ba = new BankAccount(email, 0, 0, 0);
 		Customer c = new Customer(firstName, lastName, username, password, ba);
 		if (BankUtilities.assignBanker(c)) {
-
-			System.out.println(
-					"A banker is looking at your application now. Please wait for us to contact you.\nThanks!");
+			System.out.println("A banker is looking at your application now. Please wait for us to contact you.\nThanks!");
+			
 		} else {
 			System.out.println("Our bank is currently unemployeed. Please come back when we hire someone");
 		}
@@ -124,12 +121,8 @@ public class Driver {
 						valid = false;
 						break;
 					}
-				} else {
-					printLogin();
-
 				}
 			} else {
-				printLogin();
 				// clear invalid input
 				scan.next();
 			}
@@ -150,6 +143,7 @@ public class Driver {
 			return;
 		}
 		System.out.println("Last Login: " + admin.getAccount().getLastLogin());
+		log.trace("LOGINED: \n" + admin.toString());
 		admin.getAccount().setLastLogin();
 		BankUtilities.writeUser(admin);
 		while (valid) {
@@ -163,20 +157,15 @@ public class Driver {
 						admin.viewAllAccounts();
 						break;
 					case 2:
-
+						admin.editAccount();
 						break;
 					case 3:
-
-						break;
-					case 4:
 						valid = false;
 						break;
 					}
-				} else {
-					printAdminOptions();
 				}
 			} else {
-				printAdminOptions();
+				//printAdminOptions();
 				// clear invalid input
 				scan.next();
 			}
@@ -199,6 +188,7 @@ public class Driver {
 		}
 
 		System.out.println("Last Login: " + e.getAccount().getLastLogin());
+		log.trace("LOGINED:\n" + e.toString());
 		e.getAccount().setLastLogin();
 		BankUtilities.writeUser(e);
 		BankUtilities.writeEmployee(e);
@@ -224,11 +214,8 @@ public class Driver {
 						valid = false;
 						break;
 					}
-				} else {
-					printEmployeeOptions();
-				}
+				} 
 			} else {
-				printEmployeeOptions();
 				// clear invalid input
 				scan.next();
 			}
@@ -250,6 +237,7 @@ public class Driver {
 			return;
 		}
 		System.out.println("Last Login: " + c.getBankAccount().getLastLogin());
+		log.trace("LOGINED:\n" + c.toString());
 		c.getBankAccount().setLastLogin();
 		BankUtilities.writeUser(c);
 		while (valid) {
@@ -282,11 +270,8 @@ public class Driver {
 						valid = false;
 						break;
 					}
-				} else {
-					printCustomerOptions();
-				}
+				} 
 			} else {
-				printCustomerOptions();
 				// clear invalid input
 				scan.next();
 			}
