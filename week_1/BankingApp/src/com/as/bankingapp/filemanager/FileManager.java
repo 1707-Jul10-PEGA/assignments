@@ -26,7 +26,7 @@ public class FileManager {
 				user = (User) fileIn.readObject();
 			}
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			
 		} catch (EOFException e) {
 			
 		} catch (IOException e) {

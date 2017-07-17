@@ -35,7 +35,7 @@ public class Employee extends User{
 	}
 	
 	/*
-	 * Add the account corrisponding to the given id to the managed accounts
+	 * Add the account corresponding to the given id to the managed accounts
 	 */
 	public boolean addAccount(Integer id) {
 		if (this.getAccountIds().contains(id)) {

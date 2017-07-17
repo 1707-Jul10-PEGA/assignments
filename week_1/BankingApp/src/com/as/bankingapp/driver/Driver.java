@@ -52,6 +52,9 @@ public class Driver {
 					String password = s.nextLine();
 					currentUser = Login.login(username, password, userList);
 				}
+				if (currentUser == null) {
+					System.out.println("Invalid username/password");
+				}
 			} while (currentUser == null);
 			
 			//logging set currentUser has logged in---------------------------------------------
