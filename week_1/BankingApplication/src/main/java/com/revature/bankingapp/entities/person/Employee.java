@@ -1,6 +1,8 @@
 package com.revature.bankingapp.entities.person;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.UUID;
 
 import com.revature.bankingapp.entities.account.BankAccount;
 import com.revature.bankingapp.entities.account.BankAccoutApplication;
@@ -9,9 +11,37 @@ import com.revature.bankingapp.interfaces.EmployeeInterface;
 public class Employee extends Person implements EmployeeInterface {
 		
 	private String employeeSince;
+	private ArrayList<Customer> customerList = new ArrayList<Customer>();
+		
+	public Employee() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	
-	//Customer assigned to this employee	
-	private ArrayList<Customer> customersAssigned = new ArrayList<Customer>();
+	public Employee(String employeeSince, ArrayList<Customer> customerList) {
+		super();
+		this.employeeSince = employeeSince;
+		this.customerList = customerList;
+	}
+
+
+	public Employee(String firstname, String lastName, String username, String password, String dob, String address,
+			UUID userId) {
+		super(firstname, lastName, username, password, dob, address, userId);
+		this.employeeSince = LocalDateTime.now().toString();
+		// TODO Auto-generated constructor stub
+	}
+
+
+	public Employee(String firstname, String lastName, String username, String password, String dob, String address) {
+		super(firstname, lastName, username, password, dob, address);
+		// TODO Auto-generated constructor stub
+	}
+
+
+
+
 
 	public String getEmployeeSince() {
 		return employeeSince;
@@ -22,11 +52,11 @@ public class Employee extends Person implements EmployeeInterface {
 	}
 	
 	public ArrayList<Customer> getCustomerAssigned() {
-		return customersAssigned;
+		return customerList;
 	}
 
 	public void setCustomerAssigned(ArrayList<Customer> customerAssigned) {
-		this.customersAssigned = customerAssigned;
+		this.customerList = customerAssigned;
 	}
 
 	public void viewCustomerAccount(Customer c, BankAccount a) {
@@ -41,17 +71,17 @@ public class Employee extends Person implements EmployeeInterface {
 
 	public boolean addCustomerToAssignedList(Customer c) {
 		// TODO Auto-generated method stub
-		return false;
+		return this.customerList.add(c);
 	}
 
-	/**
-	 * Ads a customer to this employee list of assigned customers.
-	 * If the addition is successful, return true. False if fails.
-	 * @param c	-Customer
-	 * @return	True if addition was successful, false otherwise
-	 */
-//	public boolean addCustomerToList(Customer c) {
-//		return this.customerAssigned.add(c);
-//	}
+	@Override
+	public String toString() {
+		return super.toString() 
+				+ "Employee Since: " + this.employeeSince +"\n"
+				+ "Customer List: " + customerList;
+	}
+	
+
+	
 	
 }

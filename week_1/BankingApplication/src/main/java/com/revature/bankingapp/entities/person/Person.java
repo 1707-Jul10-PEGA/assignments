@@ -11,9 +11,10 @@ public class Person implements PersonInterface, Serializable{
 	private String firstname;
 	private String lastName;
 	private String username;
+	private String password;
 	private String dob;
 	private String address;
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 4655748803545285103L;
 
 	
 	
@@ -42,11 +43,12 @@ public class Person implements PersonInterface, Serializable{
 	 * @param age		-User Ages
 	 * @param userId	-User unique identifier
 	 */
-	public Person(String firstname, String lastName, String username, String dob, String address, UUID userId) {
+	public Person(String firstname, String lastName, String username, String password, String dob, String address, UUID userId) {
 		super();
 		this.firstname = firstname;
 		this.lastName = lastName;
 		this.username = username;
+		this.password = password;
 		this.dob = dob;
 		this.address = address;
 		this.userId = userId;
@@ -63,11 +65,12 @@ public class Person implements PersonInterface, Serializable{
 	 * @param address	-User address
 	 * @param age		-User Ages
 	 */
-	public Person(String firstname, String lastName, String username, String dob, String address) {
+	public Person(String firstname, String lastName, String username, String password, String dob, String address) {
 		super();
 		this.firstname = firstname;
 		this.lastName = lastName;
 		this.username = username;
+		this.password = password;
 		this.dob = dob;
 		this.address = address;
 		this.userId = UUID.randomUUID();
@@ -129,6 +132,26 @@ public class Person implements PersonInterface, Serializable{
 
 	public UUID getUserId() {
 		return userId;
+	}
+	
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	@Override
+	public String toString() {
+		return ""
+				+ "First Name: " + firstname + "\n"
+				+ "Last Name: " + lastName + "\n"
+				+ "Username: " + username + "\n"
+				+ "Password: " + password + "\n"
+				+ "Date of Birth: " + dob + "\n"
+				+ "Address: " + address + "\n";
+
 	}
 
 }

@@ -20,7 +20,7 @@ public class AuthenticationUtils {
 		
 		Person p = new Person();
 		
-		SerializePerson serializer = new SerializePerson();
+		Serializer serializer = new Serializer();
 		
 		
 		
