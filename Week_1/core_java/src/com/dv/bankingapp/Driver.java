@@ -23,6 +23,9 @@ public class Driver {
 	// one serializable object that reads and writes to apps.txt
 	public static SerializeApplicationRequest serialAppRequest = new SerializeApplicationRequest();
 	
+	// one service logger
+	public static Service serviceLog = new Service();
+	
 	public static void loadLists() {
 		userList = serialUser.readUserList();
 		appRequestList = serialAppRequest.readAppRequestList();

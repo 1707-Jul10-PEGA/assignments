@@ -70,7 +70,7 @@ public class SerializeApplicationRequest {
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
-
+			Driver.serviceLog.eof("Reached end of file for apps.txt");
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}

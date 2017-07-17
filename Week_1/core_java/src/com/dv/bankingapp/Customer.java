@@ -87,9 +87,13 @@ public class Customer extends User {
 			case 1:
 				System.out.println("You already have submitted a request!");
 				break;
-//			case 2:
-//				System.out.println("Your application has been denied.");
-//				break;
+			
+			/* Not having a case for 2 allows Customer to re-apply after a denied request
+			case 2:
+				System.out.println("Your application has been denied.");
+				break;
+			*/
+
 			case 3:
 				System.out.println("Your application has already been approved.");
 				break;

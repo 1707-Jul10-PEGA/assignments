@@ -22,21 +22,23 @@ $ OBSTACLES
 4) customer>deposit
 	- get index kept giving -1, so i had to create a loop to get the correct index of matching user
 	
-5) Customer>apply
+X) Customer>apply
 	- For some reason, the customer won't keep track of its application status after the program closes
 	- this can result in multiple applications from the same user after they exited the program
 	- because of this, i implemented methods for employee to remove all pending applications under the same name
 		if they are approved/denied.
-	
+
+5) Unable to implement Junit	
+
 ==========	
 $ TRY
 	
 	
 ==========	
 $ TODO
-2) Log/JUnit
-3) when employee is assigned a customer, and admin deletes the customer, reset employee's customer
-	Admin>deleteUser
+2) Log
+ - added one logging to serial classes; where eof is reached
+3) Junit
 	
 DONT FORGET to delete data files for final submission
 
