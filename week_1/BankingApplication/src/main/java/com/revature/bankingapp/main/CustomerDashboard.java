@@ -84,8 +84,8 @@ public class CustomerDashboard implements BankAccountInterface{
 		Scanner sc = new Scanner(System.in);
 	
 		Serializer serializer = new Serializer<>();
-		c.setSaving(serializer.getSavingAccounts(c.getUserId()));
-		c.setChecking(serializer.getCheckingAccounts(c.getUserId())); 
+		//c.setSaving(serializer.getSavingAccounts(c.getUserId()));
+		//c.setChecking(serializer.getCheckingAccounts(c.getUserId())); 
 		
 		
 		while(!(type.equals("1") || type.equals("2") || type.equals("3") || type.equals("4")) ) {
@@ -98,7 +98,7 @@ public class CustomerDashboard implements BankAccountInterface{
 			
 			switch (type) {
 			case "1":
-				viewBalances(c);
+				//viewBalances(c);
 				break;
 			case "2":
 				withdrawMoney();
@@ -108,7 +108,7 @@ public class CustomerDashboard implements BankAccountInterface{
 			case "4":
 				break;
 			case "5":
-				createAccount(c);
+				//createAccount(c);
 				break;
 			case "6":
 				return -1;

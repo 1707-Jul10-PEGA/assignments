@@ -33,7 +33,7 @@ public class Login {
 		while(!(type.equals("1") || type.equals("2") || type.equals("3") || type.equals("4")) ) {
 			System.out.println("What type of user are you?\n1)Customer\n2)Employee\n3)Administrator\n4)Exit Program");
 			type = sc.nextLine();
-		}
+		}		
 		
 		Authentication auth = new Authentication();
 
