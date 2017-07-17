@@ -1,16 +1,23 @@
 package com.rb.accounts;
 
+import java.io.Serializable;
 import java.text.NumberFormat;
 
 import com.rb.driver.Bank;
 import com.rb.users.Admin;
 import com.rb.users.User;
 
+
 import static com.rb.driver.Driver.BANK_SYSTEM;
 
-public abstract class Account {
+public abstract class Account implements Serializable {
 	
-	private double interestRate;
+	/**
+     * 
+     */
+    private static final long serialVersionUID = -6083085257987681960L;
+
+    private double interestRate;
 	
 	private int monthsSinceInterest;
 	

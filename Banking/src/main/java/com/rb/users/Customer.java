@@ -5,6 +5,10 @@ import com.rb.accounts.Account;
 
 public class Customer extends User {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 3918031600238817157L;
     Employee assignedTo;
     private ArrayList<Account> accounts;
 

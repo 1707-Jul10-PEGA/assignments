@@ -81,7 +81,7 @@ public class Driver {
         
         // Serialize data
         
-        String fileLocation = "src\\main\\resources\\bankOutput.txt";
+        String fileLocation = "src/main/resources/bankOutput.txt";
         
         try{
             

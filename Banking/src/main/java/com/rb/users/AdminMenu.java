@@ -35,6 +35,11 @@ public class AdminMenu extends Menu {
                 
                 userGroup = BANK_SYSTEM.theBank.getAllUsers(0);
                 
+                if(userGroup.isEmpty()){
+                    System.out.println("No customers in database.");
+                    break;
+                }
+                
                 System.out.println("Which customer do you want to view?");
                 
                 userDisplay(userGroup);
@@ -77,8 +82,10 @@ public class AdminMenu extends Menu {
 
                 password = readPassword();
 
-                new Employee(name, password);
-
+                Employee newEmployee = new Employee(name, password);
+                
+                BANK_SYSTEM.theBank.addUser(newEmployee);
+                
                 System.out.println("Thank you, your account has been created.");
                 
                 break;
@@ -89,8 +96,10 @@ public class AdminMenu extends Menu {
 
                 password = readPassword();
 
-                new Admin(name, password);
+                Admin newAdmin = new Admin(name, password);
 
+                BANK_SYSTEM.theBank.addUser(newAdmin);
+                
                 System.out.println("Thank you, your account has been created.");
                 
                 break;

@@ -1,10 +1,16 @@
 package com.rb.users;
 
 import java.util.ArrayList;
-
 import com.rb.accounts.*;
+import static com.rb.driver.Driver.BANK_SYSTEM;
+
 
 public class Employee extends User {
+
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -513958991337598058L;
 
     ArrayList<Customer> customers;
 
@@ -22,6 +28,8 @@ public class Employee extends User {
         Customer newCust = new Customer(this, name, pass);
 
         customers.add(newCust);
+        
+        BANK_SYSTEM.theBank.addUser(newCust);
 
     }
 

@@ -42,10 +42,13 @@ public final class Bank implements Serializable {
 	        return bank;
 	    }catch(IOException e){
 	        // TODO error logging, file not found
+	        e.printStackTrace();
+	        System.out.println("No file");
 	        bank = new Bank();
 	        return bank;
 	    }catch(ClassNotFoundException e){
 	        //TODO error logging
+	        System.out.println("Class not found");
 	        bank = new Bank();
 	        return bank;
 	        

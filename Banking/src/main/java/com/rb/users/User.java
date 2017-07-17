@@ -1,17 +1,24 @@
 package com.rb.users;
 
 import com.rb.driver.Bank;
-import static com.rb.driver.Driver.BANK_SYSTEM;
 
-public abstract class User {
+import java.io.Serializable;
+
+public abstract class User implements Serializable {
 	
-	private String name;
+	/**
+     * 
+     */
+    private static final long serialVersionUID = -173966185103445604L;
+
+    private String name;
 	
 	private String password;
 	
 	private int access;
 	
 	private int userID;	
+	
 	
 	
 	User(int access, String name, String password){
@@ -23,7 +30,7 @@ public abstract class User {
 		this.password = password;
 		this.access = access;
 		
-		BANK_SYSTEM.theBank.addUser(this);
+		//BANK_SYSTEM.theBank.addUser(this);
 	}
 
 	public String getName() {

@@ -15,7 +15,11 @@ public class LoginMenu {
 		
 		User loggingIn = BANK_SYSTEM.theBank.getUserFromMap(name);
 		
-		if (pass.equals(loggingIn.getPassword())) {
+		if (loggingIn == null){
+		    System.out.println("Incorrect username or password.");
+            System.out.println("Please try again.\n");
+            return null;
+		} else if (pass.equals(loggingIn.getPassword())) {
 			System.out.println("Welcome.");
 			return loggingIn;
 		}else{
