@@ -1,0 +1,5 @@
+approved faker Someone Something 32.68
+denied seven1 Something Someone 90.00
+approved TSong Ta Song 47.870000000000005
+approved Matt1 Mathew Santoro 0.0
+approved Thkk Tae Song 0.0
