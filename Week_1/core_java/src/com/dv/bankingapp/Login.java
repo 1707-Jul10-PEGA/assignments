@@ -1,19 +1,12 @@
 package com.dv.bankingapp;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class Login implements LoginInterface {
-
-	// having one scanner; issues when closing and reopening a scanner
-	static final Scanner read = new Scanner(System.in);
-	
-	// loads list from file and adds to it per user
-	static List<User> userList = new ArrayList<User>();
-	
-	// one serializable object that reads and writes to users.txt
-	static SerializeUser serialUser = new SerializeUser();
 
 	@Override
 	public void printCodes() {
@@ -33,7 +26,7 @@ public class Login implements LoginInterface {
 
 		// ensure user enters an integer 
 		try {
-			code = Integer.parseInt(read.nextLine());
+			code = Integer.parseInt(Driver.read.nextLine());
 			return code;
 		}
 		
@@ -51,7 +44,7 @@ public class Login implements LoginInterface {
 		while(newUserName.contains(" ")) {
 			System.out.println("\nUsername cannot contain spaces.");
 			System.out.print("Enter username: ");
-			newUserName = read.nextLine();
+			newUserName = Driver.read.nextLine();
 		}
 		
 		return newUserName;
@@ -60,7 +53,7 @@ public class Login implements LoginInterface {
 	
 	@Override
 	public boolean userExists(String userName) {
-		for(User u : userList) {
+		for(User u : Driver.userList) {
 			if(userName.equals(u.getUserName())) {
 				return true;
 			}
@@ -79,172 +72,167 @@ public class Login implements LoginInterface {
 	}
 
 	@Override
-	public int promptLogin() {
+	public User promptLogin() {
 		String userName = "", pw = "";
 		User user = null;
 
 		System.out.println("\n===== Login =====\n");
 		System.out.print("Username: ");
-		userName = read.nextLine();
+		userName = Driver.read.nextLine();
 		userName = removeSpaces(userName);
 		
 		// if user exists, check for verification
 		if(userExists(userName)) {
 		
 			// match correct user
-			for(User u : userList) {
+			for(User u : Driver.userList) {
 				if(userName.equals(u.getUserName())) {
 					user = u;
 				}
 			}
 		
 			System.out.print("Password: ");
-			pw = read.nextLine();
+			pw = Driver.read.nextLine();
+			System.out.println();
 			
 			if(isPasswordCorrect(user, pw)) {
-				return 1;
+				return user;
 			}
 			
 			else {
 				System.out.println("Wrong password!");
-				return 0;
+				return null;
 			}
 		}
 		
 		else {
 			System.out.println("Username " + userName + " does not exist!");
-			return 0;
+			return null;
 		}
 
 	}
 	
 	@Override
-	public void saveUser(User user, String userName, String pw) {
+	public void saveUser(User user, String userName, String pw, String type) {
 		user.setUserName(userName);
 		user.setPw(pw);
-		userList.add(user);
-		serialUser.writeUserList(userList);
+		user.setType(type);
+		Driver.userList.add(user);
+		Driver.serialUser.writeUserList(Driver.userList);
 		
 		System.out.println("\nCustomer " + userName + " successfully created.");
 	
 	}
 
 	@Override
-	public int createCustomer() {
+	public Customer createCustomer() {
 		String userName, pw;
 		User newCustomer = new Customer();
 		
 		System.out.println("\n===== Create new customer account =====\n");
 		System.out.print("Enter username: ");
-		userName = read.nextLine();
+		userName = Driver.read.nextLine();
 		userName = removeSpaces(userName);
 
 		// if user is not taken, create an account
 		if(!(userExists(userName))) {
 			System.out.print("Enter password: ");
-			pw = read.nextLine();
+			pw = Driver.read.nextLine();
 
 			// save customer to file
-			saveUser(newCustomer, userName, pw);
-			System.out.println(serialUser.readUserList());
+			saveUser(newCustomer, userName, pw, "Customer");
 			
-			return 1;
+			return (Customer) newCustomer;
 		
 		}
 		
 		else {
 			System.out.println("User " + userName + " already exists!");
-			return 0;
+			return null;
 		}
 		
 	}
 
 	@Override
-	public int createEmployee() {
+	public Employee createEmployee() {
 		String userName, pw;
 		User newEmployee = new Employee();
 		
 		System.out.println("\n===== Create new emplpoyee account =====\n");
 		System.out.print("Enter username: ");
-		userName = read.nextLine();
+		userName = Driver.read.nextLine();
 		userName = removeSpaces(userName);
 
 		// if user is not taken, create an account
 		if(!(userExists(userName))) {
 			System.out.print("Enter password: ");
-			pw = read.nextLine();
+			pw = Driver.read.nextLine();
 			
 			// save employee to file
-			saveUser(newEmployee, userName, pw);
-			System.out.println(serialUser.readUserList());
+			saveUser(newEmployee, userName, pw, "Employee");
 			
-			return 1;
+			return (Employee) newEmployee;
 		}
 		
 		else {
 			System.out.println("User " + userName + " already exists!");
-			return 0;
+			return null;
 		}
 
 	}
 
 	@Override
-	public int createAdmin() {
+	public Admin createAdmin() {
 		String userName, pw;
 		User newAdmin = new Admin();
 		
 		System.out.println("\n===== Create new admin account =====\n");
 		System.out.print("Enter username: ");
-		userName = read.nextLine();
+		userName = Driver.read.nextLine();
 		userName = removeSpaces(userName);
 
 		// if user is not taken, create an account
 		if(!(userExists(userName))) {
 			System.out.print("Enter password: ");
-			pw = read.nextLine();
+			pw = Driver.read.nextLine();
 			
 			// save admin to file
-			saveUser(newAdmin, userName, pw);
-			System.out.println(serialUser.readUserList());
+			saveUser(newAdmin, userName, pw, "Admin");
 			
-			return 1;
+			return (Admin) newAdmin;
 		}
 		
 		else {
 			System.out.println("User " + userName + " already exists!");
-			return 0;
+			return null;
 		}
 		
 	}
 
 	@Override
-	public int prompt() {
+	public User prompt() {
 		int code = 0;
-		int verified = 0;
-	
-		// load in the user list from users.txt
-		userList = serialUser.readUserList();
+		User user = null;
 	
 		code = promptWelcome();
 		switch(code) {
 			case 0:
-				verified = promptLogin();
+				user = promptLogin();
 				break;
 			case 1:
-				verified = createCustomer();
+				user = createCustomer();
 				break;
 			case 2:
-				verified = createEmployee();
+				user = createEmployee();
 				break;
 			case 3:
-				verified = createAdmin();
+				user = createAdmin();
 				break;
 			default:
 				break;
 		}
 
-		read.close();
-		return verified;
+		return user;
 	}
 
 }

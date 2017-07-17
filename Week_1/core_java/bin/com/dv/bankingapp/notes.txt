@@ -8,6 +8,13 @@ Some obstacles I ran into:
 3) IOException for reading objects with object input stream.
 	It seems that there is no way for readObject to know how many bytes to read. Therefore, I had to catch the IOException to avoid
 	reaching the EOF.
+	- log this
+	
+4) Using one scanner, lists, serial objects all in the driver and reference them in the classes
+	- only closing streams when program exits
+
+5) customer>deposit
+	- get index kept giving -1, so i had to create a loop to get the correct index of matching user
 	
 	
 Things to try:
@@ -18,3 +25,20 @@ Things to try:
 2) Have login.prompt() return an int for the driver
 	- if user is verified, proceed to dashboard
 	- may have to return a verified int for create ... also
+	
+3) constructors for all users
+
+4) right now, i have users stored into a serial arraylist
+	- after user submits changes to account dashboard, ill have to traverse the list and find the specific user
+		who made the change. once user is found, add and save account information
+		
+5) Have main hold public serial objects as well as being responsible for creating the txt files
+	
+	
+TODO
+X) Remove print statements in SerializeUser
+	- IOException
+2) Remove print stmts in Login>create ...
+
+3) fix Customer> apply
+	- right now: multiple requests

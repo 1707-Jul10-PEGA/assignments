@@ -8,7 +8,12 @@ public class Admin extends User {
 	private static final long serialVersionUID = -5495653096119619552L;
 	
 	public Admin() {
-		this.type = "Admin";
+	}
+
+	@Override
+	public void viewAccount() {
+		// TODO Auto-generated method stub
+		
 	}
 
 	/* editAcct
@@ -17,11 +22,12 @@ public class Admin extends User {
 	private void editAcct() {
 
 	}
-
-	@Override
-	public void viewAcct() {
-		// TODO Auto-generated method stub
-		
+	
+	/* deleteAcct
+	 * delete the account of a user
+	 */
+	private void deleteAcct() {
+	
 	}
 	
 }

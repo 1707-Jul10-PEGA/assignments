@@ -28,33 +28,33 @@ public interface LoginInterface {
 	public boolean isPasswordCorrect(User user, String pw);
 	
 	/* promptLogin
-	 * prompt for existing users
+	 * return an existing user
 	 */
-	public int promptLogin();
+	public User promptLogin();
 	
 	/* saveUser
 	 * write user to file
 	 */
-	public void saveUser(User user, String userName, String pw);
+	public void saveUser(User user, String userName, String pw, String type);
 
 	/* createCustomer
-	 * return 1 if customer entered available credentials
+	 * return customer with valid credentials
 	 */
-	public int createCustomer();
+	public Customer createCustomer();
 	
 	/* createEmployee
-	 * return 1 if employee entered available credentials
+	 * return employee with valid credentials
 	 */
-	public int createEmployee();
+	public Employee createEmployee();
 	
 	/* createAdmin
-	 * return 1 if admin entered available credentials
+	 * return admin with valid credentials
 	 */
-	public int createAdmin();
+	public Admin createAdmin();
 
 	/* prompt
-	 * return 1 if user is verified; else 0
+	 * return user that wishes to access their account dashboard
 	 */
-	public int prompt();
+	public User prompt();
 
 }

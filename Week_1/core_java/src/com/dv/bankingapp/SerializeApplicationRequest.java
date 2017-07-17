@@ -9,34 +9,34 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SerializeUser {
+public class SerializeApplicationRequest {
 
-	private String fileName = "src/com/dv/bankingApp/users.txt";
+	private String fileName = "src/com/dv/bankingapp/apps.txt";
 	
-	public void writeUser(User user) {
+	public void writeAppRequest(ApplicationRequest appRequest) {
 		try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(fileName))) {
-			oos.writeObject(user);
+			oos.writeObject(appRequest);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 
-	public void writeUserList(List<User> userList) {
+	public void writeAppRequestList(List<ApplicationRequest> appRequestList) {
 		try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(fileName))) {
 		
-			// write every user in the list to the file
-			for(User u : userList) {
-				oos.writeObject(u);
+			// write every application request in the list to the file
+			for(ApplicationRequest ar : appRequestList) {
+				oos.writeObject(ar);
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 
-	public User readUser() {
+	public ApplicationRequest readAppRequest() {
 		try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(fileName))) {
-			User u = (User) ois.readObject();
-			return u;
+			ApplicationRequest ar = (ApplicationRequest) ois.readObject();
+			return ar;
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -47,19 +47,19 @@ public class SerializeUser {
 		return null;
 	}
 
-	public List<User> readUserList() {
+	public List<ApplicationRequest> readAppRequestList() {
 		boolean loop = true;
-		List<User> recoverUserList = new ArrayList<User>(); 
+		List<ApplicationRequest> recoverAppRequestList = new ArrayList<ApplicationRequest>(); 
 	
 		try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(fileName))) {
 		
 			// read users from file, add them to recoverUserList and return the list
 			while(loop) {
 			
-				User u = (User) ois.readObject();
+				ApplicationRequest ar = (ApplicationRequest) ois.readObject();
 
-				if(u != null) {
-					recoverUserList.add(u);
+				if(ar != null) {
+					recoverAppRequestList.add(ar);
 				}
 				
 				else {
@@ -70,12 +70,12 @@ public class SerializeUser {
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
-
+			System.out.println("Applications successfully loaded.\n");
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
 
-		return recoverUserList;
+		return recoverAppRequestList;
 	}
 
 }

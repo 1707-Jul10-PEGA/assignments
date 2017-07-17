@@ -11,7 +11,7 @@ abstract public class User implements Serializable {
 
 	private String userName;
 	private String pw;
-	public String type;
+	private String type;
 	
 	public String getUserName() {
 		return userName;
@@ -28,8 +28,16 @@ abstract public class User implements Serializable {
 	public void setPw(String pw) {
 		this.pw = pw;
 	}
+	
+	public String getType() {
+		return type;
+	}
+	
+	public void setType(String type) {
+		this.type = type;
+	}
 
-	abstract public void viewAcct();
+	abstract public void viewAccount();
 
 	@Override
 	public String toString() {
