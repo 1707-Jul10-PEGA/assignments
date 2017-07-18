@@ -54,7 +54,7 @@ public class LoginAction {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			Log.error("Your online ID or passcode is incorrect, please try again\n");
+			Log.error("Your online ID or passcode is incorrect, please try again\n\n");
 			return false;
 		}
 		/*Asks the user if he or she would like to make an account and creates an application if so*/
@@ -185,7 +185,6 @@ public class LoginAction {
 					continue;
 				}
 				onlineIDCheck = 0;
-				System.out.println(onlineIDCheck);
 			}while(onlineIDCheck == 1);
 			/*Checks to make sure online ID is not already registered*/
 			BufferedReader ch = new BufferedReader(new FileReader(filename));

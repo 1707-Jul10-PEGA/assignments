@@ -29,14 +29,15 @@ public class Admin extends BalanceViewer{
 		Scanner scan = new Scanner(System.in);
 		Scanner scanLine = new Scanner(System.in);
 		String continueEdit = "Y";
-		Log.info("Hello " + Storage.userID + ", what would you like to do?:\n");
+		Log.info("ADMIN MENU\n");
 		
 		/*Menu commands are looped until the admin exits*/
 		while(true)
 		{
 			Log.info("1. Edit an account's information\n");
 			Log.info("2. View a customer's account balance\n");
-			Log.info("3. Exit\n");
+			Log.info("3. Approve/Deny applications\n");
+			Log.info("4. Exit\n");
 			Log.info("Please choose: ");
 			String menuNumber = scanLine.nextLine();
 			if(!UserInputTest.testIsInt(menuNumber))
@@ -50,16 +51,20 @@ public class Admin extends BalanceViewer{
 			case 1:
 				do
 				{
+					boolean editCustomerCheck = true;
 					/*Outputs the balance information of the account that the user wishes to edit*/
 					Log.info("Which customer's account would you like to edit?: ");
 					String editCustomer = scanLine.nextLine();
 					try {
 						Log.trace(viewBalance(editCustomer));
+						if("No account balance associated with this user\n".equals(viewBalance(editCustomer)))
+						{ editCustomerCheck = false; }
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
-					
+					if(editCustomerCheck = true)
+					{ break; }
 					/*Writes the editted information to a temporary file, then have that file rewrite to the main file*/
 					int informationCheck = 0;
 					String decision;
@@ -99,6 +104,7 @@ public class Admin extends BalanceViewer{
 				/*Checks the user input, then views a customer's account balance*/
 				Log.info("Which customer's account balance would you like to view?: ");
 				String customer = scanLine.nextLine();
+				Log.info("\n");
 				try {
 					Log.trace(viewBalance(customer));
 				} catch (IOException e) {
@@ -108,6 +114,15 @@ public class Admin extends BalanceViewer{
 				Log.info("\n");
 				break;
 			case 3:
+				/*Approve or deny applications.*/
+				try {
+					approveOrDeny();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				break;
+			case 4:
 				return;
 			default:
 				Log.error("Invalid choice\n");
@@ -139,7 +154,6 @@ public class Admin extends BalanceViewer{
 		    String line = br.readLine();
 		    
 		    while (line != null) {
-		    	System.out.println(line);
 		    	StringTokenizer tokenizer = new StringTokenizer(line);
 				while (tokenizer.hasMoreTokens())
 				{
