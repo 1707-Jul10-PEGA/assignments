@@ -36,7 +36,7 @@ public class Application implements Serializable{
 	public static void main(String[] args) {
 		//Generate log for each customer request
 		Application bankapp = new Application();
-		bankapp.generateFiller();
+		//bankapp.generateFiller();
 		bankapp.readFiller();
 		
 		/*

@@ -150,6 +150,8 @@ public class Admin extends User{
 					else if(Double.parseDouble(readdata[2]) >= 0)
 					{
 						//Check is good
+						Application.logger.debug(readdata[0]+"'s account "
+								+readdata[1]+" changed to "+readdata[2]);
 						Application.savlist[i] = readdata[2];
 						changeflag = 1;
 					}

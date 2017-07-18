@@ -72,7 +72,8 @@ public class Employee extends User{
 		int deniedflag = 0;
 		for(int i = 0; i < Application.newusercount; i++)
 		{
-			if(Application.namelist[i].equals(denieduser) && Application.assignedto[i].equals(this.name))
+			if(Application.namelist[i].equals(denieduser) && Application.assignedto[i].equals(this.name)
+					&& !"null".equals(Application.requests[i].toLowerCase()))
 			{
 				Application.logger.info("Application for " + Application.requests[i] + " denied!");
 				deniedflag = i;

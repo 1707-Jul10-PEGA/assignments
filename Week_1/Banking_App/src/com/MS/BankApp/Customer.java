@@ -130,7 +130,7 @@ public class Customer extends User{
 		
 		if("checking".equals(withdraw[0].toLowerCase()) && !"null".equals(Application.checlist[Application.userid]))
 		{
-			if(Double.parseDouble(withdraw[1])>0 && Double.parseDouble(withdraw[1])<
+			if(Double.parseDouble(withdraw[1])>0 && Double.parseDouble(withdraw[1])<=
 					Double.parseDouble(Application.checlist[Application.userid]))
 			{
 				//Entered number is acceptable
