@@ -1,0 +1,31 @@
+package com.wh.banking_app;
+
+import static org.junit.Assert.*;
+
+import org.junit.BeforeClass;
+import org.junit.Test;
+
+public class UserTest {
+    	static User user0,user1;
+
+    @BeforeClass
+    public static void setup() {
+	user0 = new User();
+	user1 = new User("Name", 1234);
+    }
+
+    @Test
+    public void nameTest() {
+	user0.setName("Billy");
+	assertEquals(user0.getName(), "Billy");
+	assertEquals(user1.getName(), "Name");
+    }
+    
+    @Test
+    public void IDTest() {
+	user0.setID(3241);
+	assertEquals(user0.getID(), 3241);
+	assertEquals(user1.getID(), 1234);
+    }
+
+}
