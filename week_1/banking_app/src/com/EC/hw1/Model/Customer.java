@@ -219,8 +219,8 @@ public class Customer extends User implements CustomerInterface, Cloneable {
 	}
 
 	/*
-	 * This was way to complicated. Simplier solution was to add a attribute to
-	 * the Customer class and define which he/she was assigned to
+	 * Note to self: This was way to complicated. Simplier solution was to add a
+	 * attribute to the Customer class and define which he/she was assigned to
 	 */
 	private void updateBankersData(Customer newCustomerData) {
 		File folder = new File("Employees/");
