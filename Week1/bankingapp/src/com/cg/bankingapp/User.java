@@ -1,42 +1,45 @@
 package com.cg.bankingapp;
 
-public abstract class User{
+import java.io.Serializable;
 
+public abstract class User implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7477586490858301485L;
 
 	// Variables
 	private String name;
 	private String username;
-	private int password;
-	private String userType;
+	private String password;
 	private String accessRights;
 
-
 	// Constructor
-	public User(String name, String username, String password, String userType) {
+	protected User(String name, String username, String password, String userType) {
 		this.setName(name);
 		this.username = username;
-		this.password = password.hashCode();
-		this.userType = userType;
-		this.setAccessRights(this.userType);
+		this.password = password;
+		this.setAccessRights(userType);
+	}
+
+	protected User() {
 	}
 
 	// Gettters
 	public String getName() {
 		return name;
 	}
+
 	public String getUsername() {
 		return username;
-	}
-
-	public String getUserType() {
-		return userType;
 	}
 
 	public String getAccessRights() {
 		return accessRights;
 	}
-	
-	public int getPassword() {
+
+	public String getPassword() {
 		return password;
 	}
 
@@ -44,19 +47,20 @@ public abstract class User{
 	public void setName(String name) {
 		this.name = name;
 	}
+
+	protected void setPassword(String password) {
+		this.password = password;
+	}
+
+	/**
+	 * @param username
+	 *            the username to set
+	 */
 	public void setUsername(String username) {
 		this.username = username;
 	}
 
-	public void setPassword(String password) {
-		this.password = password.hashCode();
-	}
-
-	public void setUserType(String userType) {
-		this.userType = userType;
-	}
-
-	public void setAccessRights(String userType) {
+	private void setAccessRights(String userType) {
 		if ("Employee".equalsIgnoreCase(userType)) {
 			this.accessRights = "employee";
 		} else if ("Admin".equalsIgnoreCase(userType)) {
@@ -64,18 +68,6 @@ public abstract class User{
 		} else {
 			this.accessRights = "customer";
 		}
-	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((accessRights == null) ? 0 : accessRights.hashCode());
-		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		result = prime * result + password;
-		result = prime * result + ((userType == null) ? 0 : userType.hashCode());
-		result = prime * result + ((username == null) ? 0 : username.hashCode());
-		return result;
 	}
 
 	@Override
@@ -99,11 +91,6 @@ public abstract class User{
 			return false;
 		if (password != other.password)
 			return false;
-		if (userType == null) {
-			if (other.userType != null)
-				return false;
-		} else if (!userType.equals(other.userType))
-			return false;
 		if (username == null) {
 			if (other.username != null)
 				return false;
@@ -111,9 +98,4 @@ public abstract class User{
 			return false;
 		return true;
 	}
-	
-	public abstract String toString();
-
-
-	
 }

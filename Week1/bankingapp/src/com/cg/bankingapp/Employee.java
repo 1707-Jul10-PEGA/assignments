@@ -1,27 +1,20 @@
 package com.cg.bankingapp;
 
-import java.io.Serializable;
+public class Employee extends User {
 
-public class Employee extends User implements Serializable{
 
-	//Generated 
-	private static final long serialVersionUID = -5971436735066947080L;
 
-	public Employee(String name, String username, String password, String userType) {
-		super(name, username, password, userType);
-		
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1314501009848014266L;
+
+	public Employee(String name, String username, String password) {
+		super(name, username, password, "employee");
 	}
 
 	@Override
 	public String toString() {
-		return "Name: " + this.getName() + "[" 
-				+ this.getUsername()+ ","
-				+ this.getPassword()+ ","
-				+ this.getUserType()+ "]";
+		return "Name: " + this.getName() +" Username: "+this.getUsername()+" Password: "+this.getPassword();
 	}
-	
-	
-	
-	
-
 }
