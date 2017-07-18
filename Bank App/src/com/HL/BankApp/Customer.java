@@ -67,16 +67,10 @@ public class Customer extends User {
 	}
 
 	private void create() {
-		System.out.println("Application starts. \nEnter 'apply' to submit for approval.");
+		System.out.println("Application starts.");
 		User.scan = new Scanner(System.in);
-		String input = User.scan.nextLine();
-		if ("apply".equals(input.toLowerCase())) {
 			System.out.println("Your application has been submitted.");
-			Driver.requests[Driver.userid] = input.toLowerCase();
-		} else {
-			System.out.println("Invalid Input");
-		}
-
+			Driver.requests[Driver.userid] = "applied";
 	}
 
 	private void withdraw() {
