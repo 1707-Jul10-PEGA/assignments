@@ -191,7 +191,7 @@ public class Admin extends User implements AdminInterface {
 					e.viewCustomerList();
 					break;
 				case 4:
-					valid = true;
+					valid = false;
 					break;
 				}
 			}else{
@@ -392,7 +392,9 @@ public class Admin extends User implements AdminInterface {
 
 	private void printEmployeeEdit() {
 		System.out.println("(6)Edit Employee's Client List");
-		System.out.println("(7)Back");
+		System.out.println("(7)Approve or Deny Employee's Clients' Applications");
+		System.out.println("(9)View Employee's List of Clients");
+		System.out.println("(9)Back");
 	}
 
 	

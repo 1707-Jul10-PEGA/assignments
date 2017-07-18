@@ -148,5 +148,16 @@ public class BankUtilities {
 		}
 
 	}
+	
+	public static void updateFiles(User u) {
+		if (u instanceof Employee) {
+			BankUtilities.writeEmployee((Employee) u);
+			BankUtilities.writeUser((Employee) u);
+			log.trace("Successfully updated "+ u.getUserName() +" account");
+		} else {
+			BankUtilities.writeUser((Customer) u);
+			log.trace("Successfully updated "+ u.getUserName() +" account");
+		}
+	}
 
 }

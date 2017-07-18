@@ -45,4 +45,41 @@ public class BankAccount extends Account {
 		this.creditAccount = creditAccount;
 	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		long temp;
+		temp = Double.doubleToLongBits(cashAccount);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		temp = Double.doubleToLongBits(creditAccount);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		temp = Double.doubleToLongBits(savingAccount);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		BankAccount other = (BankAccount) obj;
+		if (Double.doubleToLongBits(cashAccount) != Double.doubleToLongBits(other.cashAccount))
+			return false;
+		if (Double.doubleToLongBits(creditAccount) != Double.doubleToLongBits(other.creditAccount))
+			return false;
+		if (Double.doubleToLongBits(savingAccount) != Double.doubleToLongBits(other.savingAccount))
+			return false;
+		return true;
+	}
+
+
+	
+	
+	
+
 }

@@ -39,6 +39,11 @@ public class Account implements Serializable{
 		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd/  HH:mm:ss");
 		this.lastLogin = dateFormat.format(new Date()) ;
 	}
+
+	public void setLastLogin(String date){
+		this.lastLogin = date;
+	}
+	
 	
 	@Override
 	public String toString(){
