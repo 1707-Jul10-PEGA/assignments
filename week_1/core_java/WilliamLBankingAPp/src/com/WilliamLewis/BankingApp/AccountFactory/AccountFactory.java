@@ -22,7 +22,7 @@ public class AccountFactory {
 		// Random Int generation, technically this means we can only have 10000
 		// accounts, could change IDs to work with a hashing function later if
 		// we need to upscale
-		Integer myId = (int) (Math.random() * 10000);
+		Integer myId = (int) (Math.random() * 100000);
 		while (BankData.getInstance().checkID(myId)) {
 			myId = (int) (Math.random() * 100000);
 		}

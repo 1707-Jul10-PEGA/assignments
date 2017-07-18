@@ -16,7 +16,13 @@ import com.WilliamLewis.BankingApp.Users.Admin;
 import com.WilliamLewis.BankingApp.Users.Customer;
 import com.WilliamLewis.BankingApp.Users.Employee;
 import com.WilliamLewis.BankingApp.Users.User;
-
+/**
+ * BankData is the class that does most of the heavy lifting and all the information storage,
+ * it is this class that is read upon start and written to .txt at program end
+ * Tracks Accounts, all Users, the pairings of accounts to their IDs and all current applications to be processed.
+ * @author William
+ * Refactor note: Find a way to do this project without a singleton.
+ */
 public class BankData implements Serializable {
 	private static BankData theBank;
 	private Map<Integer, Account> accountData;
@@ -27,41 +33,6 @@ public class BankData implements Serializable {
 	private ArrayList<Customer> currentCustomers;
 	private static final long serialVersionUID = 7526472295622776147L;
 	private String filename = "BankData.txt";
-
-	public void addApp(AccountApplication aa) {
-		distributeApplication(aa);
-	}
-
-	public void removeApp(AccountApplication aa) {
-		for (AccountApplication a : this.currentApplications) {
-			if (aa.equals(a)){
-
-				currentApplications.remove(a);
-				break;
-			}
-		}
-		for (Employee e : this.currentEmployees) {
-			for (AccountApplication eaa : e.pendingApplications) {
-				if (aa.equals(eaa)) {
-					e.pendingApplications.remove(eaa);
-					break;
-				}
-			}
-		}
-
-	}
-
-	public void approveApplication(AccountApplication aa) {
-		// Call factory and create account, store that integer in the arraylist, and give the customer an account ID to manage
-		// of accounts to manage
-		
-		aa.getAccountHolder().addAccountID(AccountFactory.createAccount(aa.getAccountType(), aa.getAccountHolder().getUsername()));
-		
-		theBank.removeApp(aa);
-		log.debug("Successfully approved " + aa.getAccountHolder().getUsername() + "'s application for a "+ aa.getAccountType() + " account");
-
-	}
-
 	private static Logger log = Logger.getRootLogger();
 
 	private BankData() {
@@ -81,7 +52,6 @@ public class BankData implements Serializable {
 			theBank.initializeData();
 			return theBank;
 		}
-
 		return theBank;
 	}
 
@@ -112,10 +82,8 @@ public class BankData implements Serializable {
 
 	public ArrayList<Account> getAccountList() {
 		ArrayList<Account> myArray = new ArrayList<Account>();
-
 		myArray.addAll(this.accountData.values());
 		return myArray;
-
 	}
 
 	/**
@@ -148,15 +116,62 @@ public class BankData implements Serializable {
 		this.accountData.put(key, acc);
 	}
 
+	
+	/*
+	 * The following methods all work to keep track of applications for an account
+	 * Refactor note: perhaps move these to the AcountApplication class, or some helper class.
+	 */
+	//Purely for quick reference 
+	public void addApp(AccountApplication aa) {
+		distributeApplication(aa);
+	}
+	/**
+	 * Removes application from the BankData lists and from the relevant employee;=
+	 * @param aa acountapplication to be removed
+	 */
+	public void removeApp(AccountApplication aa) {
+		for (AccountApplication a : this.currentApplications) {
+			if (aa.equals(a)) {
+
+				currentApplications.remove(a);
+				break;
+			}
+		}
+		for (Employee e : this.currentEmployees) {
+			for (AccountApplication eaa : e.pendingApplications) {
+				if (aa.equals(eaa)) {
+					e.pendingApplications.remove(eaa);
+					break;
+				}
+			}
+		}
+
+	}
+
+	public void approveApplication(AccountApplication aa) {
+		// Call factory and create account, store that integer in the arraylist,
+		// and give the customer an account ID to manage
+		// of accounts to manage
+		aa.getAccountHolder().addAccountID(AccountFactory.createAccount(aa.getAccountType(), aa.getAccountHolder().getUsername()));
+		theBank.removeApp(aa);
+		log.debug("Successfully approved " + aa.getAccountHolder().getUsername() + "'s application for a "
+				+ aa.getAccountType() + " account");
+
+	}
+	/**
+	 * Finds the employee with the least Applications to process and gives them the passed application
+	 * @param aa
+	 */
 	public void distributeApplication(AccountApplication aa) {
 		if (this.currentEmployees.isEmpty()) {
 			log.debug("No Existing Employees to take Application");
 			return;
 		} else
 			this.leastApplications().addApplication(aa);
-			this.currentApplications.add(aa);
+		this.currentApplications.add(aa);
 	}
 
+	//Logic for finding the least burdened employee from the list
 	public Employee leastApplications() {
 		if (this.currentEmployees.isEmpty()) {
 			log.debug("No Existing Employees to take Application");
@@ -171,23 +186,24 @@ public class BankData implements Serializable {
 		}
 		return least;
 	}
-
-	public void addAdmin(Admin user) {
-		this.currentAdmins.add(user);
+	/**
+	 * Used by the GUI to return accounts relevent to the current user
+	 * @param cust
+	 * @return
+	 */
+	public AccountApplication getAccApp(Customer cust) {
+		for (AccountApplication aa : this.currentApplications) {
+			if (aa.getAccountHolder().equals(cust)) {
+				return aa;
+			}
+		}
+		log.error("This customer does not have any active applications.");
+		return null;
 	}
+	
+	//End Application Methods
 
-	public void addEmployee(Employee user) {
-		this.currentEmployees.add(user);
-	}
-
-	public void addCustomer(Customer user) {
-		this.currentCustomers.add(user);
-	}
-
-	public Integer getAccountID(String Username) {
-		return this.accountIDs.get(Username);
-	}
-
+	//Methods for obtaining staff from the list based on username and password match
 	public Employee getEmployee(String name, String password) {
 		for (Employee x : this.currentEmployees) {
 			if (name.equals(x.Username) && password.equals(x.getPassword())) {
@@ -210,18 +226,26 @@ public class BankData implements Serializable {
 		return null;
 	}
 
-	public AccountApplication getAccApp(Customer cust) {
-		for (AccountApplication aa : this.currentApplications) {
-			if (aa.getAccountHolder().equals(cust)) {
-				return aa;
-			}
-		}
-		log.error("This customer does not have any active applications.");
-		return null;
-	}
+	//Some useful getters and 'adders'
 
 	public ArrayList<AccountApplication> getCurrentApplications() {
 		return currentApplications;
+	}
+
+	public void addAdmin(Admin user) {
+		this.currentAdmins.add(user);
+	}
+
+	public void addEmployee(Employee user) {
+		this.currentEmployees.add(user);
+	}
+
+	public void addCustomer(Customer user) {
+		this.currentCustomers.add(user);
+	}
+
+	public Integer getAccountID(String Username) {
+		return this.accountIDs.get(Username);
 	}
 
 }

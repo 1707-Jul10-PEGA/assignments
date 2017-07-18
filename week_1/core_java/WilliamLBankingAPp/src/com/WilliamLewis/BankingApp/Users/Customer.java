@@ -1,5 +1,9 @@
 package com.WilliamLewis.BankingApp.Users;
 
+/**
+ * Similar implementation to admin and employee, note that customers do not hold account info directly, only the ID
+ * use ID to access BankData and retrieve account
+ */
 import java.io.Serializable;
 import java.util.ArrayList;
 

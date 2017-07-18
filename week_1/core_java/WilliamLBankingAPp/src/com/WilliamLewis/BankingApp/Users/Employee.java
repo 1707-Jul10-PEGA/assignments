@@ -11,7 +11,11 @@ import com.WilliamLewis.BankingApp.AccountFactory.AccountFactory;
 import com.WilliamLewis.BankingApp.Applications.AccountApplication;
 import com.WilliamLewis.BankingApp.BankData.BankData;
 import com.WilliamLewis.BankingApp.BankData.Accounts.Account;
-
+/**
+ * Similar implementation to the admin, but with some personal tracking of Applications and accounts to manage
+ * @author William
+ *
+ */
 public class Employee implements Serializable{
 	public String Username;
 	private String password;
@@ -47,6 +51,7 @@ public class Employee implements Serializable{
 	}
 	public void removeApplication(AccountApplication aa)
 	{
+		//May be redudant, requires some testing
 		this.getPendingApplications().remove(aa);
 		BankData.getInstance().removeApp(aa);
 	}
@@ -57,6 +62,10 @@ public class Employee implements Serializable{
 			approveApplication(aa);
 		}
 	}
+	/**
+	 * For use in the GUI
+	 * @return
+	 */
 	public ArrayList<Account> copyOfAccountList()
 	{
 		ArrayList<Account> myAccs = new ArrayList<Account>();
