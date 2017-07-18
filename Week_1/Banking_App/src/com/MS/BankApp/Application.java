@@ -184,7 +184,7 @@ public class Application implements Serializable{
 		String employee2 = "employee:Charlie:0:null:null:null:null";
 		String customer1 = "customer:Dave:1:100000:null:Bob:null:";
 		String customer2 = "customer:Erin:2:50.5:300:Bob:null";
-		String customer3 = "customer:Frank:0:null:null:Bob:null";
+		String customer3 = "customer:Frank:0:null:null:Bob:checking";
 		
 		
 		

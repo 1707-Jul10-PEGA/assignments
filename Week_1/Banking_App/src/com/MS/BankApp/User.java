@@ -44,7 +44,8 @@ public abstract class User implements functions{
 			{
 			String savelinedata = Application.privlist[i].concat(":").concat(Application.namelist[i])
 					.concat(":").concat(Application.acctlist[i]).concat(":").concat(Application.checlist[i])
-					.concat(":").concat(Application.savlist[i]).concat(":").concat(Application.requests[i]);
+					.concat(":").concat(Application.savlist[i]).concat(":").concat(":")
+					.concat(Application.assignedto[i]).concat(":").concat(Application.requests[i]);
 			
 			finaldat[i] = savelinedata;
 			}
