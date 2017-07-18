@@ -15,6 +15,7 @@ public class Customer extends User {
     
     private ArrayList<Account> accounts;
 
+    
     Customer(Employee assignedTo, String name, String password) {
         super(0, name, password);
         this.assignedTo = assignedTo;
