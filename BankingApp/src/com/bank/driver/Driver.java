@@ -20,16 +20,45 @@ import java.sql.*;
 public class Driver {
 	public static void main(String[] args) throws ClassNotFoundException {
 		System.out.println("Welcome to Wendell's Bank!");
+
 		//loading all bank user info
 		
-		Admin myAdmin = new Admin();
-		myAdmin.setfName("Blake");
-		myAdmin.setlName("Trainer");
-		myAdmin.setPass("pass");
-		myAdmin.setuName("nick");
-		myAdmin.setPosition("admin");
-
-//		myEmp.addAccount(myCust, myCust.getAccountsToProcess().get(0).toString(), myEmp);
+//		Admin myAdmin = new Admin();
+//		myAdmin.setfName("Blake");
+//		myAdmin.setlName("Trainer");
+//		myAdmin.setPass("pass");
+//		myAdmin.setuName("nick");
+//		myAdmin.setPosition("admin");
+//		
+//		Customer jo = new Customer();
+//		jo.setfName("Troy");
+//		jo.setlName("Aikman");
+//		jo.setuName("troy");
+//		jo.setPass("pass");
+//		jo.setPosition("customer");
+//		
+//		Customer them = new Customer();
+//		them.setfName("first");
+//		them.setlName("last");
+//		them.setuName("first");
+//		them.setPass("pass");
+//		them.setPosition("customer");
+//		
+//		Employee me = new Employee();
+//		me.setfName("Wendell");
+//		me.setlName("Phipps");
+//		me.setuName("wendell");
+//		me.setPass("pass");
+//		me.setPosition("employee");
+//		
+//		Employee you = new Employee();
+//		you.setfName("Master");
+//		you.setlName("Chief");
+//		you.setPass("pass");
+//		you.setuName("chief");
+//		you.setPosition("employee");
+//
+//		you.addAccount(them, "C120983", you);
 
 	
 		ArrayList<Admin> admins = new ArrayList<Admin>();
@@ -50,7 +79,9 @@ public class Driver {
 			customers =  (ArrayList<Customer>) cIn.readObject();
 			employees = (ArrayList<Employee>) eIn.readObject();
 //			admins = (ArrayList<Admin>) aIn.readObject();
+
 //			System.out.println(admins.toString());
+
 			toApp = (ArrayList<String[]>) apIn.readObject();
 			
 //			aIn.close();
@@ -70,18 +101,30 @@ public class Driver {
 			
 		}
 
- 
+//		Customer ps = new Customer();
+//		ps.setPosition("customer");
+//		ps.setfName("Joseph");
+//		ps.setlName("Khabbaz");
+//		ps.setuName("joseph");
+//		ps.setPass("pass");
+//		customers.add(ps);
+//		
 //		toApp = new ArrayList<String[]>();
 //		String[] toGo = new String[2];
 //		toGo[0] = "C1234567";
-//		toGo[1] = "jkhabbaz";
+//		toGo[1] = "joseph";
 //		toApp.add(toGo);
 //		String[] tog = new String[2];
 //		tog[0] = "C9876543";
-//		tog[1] = "jkhabbaz";
+//		tog[1] = "joseph";
 //		toApp.add(tog);
-		
+//
+//		customers.add(them);
+//		customers.add(jo);
+//		employees.add(me);
+//		employees.add(you);
 
+		
 		StartingMenuClass sMC = new StartingMenuClass();
 		sMC.menuHandler(admins, employees, (ArrayList<Customer>) customers, toApp);
 

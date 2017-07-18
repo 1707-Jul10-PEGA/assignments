@@ -171,30 +171,31 @@ public class StartingMenuClass extends Menu {
 			
 				
 				//index 0 has the account number, index 1 has the applicant username
-			
-			//System.out.println(getToApprove().get(0)[0]);	
-			System.out.println("Enter Account ID: ");
-			String sIn = scan.nextLine();
-			for(int x = 0; x < toApprove.size(); x++){
-				if(sIn.equalsIgnoreCase(getToApprove().get(x)[0])){
-					System.out.println("Approve " + getToApprove().get(x)[0] + "?");
+				
+					System.out.println("Approve " + getToApprove().get(0)[0] + " " + getToApprove().get(0)[1] + "?");
 					String app = scan.nextLine();
-					if(app.equals("1")){
+					switch (app) {
+					case "1" :
 						for(int y = 0; y < customers.size(); y++){
-							if(getToApprove().get(x)[1].equals(customers.get(y).getuName())){
+							
+							if(getToApprove().get(0)[1].equals(customers.get(y).getuName())){
 								System.out.println("Approved");
-								e.addAccount(customers.get(y), toApprove.get(x)[0], e);
+								e.addAccount(customers.get(y), toApprove.get(0)[0], e);
+								toApprove.remove(0);
 								empMenu(e, customers);
 							}
 						}
-					}
-					else
-					{
+					break;
+					case "2" :
 						System.out.println("Denied");
-						toApprove.remove(x);
-					}	
-				}
-			}
+						toApprove.remove(0);
+					return;
+					default:
+						System.out.println("Whoops2. Try again");
+						empMenu(e, customers);
+					break;
+					}
+			
 //			for(int x = 0; x < customers.size(); x++){
 //				if(customers.get(x).getAccountsToProcess().get(x).equals(sIn)){
 //					System.out.println("Account " + customers.get(x).getAccountList().get(x).getID().toString() + "\n 1: Approve\n :2 Deny");
@@ -213,7 +214,8 @@ public class StartingMenuClass extends Menu {
 			break;
 		case "3":
 			System.out.println("Thank you for banking with us!");
-			return;
+			startingMenu();
+			break;
 		default:
 			System.out.println("Invalid input");
 			empMenu(e, customers);	
@@ -257,6 +259,7 @@ public class StartingMenuClass extends Menu {
 				break;
 			case "4":
 				System.out.println("Thank you for banking with us!");
+				startingMenu();
 				return;
 			default:
 				System.out.println("Invalid input");
