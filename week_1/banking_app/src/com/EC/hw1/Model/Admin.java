@@ -164,8 +164,9 @@ public class Admin extends User implements AdminInterface {
 		
 	}
 
-	private void approveEmployeesApp(Employee user) {
-		user.checkApplications();
+	private void approveEmployeesApp(Employee employee) {
+		log.trace("Admin: "+ this.getUserName() + " is review applications for " + employee.getUserName());
+		employee.checkApplications();
 		
 	}
 
@@ -173,7 +174,7 @@ public class Admin extends User implements AdminInterface {
 		boolean valid = true;
 
 		while (valid) {
-			System.out.println("Please enter 1-3 to continue");
+			System.out.println("Please enter 1-4 to continue");
 			System.out.println("(1)Add Client");
 			System.out.println("(2)Remove Client");
 			System.out.println("(3)View Employee's Clients");
@@ -393,7 +394,7 @@ public class Admin extends User implements AdminInterface {
 	private void printEmployeeEdit() {
 		System.out.println("(6)Edit Employee's Client List");
 		System.out.println("(7)Approve or Deny Employee's Clients' Applications");
-		System.out.println("(9)View Employee's List of Clients");
+		System.out.println("(8)View Employee's List of Clients");
 		System.out.println("(9)Back");
 	}
 

@@ -63,9 +63,9 @@ public class BootStrapBankingApp {
 		BankUtilities.writeUser(c2);
 		BankUtilities.writeUser(c3);
 		
-		c1.getBankAccount().setCashAccount(200);
+		/*c1.getBankAccount().setCashAccount(200);
 		
-		System.out.println(c1.getUserName().equals(e2.getCustList().get(0).getUserName()));
+		System.out.println(c1.getUserName().equals(e2.getCustList().get(0).getUserName()));*/
 		
 	/*	Employee e1 = (Employee) BankUtilities.readUser("blazing");
 		Customer c1 = (Customer) BankUtilities.readUser("ejchen");
