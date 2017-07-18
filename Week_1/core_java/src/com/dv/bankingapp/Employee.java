@@ -133,6 +133,43 @@ public class Employee extends User {
 
 	}
 	
+	/* updateAssociatedCustomer
+	 * update the associated customer for the employee
+	 */
+	public void updateAssociatedCustomer() {
+		int i = 0;
+		int userListSize = Driver.userList.size();
+		String associatedCustomerName = this.getCustomer().getUserName();
+		Customer associatedCustomer;
+		
+		while(!(associatedCustomerName.equals(Driver.userList.get(i).getUserName()))) {
+			i++;
+		}
+		
+		// update the this employee's associated customer
+		associatedCustomer = (Customer) Driver.userList.get(i);
+		setCustomer(associatedCustomer);
+		
+		// update employee in user list
+		i = 0;
+
+		while(i<userListSize) {
+			if(Driver.userList.get(i).getUserName().equals(this.getUserName())) {
+			
+				// remove the old employee and save
+				Driver.userList.remove(i);
+				Driver.serialUser.writeUserList(Driver.userList);
+				
+				// update the employee and save
+				Driver.userList.add(this);
+				Driver.serialUser.writeUserList(Driver.userList);
+			}
+			
+			i++;
+		}
+		
+	}
+	
 	/* viewBalance
 	 * view the balance for the associated customer
 	 */
@@ -142,6 +179,9 @@ public class Employee extends User {
 		}
 		
 		else {
+		
+			updateAssociatedCustomer();
+		
 			System.out.println("\n===== Customer Balance =====");
 			System.out.println("Username: " + this.customer.getUserName());
 			System.out.println("Balance: " + this.customer.getBalance());

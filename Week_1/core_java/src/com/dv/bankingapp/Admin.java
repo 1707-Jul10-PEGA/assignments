@@ -58,7 +58,13 @@ public class Admin extends User {
 		}
 		
 		if(user instanceof Employee) {
-			System.out.println("Customer: " + ((Employee) user).getCustomer());
+			if(((Employee) user).getCustomer() == null) {
+				System.out.println("No customer associated.");
+			}
+			
+			else {
+				System.out.println("Customer: " + ((Employee) user).getCustomer().getUserName());
+			}
 		}
 	
 	}

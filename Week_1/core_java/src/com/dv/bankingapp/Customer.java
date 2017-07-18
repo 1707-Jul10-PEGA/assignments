@@ -126,8 +126,8 @@ public class Customer extends User {
 			}
 			
 			catch (NumberFormatException e) {
-				System.out.println("Input entered was not a float value.");
-				System.out.print("Enter a float value: ");
+				System.out.println("Amount entered was not a valid.");
+				System.out.print("Enter a value: ");
 			}
 		}
 		
@@ -216,7 +216,7 @@ public class Customer extends User {
 		}
 		
 		else {
-			System.out.println("You don't have enough money to withdraw " + amount + "!");
+			System.out.println("You don't have enough money to withdraw $" + amount + "!");
 		}
 
 	}
