@@ -71,6 +71,9 @@ public abstract class User implements Serializable{
 			return false;
 		return true;
 	}
+	public int getUniqueID(){
+		return this.uniqueID;
+	}
 	public User() {
 		super();
 		uniqueID = AllUsers.UID;

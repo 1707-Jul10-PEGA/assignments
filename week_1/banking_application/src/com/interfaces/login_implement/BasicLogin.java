@@ -29,6 +29,7 @@ public class BasicLogin implements Login{
 			}
 		}
 		System.out.println("  ** Incorrect username or password.");
+		log.warn("Incorrect login, username: "  + userName + " , password: " + password);
 		return null;
 	}
 

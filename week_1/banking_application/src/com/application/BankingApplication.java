@@ -7,6 +7,7 @@ import com.interfaces.Menu;
 import com.interfaces.login_implement.BasicLogin;
 import com.users.User;
 
+// Main application
 public class BankingApplication {
 	public static void main(String[] args) {
 		Login login = new BasicLogin();
@@ -14,17 +15,15 @@ public class BankingApplication {
 		String password;
 		Scanner scan  = new Scanner(System.in);
 		User usr;
-		
 		// Login as Customer, Employee, or Admin
 		do{
 			System.out.print("Enter your username: ");
 			scan = new Scanner(System.in); 
 			userName = scan.nextLine();
-			System.out.print("Enter your password");
+			System.out.print("Enter your password: ");
 			password = scan.nextLine();
 			usr = login.login(userName, password);
 		}while(usr == null);
-		scan.close();
 		boolean loopCondition = false;
 		Menu systemUser = (Menu)usr;
 		
@@ -34,6 +33,7 @@ public class BankingApplication {
 			systemUser.displayMenu();
 			loopCondition = systemUser.optionInput();
 		}while(loopCondition);
+		System.out.println("\nExiting....\n Thank you for banking with Clown Finances\nHave an nice day!");
 		
 	}
 }

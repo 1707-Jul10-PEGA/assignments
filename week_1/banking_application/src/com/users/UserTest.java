@@ -12,6 +12,7 @@ public class UserTest {
 		AllUsers.getInstance();
 		
 		Set<User> l1 = AllUsers.users.get(AllUsers.CUSTOMER_INDEX);
+		
 		l1.add(new Customer());
 		l1.add(new Customer());
 		l1.add(new Customer());
@@ -34,10 +35,11 @@ public class UserTest {
 			e.printStackTrace();
 		}
 		for(User x : AllUsers.users.get(AllUsers.CUSTOMER_INDEX)){
-			System.out.println(x);
 			for(Customer.Account ac : ((Customer)x).accountBalances){
 				ac.addBalance(20.0);
 			}
+			System.out.println(x);
+			
 		}
 		for(User x : AllUsers.users.get(AllUsers.ADMIN_INDEX)){
 			System.out.println(x);
