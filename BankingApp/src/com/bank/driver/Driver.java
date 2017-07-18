@@ -1,25 +1,26 @@
 package com.bank.driver;
 
-import java.io.EOFException;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
-import java.util.List;
+
+import org.apache.log4j.Logger;
 
 import com.bank.admin.Admin;
 import com.bank.customer.Customer;
 import com.bank.employee.Employee;
 import com.bank.menu.StartingMenuClass;
-import com.bank.user.User;
+import java.sql.*;
+
+
 
 public class Driver {
 	public static void main(String[] args) throws ClassNotFoundException {
 		System.out.println("Welcome to Wendell's Bank!");
 		//loading all bank user info
-		
 		
 		Admin myAdmin = new Admin();
 		myAdmin.setfName("Blake");
@@ -70,7 +71,7 @@ public class Driver {
 		}
 
  
-		
+//		toApp = new ArrayList<String[]>();
 //		String[] toGo = new String[2];
 //		toGo[0] = "C1234567";
 //		toGo[1] = "jkhabbaz";
@@ -78,9 +79,9 @@ public class Driver {
 //		String[] tog = new String[2];
 //		tog[0] = "C9876543";
 //		tog[1] = "jkhabbaz";
-//		toApp.add(toGo);
+//		toApp.add(tog);
 		
-		System.out.println(toApp.get(1)[0].toString());
+
 		StartingMenuClass sMC = new StartingMenuClass();
 		sMC.menuHandler(admins, employees, (ArrayList<Customer>) customers, toApp);
 

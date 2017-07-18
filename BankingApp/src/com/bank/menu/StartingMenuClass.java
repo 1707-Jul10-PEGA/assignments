@@ -1,11 +1,15 @@
 package com.bank.menu;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import org.apache.log4j.Logger;
+
 import com.bank.admin.Admin;
 import com.bank.customer.Customer;
+import com.bank.driver.Driver;
 import com.bank.employee.Employee;
 import com.bank.withdrawl_deposit.WithdrawlDeposit;
 
@@ -16,8 +20,7 @@ public class StartingMenuClass extends Menu {
 	private ArrayList<Customer> privateC;
 	private List<Admin> privateA;
 	private ArrayList<String[]> toApprove;
-
-
+	Logger log = Logger.getLogger(StartingMenuClass.class.getName());
 	
 	public ArrayList<String[]> getToApprove() {
 		return toApprove;
@@ -61,12 +64,13 @@ public class StartingMenuClass extends Menu {
 	}
 	@Override
 	void startingMenu(){
+		Logger log = Logger.getLogger(Driver.class.getName());
 		
 				//opening menu prompt
 		List<Admin> admins = getPrivateA();
 		ArrayList<Customer> customers = (ArrayList<Customer>)getPrivateC();
 		List<Employee> employees = getPrivateE();
-		boolean login;
+	
 		System.out.println("Choose an option.\n 1: Admin Login\n 2: Employee Login:\n 3: Customer Login:\n 4: New User\n 5: Close");
 		String userIn;
 		String passIn;
@@ -82,7 +86,7 @@ public class StartingMenuClass extends Menu {
 		
 			for(int x = 0; x < admins.size(); x++){
 				if(userIn.equals(admins.get(x).getuName()) && passIn.equals(admins.get(x).getPass())){
-					login = true;
+					
 					System.out.println("Welcome, " + admins.get(x).getfName() + " " + admins.get(x).getlName());
 					adminMenu(admins.get(x), customers);
 					return;
@@ -116,7 +120,7 @@ public class StartingMenuClass extends Menu {
 		
 			for(int x = 0; x < customers.size(); x++){
 				if(userIn.equals(customers.get(x).getuName()) && passIn.equals(customers.get(x).getPass())){
-					login = true;
+					
 					System.out.println("Welcome, " + customers.get(x).getfName() + " " + customers.get(x).getlName());
 					custMenu(customers.get(x), customers);
 					return;
@@ -295,6 +299,7 @@ public class StartingMenuClass extends Menu {
 						amountIn = scan.nextDouble();
 						WithdrawlDeposit wd = new WithdrawlDeposit();
 						wd.accountWithdrawl(user, idIn, amountIn);
+						log.trace("Withdrew	" + String.format("%.2f", amountIn) + " from " + idIn + " on " + LocalDateTime.now());
 						System.out.println("Back to Customer Menu:\n");
 						accountInfoMenu(user, userList);
 					}
@@ -303,7 +308,6 @@ public class StartingMenuClass extends Menu {
 						accountEditMenu(user, userList);
 					}
 				}
-				
 				return;
 		case "2":
 			System.out.println("Please enter account ID:\n");
@@ -316,6 +320,7 @@ public class StartingMenuClass extends Menu {
 						amountIn = scan.nextDouble();
 						WithdrawlDeposit wd = new WithdrawlDeposit();
 						wd.accountDeposit(user,  idIn,  amountIn);
+						log.trace(user.getlName() + ", " + user.getfName() + " deposited $" + String.format("%.2f", amountIn) + " from " + idIn + " on " + LocalDateTime.now());
 						System.out.println("Back to Customer Menu");
 						accountInfoMenu(user, userList);
 					}
@@ -331,7 +336,7 @@ public class StartingMenuClass extends Menu {
 		case "4":
 			System.out.println("Thank you for banking with us!");
 			startingMenu();
-			break;
+			return;
 		default:
 			System.out.println("Invalid input");
 			accountInfoMenu(user, userList);
