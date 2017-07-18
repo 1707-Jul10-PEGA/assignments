@@ -13,10 +13,11 @@ public class Authentication implements AuthenticationInterface {
 
 	@Override
 	public <T> Person userAuthentication(String username, String password,String type)throws FileNotFoundException, ClassNotFoundException, IOException {
-
+		
 		Serializer serializer = new Serializer<>();
+		
 		ArrayList<T> personList = new ArrayList<T>();
-		personList = (ArrayList<T>) serializer.getPersonList(type);
+		personList = (ArrayList<T>) serializer.getPersonDatabase(type);
 					
 		for (T p : personList) {
 
@@ -27,7 +28,9 @@ public class Authentication implements AuthenticationInterface {
 			}
 
 		}
-
+		
+		
+		
 		return null;
 
 	}

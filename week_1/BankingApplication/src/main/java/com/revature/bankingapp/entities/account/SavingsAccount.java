@@ -20,11 +20,17 @@ public class SavingsAccount extends BankAccount implements BankAccountInterface{
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
-	public SavingsAccount(UUID accountId, double balance, String dateOpened, UUID ownerId) {
-		super(accountId, balance, dateOpened, ownerId);
+		
+	public SavingsAccount(UUID ownerId) {
+		super(ownerId);
 		// TODO Auto-generated constructor stub
 	}
+
+	@Override
+	public String toString() {
+		return "Account type: Savings \n" + super.toString();
+	}
+	
 	
 	
 	

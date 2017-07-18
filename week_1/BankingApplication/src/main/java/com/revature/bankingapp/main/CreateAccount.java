@@ -16,6 +16,8 @@ import com.revature.bankingapp.utils.Serializer;
 
 public class CreateAccount {
 
+	Serializer serializer = new Serializer<>();
+	
 	/*
 	 * Create a new system account. Not to be mistaken for an actual bank account.
 	 */
@@ -70,22 +72,22 @@ public class CreateAccount {
 			accountType = sc.nextLine();
 			
 			Person p;
-			Serializer serializer = new Serializer();
+			
 			
 			switch (accountType) {
 			case "1":
-				p = new Customer(firstname, lastname, username,password, dob, address, customerSince);
-				serializer.writePersonToDb(p);
+				p = new Customer(firstname, lastname, username, password, dob, address);
+				serializer.persist(p);
 				break;
 
 			case "2":
 				p = new Employee(firstname, lastname, username, password, dob, address);
-				serializer.writePersonToDb(p);
+				serializer.persist(p);
 				break;
 				
 			case "3":
 				p = new Administrator(firstname, lastname, username, password, dob, address);
-				serializer.writePersonToDb(p);
+				serializer.persist(p);
 				break;
 			default:
 				break;

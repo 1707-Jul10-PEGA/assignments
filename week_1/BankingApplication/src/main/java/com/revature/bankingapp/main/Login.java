@@ -17,6 +17,7 @@ public class Login {
 	private int loginAttempts = 0;
 	
 	public void login() throws FileNotFoundException, ClassNotFoundException, IOException {
+		
 		Scanner sc = new Scanner(System.in);
 		String type = "";
 
@@ -39,20 +40,33 @@ public class Login {
 
 		switch (type) {
 		case "1":
-			Customer c = (Customer) auth.userAuthentication(username, password, "customer");
+			
+			Customer c = (Customer) auth.userAuthentication(username, password,"customer");
 			if(c != null) {
+				System.out.println("Access Granted!\n");
 				CustomerDashboard cd = new CustomerDashboard();
 				cd.customerDashboard(c);
 			}
 			break;
 
 		case "2":
-			auth.userAuthentication(username, password,"employee");
+			Employee e = (Employee) auth.userAuthentication(username, password,"employee");
+			if(e != null) {
+				System.out.println("Access Granted!\n");
+				EmployeeDashboard ed = new EmployeeDashboard();
+				ed.dashboard(e);				
+			}
 			break;
 
 		case "3":
-			auth.userAuthentication(username, password, "admin");
+			Administrator a = (Administrator) auth.userAuthentication(username, password,"administrator");
+			if(a != null) {
+				System.out.println("Access Granted!\n");
+				AdministratorDashboard ad = new AdministratorDashboard();
+				ad.dashboard(a);				
+			}
 			break;
+
 			
 		case "exit":
 

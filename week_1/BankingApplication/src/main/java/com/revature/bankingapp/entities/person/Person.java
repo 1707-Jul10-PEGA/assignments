@@ -150,7 +150,8 @@ public class Person implements PersonInterface, Serializable{
 				+ "Username: " + username + "\n"
 				+ "Password: " + password + "\n"
 				+ "Date of Birth: " + dob + "\n"
-				+ "Address: " + address + "\n";
+				+ "Address: " + address + "\n"
+			    + "UserID:  " + userId.toString();
 
 	}
 

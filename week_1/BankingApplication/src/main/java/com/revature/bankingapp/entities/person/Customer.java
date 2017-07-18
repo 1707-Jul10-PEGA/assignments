@@ -1,5 +1,6 @@
 package com.revature.bankingapp.entities.person;
 
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.UUID;
 
@@ -23,9 +24,9 @@ public class Customer extends Person {
 		this.customerSince = customerSince;
 	}
 
-	public Customer(String firstname, String lastName, String username, String password,String dob, String address,String customerSince) {
+	public Customer(String firstname, String lastName, String username, String password,String dob, String address) {
 		super(firstname, lastName, username, password,dob, address);
-		this.customerSince = customerSince;
+		this.customerSince = LocalTime.now().toString();
 	}
 
 	public String getCustomerSince() {

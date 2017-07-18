@@ -26,10 +26,16 @@ public class CheckingAccount extends BankAccount implements BankAccountInterface
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public CheckingAccount(UUID accountId, double balance, String dateOpened, UUID ownerId) {
-		super(accountId, balance, dateOpened, ownerId);
+	public CheckingAccount(UUID ownerId) {
+		super(ownerId);
 		// TODO Auto-generated constructor stub
 	}
+	@Override
+	public String toString() {
+		return "Account type: Checking \n" + super.toString();
+	}
+	
+	
 	
 	
 	
