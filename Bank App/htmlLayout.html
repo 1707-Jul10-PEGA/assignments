@@ -1,0 +1,1729 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>HTML Layout Example</title>
+<style type="text/css">
+<!--
+body, table {font-family: arial,sans-serif; font-size: x-small;}
+th {background: #336699; color: #FFFFFF; text-align: left;}
+-->
+</style>
+</head>
+<body bgcolor="#FFFFFF" topmargin="6" leftmargin="6">
+<hr size="1" noshade>
+Log session start time Tue Jul 18 07:53:13 EDT 2017<br>
+<br>
+<table cellspacing="0" cellpadding="4" border="1" bordercolor="#224466" width="100%">
+<tr>
+<th>Time</th>
+<th>Thread</th>
+<th>Level</th>
+<th>Category</th>
+<th>File:Line</th>
+<th>Message</th>
+</tr>
+
+<tr>
+<td>0</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Driver.java:62</td>
+<td title="Message">Please type in username: </td>
+</tr>
+
+<tr>
+<td>3258</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Driver.java:76</td>
+<td title="Message">Mickey's temporary account is created.</td>
+</tr>
+
+<tr>
+<td>3260</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Customer.java:28</td>
+<td title="Message">1. Display my account information.</td>
+</tr>
+
+<tr>
+<td>3261</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Customer.java:29</td>
+<td title="Message">2. Deposit to my account.</td>
+</tr>
+
+<tr>
+<td>3261</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Customer.java:30</td>
+<td title="Message">3. Withdraw from my account.</td>
+</tr>
+
+<tr>
+<td>3261</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Customer.java:31</td>
+<td title="Message">4. Apply for a new account.</td>
+</tr>
+
+<tr>
+<td>3263</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Customer.java:32</td>
+<td title="Message">5. Sign out.
+</td>
+</tr>
+
+<tr>
+<td>4878</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Customer.java:70</td>
+<td title="Message">Application starts. 
+Enter 'apply' to submit for approval.</td>
+</tr>
+
+<tr>
+<td>8120</td>
+<td title="main thread">main</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Customer.java:74</td>
+<td title="Message">Your application has been submitted.</td>
+</tr>
+
+<tr>
+<td>8120</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Customer.java:28</td>
+<td title="Message">1. Display my account information.</td>
+</tr>
+
+<tr>
+<td>8121</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Customer.java:29</td>
+<td title="Message">2. Deposit to my account.</td>
+</tr>
+
+<tr>
+<td>8122</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Customer.java:30</td>
+<td title="Message">3. Withdraw from my account.</td>
+</tr>
+
+<tr>
+<td>8122</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Customer.java:31</td>
+<td title="Message">4. Apply for a new account.</td>
+</tr>
+
+<tr>
+<td>8123</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Customer.java:32</td>
+<td title="Message">5. Sign out.
+</td>
+</tr>
+
+<tr>
+<td>9486</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>User.java:15</td>
+<td title="Message">Signed out!
+</td>
+</tr>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>HTML Layout Example</title>
+<style type="text/css">
+<!--
+body, table {font-family: arial,sans-serif; font-size: x-small;}
+th {background: #336699; color: #FFFFFF; text-align: left;}
+-->
+</style>
+</head>
+<body bgcolor="#FFFFFF" topmargin="6" leftmargin="6">
+<hr size="1" noshade>
+Log session start time Tue Jul 18 07:54:07 EDT 2017<br>
+<br>
+<table cellspacing="0" cellpadding="4" border="1" bordercolor="#224466" width="100%">
+<tr>
+<th>Time</th>
+<th>Thread</th>
+<th>Level</th>
+<th>Category</th>
+<th>File:Line</th>
+<th>Message</th>
+</tr>
+
+<tr>
+<td>0</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Driver.java:62</td>
+<td title="Message">Please type in username: </td>
+</tr>
+
+<tr>
+<td>3382</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Driver.java:76</td>
+<td title="Message">Mickey's temporary account is created.</td>
+</tr>
+
+<tr>
+<td>3384</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Customer.java:28</td>
+<td title="Message">1. Display my account information.</td>
+</tr>
+
+<tr>
+<td>3384</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Customer.java:29</td>
+<td title="Message">2. Deposit to my account.</td>
+</tr>
+
+<tr>
+<td>3384</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Customer.java:30</td>
+<td title="Message">3. Withdraw from my account.</td>
+</tr>
+
+<tr>
+<td>3385</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Customer.java:31</td>
+<td title="Message">4. Apply for a new account.</td>
+</tr>
+
+<tr>
+<td>3386</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Customer.java:32</td>
+<td title="Message">5. Sign out.
+</td>
+</tr>
+
+<tr>
+<td>5035</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Customer.java:70</td>
+<td title="Message">Application starts. 
+Enter 'apply' to submit for approval.</td>
+</tr>
+
+<tr>
+<td>7245</td>
+<td title="main thread">main</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Customer.java:74</td>
+<td title="Message">Your application has been submitted.</td>
+</tr>
+
+<tr>
+<td>7245</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Customer.java:28</td>
+<td title="Message">1. Display my account information.</td>
+</tr>
+
+<tr>
+<td>7246</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Customer.java:29</td>
+<td title="Message">2. Deposit to my account.</td>
+</tr>
+
+<tr>
+<td>7246</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Customer.java:30</td>
+<td title="Message">3. Withdraw from my account.</td>
+</tr>
+
+<tr>
+<td>7246</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Customer.java:31</td>
+<td title="Message">4. Apply for a new account.</td>
+</tr>
+
+<tr>
+<td>7246</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Customer.java:32</td>
+<td title="Message">5. Sign out.
+</td>
+</tr>
+
+<tr>
+<td>8849</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>User.java:15</td>
+<td title="Message">Signed out!
+</td>
+</tr>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>HTML Layout Example</title>
+<style type="text/css">
+<!--
+body, table {font-family: arial,sans-serif; font-size: x-small;}
+th {background: #336699; color: #FFFFFF; text-align: left;}
+-->
+</style>
+</head>
+<body bgcolor="#FFFFFF" topmargin="6" leftmargin="6">
+<hr size="1" noshade>
+Log session start time Tue Jul 18 07:54:30 EDT 2017<br>
+<br>
+<table cellspacing="0" cellpadding="4" border="1" bordercolor="#224466" width="100%">
+<tr>
+<th>Time</th>
+<th>Thread</th>
+<th>Level</th>
+<th>Category</th>
+<th>File:Line</th>
+<th>Message</th>
+</tr>
+
+<tr>
+<td>0</td>
+<td title="main thread">main</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Driver.java:103</td>
+<td title="Message">AccountType: admin; Name: Admin; Balance: null; Pending application: null</td>
+</tr>
+
+<tr>
+<td>4</td>
+<td title="main thread">main</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Driver.java:103</td>
+<td title="Message">AccountType: employee; Name: Employee1; Balance: null; Pending application: null</td>
+</tr>
+
+<tr>
+<td>4</td>
+<td title="main thread">main</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Driver.java:103</td>
+<td title="Message">AccountType: employee; Name: Employee2; Balance: null; Pending application: null</td>
+</tr>
+
+<tr>
+<td>4</td>
+<td title="main thread">main</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Driver.java:103</td>
+<td title="Message">AccountType: customer; Name: Customer1; Balance: 8000; Pending application: null</td>
+</tr>
+
+<tr>
+<td>4</td>
+<td title="main thread">main</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Driver.java:103</td>
+<td title="Message">AccountType: customer; Name: Customer2; Balance: 50000; Pending application: null</td>
+</tr>
+
+<tr>
+<td>5</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Driver.java:62</td>
+<td title="Message">Please type in username: </td>
+</tr>
+
+<tr>
+<td>3809</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Driver.java:76</td>
+<td title="Message">Java's temporary account is created.</td>
+</tr>
+
+<tr>
+<td>3811</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Customer.java:28</td>
+<td title="Message">1. Display my account information.</td>
+</tr>
+
+<tr>
+<td>3811</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Customer.java:29</td>
+<td title="Message">2. Deposit to my account.</td>
+</tr>
+
+<tr>
+<td>3811</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Customer.java:30</td>
+<td title="Message">3. Withdraw from my account.</td>
+</tr>
+
+<tr>
+<td>3812</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Customer.java:31</td>
+<td title="Message">4. Apply for a new account.</td>
+</tr>
+
+<tr>
+<td>3812</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Customer.java:32</td>
+<td title="Message">5. Sign out.
+</td>
+</tr>
+
+<tr>
+<td>5610</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Customer.java:70</td>
+<td title="Message">Application starts. 
+Enter 'apply' to submit for approval.</td>
+</tr>
+
+<tr>
+<td>8644</td>
+<td title="main thread">main</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Customer.java:74</td>
+<td title="Message">Your application has been submitted.</td>
+</tr>
+
+<tr>
+<td>8644</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Customer.java:28</td>
+<td title="Message">1. Display my account information.</td>
+</tr>
+
+<tr>
+<td>8644</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Customer.java:29</td>
+<td title="Message">2. Deposit to my account.</td>
+</tr>
+
+<tr>
+<td>8646</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Customer.java:30</td>
+<td title="Message">3. Withdraw from my account.</td>
+</tr>
+
+<tr>
+<td>8646</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Customer.java:31</td>
+<td title="Message">4. Apply for a new account.</td>
+</tr>
+
+<tr>
+<td>8646</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Customer.java:32</td>
+<td title="Message">5. Sign out.
+</td>
+</tr>
+
+<tr>
+<td>10433</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>User.java:15</td>
+<td title="Message">Signed out!
+</td>
+</tr>
+
+<tr>
+<td>10437</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Driver.java:62</td>
+<td title="Message">Please type in username: </td>
+</tr>
+
+<tr>
+<td>19409</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Admin.java:17</td>
+<td title="Message">1. Display all account information.</td>
+</tr>
+
+<tr>
+<td>19410</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Admin.java:18</td>
+<td title="Message">2. Approve an application.</td>
+</tr>
+
+<tr>
+<td>19410</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Admin.java:19</td>
+<td title="Message">3. Deny an application.</td>
+</tr>
+
+<tr>
+<td>19410</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Admin.java:20</td>
+<td title="Message">4. Delete an user.</td>
+</tr>
+
+<tr>
+<td>19410</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Admin.java:21</td>
+<td title="Message">5. Sign out.
+</td>
+</tr>
+
+<tr>
+<td>28531</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Admin.java:67</td>
+<td title="Message">Enter user's name to approve:</td>
+</tr>
+
+<tr>
+<td>33436</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Admin.java:17</td>
+<td title="Message">1. Display all account information.</td>
+</tr>
+
+<tr>
+<td>33437</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Admin.java:18</td>
+<td title="Message">2. Approve an application.</td>
+</tr>
+
+<tr>
+<td>33437</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Admin.java:19</td>
+<td title="Message">3. Deny an application.</td>
+</tr>
+
+<tr>
+<td>33437</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Admin.java:20</td>
+<td title="Message">4. Delete an user.</td>
+</tr>
+
+<tr>
+<td>33438</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Admin.java:21</td>
+<td title="Message">5. Sign out.
+</td>
+</tr>
+
+<tr>
+<td>43903</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Admin.java:67</td>
+<td title="Message">Enter user's name to approve:</td>
+</tr>
+
+<tr>
+<td>45744</td>
+<td title="main thread">main</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Admin.java:74</td>
+<td title="Message">Java's application is approved!</td>
+</tr>
+
+<tr>
+<td>45744</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Admin.java:17</td>
+<td title="Message">1. Display all account information.</td>
+</tr>
+
+<tr>
+<td>45745</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Admin.java:18</td>
+<td title="Message">2. Approve an application.</td>
+</tr>
+
+<tr>
+<td>45745</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Admin.java:19</td>
+<td title="Message">3. Deny an application.</td>
+</tr>
+
+<tr>
+<td>45745</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Admin.java:20</td>
+<td title="Message">4. Delete an user.</td>
+</tr>
+
+<tr>
+<td>45746</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Admin.java:21</td>
+<td title="Message">5. Sign out.
+</td>
+</tr>
+
+<tr>
+<td>53772</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>User.java:15</td>
+<td title="Message">Signed out!
+</td>
+</tr>
+
+<tr>
+<td>53776</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Driver.java:62</td>
+<td title="Message">Please type in username: </td>
+</tr>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>HTML Layout Example</title>
+<style type="text/css">
+<!--
+body, table {font-family: arial,sans-serif; font-size: x-small;}
+th {background: #336699; color: #FFFFFF; text-align: left;}
+-->
+</style>
+</head>
+<body bgcolor="#FFFFFF" topmargin="6" leftmargin="6">
+<hr size="1" noshade>
+Log session start time Tue Jul 18 07:55:45 EDT 2017<br>
+<br>
+<table cellspacing="0" cellpadding="4" border="1" bordercolor="#224466" width="100%">
+<tr>
+<th>Time</th>
+<th>Thread</th>
+<th>Level</th>
+<th>Category</th>
+<th>File:Line</th>
+<th>Message</th>
+</tr>
+
+<tr>
+<td>0</td>
+<td title="main thread">main</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Driver.java:103</td>
+<td title="Message">AccountType: admin; Name: Admin; Balance: null; Pending application: null</td>
+</tr>
+
+<tr>
+<td>5</td>
+<td title="main thread">main</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Driver.java:103</td>
+<td title="Message">AccountType: employee; Name: Employee1; Balance: null; Pending application: null</td>
+</tr>
+
+<tr>
+<td>5</td>
+<td title="main thread">main</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Driver.java:103</td>
+<td title="Message">AccountType: employee; Name: Employee2; Balance: null; Pending application: null</td>
+</tr>
+
+<tr>
+<td>5</td>
+<td title="main thread">main</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Driver.java:103</td>
+<td title="Message">AccountType: customer; Name: Customer1; Balance: 8000; Pending application: null</td>
+</tr>
+
+<tr>
+<td>5</td>
+<td title="main thread">main</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Driver.java:103</td>
+<td title="Message">AccountType: customer; Name: Customer2; Balance: 50000; Pending application: null</td>
+</tr>
+
+<tr>
+<td>6</td>
+<td title="main thread">main</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Driver.java:103</td>
+<td title="Message">AccountType: customer; Name: Java; Balance: 0; Pending application: null</td>
+</tr>
+
+<tr>
+<td>9</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Driver.java:62</td>
+<td title="Message">Please type in username: </td>
+</tr>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>HTML Layout Example</title>
+<style type="text/css">
+<!--
+body, table {font-family: arial,sans-serif; font-size: x-small;}
+th {background: #336699; color: #FFFFFF; text-align: left;}
+-->
+</style>
+</head>
+<body bgcolor="#FFFFFF" topmargin="6" leftmargin="6">
+<hr size="1" noshade>
+Log session start time Tue Jul 18 07:56:44 EDT 2017<br>
+<br>
+<table cellspacing="0" cellpadding="4" border="1" bordercolor="#224466" width="100%">
+<tr>
+<th>Time</th>
+<th>Thread</th>
+<th>Level</th>
+<th>Category</th>
+<th>File:Line</th>
+<th>Message</th>
+</tr>
+
+<tr>
+<td>0</td>
+<td title="main thread">main</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Driver.java:103</td>
+<td title="Message">AccountType: admin; Name: Admin; Balance: null; Pending application: null</td>
+</tr>
+
+<tr>
+<td>4</td>
+<td title="main thread">main</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Driver.java:103</td>
+<td title="Message">AccountType: employee; Name: Employee1; Balance: null; Pending application: null</td>
+</tr>
+
+<tr>
+<td>4</td>
+<td title="main thread">main</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Driver.java:103</td>
+<td title="Message">AccountType: employee; Name: Employee2; Balance: null; Pending application: null</td>
+</tr>
+
+<tr>
+<td>4</td>
+<td title="main thread">main</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Driver.java:103</td>
+<td title="Message">AccountType: customer; Name: Customer1; Balance: 8000; Pending application: null</td>
+</tr>
+
+<tr>
+<td>5</td>
+<td title="main thread">main</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Driver.java:103</td>
+<td title="Message">AccountType: customer; Name: Customer2; Balance: 50000; Pending application: null</td>
+</tr>
+
+<tr>
+<td>5</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Driver.java:62</td>
+<td title="Message">Please type in username: </td>
+</tr>
+
+<tr>
+<td>5286</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Driver.java:76</td>
+<td title="Message">Mickey's temporary account is created.</td>
+</tr>
+
+<tr>
+<td>5288</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Customer.java:28</td>
+<td title="Message">1. Display my account information.</td>
+</tr>
+
+<tr>
+<td>5289</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Customer.java:29</td>
+<td title="Message">2. Deposit to my account.</td>
+</tr>
+
+<tr>
+<td>5289</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Customer.java:30</td>
+<td title="Message">3. Withdraw from my account.</td>
+</tr>
+
+<tr>
+<td>5289</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Customer.java:31</td>
+<td title="Message">4. Apply for a new account.</td>
+</tr>
+
+<tr>
+<td>5290</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Customer.java:32</td>
+<td title="Message">5. Sign out.
+</td>
+</tr>
+
+<tr>
+<td>9583</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>User.java:15</td>
+<td title="Message">Signed out!
+</td>
+</tr>
+
+<tr>
+<td>9588</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Driver.java:62</td>
+<td title="Message">Please type in username: </td>
+</tr>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>HTML Layout Example</title>
+<style type="text/css">
+<!--
+body, table {font-family: arial,sans-serif; font-size: x-small;}
+th {background: #336699; color: #FFFFFF; text-align: left;}
+-->
+</style>
+</head>
+<body bgcolor="#FFFFFF" topmargin="6" leftmargin="6">
+<hr size="1" noshade>
+Log session start time Tue Jul 18 07:57:50 EDT 2017<br>
+<br>
+<table cellspacing="0" cellpadding="4" border="1" bordercolor="#224466" width="100%">
+<tr>
+<th>Time</th>
+<th>Thread</th>
+<th>Level</th>
+<th>Category</th>
+<th>File:Line</th>
+<th>Message</th>
+</tr>
+
+<tr>
+<td>0</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Driver.java:62</td>
+<td title="Message">Please type in username: </td>
+</tr>
+
+<tr>
+<td>3918</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Driver.java:76</td>
+<td title="Message">Mickey's temporary account is created.</td>
+</tr>
+
+<tr>
+<td>3920</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Customer.java:28</td>
+<td title="Message">1. Display my account information.</td>
+</tr>
+
+<tr>
+<td>3920</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Customer.java:29</td>
+<td title="Message">2. Deposit to my account.</td>
+</tr>
+
+<tr>
+<td>3921</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Customer.java:30</td>
+<td title="Message">3. Withdraw from my account.</td>
+</tr>
+
+<tr>
+<td>3921</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Customer.java:31</td>
+<td title="Message">4. Apply for a new account.</td>
+</tr>
+
+<tr>
+<td>3923</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Customer.java:32</td>
+<td title="Message">5. Sign out.
+</td>
+</tr>
+
+<tr>
+<td>6472</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Customer.java:70</td>
+<td title="Message">Application starts. 
+Enter 'apply' to submit for approval.</td>
+</tr>
+
+<tr>
+<td>8940</td>
+<td title="main thread">main</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Customer.java:74</td>
+<td title="Message">Your application has been submitted.</td>
+</tr>
+
+<tr>
+<td>8941</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Customer.java:28</td>
+<td title="Message">1. Display my account information.</td>
+</tr>
+
+<tr>
+<td>8941</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Customer.java:29</td>
+<td title="Message">2. Deposit to my account.</td>
+</tr>
+
+<tr>
+<td>8941</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Customer.java:30</td>
+<td title="Message">3. Withdraw from my account.</td>
+</tr>
+
+<tr>
+<td>8942</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Customer.java:31</td>
+<td title="Message">4. Apply for a new account.</td>
+</tr>
+
+<tr>
+<td>8942</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Customer.java:32</td>
+<td title="Message">5. Sign out.
+</td>
+</tr>
+
+<tr>
+<td>10187</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>User.java:15</td>
+<td title="Message">Signed out!
+</td>
+</tr>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>HTML Layout Example</title>
+<style type="text/css">
+<!--
+body, table {font-family: arial,sans-serif; font-size: x-small;}
+th {background: #336699; color: #FFFFFF; text-align: left;}
+-->
+</style>
+</head>
+<body bgcolor="#FFFFFF" topmargin="6" leftmargin="6">
+<hr size="1" noshade>
+Log session start time Tue Jul 18 07:58:26 EDT 2017<br>
+<br>
+<table cellspacing="0" cellpadding="4" border="1" bordercolor="#224466" width="100%">
+<tr>
+<th>Time</th>
+<th>Thread</th>
+<th>Level</th>
+<th>Category</th>
+<th>File:Line</th>
+<th>Message</th>
+</tr>
+
+<tr>
+<td>0</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Driver.java:62</td>
+<td title="Message">Please type in username: </td>
+</tr>
+
+<tr>
+<td>3175</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Driver.java:76</td>
+<td title="Message">Hung Le's temporary account is created.</td>
+</tr>
+
+<tr>
+<td>3177</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Customer.java:28</td>
+<td title="Message">1. Display my account information.</td>
+</tr>
+
+<tr>
+<td>3177</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Customer.java:29</td>
+<td title="Message">2. Deposit to my account.</td>
+</tr>
+
+<tr>
+<td>3178</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Customer.java:30</td>
+<td title="Message">3. Withdraw from my account.</td>
+</tr>
+
+<tr>
+<td>3178</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Customer.java:31</td>
+<td title="Message">4. Apply for a new account.</td>
+</tr>
+
+<tr>
+<td>3180</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Customer.java:32</td>
+<td title="Message">5. Sign out.
+</td>
+</tr>
+
+<tr>
+<td>4734</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Customer.java:70</td>
+<td title="Message">Application starts. 
+Enter 'apply' to submit for approval.</td>
+</tr>
+
+<tr>
+<td>7033</td>
+<td title="main thread">main</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Customer.java:74</td>
+<td title="Message">Your application has been submitted.</td>
+</tr>
+
+<tr>
+<td>7034</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Customer.java:28</td>
+<td title="Message">1. Display my account information.</td>
+</tr>
+
+<tr>
+<td>7034</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Customer.java:29</td>
+<td title="Message">2. Deposit to my account.</td>
+</tr>
+
+<tr>
+<td>7034</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Customer.java:30</td>
+<td title="Message">3. Withdraw from my account.</td>
+</tr>
+
+<tr>
+<td>7035</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Customer.java:31</td>
+<td title="Message">4. Apply for a new account.</td>
+</tr>
+
+<tr>
+<td>7035</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Customer.java:32</td>
+<td title="Message">5. Sign out.
+</td>
+</tr>
+
+<tr>
+<td>9454</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>User.java:15</td>
+<td title="Message">Signed out!
+</td>
+</tr>
+
+<tr>
+<td>9458</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Driver.java:62</td>
+<td title="Message">Please type in username: </td>
+</tr>
+
+<tr>
+<td>14409</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Admin.java:17</td>
+<td title="Message">1. Display all account information.</td>
+</tr>
+
+<tr>
+<td>14409</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Admin.java:18</td>
+<td title="Message">2. Approve an application.</td>
+</tr>
+
+<tr>
+<td>14410</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Admin.java:19</td>
+<td title="Message">3. Deny an application.</td>
+</tr>
+
+<tr>
+<td>14410</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Admin.java:20</td>
+<td title="Message">4. Delete an user.</td>
+</tr>
+
+<tr>
+<td>14410</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Admin.java:21</td>
+<td title="Message">5. Sign out.
+</td>
+</tr>
+
+<tr>
+<td>16176</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Admin.java:67</td>
+<td title="Message">Enter user's name to approve:</td>
+</tr>
+
+<tr>
+<td>18988</td>
+<td title="main thread">main</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Admin.java:74</td>
+<td title="Message">Hung Le's application is approved!</td>
+</tr>
+
+<tr>
+<td>18988</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Admin.java:17</td>
+<td title="Message">1. Display all account information.</td>
+</tr>
+
+<tr>
+<td>18989</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Admin.java:18</td>
+<td title="Message">2. Approve an application.</td>
+</tr>
+
+<tr>
+<td>18989</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Admin.java:19</td>
+<td title="Message">3. Deny an application.</td>
+</tr>
+
+<tr>
+<td>18989</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Admin.java:20</td>
+<td title="Message">4. Delete an user.</td>
+</tr>
+
+<tr>
+<td>18989</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Admin.java:21</td>
+<td title="Message">5. Sign out.
+</td>
+</tr>
+
+<tr>
+<td>24185</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>User.java:15</td>
+<td title="Message">Signed out!
+</td>
+</tr>
+
+<tr>
+<td>24189</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Driver.java:62</td>
+<td title="Message">Please type in username: </td>
+</tr>
+
+<tr>
+<td>27287</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Customer.java:28</td>
+<td title="Message">1. Display my account information.</td>
+</tr>
+
+<tr>
+<td>27287</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Customer.java:29</td>
+<td title="Message">2. Deposit to my account.</td>
+</tr>
+
+<tr>
+<td>27288</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Customer.java:30</td>
+<td title="Message">3. Withdraw from my account.</td>
+</tr>
+
+<tr>
+<td>27288</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Customer.java:31</td>
+<td title="Message">4. Apply for a new account.</td>
+</tr>
+
+<tr>
+<td>27288</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Customer.java:32</td>
+<td title="Message">5. Sign out.
+</td>
+</tr>
+
+<tr>
+<td>33361</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Customer.java:100</td>
+<td title="Message">Enter the amount you want to deposit:</td>
+</tr>
+
+<tr>
+<td>36250</td>
+<td title="main thread">main</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Customer.java:104</td>
+<td title="Message">800.0 is deposit to Hung Le's account</td>
+</tr>
+
+<tr>
+<td>36250</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Customer.java:28</td>
+<td title="Message">1. Display my account information.</td>
+</tr>
+
+<tr>
+<td>36250</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Customer.java:29</td>
+<td title="Message">2. Deposit to my account.</td>
+</tr>
+
+<tr>
+<td>36250</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Customer.java:30</td>
+<td title="Message">3. Withdraw from my account.</td>
+</tr>
+
+<tr>
+<td>36251</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Customer.java:31</td>
+<td title="Message">4. Apply for a new account.</td>
+</tr>
+
+<tr>
+<td>36251</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Customer.java:32</td>
+<td title="Message">5. Sign out.
+</td>
+</tr>
+
+<tr>
+<td>41601</td>
+<td title="main thread">main</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Customer.java:117</td>
+<td title="Message">Your total balance is: 800.0</td>
+</tr>
+
+<tr>
+<td>41601</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Customer.java:28</td>
+<td title="Message">1. Display my account information.</td>
+</tr>
+
+<tr>
+<td>41602</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Customer.java:29</td>
+<td title="Message">2. Deposit to my account.</td>
+</tr>
+
+<tr>
+<td>41602</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Customer.java:30</td>
+<td title="Message">3. Withdraw from my account.</td>
+</tr>
+
+<tr>
+<td>41602</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Customer.java:31</td>
+<td title="Message">4. Apply for a new account.</td>
+</tr>
+
+<tr>
+<td>41602</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Customer.java:32</td>
+<td title="Message">5. Sign out.
+</td>
+</tr>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>HTML Layout Example</title>
+<style type="text/css">
+<!--
+body, table {font-family: arial,sans-serif; font-size: x-small;}
+th {background: #336699; color: #FFFFFF; text-align: left;}
+-->
+</style>
+</head>
+<body bgcolor="#FFFFFF" topmargin="6" leftmargin="6">
+<hr size="1" noshade>
+Log session start time Tue Jul 18 07:59:54 EDT 2017<br>
+<br>
+<table cellspacing="0" cellpadding="4" border="1" bordercolor="#224466" width="100%">
+<tr>
+<th>Time</th>
+<th>Thread</th>
+<th>Level</th>
+<th>Category</th>
+<th>File:Line</th>
+<th>Message</th>
+</tr>
+
+<tr>
+<td>0</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Driver.java:62</td>
+<td title="Message">Please type in username: </td>
+</tr>
+
+<tr>
+<td>28069</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Customer.java:28</td>
+<td title="Message">1. Display my account information.</td>
+</tr>
+
+<tr>
+<td>28070</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Customer.java:29</td>
+<td title="Message">2. Deposit to my account.</td>
+</tr>
+
+<tr>
+<td>28070</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Customer.java:30</td>
+<td title="Message">3. Withdraw from my account.</td>
+</tr>
+
+<tr>
+<td>28070</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Customer.java:31</td>
+<td title="Message">4. Apply for a new account.</td>
+</tr>
+
+<tr>
+<td>28070</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Customer.java:32</td>
+<td title="Message">5. Sign out.
+</td>
+</tr>
+
+<tr>
+<td>30034</td>
+<td title="main thread">main</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Customer.java:117</td>
+<td title="Message">Your total balance is: 8000.0</td>
+</tr>
+
+<tr>
+<td>30034</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Customer.java:28</td>
+<td title="Message">1. Display my account information.</td>
+</tr>
+
+<tr>
+<td>30034</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Customer.java:29</td>
+<td title="Message">2. Deposit to my account.</td>
+</tr>
+
+<tr>
+<td>30034</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Customer.java:30</td>
+<td title="Message">3. Withdraw from my account.</td>
+</tr>
+
+<tr>
+<td>30035</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Customer.java:31</td>
+<td title="Message">4. Apply for a new account.</td>
+</tr>
+
+<tr>
+<td>30035</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.HL.BankApp.Driver category">com.HL.BankApp.Driver</td>
+<td>Customer.java:32</td>
+<td title="Message">5. Sign out.
+</td>
+</tr>
