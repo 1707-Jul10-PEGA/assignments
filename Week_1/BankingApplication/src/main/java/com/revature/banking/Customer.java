@@ -36,7 +36,7 @@ public class Customer extends User{
 			System.out.println("How much do you want to put in?");
 			Double amount = Double.parseDouble(sc.nextLine());
 			Main.application.add(new Application(this,type,amount));
-			
+			System.out.println("Application created. Please wait up to 7 to 14 days to processed");
 		}
 		catch(Exception e) {
 			System.out.println("Error: Application not created!");

@@ -36,7 +36,7 @@ public abstract class BankAccount {
 
 	@Override
 	public String toString() {
-		return "\nAccount Name=" + acctName + " balance=" + balance + ", type=" + type;
+		return "Account Name=" + acctName + " balance=" + balance + ", type=" + type+"\n";
 	}
 
 	@Override

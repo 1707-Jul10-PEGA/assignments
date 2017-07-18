@@ -27,15 +27,20 @@ public class Main {
 	
 	public Main() {
 		init();
-		run();
 	}
 	
 	public void init() {
 		Log.trace("Main Init()");
+		System.out.println("   _____________________________");
+		System.out.println("===|                           |===");
+		System.out.println("===|    Welcome to SomeBank    |===");
+		System.out.println("===|___________________________|===\n");
 		index = readCustomerFile(index);
 		index = readEmployeeFile(index);
 		readAdministratorFile(index);
 		readBankAccountFile();
+		Log.trace("Print all list:\n Customer:\n" + customerBA + "\nEmployee:\n" + employeeBA + "\nAdministrator:\n" + adminBA);
+		Log.trace("Finish running Init");
 	}
 	
 	public void run() {
@@ -58,9 +63,10 @@ public class Main {
 				}
 				
 			}
-			System.out.println("Quit? [y|n]");
+			System.out.println("Do you want to exit the program? [y|n]");
 			if("y".equals(input.nextLine())) {
 				System.out.println("Exiting......");
+				Log.trace("Exiting.....\nPrint all list:\n Customer:\n" + customerBA + "\nEmployee:\n" + employeeBA + "\nAdministrator:\n" + adminBA);
 				writeFiles();
 				isRunning = false;
 			}
@@ -69,6 +75,7 @@ public class Main {
 	}
 	
 	public void writeFiles() {
+		Log.trace("Writing All File");
 		try {
 			BufferedWriter bw = new BufferedWriter(new FileWriter("src/main/resources/customer.txt"));
 			for(User c: customerBA) {
@@ -151,7 +158,13 @@ public class Main {
 			int i = Integer.parseInt(input.nextLine());
 			switch(i) {
 				case 1:
-					System.out.println(bankAcc);
+					for(User user: Main.getCustomerBA()) {
+						Customer customer = (Customer)user;
+						System.out.println("\t" + customer.getFirstName() + " " + customer.getLastName());
+						for(Integer acc: customer.getAcctIndex()) {
+							System.out.print("\t\tt[" + acc + "]" + bankAcc.get(acc));
+						}
+					}
 					break;
 				case 2:
 					System.out.println("Which account would you like to modify?");
@@ -209,6 +222,12 @@ public class Main {
 					boolean done = false;
 					while(!done) {
 						System.out.println("Looking at application....");
+						if(application.size() < 1)
+						{
+							System.out.println("No Application to check.");
+							done = true;
+							break;
+						}
 						System.out.println(getApplication());
 						System.out.println("What would you like to do? [1]approve [2]deny [3]quit");
 						int choice = Integer.parseInt(input.nextLine());
@@ -223,9 +242,6 @@ public class Main {
 							done= true;
 							break;
 							}
-						if(application.size() < 1) {
-							done= true;
-						}
 					}
 					break;
 				case 4:
@@ -251,12 +267,24 @@ public class Main {
 			int i = Integer.parseInt(input.nextLine());
 			switch(i) {
 				case 1:
-					System.out.println(bankAcc);
+					for(Integer index: currentUser.getCustomerList()) {
+						Customer customer = (Customer) customerBA.get(index);
+						System.out.println("\t" + customer.getFirstName() + " " + customer.getLastName());
+						for(Integer acc: customer.getAcctIndex()) {
+							System.out.print("\t\tt[" + acc + "]" + bankAcc.get(acc));
+						}
+					}
 					break;
 				case 2:
 					boolean done = false;
 					while(!done) {
 						System.out.println("Looking at application....");
+						if(application.size() < 1)
+						{
+							System.out.println("No Application to check.");
+							done = true;
+							break;
+						}
 						System.out.println(getApplication());
 						System.out.println("What would you like to do? [1]approve [2]deny [3]quit");
 						int choice = Integer.parseInt(input.nextLine());
@@ -271,9 +299,6 @@ public class Main {
 							done= true;
 							break;
 							}
-						if(application.size() < 1) {
-							done= true;
-						}
 					}
 					break;
 				case 3:
@@ -383,6 +408,7 @@ public class Main {
 	}
 	
 	public int readCustomerFile(int index){
+		Log.trace("Main readCustomerFile()");
 		String[] data = null;
 		try{
 			Scanner sc = new Scanner(new FileReader("src/main/resources/customer.txt"));
@@ -406,6 +432,7 @@ public class Main {
 	}
 	
 	public int readEmployeeFile(int index){
+		Log.trace("Main readEmployeeFile");
 		String[] data = null;
 		try {
 			Scanner sc = new Scanner(new FileReader("src/main/resources/employee.txt"));
@@ -429,6 +456,7 @@ public class Main {
 	}
 	
 	public int readAdministratorFile(int index){
+		Log.trace("Main readAdministratorFile");
 		String[] data = null;
 		try {
 			Scanner sc = new Scanner(new FileReader("src/main/resources/admin.txt"));
@@ -443,9 +471,11 @@ public class Main {
 				uFactory.createUser("admin", data[0], data[1], Integer.parseInt(data[2]),data[3],data[4],data[5],data[6], accountIndex,index);
 				index++;
 			}
+			sc.close();
 		}
 		catch(Exception e) {
 			System.out.println("Read Admin File Fail!\n");
+			Log.trace("Read AdminFile Fail!");
 			e.printStackTrace();
 		}
 		return index;
@@ -461,6 +491,7 @@ public class Main {
 		}
 		catch(Exception e) {
 			System.out.println("Read BankAccount File Fail!\n");
+			Log.trace("Read BankAccount File Fail!");
 			e.printStackTrace();
 		}
 	}
@@ -531,5 +562,6 @@ public class Main {
 		String log4jConfigPath = "C:\\Users\\hy150\\Desktop\\Revature\\workspace\\BankingApplication\\src\\main\\resources\\log4j.properties";
 		PropertyConfigurator.configure(log4jConfigPath);
 		Main main = new Main();
+		main.run();
 	}
 }

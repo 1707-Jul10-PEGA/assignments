@@ -33,11 +33,15 @@ public class Administrator extends User{
 		currentCustomer.setAcctIndex(newAccList);
 		Main.customerBA.set(customerIndex, currentCustomer);
 		Main.application.remove(index);
+		System.out.println("Account Approved!");
 		
 	}
 	
 	public void denyApplication(int index) {
 		Main.application.remove(index);
+		System.out.println("Account Denied!");
 	}
+	
+	
 
 }
