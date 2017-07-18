@@ -12,12 +12,12 @@ public class Employee extends User {
 	}
 
 	public void menu() {
-		while (!"end".equals(x)) {
+		while (!"stop".equals(x)) {
 
-			Driver.log.info("1. Display all account information.");
-			Driver.log.info("2. Approve an application.");
-			Driver.log.info("3. Deny an application.");
-			Driver.log.info("4. Sign out\n");
+			System.out.println("1. Display all account information.");
+			System.out.println("2. Approve an application.");
+			System.out.println("3. Deny an application.");
+			System.out.println("4. Sign out\n");
 
 			Scanner scan = new Scanner(System.in);
 			x = scan.nextLine();
@@ -37,11 +37,11 @@ public class Employee extends User {
 			}
 			case ("4"): {
 				this.logout();
-				x = "end";
+				x = "stop";
 				break;
 			}
 			default: {
-				Driver.log.error("Input not recognized.\nReturning to menu");
+				System.out.println("Input not recognized.\nReturning to menu");
 				break;
 			}
 			}
@@ -50,7 +50,7 @@ public class Employee extends User {
 	}
 
 	private void denyApplication() {
-		Driver.log.info("Enter user's name to deny:");
+		System.out.println("Enter user's name to deny:");
 		User.scan = new Scanner(System.in);
 		String name = User.scan.nextLine();
 		for (int i = 0; i < Driver.numOfUser; i++) {
@@ -62,14 +62,14 @@ public class Employee extends User {
 	}
 
 	private void approveApplication() {
-		Driver.log.info("Enter user's name to approve:");
+		System.out.println("Enter user's name to approve:");
 		User.scan = new Scanner(System.in);
 		String name = User.scan.nextLine();
 		for (int i = 0; i < Driver.numOfUser; i++) {
 			if (Driver.nameList[i].equals(name)) {
 				Driver.balanceList[i] = "0";
 				Driver.requests[i] = "null";
-				Driver.log.debug(Driver.nameList[i] + "'s application is approved!");
+				System.out.println(Driver.nameList[i] + "'s application is approved!");
 			}
 		}
 	}
@@ -78,7 +78,7 @@ public class Employee extends User {
 		for (int i = 0; i < Driver.typeList.length; i++) {
 			String s = Driver.typeList[i];
 			if ("customer".equals(s)) {
-				Driver.log.info("User: " + Driver.nameList[i] + "; Balance: " + Driver.balanceList[i]
+				System.out.println("User: " + Driver.nameList[i] + "; Balance: " + Driver.balanceList[i]
 						+ "; Pending application: " + Driver.requests[i]);
 			}
 		}

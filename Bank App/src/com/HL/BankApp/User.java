@@ -12,7 +12,7 @@ public abstract class User implements myMenu {
 	public static Scanner scan;
 
 	public void logout() {
-		Driver.log.info("Signed out!\n");
+		System.out.println("Signed out!\n");
 		this.myRecord();
 	}
 

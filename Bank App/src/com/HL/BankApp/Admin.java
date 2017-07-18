@@ -13,12 +13,12 @@ public class Admin extends User {
 	}
 
 	public void menu() {
-		while (!"end".equals(x)) {
-			Driver.log.info("1. Display all account information.");
-			Driver.log.info("2. Approve an application.");
-			Driver.log.info("3. Deny an application.");
-			Driver.log.info("4. Delete an user.");
-			Driver.log.info("5. Sign out.\n");
+		while (!"stop".equals(x)) {
+			System.out.println("1. Display all account information.");
+			System.out.println("2. Approve an application.");
+			System.out.println("3. Deny an application.");
+			System.out.println("4. Delete an user.");
+			System.out.println("5. Sign out.\n");
 			User.scan = new Scanner(System.in);
 			x = scan.nextLine();
 			switch (x) {
@@ -40,11 +40,11 @@ public class Admin extends User {
 			}
 			case ("5"): {
 				this.logout();
-				x = "end";
+				x = "stop";
 				break;
 			}
 			default: {
-				Driver.log.error("Invalid input!");
+				System.out.println("Invalid input!");
 				break;
 			}
 			}
@@ -52,7 +52,7 @@ public class Admin extends User {
 	}
 
 	private void denyApplication() {
-		Driver.log.info("Enter user's name to deny:");
+		System.out.println("Enter user's name to deny:");
 		User.scan = new Scanner(System.in);
 		String name = User.scan.nextLine();
 		for (int i = 0; i < Driver.numOfUser; i++) {
@@ -64,14 +64,14 @@ public class Admin extends User {
 	}
 
 	private void approveApplication() {
-		Driver.log.info("Enter user's name to approve:");
+		System.out.println("Enter user's name to approve:");
 		User.scan = new Scanner(System.in);
 		String name = User.scan.nextLine();
 		for (int i = 0; i < Driver.numOfUser; i++) {
 			if (Driver.nameList[i].equals(name)) {
 				Driver.balanceList[i] = "0";
 				Driver.requests[i] = "null";
-				Driver.log.debug(Driver.nameList[i] + "'s application is approved!");
+				System.out.println(Driver.nameList[i] + "'s application is approved!");
 			}
 		}
 	}
@@ -80,14 +80,14 @@ public class Admin extends User {
 		for (int i = 0; i < Driver.typeList.length; i++) {
 			String s = Driver.typeList[i];
 			if ("customer".equals(s)) {
-				Driver.log.info("User: " + Driver.nameList[i] + "; Balance: " + Driver.balanceList[i]
+				System.out.println("User: " + Driver.nameList[i] + "; Balance: " + Driver.balanceList[i]
 						+ "; Pending application: " + Driver.requests[i]);
 			}
 		}
 	}
 
 	private void deleteAccounts() {
-		Driver.log.info("Enter user's name to delete:");
+		System.out.println("Enter user's name to delete:");
 		User.scan = new Scanner(System.in);
 		String name = User.scan.nextLine();
 		for (int i = 0; i < Driver.numOfUser; i++) {
@@ -95,7 +95,7 @@ public class Admin extends User {
 				Driver.nameList[i] = "null";
 				Driver.balanceList[i] = "null";
 				Driver.requests[i] = "null";
-				Driver.log.debug(name + "'s account is deleted!");
+				System.out.println(name + "'s account is deleted!");
 			}
 		}
 	}

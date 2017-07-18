@@ -21,7 +21,6 @@ public class Driver implements Serializable {
 	public static int userid;
 	public static int numOfUser = 5;
 
-	final static Logger log = Logger.getLogger(Driver.class);
 
 	public static void main(String[] args) {
 		Driver myApp = new Driver();
@@ -49,7 +48,7 @@ public class Driver implements Serializable {
 				break;
 			}
 			default: {
-				log.error("Error: Account accountType not found\n");
+				System.out.println("Error: Account accountType not found\n");
 				break;
 			}
 			}
@@ -59,7 +58,7 @@ public class Driver implements Serializable {
 	}
 
 	private String inputName() {
-		log.info("Please type in username: ");
+		System.out.println("Welcome!\nPlease enter your name: ");
 		Scanner scan = new Scanner(System.in);
 		String name = scan.nextLine();
 		return name;
@@ -73,7 +72,7 @@ public class Driver implements Serializable {
 		}
 
 		if (userid == 0 && !"Admin".equals(name) && !"".equals(name)) {
-			log.info(name +"'s temporary account is created.");
+			System.out.println(name +"'s temporary account is created.");
 			typeList[numOfUser] = "customer";
 			nameList[numOfUser] = name;
 			balanceList[numOfUser] = "null";
@@ -81,7 +80,7 @@ public class Driver implements Serializable {
 			userid = numOfUser;
 			numOfUser++;
 		} else if ("".equals(name)) {
-			log.error("Error: Invalid username");
+			System.out.println("Error: Invalid username");
 			return "null";
 		}
 

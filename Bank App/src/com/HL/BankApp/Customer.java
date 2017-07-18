@@ -23,13 +23,13 @@ public class Customer extends User {
 
 	@Override
 	public void menu() {
-		while (!"end".equals(x)) {
+		while (!"stop".equals(x)) {
 
-			Driver.log.info("1. Display my account information.");
-			Driver.log.info("2. Deposit to my account.");
-			Driver.log.info("3. Withdraw from my account.");
-			Driver.log.info("4. Apply for a new account.");
-			Driver.log.info("5. Sign out.\n");
+			System.out.println("1. Display my account information.");
+			System.out.println("2. Deposit to my account.");
+			System.out.println("3. Withdraw from my account.");
+			System.out.println("4. Apply for a new account.");
+			System.out.println("5. Sign out.\n");
 
 			Scanner scan = new Scanner(System.in);
 			x = scan.nextLine();
@@ -54,11 +54,11 @@ public class Customer extends User {
 			}
 			case ("5"): {
 				this.logout();
-				x = "end";
+				x = "stop";
 				break;
 			}
 			default: {
-				Driver.log.error("Input not recognized.\nReturning to menu");
+				System.out.println("Input not recognized.\nReturning to menu");
 				break;
 			}
 			}
@@ -67,54 +67,54 @@ public class Customer extends User {
 	}
 
 	private void create() {
-		Driver.log.info("Application starts. \nEnter 'apply' to submit for approval.");
+		System.out.println("Application starts. \nEnter 'apply' to submit for approval.");
 		User.scan = new Scanner(System.in);
 		String input = User.scan.nextLine();
 		if ("apply".equals(input.toLowerCase())) {
-			Driver.log.debug("Your application has been submitted.");
+			System.out.println("Your application has been submitted.");
 			Driver.requests[Driver.userid] = input.toLowerCase();
 		} else {
-			Driver.log.error("Invalid Input");
+			System.out.println("Invalid Input");
 		}
 
 	}
 
 	private void withdraw() {
-		Driver.log.info("Enter the amount you want to withdraw:");
+		System.out.println("Enter the amount you want to withdraw:");
 		User.scan = new Scanner(System.in);
 		double withdraw = User.scan.nextDouble();
 
 		if (withdraw > 0 && withdraw < Double.parseDouble(Driver.balanceList[Driver.userid])) {
-			Driver.log.debug(withdraw + " is withdrawn from " + Driver.nameList[Driver.userid] + "'s account");
+			System.out.println(withdraw + " is withdrawn from " + Driver.nameList[Driver.userid] + "'s account");
 			Double newval = Double.parseDouble(Driver.balanceList[Driver.userid]) - withdraw;
 			Driver.balanceList[Driver.userid] = Double.toString(newval);
 			this.balance = newval;
 		} else if (withdraw > 0 && withdraw > Double.parseDouble(Driver.balanceList[Driver.userid])) {
-			Driver.log.error("Invalid amount.");
+			System.out.println("Invalid amount.");
 		} else {
-			Driver.log.error("Invalid amount.");
+			System.out.println("Invalid amount.");
 		}
 	}
 
 	private void deposit() {
-		Driver.log.info("Enter the amount you want to deposit:");
+		System.out.println("Enter the amount you want to deposit:");
 		User.scan = new Scanner(System.in);
 		double deposit = User.scan.nextDouble();
 		if (deposit > 0 && !"null".equals(Driver.balanceList[Driver.userid])) {
-			Driver.log.debug(deposit + " is deposit to " + Driver.nameList[Driver.userid] + "'s account");
+			System.out.println(deposit + " is deposit to " + Driver.nameList[Driver.userid] + "'s account");
 			Double newval = Double.parseDouble(Driver.balanceList[Driver.userid]) + deposit;
 			Driver.balanceList[Driver.userid] = Double.toString(newval);
 			this.balance = newval;
 		} else {
-			Driver.log.error("Invalid amount.");
+			System.out.println("Invalid amount.");
 		}
 	}
 
 	private void viewBalance() {
 		if ("null".equals(Driver.balanceList[Driver.userid])) {
-			Driver.log.error("Account does not exist.");
+			System.out.println("Account does not exist.");
 		} else {
-			Driver.log.debug("Your total balance is: " + this.balance);
+			System.out.println("Your total balance is: " + this.balance);
 		}
 
 		System.out.println();
