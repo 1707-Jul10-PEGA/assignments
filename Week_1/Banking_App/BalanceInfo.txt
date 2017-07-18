@@ -1,10 +1,8 @@
-approved faker Some Someone 32.15
-denied seven1 Something Someone 90.00
+approved guy Some Someone 32.15
 approved TSong Tae Song 40.87
-approved Matt1 Mathew Santoro 0.0
+approved Matt1 Mathew Sam 0.0
 denied Thkk Tae Song 0.0
-approved Jake Jake Maynard 0.0
 approved Testing Tester Rester 0.0
 denied BetaTester Beta Tester 0.0
-unlooked PanicTest Panic Test 0.0
-unlooked MattSeifert Matthew Seifert 0.0
+approved PanicTest Panic Test 0.0
+approved MattSeifert Matthew Seifert 0.0

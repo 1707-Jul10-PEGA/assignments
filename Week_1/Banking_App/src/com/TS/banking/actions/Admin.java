@@ -63,7 +63,7 @@ public class Admin extends BalanceViewer{
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
-					if(editCustomerCheck = true)
+					if(editCustomerCheck == false)
 					{ break; }
 					/*Writes the editted information to a temporary file, then have that file rewrite to the main file*/
 					int informationCheck = 0;
