@@ -36,7 +36,7 @@ public class Customer extends User{
 			System.out.println("How much do you want to put in?");
 			Double amount = Double.parseDouble(sc.nextLine());
 			Main.application.add(new Application(this,type,amount));
-			System.out.println("Application created. Please wait up to 7 to 14 days to processed");
+			System.out.println("Application created. Please wait up to 7 to 14 days to process");
 		}
 		catch(Exception e) {
 			System.out.println("Error: Application not created!");
@@ -44,11 +44,16 @@ public class Customer extends User{
 		
 	}
 	
-	public void displayAccounts() {
+	public boolean displayAccounts() {
 		ArrayList<BankAccount> bList = Main.getBankAcc();
+		if( getAcctIndex() == null ||  getAcctIndex().isEmpty()) {
+			System.out.print("No existing accounts\n");
+			return false;
+		}
 		for(Integer i: getAcctIndex()) {
 			System.out.println("[" + i + "]" + bList.get(i));
 		}
+		return true;
 	}
 	
 	/**

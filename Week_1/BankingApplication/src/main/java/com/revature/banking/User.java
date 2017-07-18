@@ -207,7 +207,6 @@ public abstract class User {
 		if(username.equals(this.username) && password.equals(this.password)) {
 			return true;
 		}
-		System.out.print(this.username +"==" + username + " : "+ this.password+ "=="+ password);
 		return false;
 	}
 

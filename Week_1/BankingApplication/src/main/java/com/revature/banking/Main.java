@@ -13,12 +13,11 @@ import org.apache.log4j.PropertyConfigurator;
 
 
 public class Main {
-	private static Logger Log = Logger.getRootLogger();
+	static Logger Log = Logger.getRootLogger();
 	public static ArrayList<User> customerBA = new ArrayList<User>();
 	public static ArrayList<User> employeeBA = new ArrayList<User>();
 	public static ArrayList<User> adminBA = new ArrayList<User>();
 	public static ArrayList<Application> application = new ArrayList<Application>();
-	public int index= 0;
 	private Scanner input = new Scanner(System.in);
 	public UserFactory uFactory = new UserFactory();
 	private BankAccountFactory bFactory = new BankAccountFactory();
@@ -35,11 +34,10 @@ public class Main {
 		System.out.println("===|                           |===");
 		System.out.println("===|    Welcome to SomeBank    |===");
 		System.out.println("===|___________________________|===\n");
-		index = readCustomerFile(index);
-		index = readEmployeeFile(index);
-		readAdministratorFile(index);
+		readCustomerFile();
+		readEmployeeFile();
+		readAdministratorFile();
 		readBankAccountFile();
-		Log.trace("Print all list:\n Customer:\n" + customerBA + "\nEmployee:\n" + employeeBA + "\nAdministrator:\n" + adminBA);
 		Log.trace("Finish running Init");
 	}
 	
@@ -162,18 +160,25 @@ public class Main {
 						Customer customer = (Customer)user;
 						System.out.println("\t" + customer.getFirstName() + " " + customer.getLastName());
 						for(Integer acc: customer.getAcctIndex()) {
-							System.out.print("\t\tt[" + acc + "]" + bankAcc.get(acc));
+							System.out.print("\t\t[" + acc + "]" + bankAcc.get(acc));
 						}
 					}
 					break;
 				case 2:
 					System.out.println("Which account would you like to modify?");
-					System.out.println(bankAcc);
+					for(User user: Main.getCustomerBA()) {
+						Customer customer = (Customer)user;
+						System.out.println("\t" + customer.getFirstName() + " " + customer.getLastName());
+						for(Integer acc: customer.getAcctIndex()) {
+							System.out.print("\t\t[" + acc + "]" + bankAcc.get(acc));
+						}
+					}
 					int accNum = Integer.parseInt(input.nextLine());
 					BankAccount current = bankAcc.get(accNum);
-					SavingAccount save = (SavingAccount) current;
+					SavingAccount save;
 					System.out.println(current);
 					if(current.getType().equals("saving")) {
+						save = (SavingAccount) current;
 						System.out.println("What would you like to modify? [1]account name [2]balance [3]type [4]savingInterest");
 						int choice = Integer.parseInt(input.nextLine());
 						switch(choice) {
@@ -271,7 +276,7 @@ public class Main {
 						Customer customer = (Customer) customerBA.get(index);
 						System.out.println("\t" + customer.getFirstName() + " " + customer.getLastName());
 						for(Integer acc: customer.getAcctIndex()) {
-							System.out.print("\t\tt[" + acc + "]" + bankAcc.get(acc));
+							System.out.print("\t\t[" + acc + "]" + bankAcc.get(acc));
 						}
 					}
 					break;
@@ -302,7 +307,7 @@ public class Main {
 					}
 					break;
 				case 3:
-					System.out.println("GoodBye");
+					System.out.println("You have Logout!\nGoodBye");
 					isRunning = false;
 					break;	
 			}
@@ -324,7 +329,9 @@ public class Main {
 					break;
 				case 2:
 					System.out.println("Which account would you like to deposit to?");
-					currentUser.displayAccounts();
+					if(!currentUser.displayAccounts()) {
+						break;
+					}
 					accountId = Integer.parseInt(input.nextLine());
 					if(currentUser.hasAccount(accountId)) {
 						System.out.println("How much do you want to deposit?");
@@ -338,7 +345,9 @@ public class Main {
 					break;
 				case 3:
 					System.out.println("Which account would you like to withdraw from?");
-					currentUser.displayAccounts();
+					if(!currentUser.displayAccounts()) {
+						break;
+					}
 					accountId = Integer.parseInt(input.nextLine());
 					if(currentUser.hasAccount(accountId)) {
 						System.out.println("How much do you want to withdraw?");
@@ -396,7 +405,7 @@ public class Main {
 				System.out.println("\n|     User not found!     |\n");
 			}
 			else if(type == 4) {
-				return uFactory.createUserWithConsoleInput(index);
+				return uFactory.createUserWithConsoleInput(customerBA.size());
 			}
 			else if(type == 5) {
 				return null;
@@ -407,20 +416,24 @@ public class Main {
 		
 	}
 	
-	public int readCustomerFile(int index){
+	public int readCustomerFile(){
 		Log.trace("Main readCustomerFile()");
+		int index = customerBA.size();
 		String[] data = null;
 		try{
 			Scanner sc = new Scanner(new FileReader("src/main/resources/customer.txt"));
 			while(sc.hasNext()) {
 				data = sc.nextLine().split(":");
 				ArrayList<Integer> accountIndex = new ArrayList<Integer>();
-				String[] acctIndex = data[7].split("-");
-				for(String s: acctIndex) {
-					accountIndex.add(Integer.parseInt(s));
+				if(data.length >= 8) {
+					String[] acctIndex = data[7].split("-");
+					for(String s: acctIndex) {
+						accountIndex.add(Integer.parseInt(s));
+					}
 				}
 				
-				uFactory.createUser("customer", data[0], data[1], Integer.parseInt(data[2]),data[3],data[4],data[5],data[6], accountIndex,index);
+				
+				uFactory.createUser("customer", data[0], data[1], Integer.parseInt(data[2]),data[3],data[4],data[5],data[6], accountIndex,customerBA.size());
 				index++;
 			}
 		}
@@ -431,7 +444,7 @@ public class Main {
 		return index;
 	}
 	
-	public int readEmployeeFile(int index){
+	public void readEmployeeFile(){
 		Log.trace("Main readEmployeeFile");
 		String[] data = null;
 		try {
@@ -440,22 +453,23 @@ public class Main {
 			while(sc.hasNext()) {
 				data = sc.nextLine().split(":");
 				ArrayList<Integer> accountIndex = new ArrayList<Integer>();
-				String[] acctIndex = data[7].split("-");
-				for(String s: acctIndex) {
-					accountIndex.add(Integer.parseInt(s));
+				if(data.length >= 8) {
+					String[] acctIndex = data[7].split("-");
+					for(String s: acctIndex) {
+						accountIndex.add(Integer.parseInt(s));
+					}
 				}
-				uFactory.createUser("employee", data[0], data[1], Integer.parseInt(data[2]),data[3],data[4],data[5],data[6], accountIndex,index);
-				index++;
+				
+				uFactory.createUser("employee", data[0], data[1], Integer.parseInt(data[2]),data[3],data[4],data[5],data[6], accountIndex,-1);
 			}
 		}
 		catch(Exception e) {
 			System.out.println("Read Employee File Fail!\n");
 			e.printStackTrace();
 		}
-		return index;
 	}
 	
-	public int readAdministratorFile(int index){
+	public void readAdministratorFile(){
 		Log.trace("Main readAdministratorFile");
 		String[] data = null;
 		try {
@@ -464,12 +478,14 @@ public class Main {
 			while(sc.hasNext()) {
 				data = sc.nextLine().split(":");
 				ArrayList<Integer> accountIndex = new ArrayList<Integer>();
-				String[] acctIndex = data[7].split("-");
-				for(String s: acctIndex) {
-					accountIndex.add(Integer.parseInt(s));
+				if(data.length >= 7) {
+					String[] acctIndex = data[7].split("-");
+					for(String s: acctIndex) {
+						accountIndex.add(Integer.parseInt(s));
+					}
 				}
-				uFactory.createUser("admin", data[0], data[1], Integer.parseInt(data[2]),data[3],data[4],data[5],data[6], accountIndex,index);
-				index++;
+
+				uFactory.createUser("admin", data[0], data[1], Integer.parseInt(data[2]),data[3],data[4],data[5],data[6], accountIndex,-1);
 			}
 			sc.close();
 		}
@@ -478,7 +494,6 @@ public class Main {
 			Log.trace("Read AdminFile Fail!");
 			e.printStackTrace();
 		}
-		return index;
 	}
 	
 	public void readBankAccountFile() {
@@ -542,13 +557,6 @@ public class Main {
 		Main.adminBA = adminBA;
 	}
 
-	public int getIndex() {
-		return index;
-	}
-
-	public void setIndex(int index) {
-		this.index = index;
-	}
 
 	public static ArrayList<BankAccount> getBankAcc() {
 		return bankAcc;

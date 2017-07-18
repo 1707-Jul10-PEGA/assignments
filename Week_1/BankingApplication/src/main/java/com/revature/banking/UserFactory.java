@@ -2,12 +2,13 @@ package com.revature.banking;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Random;
 import java.util.Scanner;
 
 public class UserFactory {
 	public User createUser(String type, String firstName, String lastName, int age, String phone, String address, String username,
 			String password, ArrayList<Integer> acctIndex, int customerIndex) {
-		
+		Main.Log.trace("UserFactory createUser: Creating User.... " + firstName + " " + lastName);
 		User user = null;
 			if("customer".equals(type)) {
 				user = new Customer(firstName, lastName, age, phone, address, username,
@@ -29,7 +30,8 @@ public class UserFactory {
 	}
 	
 	public User createUserWithConsoleInput(int customerIndex) {
-		
+		Main.Log.trace("UserFactory createUserWithConsoleInput: Creating User with Console.... " );
+
 		User user = null;
 		String type = "";
 		Scanner input = new Scanner(System.in);
@@ -67,6 +69,13 @@ public class UserFactory {
 				user = new Customer(firstName, lastName, age, phone, address, username,
 						password, new ArrayList<Integer>(), customerIndex);
 				Main.customerBA.add(user);
+				Random r = new Random();
+				int employeeIndex = r.nextInt(Main.getEmployeeBA().size());
+				Employee e = (Employee) Main.employeeBA.get(employeeIndex);
+				ArrayList<Integer> newList = e.getCustomerList();
+				newList.add(customerIndex);
+				e.setCustomerList(newList);
+				Main.employeeBA.set(employeeIndex, e);
 			}
 			else if("employee".equals(type)) {
 				user = new Employee(firstName, lastName, age, phone, address, username,password,new ArrayList<Integer>());
@@ -76,6 +85,7 @@ public class UserFactory {
 				user = new Administrator(firstName, lastName, age, phone, address, username,password);
 				Main.adminBA.add(user);
 			}
+
 			
 		return user;
 	}
