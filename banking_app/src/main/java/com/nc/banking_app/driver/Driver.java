@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import junit.framework.TestCase;
 
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
@@ -25,14 +26,13 @@ public class Driver implements Serializable {
 		PropertyConfigurator.configure("log4j.properties");
 
 		List<Users> myList = new ArrayList<Users>();
-		logger.debug("Current list: \n" + myList.toString());
+		logger.debug("Start List: \n" + myList.toString());
 		LoadData load = new LoadData();
 
 		// Loop forever
 		while (true) {
 			int userIndex = -1;
 			load.fileToList(myList);
-			logger.debug("After f2l: \n" + myList.toString());
 			// System.out.println(myList);
 			// Login or Registration
 			StartingApp start = new StartingApp();

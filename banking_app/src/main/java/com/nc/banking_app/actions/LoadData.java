@@ -9,6 +9,9 @@ import java.io.PrintWriter;
 import java.io.Serializable;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
+import com.nc.banking_app.driver.Driver;
 import com.nc.banking_app.users.Users;
 
 public class LoadData implements Serializable {
@@ -17,6 +20,7 @@ public class LoadData implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	final static Logger logger = Logger.getLogger(Driver.class);
 
 	public void fileToList(List<Users> myList) throws NumberFormatException, ClassNotFoundException, IOException {
 
@@ -29,6 +33,7 @@ public class LoadData implements Serializable {
 			objectinputstream = new ObjectInputStream(streamIn);
 			List<Users> readCase = (List<Users>) objectinputstream.readObject();
 			myList.addAll(readCase);
+			logger.debug("After f2l: \n" + myList.toString());
 
 		} catch (Exception e) {
 			// e.printStackTrace();
@@ -51,6 +56,7 @@ public class LoadData implements Serializable {
 			fout = new FileOutputStream("final.txt");
 			oos = new ObjectOutputStream(fout);
 			oos.writeObject(myList);
+			logger.debug("After l2f: \n" + myList.toString());
 
 		} catch (Exception ex) {
 		} finally {

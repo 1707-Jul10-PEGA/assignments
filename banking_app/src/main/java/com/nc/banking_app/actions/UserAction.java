@@ -5,6 +5,7 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Scanner;
 
+import com.nc.banking_app.users.UserFactory;
 import com.nc.banking_app.users.Users;
 
 public class UserAction implements Serializable {
@@ -14,6 +15,7 @@ public class UserAction implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private Scanner sc = new Scanner(System.in);
 	private LoadData ld = new LoadData();
+	private UserFactory userFactory = new UserFactory();
 
 	public void control(List<Users> myList, int userIndex)
 			throws IOException, NumberFormatException, ClassNotFoundException {
@@ -74,7 +76,8 @@ public class UserAction implements Serializable {
 			String userInput = "M";
 			boolean flag = true;
 			while (flag) {
-				System.err.println("ViewAnyAccounts(V) or EditAnyAccount(E) or Quit(Q)");
+				System.err.println(
+						"ViewAnyAccounts(V) or EditAnyAccount(E) or CreateUser (C) or DeleteUser (D) or Quit(Q)");
 				userInput = sc.nextLine();
 
 				if ("V".equalsIgnoreCase(userInput)) {
@@ -83,6 +86,41 @@ public class UserAction implements Serializable {
 				} else if ("E".equalsIgnoreCase(userInput)) {
 					aEditAnyAccount(myList);
 					ld.listToFile(myList);
+				} else if ("C".equalsIgnoreCase(userInput)) {
+					String type ="";
+					do{
+						System.out.println("What is the type? Customer(C), Employee(E) or Admin(A)");
+						type = sc.nextLine();
+					}while("C".equalsIgnoreCase(type) || "E".equalsIgnoreCase(type) || "A".equalsIgnoreCase(type));
+					String name = new String();
+					while(name.isEmpty()){
+						System.out.println("What is the name? ");
+						name = sc.nextLine();
+					}
+					Users newUser = userFactory.getType(type, name, 0.0, 0);
+					myList.add(newUser);
+
+					ld.listToFile(myList);
+
+				} else if ("D".equalsIgnoreCase(userInput)) {
+					for (int x = 0; x < myList.size(); x++) {
+						System.out.print(myList.get(x).getName() + ", ");
+					}
+					System.err.println("\nPick User To Delete or Quit(Q)");
+					String name = sc.nextLine();
+					if ("Q".equalsIgnoreCase(name)) {
+						break;
+					} else {
+						for (int x = 1; x < myList.size(); x++) {
+							if (myList.get(x).getName().equalsIgnoreCase(name)) {
+								myList.remove(x);
+							}
+						}
+
+					}
+
+					ld.listToFile(myList);
+
 					// Quit section
 				} else if ("Q".equalsIgnoreCase(userInput)) {
 					flag = false;
@@ -93,7 +131,7 @@ public class UserAction implements Serializable {
 	}
 
 	private void aViewAnyAccounts(List<Users> myList) {
-		//
+		// Display all name
 		for (int x = 0; x < myList.size(); x++) {
 			System.out.print(myList.get(x).getName() + ", ");
 		}
@@ -259,6 +297,7 @@ public class UserAction implements Serializable {
 			// Flag that tells if user wants to apply
 			myList.get(userIndex).setMemeber(-1);
 		}
+		
 	}
 
 	public void cViewBalance(Users user) {
