@@ -6,6 +6,8 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 
+import com.WilliamLewis.BankingApp.AccountFactory.AccountFactory;
+import com.WilliamLewis.BankingApp.Applications.AccountApplication;
 import com.WilliamLewis.BankingApp.BankData.BankData;
 import com.WilliamLewis.BankingApp.BankData.Accounts.Account;
 
@@ -29,6 +31,28 @@ public class Admin implements Serializable{
 		log.info(allAccounts.toString());
 
 		return allAccounts;
+	}
+	public void approveApplication(AccountApplication aa)
+	{
+		//Call factory and create account, store that integer in the arraylist of acounts to manage
+		Integer id = AccountFactory.createAccount(aa.getAccountType(), aa.getAccountHolder().getUsername());
+		BankData.getInstance().removeApp(aa);
+		
+	}
+	public void removeApplication(AccountApplication aa)
+	{
+		BankData.getInstance().removeApp(aa);
+	}
+	public ArrayList<AccountApplication> viewApplications()
+	{
+		return BankData.getInstance().getCurrentApplications();
+	}
+	public void approveAllApplications()
+	{
+		for(AccountApplication aa : BankData.getInstance().getCurrentApplications())
+		{
+			approveApplication(aa);
+		}
 	}
 
 	private String getUsername() {

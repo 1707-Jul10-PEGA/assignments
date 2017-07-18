@@ -1,20 +1,26 @@
 package com.WilliamLewis.BankingApp.BankData.Accounts;
 
 import com.WilliamLewis.BankingApp.BankData.AccountInterface;
+
 import com.WilliamLewis.BankingApp.BankData.BankData;
 
 import java.io.Serializable;
 
 import org.apache.log4j.Logger;
-
+/**
+ * @fields accountHolder is the username of the customer who owns this account, later should be updated to be a customer instead of only the customer's name
+ 	accountNumber acts as a means of identifying accounts uniquely, so two customers with the same name have different accounts on creation, AccountFactory handles randomization of this value
+ * @author William
+ *
+ */
 public class Account implements AccountInterface, Serializable{
 	private double accountBalance;
 	private int accountNumber;
-	//private int accountID;
 	private String accountHolder;
 	private static final long serialVersionUID = 4219823L;
 	private static Logger log = Logger.getRootLogger();
 	
+	//Constructors
 	public Account()
 	{ 
 		super();
@@ -31,22 +37,29 @@ public class Account implements AccountInterface, Serializable{
 		this.setAccountNumber(accountNum);
 		this.setAccountBalance(0);
 	}
+	//End Constructors, note we only use the third constructor in this program
 	//Add the account to the BankData
 	public void initialize(){
 		//log.debug("Adding this account to the Bank Data: " + this.toString() );
 		BankData.getInstance().addAccount(this, this.getAccountNumber());
 	}
+	
+	//Interface contracted methods, not view is NOT viewBalance, but gives the whole acouunt as a string
+	//use the getter to obtain the accountBalance
 	@Override
 	public void view() {
 
 		log.info(this.toString());
 	}
-
+	/**
+	 * 
+	 */
 	@Override
 	public void deposit(double deposit) {
 		if(deposit <= 0)
 		{
 			log.info("Please deposit a non-zero positive value, or submit a withdrawal request instead.");
+			return;
 		}
 		this.setAccountBalance(accountBalance + deposit);
 		BankData.getInstance().updateAccount(this, this.accountNumber);

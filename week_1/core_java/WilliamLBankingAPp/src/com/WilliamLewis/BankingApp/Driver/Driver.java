@@ -14,6 +14,7 @@ import com.WilliamLewis.BankingApp.Login.AdminPage;
 import com.WilliamLewis.BankingApp.Login.LoginGUI;
 import com.WilliamLewis.BankingApp.Login.MainMenu;
 import com.WilliamLewis.BankingApp.Users.Admin;
+import com.WilliamLewis.BankingApp.Users.Customer;
 import com.WilliamLewis.BankingApp.Users.Employee;
 
 public class Driver {
@@ -22,15 +23,16 @@ public class Driver {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		log.debug("Some message");
-		//LoginGUI myLogin = new LoginGUI();
-		//AdminPage myAdmin = new AdminPage();
+		
+		//initTestBank();
+
 		LoginGUI  main = new LoginGUI();
 		log.trace(BankData.getInstance().currentAdmins.size());
 		
 		
 		Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
 
-	        public void run() {
+	        	public void run() {
 	        	BankData.getInstance().saveData();
 	        }
 	    }));
@@ -43,9 +45,11 @@ public class Driver {
 
 		AccountFactory.createAccount("basic", "TestAccount");
 		Employee Master = new Employee("UserName" , "emp");
-		submitApplication("SuperAccount", "basic");
-		submitApplication("LessSuperAccount", "basic");
-		Master.approveAll();
+		Customer Bob = new Customer("User", "123");
+		Customer Bill = new Customer("UserTwo", "abc");
+		Bob.submitApplication();
+		Bob.submitApplication();
+//		Master.approveAll();
 		
 		
 		Admin headHoncho = new Admin();
@@ -53,9 +57,7 @@ public class Driver {
 		
 		log.trace(BankData.getInstance().currentAdmins.size());
 	}
-	public static void submitApplication(String name, String type){
-		BankData.getInstance().addApp(new AccountApplication(name, type));
-	}
+
 	
 	
 

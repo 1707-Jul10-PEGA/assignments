@@ -8,6 +8,7 @@ public class MainMenu extends JFrame {
 	JButton admin;
 	JButton employee;
 	JButton customer;
+	JButton login;
 
 	JLabel welcome = new JLabel("Welcome to our bank, please select your role.");
 	// JPanel panel = new JPanel();
@@ -17,16 +18,16 @@ public class MainMenu extends JFrame {
 		super("Welcome");
 
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		panel.setLayout(new GridLayout(3, 1));
+		panel.setLayout(new GridLayout(3, 3));
 
 		admin = new JButton("Admin");
 		employee = new JButton("Employee");
 		customer = new JButton("Customer");
-
+		login = new JButton("Back");
+		
+		panel.add(login);
 		panel.add(admin);
-
 		panel.add(employee);
-
 		panel.add(customer);
 		// button.setFont(new Font("Courier", Font.PLAIN, 36));
 		setSize(1000, 1000);
@@ -47,7 +48,7 @@ public class MainMenu extends JFrame {
 		employee.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (role.equalsIgnoreCase("employee")) {
-					EmployeePage admin = new EmployeePage(username, password);
+					EmployeePage admin = new EmployeePage(username, password, role);
 					dispose();
 				} else {
 					JOptionPane.showMessageDialog(null, "I'm sorry, this account is not an Employee account.");
@@ -58,13 +59,21 @@ public class MainMenu extends JFrame {
 		customer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (role.equalsIgnoreCase("customer")) {
-					CustomerPage admin = new CustomerPage(username, password);
+					CustomerPage admin = new CustomerPage(username, password, role);
 					dispose();
 				} else {
 					JOptionPane.showMessageDialog(null, "I'm sorry, this account is not an customer account.");
 				}
 
 			}
+
+		});
+		login.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+					dispose();
+					LoginGUI admin = new LoginGUI();
+				} 
+
 
 		});
 

@@ -10,7 +10,7 @@ import com.WilliamLewis.BankingApp.BankData.BankData;
 import com.WilliamLewis.BankingApp.BankData.Accounts.Account;
 
 public class Customer implements Serializable{
-	public String Username;
+	private String Username;
 	private String password;
 	private ArrayList<Integer> accountIdsToManage;
 	private static Logger log = Logger.getRootLogger();
@@ -31,18 +31,23 @@ public class Customer implements Serializable{
 		this.setUsername(username);
 		this.setPassword(pass);
 		this.accountIdsToManage = new ArrayList<Integer>();
+		log.info("New Customer added: " + this.toString());
 		BankData.getInstance().addCustomer(this);
+	}
+	public void addAccountID(int i)
+	{
+		accountIdsToManage.add(i);
 	}
 	
 	public void submitApplication(){
 		log.trace(this.Username + " has submitted an application for a basic account");
-		BankData.getInstance().addApp(new AccountApplication(this.getUsername(), "basic"));
+		BankData.getInstance().addApp(new AccountApplication(this, "basic"));
 	}
 	public void submitApplication(String type){
 		log.trace(this.Username + " has submitted an application for a basic account");
-		BankData.getInstance().addApp(new AccountApplication(this.getUsername(), type));
+		BankData.getInstance().addApp(new AccountApplication(this, type));
 	}
-	private String getUsername() {
+	public String getUsername() {
 		return Username;
 	}
 	private void setUsername(String username) {

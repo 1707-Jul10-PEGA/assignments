@@ -1,2 +1,11 @@
 UserName:asf:employee
 UserName:emp:employee
+AD:BC:admin
+UserName:adm:admin
+asd:adf:admin
+UserName:bob:admin
+UserName:cm:customer
+OnlyEmp:emp:employee
+UserName:cm:customer
+UserName:emp:employee
+UserName:adm:admin

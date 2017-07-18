@@ -16,8 +16,8 @@ import com.WilliamLewis.BankingApp.Users.Employee;
 public class CustomerPage extends JFrame {
 
 	Container panel = getContentPane();
-
-	public CustomerPage(String Username, String password) {
+	JButton home;
+	public CustomerPage(String Username, String password, String role) {
 		super("Accounts");
 		Customer myCustomer = BankData.getInstance().getCustomer(Username, password);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -41,6 +41,14 @@ public class CustomerPage extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				myCustomer.submitApplication();
 
+			}
+		});
+		home = new JButton("Back");
+		panel.add(home);
+		home.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e) {
+				MainMenu back = new MainMenu(Username, password, role);
+				dispose();
 			}
 		});
 		pack();

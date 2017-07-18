@@ -8,6 +8,7 @@ import java.util.Map;
 
 import org.apache.log4j.Logger;
 
+import com.WilliamLewis.BankingApp.AccountFactory.AccountFactory;
 import com.WilliamLewis.BankingApp.Applications.AccountApplication;
 import com.WilliamLewis.BankingApp.BankData.Accounts.Account;
 import com.WilliamLewis.BankingApp.Serializers.BankDataSerializer;
@@ -33,10 +34,32 @@ public class BankData implements Serializable {
 
 	public void removeApp(AccountApplication aa) {
 		for (AccountApplication a : this.currentApplications) {
-			if (aa.equals(a))
-				;
-			currentApplications.remove(a);
+			if (aa.equals(a)){
+
+				currentApplications.remove(a);
+				break;
+			}
 		}
+		for (Employee e : this.currentEmployees) {
+			for (AccountApplication eaa : e.pendingApplications) {
+				if (aa.equals(eaa)) {
+					e.pendingApplications.remove(eaa);
+					break;
+				}
+			}
+		}
+
+	}
+
+	public void approveApplication(AccountApplication aa) {
+		// Call factory and create account, store that integer in the arraylist, and give the customer an account ID to manage
+		// of accounts to manage
+		
+		aa.getAccountHolder().addAccountID(AccountFactory.createAccount(aa.getAccountType(), aa.getAccountHolder().getUsername()));
+		
+		theBank.removeApp(aa);
+		log.debug("Successfully approved " + aa.getAccountHolder().getUsername() + "'s application for a "+ aa.getAccountType() + " account");
+
 	}
 
 	private static Logger log = Logger.getRootLogger();
@@ -47,38 +70,37 @@ public class BankData implements Serializable {
 		this.accountIDs = new HashMap<String, Integer>();
 		this.currentEmployees = new ArrayList<Employee>();
 		this.currentAdmins = new ArrayList<Admin>();
+		this.currentCustomers = new ArrayList<Customer>();
 		this.currentApplications = new ArrayList<AccountApplication>();
 	}
 
 	public static BankData getInstance() {
 		if (theBank == null) {
 			log.trace("Rebuilding BankData");
-				theBank = new BankData();
-				theBank.initializeData();
-            	return theBank;
-            }
-       
-            return theBank;
+			theBank = new BankData();
+			theBank.initializeData();
+			return theBank;
+		}
+
+		return theBank;
 	}
-	
 
 	// May be a call to the serializer later to retrieve data from .txt file
 	private void initializeData() {
 		BankDataSerializer serialize = new BankDataSerializer();
-        if(serialize.readBankData(filename) == null)
-        {
-        	log.error("No Bank File Found");
-        	return;
-        }
-        theBank = serialize.readBankData(filename);
-        log.trace("Data has been read from: " + filename);
+		if (serialize.readBankData(filename) == null) {
+			log.error("No Bank File Found");
+			return;
+		}
+		theBank = serialize.readBankData(filename);
+		log.trace("Data has been read from: " + filename);
 	}
-	public void saveData(){
+
+	public void saveData() {
 		BankDataSerializer serialize = new BankDataSerializer();
 		serialize.writeBankData(theBank, filename);
 		log.trace("Data has been saved to: " + filename);
 	}
-	
 
 	public boolean checkID(Integer key) {
 		return this.accountData.containsKey(key);
@@ -132,6 +154,7 @@ public class BankData implements Serializable {
 			return;
 		} else
 			this.leastApplications().addApplication(aa);
+			this.currentApplications.add(aa);
 	}
 
 	public Employee leastApplications() {
@@ -148,23 +171,6 @@ public class BankData implements Serializable {
 		}
 		return least;
 	}
-	// public void addUser(User user, String type)
-	// {
-	// switch(type)
-	// {
-	// case "admin":
-	// {
-	// this.currentAdmins.add((Admin) user);
-	// }
-	// break;
-	// case "employee":
-	// this.currentEmployees.add((Employee) user);
-	// break;
-	// case "customer":
-	// this.currentCustomers.add((Customer) user);
-	// break;
-	// }
-	// }
 
 	public void addAdmin(Admin user) {
 		this.currentAdmins.add(user);
@@ -195,13 +201,27 @@ public class BankData implements Serializable {
 
 	public Customer getCustomer(String name, String password) {
 		for (Customer x : this.currentCustomers) {
-			if (name.equals(x.Username) && password.equals(x.getPassword())) {
+			if (name.equals(x.getUsername()) && password.equals(x.getPassword())) {
 				return x;
 			}
 
 		}
 		log.error("No Such Customer");
 		return null;
+	}
+
+	public AccountApplication getAccApp(Customer cust) {
+		for (AccountApplication aa : this.currentApplications) {
+			if (aa.getAccountHolder().equals(cust)) {
+				return aa;
+			}
+		}
+		log.error("This customer does not have any active applications.");
+		return null;
+	}
+
+	public ArrayList<AccountApplication> getCurrentApplications() {
+		return currentApplications;
 	}
 
 }

@@ -16,7 +16,7 @@ public class Employee implements Serializable{
 	public String Username;
 	private String password;
 	private static Logger log = Logger.getRootLogger();
-	private ArrayList<AccountApplication> pendingApplications;
+	public ArrayList<AccountApplication> pendingApplications;
 	private ArrayList<Integer> accountIdsToManage;
 	private static final long serialVersionUID = 54321L;
 	
@@ -34,17 +34,21 @@ public class Employee implements Serializable{
 		this.setPassword(password);
 		pendingApplications = new ArrayList<AccountApplication>();
 		accountIdsToManage = new ArrayList<Integer>();
-		BankData.getInstance().addEmployee(this);
-		
+		BankData.getInstance().addEmployee(this);	
 	}
 
 	public void approveApplication(AccountApplication aa)
 	{
 		//Call factory and create account, store that integer in the arraylist of acounts to manage
-		Integer id = AccountFactory.createAccount(aa.getAccountType(), aa.getAccountHolder());
+		Integer id = AccountFactory.createAccount(aa.getAccountType(), aa.getAccountHolder().getUsername());
 		accountIdsToManage.add(id);
 		BankData.getInstance().removeApp(aa);
 		
+	}
+	public void removeApplication(AccountApplication aa)
+	{
+		this.getPendingApplications().remove(aa);
+		BankData.getInstance().removeApp(aa);
 	}
 	public void approveAll()
 	{

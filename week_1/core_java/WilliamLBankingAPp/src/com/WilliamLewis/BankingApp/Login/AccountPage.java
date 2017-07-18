@@ -67,13 +67,12 @@ public class AccountPage extends JFrame {
 					AdminPage admin = new AdminPage();
 					dispose();
 				case "employee":
-					EmployeePage emp = new EmployeePage(info[1], info[2]);
+					EmployeePage emp = new EmployeePage(info[1], info[2], info[0]);
 					dispose();
 				case "customer":
-					CustomerPage cs = new CustomerPage(info[1], info[2]);
+					CustomerPage cs = new CustomerPage(info[1], info[2], info[0]);
+					dispose();
 				}
-
-				AdminPage admin = new AdminPage();
 				dispose();
 
 			}
