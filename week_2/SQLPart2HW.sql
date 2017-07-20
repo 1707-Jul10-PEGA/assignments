@@ -189,7 +189,78 @@ SELECT * FROM dual;
 
 commit;
 
+UPDATE PRODUCT
+SET UNITCOST = 4.00
+WHERE NAME = 'Ruler';
 
+commit;
 
+UPDATE CATEGORY
+SET DESCRIPT = 'USED FOR AROUND THE HOUSE CLEANING'
+WHERE CATID = 3;
+
+UPDATE CATEGORY
+SET DESCRIPT = 'USED FOR CLEANING YOUR COMPUTER SCREEN'
+WHERE CATID = 4;
+
+COMMIT;
      
+--3.5 LIKE
+
+--Select username from employees table where usernames is like "j"
+SELECT E.USERNAME
+FROM EMPLOYEE E
+WHERE E.USERNAME LIKE '%j%';
+
+--Select name from product table where name is like "O"
+SELECT P.NAME
+FROM PRODUCT P
+WHERE P.NAME LIKE 'O%';
+
+--3.6 BETWEEN
+
+--Select name from products table where unitprice is between 3 and 10
+SELECT P.NAME, P.UNITCOST
+FROM PRODUCT P
+WHERE P.UNITCOST BETWEEN 3 AND 10;
+
+--Select name from product table where unit price is between 500 and 800
+SELECT P.NAME, P.UNITCOST
+FROM PRODUCT P
+WHERE P.UNITCOST BETWEEN 500 AND 800;
+
+
+--3.7 DELETE
+
+--Delete a record from the category where the value is audio visual
+--enabled on delete cascade to delete references
+DELETE FROM CATEGORY C WHERE C.NAME = 'Audio Visual';
+commit;
+--Delete the three recrords you previously inserted into the supplier table
+DELETE FROM SUPPLIER S WHERE S.SUPPID IN (4,3,6);
+COMMIT;
+
+--4.0 SQL FUNCTIONS
+
+--create a function that returns the length of the string of the description of the laser pointer
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
