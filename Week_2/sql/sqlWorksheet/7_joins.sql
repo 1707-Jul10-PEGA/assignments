@@ -27,6 +27,6 @@ ORDER BY Artist.Name asc;
 
 /* 7.5 Self */
 /* Self join employee table, joining on the reportsTo column */
-SELECT E1.FirstName, E1.LastName, E2.ReportsTo
+SELECT E1.FirstName, E1.LastName, E2.FirstName, E2.LastName
 FROM Employee E1
 LEFT JOIN Employee E2 ON E1.EmployeeID=E2.ReportsTo;
