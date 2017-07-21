@@ -46,6 +46,9 @@ hs_err_pid*
 # Week1 HtmlLayout
 /Week_1/core_java/*.html
 
+# Week2 practice folder
+/Week_2/sql/practice
+
 .idea
 *.idea
 AssociateEvaluationSystem/AssociateEvaluationSystem.iml

@@ -1,3 +1,5 @@
+/* 2.0 SQL Queries */
+
 /* 2.1 Select */
 /* Select all records from the Employee table */
 SELECT *
@@ -78,50 +80,3 @@ ALTER TABLE Invoice
 DROP CONSTRAINT FK_INVOICECUSTOMERID;
 DELETE FROM Customer
 WHERE FirstName='Robert' AND LastName='Walter';
-
-/* 3.1 System Defined Functions */
-/* Create a function that returns the current time */
-CREATE OR REPLACE FUNCTION getCurrentTime RETURN TIMESTAMP AS
-BEGIN
-    RETURN CURRENT_TIMESTAMP;
-END getCurrentTime;
-/
-SELECT getCurrentTime FROM dual;
-
-/* Create a function that returns the length of a mediatype from the mediatype table */
-CREATE OR REPLACE FUNCTION getMediaTypeLength() RETURN INT AS
-BEGIN
-    RETURN NULL;
-END getMediaTypeLength;
-/
-
-/* 7.0 Joins */
-/* Inner join customers and orders and specifies name of customer and invoiceid */
-SELECT FirstName, LastName, InvoiceId
-FROM Customer
-INNER JOIN Invoice ON Customer.CustomerId=Invoice.CustomerId;
-
-/* Outer join customer and invoice, specifying CustomerId, first, ast, invoiceid, and total */
-SELECT Customer.CustomerId, FirstName, LastName, InvoiceId, Total
-FROM Customer
-FULL OUTER JOIN Invoice ON Customer.CustomerId=Invoice.CustomerId;
-
-/* Right join album and artist specifying name and title */
-SELECT Artist.Name AS "Artist", Album.Title as "Album Name"
-FROM Album
-RIGHT JOIN Artist ON Album.ArtistId=Artist.ArtistId;
-
-/* Cross join album and artist; sort by artist name in ascending order */
-SELECT Album.Title AS "Album Name", Artist.Name AS "Artist"
-FROM Album
-CROSS JOIN Artist WHERE Artist.ArtistId=Album.ArtistId
-ORDER BY Artist.Name asc;
-
-/* Self join employee table, joining on the reportsTo column */
-SELECT E1.FirstName, E1.LastName, E2.ReportsTo
-FROM Employee E1
-LEFT JOIN Employee E2 ON E1.EmployeeID=E2.ReportsTo;
-
-
-
-
