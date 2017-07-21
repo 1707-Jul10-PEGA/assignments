@@ -115,3 +115,5 @@ WHERE CatId=4;
 
 DELETE FROM Category
 WHERE CatId=5;
+
+COMMIT;
