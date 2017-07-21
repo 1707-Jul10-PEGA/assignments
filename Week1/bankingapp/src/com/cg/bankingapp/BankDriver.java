@@ -4,6 +4,7 @@ public class BankDriver {
 
 	public static void main(String[] args) {
 		int choice, exit = 0;
+		Log.log("Program started...", 1);
 		InputOutput inout = new InputOutput();
 		UserManagement usermanagement = new UserManagement();
 		 

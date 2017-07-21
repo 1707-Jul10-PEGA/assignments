@@ -483,12 +483,6 @@ public class UserManagement {
 				i = this.manageEmployees();
 			} else if (i == 2) {
 				i = this.manageCustomers(user);
-				/*
-				 * str1 =
-				 * "1.List customers\n2.Manage a customer account\n3.Check applications waiting approval\n4.Exit"
-				 * ; i = userInput.getInputInt(str1); i = this.getApplications(user); i =
-				 * this.checkCustomerAccount(user);
-				 */
 			} else if (i > 3) {
 				System.out.println("Please make a valid choice");
 			}
