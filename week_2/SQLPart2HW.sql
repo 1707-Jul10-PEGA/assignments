@@ -271,16 +271,28 @@ SELECT TO_UPPER_CASE(E.USERNAME) FROM EMPLOYEE E;
 --4.2 System defined aggregate functions
 
 --Create a function that gets the sum of the unit price column from the product table
-CREATE OR REPLACE FUNCTION TOTAL_PRICE(PRICE IN NUMBER)
+CREATE OR REPLACE FUNCTION TOTAL_PRICE
     RETURN NUMBER AS
-    TOTAL_PRICE NUMBER(10,2);
+    P_TOTAL NUMBER(10,2);
     BEGIN
-    SELECT SUM(PRICE) INTO TOTAL_PRICE FROM DUAL;
-    RETURN TOTAL_PRICE;
+        SELECT SUM(UNITCOST) INTO P_TOTAL FROM PRODUCT;
+        RETURN P_TOTAL;
     END;
 /
 
-SELECT SUM(UNITCOST) FROM PRODUCT;
+SELECT TOTAL_PRICE FROM DUAL;
+
+--Create a function that gets the count of all the proucts
+CREATE OR REPLACE FUNCTION GET_INVENTORY
+    RETURN NUMBER AS
+    INVENTORY NUMBER;
+    BEGIN
+        SELECT COUNT(*) INTO INVENTORY FROM PRODUCT;
+        RETURN INVENTORY;
+    END;
+    /
+
+SELECT GET_INVENTORY FROM DUAL;
 
 --4.3 User defined scalar functions
 --create a function that takes two inputs and calculates the cost of the two prduct
@@ -307,20 +319,270 @@ CREATE OR REPLACE PROCEDURE PRINT_ALL_EMPLOYEES
     E_ROW OUT SYS_REFCURSOR
 )AS
 BEGIN
-    OPEN E_ROW FOR SELECT
+    OPEN E_ROW FOR SELECT E.NAME, E.DEPARTMENT, E.MANAGER FROM EMPLOYEE E;
 END;
 /
 
+--Create a stored procedure  that returns all the products  with the name and unit price column
+CREATE OR REPLACE PROCEDURE PODUCT_NAME_PRICE
+(
+    RESULTS OUT SYS_REFCURSOR 
+)AS
+BEGIN
+    OPEN RESULTS FOR 
+    SELECT P.NAME, P.UNITCOST 
+    FROM PRODUCT P;
+END;
+/
+
+--5.2 Stored Procedures with Input Procedures  
+
+--create a stored procedure that takes in a productID and gets the name and description of that product id
+CREATE OR REPLACE  PROCEDURE RETURN_ITEM
+(
+    P_ID NUMBER,
+    RESULTS OUT SYS_REFCURSOR
+)AS
+BEGIN
+    OPEN RESULTS FOR
+     SELECT P.NAME, P.UNITCOST
+      FROM PRODUCT P
+        WHERE P.PRODUCTID = P_ID;
+END;
+/
+
+--Create a procedure that inserts a new manager into the employees table
+CREATE OR REPLACE PROCEDURE NEW_MANAGER
+(
+    E_ID NUMBER,
+    UNAME VARCHAR2,
+    PASS VARCHAR2,
+    NAME VARCHAR2,
+    DEPT VARCHAR2
+)AS
+BEGIN
+    INSERT INTO EMPLOYEE VALUES(E_ID,UNAME,PASS,NAME,DEPT,1);
+END;
+/
+
+--5.3 Stored Procedure Output Parameters
+
+--Create a stored procedure that calculates the value of the unit cost column in the products table and returns the total amount
+CREATE OR REPLACE PROCEDURE TOTAL_COST_PROC
+(
+    TOTAL OUT NUMBER
+)AS
+BEGIN
+    SELECT SUM(UNITCOST) INTO TOTAL
+    FROM PRODUCT;
+END;
+/
+
+--create a procedure that would return username and password based on employeeid
+CREATE OR REPLACE PROCEDURE USERINFO
+(
+    E_ID NUMBER,
+    ACCOUNT_INFO OUT SYS_REFCURSOR
+)AS
+BEGIN
+    OPEN ACCOUNT_INFO FOR
+    SELECT E.USERNAME AS USERNAME, E.PASSWORD AS PASSWORD
+    FROM EMPLOYEE E
+    WHERE E.EMPLOYEEID = E_ID;
+END;
+/
+
+CREATE OR REPLACE PROCEDURE NEW_MANAGER
+(
+    E_ID NUMBER,
+    UNAME VARCHAR2,
+    PASS VARCHAR2,
+    NAME VARCHAR2,
+    DEPT VARCHAR2,
+    MANAGER NUMBER --1 FOR TRUE,, 0 FOR FALSE
+)AS
+BEGIN
+    INSERT INTO EMPLOYEE VALUES(E_ID,UNAME,PASS,NAME,DEPT,MANAGER);
+END;
+/
+
+--6.0 Transactions
+
+--Create a transaction that is nested inside a store procedure that inserts a new into the employee table
+CREATE OR REPLACE PROCEDURE NEW_EMPLOYEE
+(
+    E_ID NUMBER,
+    UNAME VARCHAR2,
+    PASS VARCHAR2,
+    NAME VARCHAR2,
+    DEPT VARCHAR2,
+    MANAGER NUMBER --1 FOR TRUE,, 0 FOR FALSE
+)AS
+BEGIN
+    INSERT INTO EMPLOYEE VALUES(E_ID,UNAME,PASS,NAME,DEPT,MANAGER);
+END;
+/
+
+--Create a transaction that is nested inside a stored procedure that updates the unitprice of a product in the products table
+CREATE OR REPLACE PROCEDURE UPDATE_PRODUCT
+(
+    P_ID IN NUMBER,
+    NEWCOST IN NUMBER
+)AS
+BEGIN
+    UPDATE PRODUCT P
+    SET P.UNITCOST = NEWCOST
+    WHERE P.PRODUCTID = P_ID;
+END;
+/
+
+BEGIN
+    UPDATE_PRODUCT(10414,5);
+END;
+/
+
+--Create a multi-statement transaction nested in a stored procedure that updates at least two products name and description
+CREATE OR REPLACE PROCEDURE UPDATE_TWO_ITEMS
+(
+    P_ID1 IN NUMBER,
+    P_ID2 IN NUMBER,
+    NEWNAME1 IN VARCHAR2,
+    NEWNAME2 IN VARCHAR2,
+    NEWDESCRIPT1 IN VARCHAR2,
+    NEWDESCRIPT2 IN VARCHAR2
+)AS
+BEGIN
+    UPDATE PRODUCT
+    SET NAME = NEWNAME1, DESCRIPT = NEWDESCRIPT1
+    WHERE PRODUCTID = P_ID1;
+    
+    UPDATE PRODUCT
+    SET NAME = NEWNAME2, DESCRIPT = NEWDESCRIPT2
+    WHERE PRODUCTID = P_ID2;
+END;
+/
+
+--7.0 TRIGGERS
+--7.1 AFTER/FOR TRIGGERS
+
+--Create a after insert trigger on the categories table fired after a new record is inserted into the table
+CREATE OR REPLACE TRIGGER AFTER_CAT_INSERT
+    AFTER INSERT ON CATEGORY
+    FOR EACH ROW
+    BEGIN
+        DBMS_OUTPUT.PUT_LINE('NEW CATEGORY: ' || :NEW.NAME);
+    END;
+    /
+    
+--Create a after update trigger on the categories table fires after a row is updated in the table
+CREATE OR REPLACE TRIGGER AFTER_CAT_UPDATE
+    AFTER UPDATE ON CATEGORY
+    FOR EACH ROW
+    BEGIN
+        DBMS_OUTPUT.PUT_LINE('NEW DESCRIPTION: ' || :NEW.DESCRIPT);
+        DBMS_OUTPUT.PUT_LINE('NEW CATEGORY: ' || :NEW.NAME);
+    END;
+    /
+    
+ --Create an after delete trigger on the categories table that fires after a row is deleted
+ CREATE OR REPLACE TRIGGER AFTER_CAT_DELETE
+    AFTER DELETE ON CATEGORY
+    FOR EACH ROW
+    BEGIN
+        DBMS_OUTPUT.PUT_LINE('DELETED A ROW IN CATEGORY');
+    END;
+    /
+    
+--7.2INSTEAD OF TRIGGERS
 
 
+--8.1 INNER JOINS
+
+--perform an inner join on tables products and categories
+SELECT * 
+FROM PRODUCT P
+INNER JOIN CATEGORY C ON P.CATID = C.CATID;
+
+--perform an inner join on tables employees and orders
+SELECT *
+FROM EMPLOYEE E
+INNER JOIN ORDERS O ON E.EMPLOYEEID = O.EMPLOYEEID;
+
+--8.2 OUTER JOIN
+
+--Perform an outer join on tables products and orderitems
+SELECT *
+FROM PRODUCT P
+FULL OUTER JOIN ORDERITEM O ON P.PRODUCTID = P.PRODUCTID;
+
+--Perform an outer join on employee and order
+SELECT *
+FROM EMPLOYEE E
+FULL OUTER JOIN ORDERS O ON E.EMPLOYEEID = O.EMPLOYEEID;
+
+--8.3 RIGHT JOIN
+
+--Perform a right join on tables orders and orderitems
+SELECT * 
+FROM ORDERITEM OI
+RIGHT JOIN ORDERS O ON OI.ORDERID = O.ORDERID;
+
+--Perform a right join on tables products and orderitems
+SELECT *
+FROM ORDERITEM O
+RIGHT JOIN PRODUCT P ON P.PRODUCTID = O.PRODUCTID;
+
+--8.4 LEFT JOIN
+
+--Perform a left join on tables product and categories
+SELECT *
+FROM CATEGORY C
+LEFT JOIN PRODUCT P ON P.CATID = C.CATID;
+
+--Perform a left join on employees and orders
+SELECT *
+FROM EMPLOYEE E
+LEFT JOIN ORDERS O ON E.EMPLOYEEID = O.EMPLOYEEID;
 
 
+--8.5 CROSS JOINS
+--Perform a cross join on tables products and category
+SELECT *
+FROM PRODUCT, CATEGORY
+ORDER BY PRODUCTID ASC;
 
+--8.6 SELF JOIN
 
+--Perform a self join on employees
+SELECT E1.NAME AS EMPLOYEE, E2.NAME AS MANAGER
+FROM EMPLOYEE E1, EMPLOYEE E2
+WHERE E1.DEPARTMENT = E2.DEPARTMENT AND E2.MANAGER = 1 AND E1.NAME <> E2.NAME AND E1.MANAGER <> E2.MANAGER;
 
+--9.0 VIEWS
 
+--create two new columns named SSN and salary on the employees table. Create a view that displays all columns except SSN and salary
+ALTER TABLE EMPLOYEE
+ADD SSN VARCHAR2(11);
 
+ALTER TABLE EMPLOYEE
+ADD SALARY NUMBER(10,2);
 
+CREATE VIEW EMP_INFO AS
+SELECT E.EMPLOYEEID AS ID, E.USERNAME AS USERNAME, E.PASSWORD, E.NAME, E.DEPARTMENT, E.MANAGER
+FROM EMPLOYEE E;
 
+SELECT * FROM EMP_INFO;
 
+--Create a view on the products table that only displays the name of the product and the description
+CREATE VIEW ITEMS_NAME_DESCRIPT AS
+SELECT P.NAME, P.DESCRIPT
+FROM PRODUCT P;
 
+SELECT * FROM ITEMS_NAME_DESCRIPT;
+
+--10.0 INDEXES
+
+--Create cluster index on a table of your choice
+--Nick said we could do a regular index instead
+
+CREATE INDEX ON PRODUCT
