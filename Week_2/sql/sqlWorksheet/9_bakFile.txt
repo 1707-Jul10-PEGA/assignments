@@ -1,0 +1,7 @@
+/* 9.0 Administration */
+
+To Create a .bak file for the Chinook database,
+you first have to select all the tables within
+Oracle SQL Developer. Then, right click the 
+tables and click Export. On the current window, 
+save all the tables as a .bak file.
