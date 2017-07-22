@@ -242,14 +242,74 @@ COMMIT;
 
 --4.0 SQL FUNCTIONS
 
+--4.1 System defined scalar functions
 --create a function that returns the length of the string of the description of the laser pointer
+CREATE OR REPLACE FUNCTION DESC_LEN(P_NAME IN VARCHAR2)
+    RETURN NUMBER AS
+    STR_LENGTH NUMBER(10,0);
+    BEGIN
+        SELECT LENGTH(DESCRIPT) INTO STR_LENGTH FROM PRODUCT WHERE NAME = P_NAME;
+        RETURN STR_LENGTH;
+    END;
+/
+--LASER POINTER WAS DELETED IN ONE OF THE PREVIOUS TASK
+SELECT DESC_LEN('Ruler') from dual;
+
+--Create a function that converts a username in the employees table to uppercase
+CREATE OR REPLACE FUNCTION TO_UPPER_CASE(STR IN VARCHAR2)
+    RETURN VARCHAR2 AS
+    UPPERCASE VARCHAR2(255);
+    BEGIN
+    SELECT UPPER(STR) INTO UPPERCASE FROM DUAL;
+    RETURN UPPERCASE;
+    END;
+/
+
+SELECT TO_UPPER_CASE(E.USERNAME) FROM EMPLOYEE E;
 
 
+--4.2 System defined aggregate functions
 
+--Create a function that gets the sum of the unit price column from the product table
+CREATE OR REPLACE FUNCTION TOTAL_PRICE(PRICE IN NUMBER)
+    RETURN NUMBER AS
+    TOTAL_PRICE NUMBER(10,2);
+    BEGIN
+    SELECT SUM(PRICE) INTO TOTAL_PRICE FROM DUAL;
+    RETURN TOTAL_PRICE;
+    END;
+/
 
+SELECT SUM(UNITCOST) FROM PRODUCT;
 
+--4.3 User defined scalar functions
+--create a function that takes two inputs and calculates the cost of the two prduct
+CREATE OR REPLACE FUNCTION TOTAL_COST(P1_COST IN NUMBER, P2_COST IN NUMBER)
+    RETURN NUMEBR AS
+    T_COST NUMBER(10,2);
+    BEGIN
+        SELECT P1_COST+P2_COST INTO T_COST FROM dual;
+        RETURN T_COST;
+    END;
+/
+    
+SELECT (P1.UNITCOST+P2.UNITCOST) FROM PRODUCT P1, PRODUCT P2 WHERE P1.PRODUCTID = 10414 AND P2.PRODUCTID = 91249;    
 
+SELECT 8+8 FROM DUAL;
 
+--4.4 User defined table value functions
+--Create a function that returns whether or not a username belongs to a manager
+
+--5.0 Stored Procedures
+--create a store procedure that returns all the employees with the username, dept, and manager columns from the employee table
+CREATE OR REPLACE PROCEDURE PRINT_ALL_EMPLOYEES
+(
+    E_ROW OUT SYS_REFCURSOR
+)AS
+BEGIN
+    OPEN E_ROW FOR SELECT
+END;
+/
 
 
 
