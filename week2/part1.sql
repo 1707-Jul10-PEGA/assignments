@@ -184,7 +184,6 @@ begin
         where title = temptitle;
 
 end;
-
 /
 
 select * from employee;
@@ -207,6 +206,7 @@ from Customer
 where CustomerID = p_id;
 end;
 /
+/*
 declare
 firstname varchar2(40);
 lastname varchar2(20);
@@ -215,7 +215,7 @@ begin
     customerInfo(1, firstname, lastname, company);
     dbms_output.put_line(firstname || ' ' || lastname || ' ' || company);
 end;
-/
+*//
 /* 5.0 */
 Declare id Number;
 Begin 
