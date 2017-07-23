@@ -585,4 +585,9 @@ SELECT * FROM ITEMS_NAME_DESCRIPT;
 --Create cluster index on a table of your choice
 --Nick said we could do a regular index instead
 
-CREATE INDEX ON PRODUCT
+CREATE INDEX NAME_DESC ON PRODUCT (NAME, DESCRIPT);
+
+--11.0 ADMINSTRATION
+--CREATE A BAK FILE FOR THE OFFICE SUPPLY DATABASE
+
+--included a back up file called officesupply back up in assignments/week_2
