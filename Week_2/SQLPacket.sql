@@ -84,31 +84,304 @@ DECLARE
         DBMS_OUTPUT.PUT_LINE('INVOICE AVERAGE TOTAL: ' || d);
     END;
     /
+    
 SET SERVEROUTPUT ON 
-drop function MaxTrackPrice;
-CREATE OR REPLACE PROCEDURE MaxTrackPrice(row_ref OUT SYS_REFCURSOR) 
+CREATE OR REPLACE FUNCTION MaxTrackPrice
+    return NUMBER
     AS
+    max_price NUMBER;
     BEGIN
-        OPEN row_ref for 
-        SELECT name, max(UNITPRICE) FROM TRACK T GROUP BY (T.NAME, UNITPRICE);
+        SELECT MAX(Unitprice) into max_price FROM invoiceline;
+        return max_price;
 
     END;
     /
     
-    select MaxTrackPrice from dual;
 DECLARE
-    row_ref SYS_REFCURSOR;
-    tname varchar(255);
     maxprice NUMBER;
     
     BEGIN
-        MaxTrackPrice(row_ref);
-        LOOP
-            FETCH row_ref into name := tname, maxprice;
-            EXIT WHEN row_ref%NOTFOUND;
-            DBMS_OUTPUT.PUT_LINE('TRACK WITH THE MAX PRICE: ' || tname || ' Unit Price: ' || maxprice);
-        END LOOP;
-        CLOSE row_ref;
+        maxprice := MaxTrackPrice();
+        DBMS_OUTPUT.PUT_LINE('MAX Price: ' || maxprice);
     END;
     /
     
+/* 3.3 User Defined Scaler Functions*/
+SET SERVEROUTPUT ON 
+CREATE OR REPLACE FUNCTION avg_invoiceline
+    return NUMBER
+    AS
+    avg_price NUMBER;
+    BEGIN
+        SELECT avg(Unitprice) into avg_price FROM invoiceline;
+        return avg_price;
+
+    END;
+    /
+    
+DECLARE
+    avgprice NUMBER;
+    BEGIN
+        avgprice := avg_invoiceline();
+        DBMS_OUTPUT.PUT_LINE('AVG Price: ' || avgprice);
+    END;
+    /
+    
+/* 3.4 User Defined Table Valued Functions */
+CREATE OR REPLACE PROCEDURE all_employee_after_1968( SELECT_ROW OUT SYS_REFCURSOR)
+    AS
+    BEGIN
+        OPEN SELECT_ROW FOR SELECT E.FIRSTNAME, E.LASTNAME, E.BIRTHDATE FROM EMPLOYEE E WHERE BIRTHDATE > TO_DATE('1968', 'YYYY');
+    END;
+    /
+    
+DECLARE
+    SELECT_ROW SYS_REFCURSOR;
+    FIRSTNAME VARCHAR(255);
+    LASTNAME VARCHAR(255);
+    BIRTHDATE DATE;
+    BEGIN
+        all_employee_after_1968( SELECT_ROW);
+        LOOP
+            FETCH SELECT_ROW INTO FIRSTNAME, LASTNAME, BIRTHDATE;
+            EXIT WHEN SELECT_ROW%NOTFOUND;
+            DBMS_OUTPUT.PUT_LINE('NAME: ' || FIRSTNAME || ' ' || LASTNAME || ' BIRTHDATE: ' || BIRTHDATE);
+        END LOOP;
+        CLOSE SELECT_ROW;
+    END;
+    /
+    
+/*4.0 Stored Procedure */
+/*4.1 Basic Stored Procedure */
+ CREATE OR REPLACE PROCEDURE all_employee_name( SELECT_ROW OUT SYS_REFCURSOR)
+    AS
+    BEGIN
+        OPEN SELECT_ROW FOR SELECT E.FIRSTNAME, E.LASTNAME FROM EMPLOYEE E;
+    END;
+    /
+    
+DECLARE
+    SELECT_ROW SYS_REFCURSOR;
+    FIRSTNAME VARCHAR(255);
+    LASTNAME VARCHAR(255);
+    BEGIN
+        all_employee_name( SELECT_ROW);
+        LOOP
+            FETCH SELECT_ROW INTO FIRSTNAME, LASTNAME;
+            EXIT WHEN SELECT_ROW%NOTFOUND;
+            DBMS_OUTPUT.PUT_LINE('NAME: ' || FIRSTNAME || ' ' || LASTNAME);
+        END LOOP;
+        CLOSE SELECT_ROW;
+    END;
+    /
+    
+/*4.2 Stored Procedure Input Parameters */
+ CREATE OR REPLACE PROCEDURE update_employee
+    ( 
+    SELECT_ROW OUT SYS_REFCURSOR,
+    E_ID IN NUMBER,
+	E_LASTNAME IN VARCHAR2, 
+	E_FIRSTNAME IN VARCHAR2
+    )
+    AS
+    BEGIN
+        UPDATE Employee E SET E.FIRSTNAME = E_FIRSTNAME, E.LASTNAME = E_LASTNAME where E.EMPLOYEEID = E_ID;
+        OPEN SELECT_ROW FOR SELECT * FROM EMPLOYEE E where E.EMPLOYEEID = E_ID;
+    END;
+    /
+    
+DECLARE
+    SELECT_ROW SYS_REFCURSOR;
+    EMPLOYEEID NUMBER;
+    LASTNAME VARCHAR2(255); 
+	FIRSTNAME VARCHAR2(255); 
+	TITLE VARCHAR2(255);
+	REPORTSTO NUMBER; 
+	BIRTHDATE DATE; 
+	HIREDATE DATE; 
+	ADDRESS VARCHAR2(255);
+	CITY VARCHAR2(255); 
+	STATE VARCHAR2(255);
+	COUNTRY VARCHAR2(255); 
+	POSTALCODE VARCHAR2(255); 
+	PHONE VARCHAR2(255); 
+	FAX VARCHAR2(255); 
+	EMAIL VARCHAR2(255);
+    BEGIN
+        update_employee( SELECT_ROW, 1, 'Jaime', 'King');
+        LOOP
+            FETCH SELECT_ROW INTO EMPLOYEEID, LASTNAME, FIRSTNAME, TITLE, REPORTSTO, BIRTHDATE, HIREDATE, ADDRESS, CITY, STATE, COUNTRY, POSTALCODE, PHONE, FAX, EMAIL;
+            EXIT WHEN SELECT_ROW%NOTFOUND;
+            DBMS_OUTPUT.PUT_LINE('EMPLOYEE: ' || EMPLOYEEID || ' ' ||  LASTNAME || ' ' || 
+                FIRSTNAME || ' ' || TITLE || ' ' ||  REPORTSTO || ' ' || BIRTHDATE || ' ' || 
+                HIREDATE || ' ' || ADDRESS || ' ' ||  CITY || ' ' ||  STATE || ' ' ||  COUNTRY || ' ' ||  
+                POSTALCODE || ' ' ||  PHONE || ' ' ||  FAX || ' ' ||  EMAIL);
+        END LOOP;
+        CLOSE SELECT_ROW;
+    END;
+    /
+    
+ CREATE OR REPLACE PROCEDURE manager_list( SELECT_ROW OUT SYS_REFCURSOR)
+    AS
+    BEGIN
+        OPEN SELECT_ROW FOR SELECT * FROM EMPLOYEE E where E.TITLE LIKE '% Manager%';
+    END;
+    /
+    
+DECLARE
+    SELECT_ROW SYS_REFCURSOR;
+    EMPLOYEEID NUMBER;
+    LASTNAME VARCHAR2(255); 
+	FIRSTNAME VARCHAR2(255); 
+	TITLE VARCHAR2(255);
+	REPORTSTO NUMBER; 
+	BIRTHDATE DATE; 
+	HIREDATE DATE; 
+	ADDRESS VARCHAR2(255);
+	CITY VARCHAR2(255); 
+	STATE VARCHAR2(255);
+	COUNTRY VARCHAR2(255); 
+	POSTALCODE VARCHAR2(255); 
+	PHONE VARCHAR2(255); 
+	FAX VARCHAR2(255); 
+	EMAIL VARCHAR2(255);
+    BEGIN
+        manager_list( SELECT_ROW);
+        LOOP
+            FETCH SELECT_ROW INTO EMPLOYEEID, LASTNAME, FIRSTNAME, TITLE, REPORTSTO, BIRTHDATE, HIREDATE, ADDRESS, CITY, STATE, COUNTRY, POSTALCODE, PHONE, FAX, EMAIL;
+            EXIT WHEN SELECT_ROW%NOTFOUND;
+            DBMS_OUTPUT.PUT_LINE('EMPLOYEE: ' || EMPLOYEEID || ' ' ||  LASTNAME || ' ' || 
+                FIRSTNAME || ' ' || TITLE || ' ' ||  REPORTSTO || ' ' || BIRTHDATE || ' ' || 
+                HIREDATE || ' ' || ADDRESS || ' ' ||  CITY || ' ' ||  STATE || ' ' ||  COUNTRY || ' ' ||  
+                POSTALCODE || ' ' ||  PHONE || ' ' ||  FAX || ' ' ||  EMAIL);
+        END LOOP;
+        CLOSE SELECT_ROW;
+    END;
+    /
+   
+/* 4.3 Stored Procedure Output Parameters */
+ CREATE OR REPLACE PROCEDURE getCUSTOMER_Name_Company
+    ( 
+    SELECT_ROW OUT SYS_REFCURSOR,
+    C_ID NUMBER
+    )
+    AS
+    BEGIN
+        OPEN SELECT_ROW FOR SELECT C.FIRSTNAME, C.LASTNAME, C.COMPANY FROM CUSTOMER C where C.CUSTOMERID = C_ID;
+    END;
+    /
+DECLARE
+    SELECT_ROW SYS_REFCURSOR;
+    LASTNAME VARCHAR2(255); 
+	FIRSTNAME VARCHAR2(255); 
+    COMPANY VARCHAR2(255);
+    BEGIN
+        getCUSTOMER_Name_Company(select_row,1);
+        LOOP
+            FETCH SELECT_ROW INTO LASTNAME, FIRSTNAME, COMPANY;
+            EXIT WHEN SELECT_ROW%NOTFOUND;
+            DBMS_OUTPUT.PUT_LINE('CUSTOMER: ' ||   LASTNAME || ' ' || FIRSTNAME || ' COMPANY: ' || COMPANY );
+        END LOOP;
+        CLOSE SELECT_ROW;
+    END;
+    /
+    
+/* 5.0 TRANSACTION */
+ CREATE OR REPLACE PROCEDURE DELETE_INVOICE( I_ID IN NUMBER)
+    AS
+    BEGIN
+        DELETE FROM INVOICELINE I_LINE WHERE I_LINE.INVOICEID = I_ID;
+        DELETE FROM INVOICE I WHERE I.INVOICEID = I_ID;
+    END;
+    /
+    
+DECLARE
+    BEGIN
+        DELETE_INVOICE(238);
+    END;
+    /
+    
+ CREATE OR REPLACE PROCEDURE INSERT_CUSTOMER(
+    CustomerId NUMBER,
+    FirstName VARCHAR2,
+    LastName VARCHAR2,
+    Company VARCHAR2,
+    Address VARCHAR2,
+    City VARCHAR2,
+    State VARCHAR2,
+    Country VARCHAR2,
+    PostalCode VARCHAR2,
+    Phone VARCHAR2,
+    Fax VARCHAR2,
+    Email VARCHAR2,
+    SupportRepId NUMBER)
+    AS
+    BEGIN
+        INSERT INTO CUSTOMER VALUES(CustomerId,FirstName,LastName,Company,Address,City,State,Country,PostalCode,Phone,Fax,Email,SupportRepId);
+    END;
+    /
+    
+DECLARE
+    BEGIN
+        INSERT_CUSTOMER(62, 'Yang', 'Haihoua', 'Revature', 'BLAH BLAH Stret', 'Some City', 'NC', 'USA', '12227-000', '+1 704 255 2555', '+1 704 255 2555', 'haihouayang@gmail.com', null);
+    END;
+    /
+    
+/* 6.0 TRIGGERS */
+/* 6.1 AFTER/FOR */
+CREATE OR REPLACE TRIGGER EMPLOYEE_INSERT_TRIG
+    AFTER INSERT ON EMPLOYEE
+    FOR EACH ROW
+    BEGIN
+        DBMS_OUTPUT.PUT_LINE('AFTER INSERTION INTO EMPLOYEE');
+    END;
+    /
+CREATE OR REPLACE TRIGGER ALBUM_INSERT_TRIG
+    AFTER INSERT ON ALBUM
+    FOR EACH ROW
+    BEGIN
+        DBMS_OUTPUT.PUT_LINE('AFTER INSERTION INTO EMPLOYEE');
+    END;
+    /
+CREATE OR REPLACE TRIGGER CUSTOMER_DELETE_TRIG
+    AFTER DELETE ON CUSTOMER
+    FOR EACH ROW
+    BEGIN
+        DBMS_OUTPUT.PUT_LINE('AFTER DELETE FROM CUSTOMER');
+    END;
+    /
+/* 6.2 INSTEAD OF */
+CREATE VIEW vw_INVOICE AS SELECT * FROM INVOICE;
+
+CREATE OR REPLACE TRIGGER INVOICE_ONDELETE
+    INSTEAD OF DELETE ON vw_INVOICE
+    FOR EACH ROW
+    BEGIN
+        IF (:old.TOTAL > 50) THEN
+            DELETE FROM vw_INVOICE WHERE INVOICEID = :old.INVOICEID;
+            DBMS_OUTPUT.PUT_LINE('INVOICE ON DELETE');
+        END IF;
+    END;
+    /
+    
+/* 7.0 JOINS */
+/* 7.1 INNER */
+SELECT INVOICEID, FIRSTNAME, LASTNAME FROM CUSTOMER C INNER JOIN INVOICE ON C.CUSTOMERID=INVOICE.CUSTOMERID;
+/* 7.2 OUTER */
+SELECT C.CUSTOMERID, C.FIRSTNAME, C.LASTNAME, I.INVOICEID, I.TOTAL FROM CUSTOMER C FULL OUTER JOIN INVOICE I ON C.CUSTOMERID=I.CUSTOMERID;
+/* 7.3 RIGHT */
+SELECT A.NAME, ALBUM.TITLE FROM ALBUM RIGHT JOIN ARTIST A ON ALBUM.ARTISTID = A.ARTISTID;
+/* 7.4 CROSS */
+SELECT * FROM ALBUM A CROSS JOIN ARTIST A ORDER BY NAME ASC;
+/*7.5 SELF-JOIN */
+SELECT * FROM EMPLOYEE A, EMPLOYEE B WHERE A.REPORTSTO = B. REPORTSTO;
+
+/* 8.0 INDEXES */
+/* 8.1 CLUSTERED INDEXES */
+CREATE CLUSTER PERSON ( EMPLOYEE_ID  NUMBER(4), EMPLOYEE_NAME VARCHAR2(255)) 
+    SIZE 512 
+    STORAGE (INITIAL 100K NEXT 50K); 
+
+CREATE INDEX idx_PERSON ON CLUSTER PERSON;
+
+/* 9.0 ADMINISTRATION */
