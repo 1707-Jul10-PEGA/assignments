@@ -1,0 +1,37 @@
+$ OBSTACLES
+
+1) Unable to implement Junit	
+
+==========	
+$ TRY
+	
+	
+==========	
+$ TODO
+
+- CURR customer>viewAccount
+
+1) will sql queries happen in each user class?
+	dashboard is just calling methods onto the users
+	
+2) customer > apply
+	- having an applicationrequest class might not be needed anymomre..
+	
+4) setauth user
+	- dont need the first sql query?
+	
+2) createCustomer and employee..
+	I inserted new values within the specific tables.
+	
+	Do i have to do something similar when i load from login?
+	Or would the usernames be okay... 
+3) employees table seems backwards?
+2) Log
+ - added one logging to serial classes; where eof is reached
+3) Junit
+
+4) final thoughts...
+	- can i eventually get rid of the authenticated user?
+	- rely solely on database for information
+	
+DONT FORGET to delete data files for final submission
