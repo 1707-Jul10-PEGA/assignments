@@ -4,6 +4,7 @@ import org.apache.log4j.Logger;
 
 import com.WilliamLewis.BankingApp.BankData.BankData;
 import com.WilliamLewis.BankingApp.BankData.Accounts.Account;
+import com.WilliamLewis.BankingApp.Users.User;
 
 /**
  * 
@@ -15,7 +16,7 @@ import com.WilliamLewis.BankingApp.BankData.Accounts.Account;
 public class AccountFactory {
 	private static Logger log = Logger.getRootLogger();
 
-	public static int createAccount(String type, String Username) {
+	public static int createAccount(String type, User owner) {
 		Account ba;
 		type = type.toLowerCase();
 
@@ -23,13 +24,13 @@ public class AccountFactory {
 		// accounts, could change IDs to work with a hashing function later if
 		// we need to upscale
 		Integer myId = (int) (Math.random() * 100000);
-		while (BankData.getInstance().checkID(myId)) {
+		while (!BankData.getInstance().freeID(myId)) {
 			myId = (int) (Math.random() * 100000);
 		}
 		// Add cases for other account types as needed,
 		switch (type) {
 		case "basic":
-			ba = new Account(Username, myId);
+			ba = new Account(owner, myId);
 			ba.initialize();
 			return myId;
 		default:

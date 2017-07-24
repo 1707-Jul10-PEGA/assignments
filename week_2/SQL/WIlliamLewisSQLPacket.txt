@@ -1,0 +1,644 @@
+--2.1
+SELECT * From Employee;
+SELECT * FROM Employee where (Lastname = 'King');
+SELECT * FROM Employee where (Firstname = 'Andrew') AND (Reportsto = null);
+
+--2.2
+SELECT * From Album Order by title desc;
+SELECT Firstname FROM Customer Order by city asc;
+
+--2.3
+Insert into Genre (GenreId, name) VALUES (10000, 'HardcoreChristian DeathMetal');
+Insert into Genre (GenreId, name) VALUES (12312410, 'BlueGrassStyleDubstep');
+
+Insert into Employee (EmployeeId, Firstname, Lastname) Values (215351531, 'Joey' , 'Lukas');
+Insert into Employee (EmployeeId, Firstname, Lastname) Values (215351531, 'Bobby' , 'Hill');
+
+Insert into Customer (CustomerId, Firstname, Lastname) Values (21531, 'Fred' , 'Bread');
+Insert into Customer (CustomerId, Firstname, Lastname) Values (21531, 'Human' , 'Monster');
+
+--2.4
+Update Customer SET Firstname = 'Robert', Lastname = 'Walter' where Firstname = 'Aaron' AND Lastname = 'Mitchell';
+Update Artist Set (Name = 'CCR') where (Name = 'Creedence Clearwater Revival');
+
+--2.5
+Select * FROM invoice where Billingaddress Like 'T%';
+
+--2.6
+Select * FROM invoice where total BETWEEN  15 AND 20
+--TODATE ('11/23/4124', 'MM-MM-YY')
+SELECT * FROM Employee where HireDate BETWEEN  TO_DATE ('06/01/2003', 'MM-DD-YYYY') AND TO_DATE ('03/01/2004', 'MM-DD-YYYY');
+
+--2.7
+--To allow deletion
+ALTER TABLE Customer NOCHECK CONSTRAINT PK_Customer;
+Delete FROM Customer where (Firstname = 'Robert') AND (Lastname = 'Walter');
+
+--3.1
+SELECT CURRENT_TIMESTAMP FROM DUAL;
+
+CREATE OR REPLACE FUNCTION TIMESTAMP_NOW RETURN DATE AS 
+BEGIN
+  SELECT CURRENT_TIMESTAMP FROM DUAL;
+END TIMESTAMP_NOW;
+/
+
+CREATE OR REPLACE FUNCTION mediaLength
+RETURN NUMBER AS
+media_Length Number; 
+BEGIN 
+	SELECT length(name) INTO media_Length FROM MediaType;
+END;
+/
+SELECT length(name) FROM MediaType;
+
+
+--3.2
+CREATE OR REPLACE FUNCTION averageInvoice
+RETURN NUMBER AS 
+Average number;
+BEGIN
+	SELECT AVG(Total) into Average FROM invoice; 
+    return average;
+END;
+/
+
+CREATE OR REPLACE FUNCTION MAX_UNIT_PRICE
+RETURN NUMBER AS
+AVERAGE NUMBER;
+BEGIN
+    SELECT MAX(UnitPRice) INTO AVERAGE FROM TRACK;
+    RETURN AVERAGE;
+END;
+/
+--3.3
+CREATE OR REPLACE FUNCTION AVG_UNIT_PRICE
+RETURN NUMBER AS
+AVERAGE NUMBER;
+BEGIN
+    SELECT AVG(UnitPrice)as average FROM invoiceLine;
+    RETURN average;
+END;
+/
+
+--3.4
+CREATE OR REPLACE FUNCTION EMP_BEFORE_1968
+RETURN SYS_REFCURSOR AS
+MYCURSOR SYS_REFCURSOR;
+BEGIN
+     OPEN MYCURSOR FOR
+    SELECT * FROM Employee WHERE Employee.birthdate > TO_DATE ('12/31/1968', 'MM-DD-YYYY');
+    RETURN MYCURSOR;
+END;
+/
+
+--4.1
+
+CREATE OR REPLACE PROCEDURE EMPLOYEE_NAME_SELECT
+(
+    MYCURSOR out SYS_REFCURSOR
+)
+AS
+BEGIN
+    OPEN MYCURSOR FOR
+	SELECT FIRSTNAME, LASTNAME FROM EMPLOYEE;
+END;
+/
+
+CREATE OR REPLACE PROCEDURE EMPLOYEE_NAME_SET
+(
+	EmployeeID2 IN NUMBER,
+    LastName2 IN VARCHAR2,
+    FirstName2 IN VARCHAR2,
+    BirthDate2 IN DATE,
+    Address2 IN VARCHAR2,
+    City2 IN VARCHAR2,
+    State2 IN VARCHAR2,
+    COUNTRY2 IN VARCHAR2,
+    POSTALCODE2 IN VARCHAR2,
+    PHONE2 IN VARCHAR2,
+    FAX2 IN VARCHAR2,
+    EMAIL2 IN VARCHAR2
+) AS
+BEGIN
+	UPDATE Employee set (Lastname = LastName2), (FirstName = FirstName2), (Birthdate = birthdate2), (Address = address2)
+	(City = City2), (State = State2), (Country = Country2), (PostalCode = PostalCode2), (Phone = Phone2), (Fax = Fax2), (Email = email2) Where 
+	(EmployeeID = EmployeeID2);
+END;
+/
+
+CREATE OR REPLACE PROCEDURE MANAGER_OF_EMPLOYEE
+(
+	EmployeeID2 IN Number,
+	MYCURSOR OUT SYS_REFCURSOR
+) AS
+BEGIN 
+    OPEN MYCURSOR FOR 
+	SELECT B.FirstName, B.LastName FROM Employee A
+    JOIN EMployee B ON A.EmployeeID = B.Reportsto WHERE A.EmployeeID = EmployeeID2;
+END;
+/
+
+
+--SELECT B.FirstName, B.LastName FROM Employee A 
+--JOIN Employee B ON A.EmployeeID = B.Reportsto WHERE A.Firstname = 'Andrew';
+
+CREATE OR REPLACE PROCEDURE NAME_AND_COMPANY_CUSTOMER
+(
+	CUSTOMERID2 in Number,
+	Name2 out VARCHAR2,
+	Company2 out VARCHAR2
+) AS
+BEGIN 
+	SELECT FirstName, Company into Name2, Company2 from Customer where CustomerID = CustomerID2;
+END;
+/
+--To allow deletion             
+ALTER TABLE INVOICE NOCHECK CONSTRAINT PK_Invoice;
+CREATE OR REPLACE PROCEDURE DELETE_INVOICE
+(
+    ReadInvoiceID in Number
+)AS
+BEGIN TRANSACTION
+    DELETE FROM INVOICE WHERE INVOICE.INVOICEID = ReadInvoiceID;
+COMMIT;
+/
+
+CREATE OR REPLACE PROCEDURE INSERT_CUSTOMER
+(
+ 	CustomerID2 IN NUMBER,
+    LastName2 IN VARCHAR2,
+    FirstName2 IN VARCHAR2,
+    Company2 IN VARCHAR2,
+    Address2 IN VARCHAR2,
+    City2 IN VARCHAR2,
+    State2 IN VARCHAR2,
+    COUNTRY2 IN VARCHAR2,
+    POSTALCODE2 IN VARCHAR2,
+    PHONE2 IN VARCHAR2,
+    FAX2 IN VARCHAR2,
+    EMAIL2 IN VARCHAR2,
+    SUPPORTREPID2 IN NUMBER
+    
+
+) AS
+BEGIN TRANSACTION
+    INSERT INTO Customer (CustomerID, FirstName, LastName, Company, Address, City, State, Country, PostalCode, Phone, Fax, Email, Supportrepid)
+    VALUES (CustomerID2, FirstName2, Lastname2, Company2, address2, City2, state2, country2, postalcode2, phone2, fax2, email2, supportrepid2);
+COMMIT;
+/
+
+--3.4
+CREATE OR REPLACE TRIGGER AFTER_EMP_INSERT 
+	AFTER INSERT ON EMPLOYEE
+	FOR EACH ROW
+	BEGIN
+			; --Do stuff here
+	END;
+
+/
+
+
+CREATE OR REPLACE TRIGGER AFTER_ALBUM_UPDATE
+	AFTER UPDATE ON Album
+	FOR EACH ROW
+	BEGIN
+		; --Do stuff here
+	END;
+/
+
+CREATE OR REPLACE TRIGGER AFTER_ALBUM_DELETE
+	AFTER DELETE ON CUSTOMER 
+    FOR EACH ROW
+	BEGIN
+		; --Do stuff here
+	END;
+/
+
+
+
+
+
+--Joins 7.1
+SELECT Customer.FIRSTNAME, Customer.Lastname, Invoice.invoiceID
+FROM Customer
+INNER JOIN Invoice On invoice.CustomerID = Customer.CustomerID;
+
+--7.2 
+SELECT Customer.FirstNAME, Customer.CustomerID, Customer.Lastname, invoice.invoiceid, invoice.total
+FROM Customer
+FULL OUTER JOIN invoice ON invoice.customerId = Customer.CustomerID;
+
+--7.3
+Select Album.Title, Artist.name
+FROM Album
+RIGHT JOIN Artist ON artist.artistID = album.ArtistID Order By  Artist.name asc;
+
+--7.4
+Select *
+FROM Album
+CROSS JOIN Artist Order By  Artist.name asc;
+
+--7.5
+SELECT A.reportsto, B.FirstName FROM Employee A JOIN Employee B ON A.EmployeeID = B.EmployeeID; 
+
+
+
+--8
+--ON Table creation just add Organization index;
+
+--9.0
+--I would export the the table files whereever I needed them for this
+
+
+
+
+CREATE FUNCTION employeeName()
+RETURNS VARCHAR(20)
+AS
+RETURN SELECT FirstNAME,lastname From Employee; 
+
+CREATE FUNCTION updatePersonalEmp(EmployeeId)
+RETURNS VOID
+AS
+UPDATE ( )
+
+
+--New Database
+DROP USER OfficeSupply
+
+CREAT USER OfficeSupply
+IDENTIFIED BY officepass
+DEFAULT TABLESPACE users
+TEMPORARY TABLESPACE TEMPORARY
+QUOTA 10M ON users;
+
+GRANT connect to OfficeSupply;
+GRANT resource to OfficeSupply;
+GRANT create session TO OfficeSupply;
+GRANT create table TO OfficeSupply;
+GRANT create view TO OfficeSupply;
+
+
+
+conn OfficeSupply/officepass
+
+CREATE TABLE Employees
+(
+	EmloyeeID(PK number, not null),
+	UserName(varchar2(20), not null),
+	Password(varchar2(20), not null),
+	Name(varchar2(25), not null),
+	Department(char(2), not null),
+	Manager(Number(1)),
+	CONSTRAINT PK_Employee PRIMARY KEY (EmployeeID)
+);
+
+CREATE TABLE ORDERS
+(
+	OrderID(number not null),
+	EmployeeID(number not null),
+	OrderDate(date, not null),
+	Status(char, not null),
+	CONSTRAINT PK_Orders PRIMARY KEY (OrderID)
+
+);
+CREATE TABLE OrderItem
+(
+	OrderID number not null,
+	ProductID number not null,
+	Quantity number not null,
+	CONSTRAINT PK_OrderItem PRIMARY KEY (OrderID)
+);
+CREATE TABLE CATEGORY 
+(
+	CatID (number not null),
+	Name (varchar(80), null)
+	Descript(varchar(255), null),
+	CONSTRAINT PK_CATEGORY PRIMARY KEY (CatID)
+
+);
+CREATE TABLE PRODUCT
+(
+	ProductID(number not null),
+	CatID(number not null),
+	Name(varchar(80),null),
+	Descript(varchar(255), null),
+	UnitCost(number, null),
+	SuppID(number not null),
+	CONSTRAINT PK_Product PRIMARY KEY (ProductID)
+
+);
+CREATE TABLE SUPPLIER 
+(
+	SuppID(number not null),
+	Name(varchar(80), null),
+	CONSTRAINT PK_Supplier PRIMARY KEY (SuppID)
+);
+
+ALTER TABLE ORDERS ADD CONSTRAINT FK_OrdersEmployeeID
+	FOREIGN KEY (EmployeeID) REFERENCES Employee (EmployeeID);
+
+ALTER TABLE ORDERITEM ADD CONSTRAINT FK_OrderItemOrdersID
+	FOREIGN KEY (OrerID) REFERENCES Orders (OrderID);
+
+ALTER TABLE ORDERITEM ADD CONSTRAINT FK_OrderItemEmployeeID
+	FOREIGN KEY (EmployeeID) REFERENCES Employee (EmployeeID);
+
+ALTER TABLE PRODUCT ADD CONSTRAINT FK_ProductCatID
+	FOREIGN KEY (CatID) REFERENCES Category (CatID);
+
+ALTER TABLE PRODUCT ADD CONSTRAINT FK_ProductSuppID
+	FOREIGN KEY (SuppID) REFERENCES Supplier (SuppID);
+
+
+INSERT INTO Employee (EmployeeID, UserName, Password, Department, Manager) VALUES (1, 'dclark', 'drc', 'HR', 0 );
+INSERT INTO Employee (EmployeeID, UserName, Password, Department, Manager) VALUES (2, 'jsmith', 'js', 'IT', 1);
+INSERT INTO Employee (EmployeeID, UserName, Password, Department, Manager) VALUES (3,  'mjones', 'mj', 'HR', 1);
+INSERT INTO Employee (EmployeeID, UserName, Password, Department, Manager) VALUES (4, 'klink', 'kl', 'IT', 0 );
+
+INSERT INTO PRODUCT (ProductID, CatID, Name, Descript, UnitCost, SuppID) VALUES(10414, 2, 'Ruler', '12 inch stainless steel', 3.79, 2);
+INSERT INTO PRODUCT (ProductID, CatID, Name, Descript, UnitCost, SuppID) VALUES(7070, 1, 'Transparency', 'Quick dry ink jet', 24.49, 1);
+INSERT INTO PRODUCT (ProductID, CatID, Name, Descript, UnitCost, SuppID) VALUES(124, 1, 'Overhead Bulb', 'High intensity replacement bulb', 12.00,1);
+INSERT INTO PRODUCT (ProductID, CatID, Name, Descript, UnitCost, SuppID) VALUES(1200, 1, 'Laser Pointer', 'General purpose laser pointer', 29.99, 2);
+INSERT INTO PRODUCT (ProductID, CatID, Name, Descript, UnitCost, SuppID) VALUES(68401, 2, 'Colored Pencils', 'Non toxic 12 pack', 2.84, 1);
+INSERT INTO PRODUCT (ProductID, CatID, Name, Descript, UnitCost, SuppID) VALUES(91249, 3, 'All-Purpose Cleaner', 'Use on all washable surfaces', 4.29, 2);
+INSERT INTO PRODUCT (ProductID, CatID, Name, Descript, UnitCost, SuppID) VALUES(28124, 3, 'Paper Hand Towels', '320 sheets per roll', 5.25, 1);
+INSERT INTO PRODUCT (ProductID, CatID, Name, Descript, UnitCost, SuppID) VALUES(41143, 4, 'CD-R', '700 mb with jewel case', 1.09, 1)
+INSERT INTO PRODUCT (ProductID, CatID, Name, Descript, UnitCost, SuppID) VALUES(44766, 4, '3.5 inch Disks', 'High Density Formatted Box of 10', 5.99, 1);
+INSERT INTO PRODUCT (ProductID, CatID, Name, Descript, UnitCost, SuppID) VALUES(12164, 4, 'Monitor wipes', 'Non abrasive lint free', 6.99, 2);
+INSERT INTO PRODUCT (ProductID, CatID, Name, Descript, UnitCost, SuppID) VALUES(22256, 4, 'Dust Blaster', 'Ozone safe no CFCs', 8.99. 2);
+INSERT INTO PRODUCT (ProductID, CatID, Name, Descript, UnitCost, SuppID) VALUES(6200, 2, 'Clear Tape', '1 inch wide 6 rolls', 3.90, 1);
+INSERT INTO PRODUCT (ProductID, CatID, Name, Descript, UnitCost, SuppID) VALUES(9700P, 1, 'Overhead Projector', 'Portable with travel cover', 759.97, 1);
+INSERT INTO PRODUCT (ProductID, CatID, Name, Descript, UnitCost, SuppID) VALUES(5000, 2, 'Glue Stick', 'Oderless non toxic', 1.99, 2);
+
+
+
+INSERT INTO SUPPLIER(SuppID, Name) VALUES (1, 'XYZ Office Supplies');
+INSERT INTO SUPPLIER(SuppID, Name) VALUES (2, 'ABC Office Products');
+
+
+INSERT INTO CATEGORY(CatID, Name, Descript) VALUES (1, 'Audio Visual', null);
+INSERT INTO CATEGORY(CatID, Name, Descript) VALUES (2, 'Art Supplies', null);
+INSERT INTO CATEGORY(CatID, Name, Descript) VALUES (3, 'Cleaning Supplies', null);
+INSERT INTO CATEGORY(CatID, Name, Descript) VALUES (4, 'Computer Supplies', null);
+INSERT INTO CATEGORY(CatID, Name, Descript) VALUES (5, 'Desk Accessories', null);
+INSERT INTO CATEGORY(CatID, Name, Descript) VALUES (6, 'Writing Supplies', null);
+INSERT INTO CATEGORY(CatID, Name, Descript) VALUES (7, 'Printer Supplies', null);
+
+--3.1
+SELECT * FROM Employees;
+SELECT * FROM Employees WHERE Department = 'HR';
+SELECT * FROM Employees WHERE Username = 'jsmith' AND department = 'HR';
+SELECT * FROM Employees WHERE manager = 'true' OR department = 'HR';   --CHeck on manager
+
+--3.2
+SELECT * FROM Product order by name asc;
+SELECT * FROM Product order by name desc;
+SELECT * FROM Category order by name asc;
+
+--3.3 See above when populating table for insert statements
+
+
+--3.4
+UPDATE product set (Unitcost = 12 ) where (name = 'ruler');
+UPDATE Category set (Descript = "Updated description") where (name = 'computer') OR (name = 'Cleaning Supplies');
+
+
+--3.5
+SELECT Username FROM Employees where Username Like 'j%';
+SELECT name FROM product where name like 'O%';
+
+--3.6
+SELECT name from product where unitprice BETWEEN 3 AND 10;
+SELECT name from product where unitprice BETWEEN 500 AND 800;
+--3.7
+DELETE From Category where (value = 'audio visual');
+--Because I refered to the earlier written code I would just truncate as those would be all the values
+--TRUNCATE Supplier; 
+--4.1
+CREATE OR REPLACE FUNCTION LASERPOINTER_LENGTH
+RETURN NUMBER AS
+LASERPOINTER_Length Number; 
+BEGIN 
+	SELECT length(Descript) AS LASERPOINTER_Length FROM PRODUCT WHERE Name = 'Laser Pointer'; 
+END;
+/
+
+CREATE OR REPLACE FUNCTION TO_UPPERCASE
+(
+EmployeePass in number
+)
+BEGIN
+    UPDATE EMPLOYEE SET EMPLOYEES.USERNAME = UPPER(USERNAME) WHERE EMPLOYEEID = EMPLOYEEPASS;
+END; 
+/
+
+CREATE OR REPLACE FUNCTION SUM_UNIT_PRICE
+RETURN NUMBER AS
+AVGUNIT NUMBER;
+BEGIN
+    SELECT SUM(UnitCost) INTO AVGUNIT FROM PRODUCTS;
+END;
+/
+
+CREATE OR REPLACE FUNCTION COUNT_PRODUCTS
+RETURN NUMBER AS
+COUNTPRODS NUMBER;
+BEGIN
+    SELECT COUNT(PRODUCTS) INTO COUNTPRODS FROM PRODUCTS;
+END;
+/
+
+CREATE OR REPLACE FUNCTION ADD_COST
+(
+    UNITPRICE1 IN NUMBER;
+    UNITPRICE2 IN NUMBER;
+)
+RETURN NUMBER AS
+COMBOPRICE NUMBER;
+BEGIN
+   COMBOPRICE := (unitprice1 + unitprice2);
+END;
+/
+
+--4.4 TO DO
+--5.0
+CREATE OR REPLACE PROCEDURE EMPLOYEE_SELECT
+(
+    MYCURSOR out SYS_REFCURSOR
+)
+AS
+BEGIN
+    OPEN MYCURSOR FOR
+	SELECT Username, Department, manager FROM EMPLOYEES;
+END;
+/
+--Call Procedure here
+Execute EMPLOYEE_SELECT;
+
+CREATE OR REPLACE PROCEDURE PRODUCTS_SELECT_SOME
+(
+    MYCURSOR out SYS_REFCURSOR
+)
+AS
+BEGIN
+    OPEN MYCURSOR FOR
+    SELECT name, unitcost FROM Product;
+END;
+/
+
+CREATE OR REPLACE PROCEDURE GET_PRODUCT_ON_ID
+(
+    PRODUCTID2 IN NUMBER,
+    NAMEPROD OUT VARCAHR,
+    UNITCOST2 OUT NUMBER
+)
+AS
+BEGIN
+    SELECT NAME, UNITCOST INTO NAMEPROD, UNITCOST2 FROM PRODUCT WHERE PRODUCTID = PRODUCTID2;
+END;
+/
+
+CREATE OR REPLACE PROCEDURE ADD_MANAGER
+(
+    EMPLOYEEIDNEW IN NUMBER,
+    USERNAMENEW IN VARCHAR,
+    PASSWORDNEW IN VARCHAR,
+    NAMENEW IN VARCHAR,
+    DEPARTMENTNEW IN VARCHAR,
+)
+AS 
+BEGIN 
+    INSERT INTO EMPLOYEES (EMPLOYEEID, USERNAME, PASSWORD, NAME, DEPARTMENT, MANAGER)
+    VALUES (EMPLOYEEIDNEW, USERNAMENEW, PASSWORDNEW, NAMENEW, DEPARTMENTNEW, 1)
+
+CREATE OR REPLACE PROCEDURE UnitCOST_Total
+(
+    Total out Number
+)
+AS
+BEGIN
+    SELECT Sum(unitcost) into total from products;
+END;
+/
+CREATE OR REPLACE PROCEDURE GET_USER_PASS
+(
+    EMPLOYEEIDIN IN NUMBER,
+    USERNAMEOUT OUT VARCHAR,
+    PASSWORDOUT OUT VARCHAR
+)
+AS BEGIN
+    SELECT USERNAME, PASSWORD INTO USERNAMEOUT, PASSWORDOUT FROM EMPLOYEES WHERE EMPLOYEEID = EMPLOYEEIDIN;
+END;
+/
+
+CREATE OR REPLACE PROCEDURE EMPLOYEE_NAME_Insert
+(
+	EmployeeID2 IN NUMBER,
+    UserName2 IN VARCHAR2,
+    password2 IN Varchar2,
+    Name IN (varchar2),
+    Department2 IN char
+) AS
+BEGIN TRANSACTION
+	INSERT INTO Employees (EmployeeID, UserName, Password, Name, Department, Manager)
+    VALUES (EmloyeeID2, UserName2, password2, name, department2, 0);
+COMMIT;
+/
+
+CREATE OR REPLACE PROCEDURE PRODUCT_PRICE_UPDATE
+(
+    newPrice IN Number,
+    ProductID2 In number,
+) AS
+BEGIN TRANSACTION
+    UPDATE Product SET (UnitCost = newPrice) WHERE ProductID = ProductID2;
+Commit;
+/
+
+CREATE OR REPLACE PROCEDURE UPDATE_RECORDS
+(
+    CatID2 IN number,
+    CatID3 IN number,
+    Name2 IN varchar2,
+    Name3 IN Varchar2,
+    descrpit2 IN varchar2,
+    descript3 IN varcahr2
+) AS
+BEGIN TRANSACTION
+    UPDATE Category SET (Name = name2), (Descript = descript2) WHERE CatID = CatID2;
+    UPDATE Category SET (Name = name3), (Descript = descript3) WHERE CatID = CatID3;
+Commit;
+/
+
+CREATE OR REPLACE TRIGGER AFTER_EMP_INSERT 
+    AFTER INSERT ON Category
+    FOR EACH ROW
+    BEGIN
+            ; --Do stuff here
+    END;
+
+/
+
+
+CREATE OR REPLACE TRIGGER AFTER_ALBUM_UPDATE
+    AFTER UPDATE ON Category
+    FOR EACH ROW
+    BEGIN
+        ; --Do stuff here
+    END;
+/
+
+CREATE OR REPLACE TRIGGER AFTER_ALBUM_DELETE
+    AFTER DELETE ON Category 
+    FOR EACH ROW
+    BEGIN
+        ; --Do stuff here
+    END;
+/
+
+--8.1
+SELECT * FROM PRODUCT
+INNER JOIN CATEGORY ON PRODUCT.PRODUCTID = CATEGORY.PRODUCTID;
+
+SELECT * FROM EMPLOYEES
+INNER JOIN ORDERS ON ORDERS.EMPLOYEEID = EMPLOYEES.EMPLOYEEID;
+
+--8.2
+SELECT * FROM PRODUCT
+FULL OUTER JOIN ORDERITEM ON PRODUCT.PRODUCTID = ORDERITEM.PRODUCTID;
+
+SELECT * FROM EMPLOYEES
+FULL OUTER JOIN ORDERS ON EMPLOYEE.EMPLOYEEID = ORDERS.EMPLOYEEID;
+
+--8.3
+SELECT * FROM ORDERS
+RIGHT JOIN ORDERITEM ON ORDERS.ORDERID = ORDERITEM.ORDERID;
+
+SELECT * FROM PRODUCT
+RIGHT JOIN ORDERITEM ON ORDERITEM.PRODUCTID = PRODUCT.PRODUCTID;
+
+--8.4
+SELECT * FROM PRODUCT
+LEFT JOIN CATEGORY ON  PRODUCT.CATID = CATEGORY.CATID;
+
+SELECT * FROM EMPLOYEES
+LEFT JOIN ORDERS ON EMPLOYEES.ORDERID = ORDERS.ORDERID;
+
+--8.5 CROSS JOIN
+FROM PRODUCT
+CROSS JOIN CATEGORY; 
+
+--8.6 SELF JOIN  What happened here?
+SELECT A.UserName B.UserName FROM EMPLOYEES A JOIN EMPLOYEES B ON A.DEPARTMENT = B.DEPARTMENT;
+
+--Views
+ALTER TABLE Employees ADD SSN Varchar2;
+ALTER TABLE EMPLOYEES ADD Salary Number;
+
+CREATE OR REPLACE VIEW NO_SSN_OR_SALARY AS SELECT EmployeeID, Username, Password, Name, Department, Manager FROM EMPLOYEES;
+CREATE OR REPLACE VIEW PRODUCT_INFO AS SELECT name, descript FROM Product;
+
+
+--10 and 11 are covered in the first half, use Organization index and export respectively.

@@ -3,134 +3,209 @@ package com.WilliamLewis.BankingApp.BankData.Accounts;
 import com.WilliamLewis.BankingApp.BankData.AccountInterface;
 
 import com.WilliamLewis.BankingApp.BankData.BankData;
+import com.WilliamLewis.BankingApp.JDBC.DoAs.AccountImplementDOA;
+import com.WilliamLewis.BankingApp.JDBC.DoAs.UserImplementDOA;
+import com.WilliamLewis.BankingApp.Users.User;
 
 import java.io.Serializable;
+import java.sql.SQLException;
 
 import org.apache.log4j.Logger;
+
 /**
- * @fields accountHolder is the username of the customer who owns this account, later should be updated to be a customer instead of only the customer's name
- 	accountNumber acts as a means of identifying accounts uniquely, so two customers with the same name have different accounts on creation, AccountFactory handles randomization of this value
+ * @fields accountHolder is the username of the customer who owns this account,
+ *         later should be updated to be a customer instead of only the
+ *         customer's name accountNumber acts as a means of identifying accounts
+ *         uniquely, so two customers with the same name have different accounts
+ *         on creation, AccountFactory handles randomization of this value
  * @author William
  *
  */
-public class Account implements AccountInterface, Serializable{
+public class Account implements AccountInterface, Serializable {
 	private double accountBalance;
 	private int accountNumber;
-	private String accountHolder;
+	private User myOwner;
+	private int accountHolderID;
+	private int accountManagerID;
 	private static final long serialVersionUID = 4219823L;
 	private static Logger log = Logger.getRootLogger();
-	
-	//Constructors
-	public Account()
-	{ 
+
+	// Constructors
+	public Account() {
 		super();
 	}
-	public Account(String name)
-	{
-		this.setAccountHolder(name);
+
+	public Account(User own) {
+		this.setMyOwner(own);
 		this.setAccountBalance(0);
-	
+
 	}
-	public Account(String name, Integer accountNum)
-	{
-		this.setAccountHolder(name);
+
+	public Account(User own, Integer accountNum) {
+		this.setMyOwner(own);
 		this.setAccountNumber(accountNum);
 		this.setAccountBalance(0);
 	}
-	public Account(String name, Integer accountNum, double balance)
-	{
-		this.setAccountHolder(name);
+
+	public Account(User own, Integer accountNum, double balance) {
+		this.setMyOwner(own);
 		this.setAccountNumber(accountNum);
 		this.setAccountBalance(balance);
 	}
-	//End Constructors, note we only use the third constructor in this program
-	//Add the account to the BankData
-	public void initialize(){
-		//log.debug("Adding this account to the Bank Data: " + this.toString() );
+
+	public Account(Integer accNumber, Integer balance, Integer accountHolder, Integer accountManager) {
+		this.setAccountNumber(accNumber);
+		this.setAccountBalance(balance);
+		this.setAccountHolderID(accountHolder);
+		this.setAccountManagerID(accountManager);
+		this.setMyOwner(BankData.getInstance().getUserByID(accountHolder));
+	}
+
+	// End Constructors, note we only use the third constructor in this program
+	// Add the account to the BankData
+	public void initialize() {
+		// log.debug("Adding this account to the Bank Data: " + this.toString()
+		// );
 		BankData.getInstance().addAccount(this, this.getAccountNumber());
 	}
-	
-	//Interface contracted methods, not view is NOT viewBalance, but gives the whole acouunt as a string
-	//use the getter to obtain the accountBalance
+
+	// Interface contracted methods, not view is NOT viewBalance, but gives the
+	// whole acouunt as a string
+	// use the getter to obtain the accountBalance
 	@Override
 	public void view() {
 
 		log.info(this.toString());
 	}
+
 	/**
-	 * Adds money to account assuming a non-negative value is inputed
-	 * Note the call to BankData to update the acounnt information of this account
+	 * Adds money to account assuming a non-negative value is inputed Note the
+	 * call to BankData to update the acounnt information of this account
 	 */
 	@Override
 	public void deposit(double deposit) {
-		if(deposit <= 0)
-		{
+		if (deposit <= 0) {
 			log.info("Please deposit a non-zero positive value, or submit a withdrawal request instead.");
 			return;
 		}
 		log.info("Account Balance was: " + this.getAccountBalance());
 		this.setAccountBalance(accountBalance + deposit);
-		BankData.getInstance().updateAccount(this, this.accountNumber);
-		log.info("Successfully deposited: " + deposit + " to " + this.getAccountHolder() + " 's account.");
+		try {
+			BankData.getInstance().updateAccount(this, this.accountNumber);
+			AccountImplementDOA.getInstance().updateAccountBalance(this);
+			log.info("Successfully deposited: " + deposit + " to " + this.myOwner.getFirstName() + " 's account.");
+		} catch (SQLException e) {
+			log.error("Failed to Deposit money");
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
-			
 	}
+
 	/**
 	 * Almost identical to deposit
 	 */
 	@Override
 	public void withdraw(double withdraw) {
 
-		if(!checkFunds(withdraw))
-		{
+		if (!checkFunds(withdraw)) {
 			log.info("Insufficiant Funds");
 			return;
-		}
-		else
-		{
+		} else {
 			log.info("Account Balance was: " + this.getAccountBalance());
 			this.setAccountBalance(accountBalance - withdraw);
-			BankData.getInstance().updateAccount(this, this.accountNumber);
-			log.info("New Account Balance is; " + this.getAccountBalance() + " Succesfully withdrew: " + withdraw);
+			try {
+				BankData.getInstance().updateAccount(this, this.accountNumber);
+				AccountImplementDOA.getInstance().updateAccountBalance(this);
+				log.info("New Account Balance is; " + this.getAccountBalance() + " Succesfully withdrew: " + withdraw);
+			} catch (SQLException e) {
+				log.error("Failed to Deposit money");
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
-		
+
 	}
+
 	/**
 	 * Checks if this account has enough funds to make a withdrawal.
-	 * @param withdraw balance amount to be withdrawn
+	 * 
+	 * @param withdraw
+	 *            balance amount to be withdrawn
 	 * @return true if there are sufficient funds, false if not
 	 */
-	public boolean checkFunds(double withdraw)
-	{
-		if(this.getAccountBalance() < withdraw)
-		{
+	public boolean checkFunds(double withdraw) {
+		if (this.getAccountBalance() < withdraw) {
 			return false;
 		}
 		return true;
 	}
-	//Autogenerated getters+setters and a toString Method
+
+	// Autogenerated getters+setters and a toString Method
 	@Override
 	public String toString() {
-		return "Account [accountBalance=" + accountBalance + ", accountNumber=" + accountNumber + ", accountHolder=" + accountHolder + "]";
+		return "Account [accountBalance=" + accountBalance + ", accountNumber=" + accountNumber + ", ]";
 	}
+
+	public int getOwnerID() {
+
+		try {
+			return UserImplementDOA.getInstance().getUserIdOnLogin(this.getMyOwner().getUsername(),
+					this.getMyOwner().getPassword());
+		} catch (SQLException e) {
+			log.error("Owner does not exist in database from Account.java check");
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return -1;
+
+	}
+
 	public double getAccountBalance() {
 		return accountBalance;
 	}
+
 	private void setAccountBalance(double accountBalance) {
 		this.accountBalance = accountBalance;
 	}
-	private int getAccountNumber() {
+
+	public int getAccountNumber() {
 		return accountNumber;
 	}
+
 	private void setAccountNumber(int accountNumber) {
 		this.accountNumber = accountNumber;
 	}
 
-	public String getAccountHolder() {
-		return accountHolder;
+	public User getMyOwner() {
+		return myOwner;
 	}
-	private void setAccountHolder(String accountHolder) {
-		this.accountHolder = accountHolder;
+
+	private void setMyOwner(User myOwner) {
+		this.myOwner = myOwner;
 	}
+
+	public int getAccountHolderID() {
+		return accountHolderID;
+	}
+
+	private void setAccountHolderID(int accountHolderID) {
+		this.accountHolderID = accountHolderID;
+	}
+
+	public int getAccountManagerID() {
+		return accountManagerID;
+	}
+
+	private void setAccountManagerID(int accountManagerID) {
+		this.accountManagerID = accountManagerID;
+	}
+
+	// public String getAccountHolder() {
+	// return accountHolder;
+	// }
+	// private void setAccountHolder(String accountHolder) {
+	// this.accountHolder = accountHolder;
+	// }
 
 }

@@ -2,6 +2,7 @@ package com.WilliamLewis.BankingApp.Users;
 
 import java.util.List;
 
+import com.WilliamLewis.BankingApp.BankData.BankData;
 import com.WilliamLewis.BankingApp.BankData.Accounts.Account;
 /**
  * This implementation makes no use of User, but it's on the refactoring list to make a general user that
@@ -13,27 +14,66 @@ import com.WilliamLewis.BankingApp.BankData.Accounts.Account;
  *
  */
 public abstract class User {
-	public String Username;
+	private String Username;
 	private String password;
+	private String FirstName;
+	private String LastName;
+	private Integer userID;
 	
 	public User(){
+		{
+			BankData.getInstance().addUser(this);
+		}
 		
 	}
-	public User(String username, String password)
+	public User(String username, String password, String firstName, String lastName)
 	{
+		this.setUsername(username);
+		this.setPassword(password);
+		this.setFirstName(firstName);
+		this.setLastName(lastName);
+		BankData.getInstance().addUser(this);
+	}
+	public User(Integer userID, String username, String password, String firstName, String lastName)
+	{
+		this.setUsername(username);
+		this.setPassword(password);
+		this.setFirstName(firstName);
+		this.setLastName(lastName);
+		this.setUserID(userID);
+		BankData.getInstance().addUser(this);
 	}
 	
 	public String getUsername() {
 		return Username;
 	}
-	public void setUsername(String username) {
+	protected void setUsername(String username) {
 		Username = username;
 	}
 	public String getPassword() {
 		return password;
 	}
-	public void setPassword(String password) {
-		
+	protected void setPassword(String password) {
+		this.password = password;
 	}
+	public String getFirstName() {
+		return FirstName;
+	}
+	protected void setFirstName(String firstName) {
+		FirstName = firstName;
+	}
+	public String getLastName() {
+		return LastName;
+	}
+	protected void setLastName(String lastName) {
+		LastName = lastName;
+	}
+	public Integer getUserID() {
+		return userID;
+	}
+	protected void setUserID(Integer userID) {
+		this.userID = userID;
+	}
+	
 
 }

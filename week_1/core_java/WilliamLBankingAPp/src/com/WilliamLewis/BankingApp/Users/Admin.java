@@ -15,20 +15,16 @@ import com.WilliamLewis.BankingApp.BankData.Accounts.Account;
  * an admin is logging in.
  * Refer to the USer.java class for some details on admin/employee/customer
  */
-public class Admin implements Serializable{
-	public String Username;
-	private String password;
+public class Admin extends User implements Serializable{
 	private static Logger log = Logger.getRootLogger();
 	private static final long serialVersionUID = 12345L;
 	//Unused constructor
 	public Admin() {
-
+		super();
 	}
-	//Used constructor, note addition to the BankData, all users do this
-	public Admin(String username, String password) {
-		this.setUsername(username);
-		this.setPassword(password);
-		BankData.getInstance().addAdmin(this);
+	public Admin(Integer userID, String username, String password, String firstName, String lastName)
+	{
+		super(userID, username, password, firstName, lastName);
 	}
 
 	/**
@@ -45,46 +41,23 @@ public class Admin implements Serializable{
 	 * Works as it does in BankData, redundancy is for sake of the GUI
 	 * @param aa
 	 */
-	public void approveApplication(AccountApplication aa)
+	public void approveApplication(Account acc)
 	{
 		//Call factory and create account, store that integer in the arraylist of acounts to manage
-		Integer id = AccountFactory.createAccount(aa.getAccountType(), aa.getAccountHolder().getUsername());
-		BankData.getInstance().removeApp(aa);
+		BankData.getInstance().approveApplication(acc);
 		
 	}
 	/**
 	 * FOR GUI, redundant with BankData Method
 	 * @param aa
 	 */
-	public void removeApplication(AccountApplication aa)
+	public void removeApplication(Account aa)
 	{
 		BankData.getInstance().removeApp(aa);
 	}
-	public ArrayList<AccountApplication> viewApplications()
+	public ArrayList<Account> viewApplications()
 	{
-		return BankData.getInstance().getCurrentApplications();
-	}
-	public void approveAllApplications()
-	{
-		for(AccountApplication aa : BankData.getInstance().getCurrentApplications())
-		{
-			approveApplication(aa);
-		}
+		return BankData.getInstance().getCurrentApplicationAccounts();
 	}
 
-	private String getUsername() {
-		return Username;
-	}
-
-	private void setUsername(String username) {
-		Username = username;
-	}
-
-	private String getPassword() {
-		return password;
-	}
-
-	private void setPassword(String password) {
-		this.password = password;
-	}
 }

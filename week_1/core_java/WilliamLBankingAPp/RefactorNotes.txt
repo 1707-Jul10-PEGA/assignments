@@ -1,0 +1,5 @@
+Add a check to not allow ":" in usernames or passwords, these could break how our program operates!
+Implement a generalized user class to be extended by admin/employee/customer
+		Eliminate MainMenu Screen, login could take directly to relevant pages if we keep the UI
+UU Java library to generate unique IDs
+Add generalized account so we can have account types

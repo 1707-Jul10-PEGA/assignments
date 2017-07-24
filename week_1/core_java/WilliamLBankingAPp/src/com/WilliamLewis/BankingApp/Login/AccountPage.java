@@ -16,9 +16,9 @@ public class AccountPage extends JFrame {
 	JTextField inputValue;
 	Container panel = getContentPane();
 
-	public AccountPage(String accountName, String role) {
-		super(accountName);
-		Integer currentAcc = BankData.getInstance().getAccountID(accountName);
+	public AccountPage(Integer userID, Integer accID) {
+		super("Welcome to your accounts Page");
+		Account currentAcc = BankData.getInstance().getAccount(accID);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		panel.setLayout(new GridLayout(10, 10));
 
@@ -36,7 +36,7 @@ public class AccountPage extends JFrame {
 
 		withdraw.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Account acc = BankData.getInstance().getAccount(currentAcc);
+				Account acc = BankData.getInstance().getAccount(accID);
 				String amount = inputValue.getText();
 				Double myDouble = Double.parseDouble(amount);
 				acc.withdraw(myDouble);
@@ -44,7 +44,7 @@ public class AccountPage extends JFrame {
 		});
 		deposit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Account acc = BankData.getInstance().getAccount(currentAcc);
+				Account acc = BankData.getInstance().getAccount(accID);
 				String amount = inputValue.getText();
 				Double myDouble = Double.parseDouble(amount);
 				acc.deposit(myDouble);
@@ -53,7 +53,7 @@ public class AccountPage extends JFrame {
 		});
 		viewBalance.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Account acc = BankData.getInstance().getAccount(currentAcc);
+				Account acc = BankData.getInstance().getAccount(accID);
 				double myInt = acc.getAccountBalance();
 				inputValue.setText("" + myInt);
 
@@ -61,18 +61,7 @@ public class AccountPage extends JFrame {
 		});
 		goBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String[] info = role.split(":");
-				switch (info[0].toLowerCase()) {
-				case "admin":
-					AdminPage admin = new AdminPage();
-					dispose();
-				case "employee":
-					EmployeePage emp = new EmployeePage(info[1], info[2], info[0]);
-					dispose();
-				case "customer":
-					CustomerPage cs = new CustomerPage(info[1], info[2], info[0]);
-					dispose();
-				}
+				MainMenu back = new MainMenu(userID);
 				dispose();
 
 			}

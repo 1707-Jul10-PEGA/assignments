@@ -4,6 +4,7 @@ import java.awt.Container;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -19,45 +20,46 @@ public class EmployeePage extends JFrame{
 	Container panel = getContentPane();
 	
 	
-	public EmployeePage(String empName, String password, String role){
+	public EmployeePage(Integer userID){
 		super("Accounts");
-		Employee myEmployee = BankData.getInstance().getEmployee(empName, password);
+		ArrayList<Account> myAccs = BankData.getInstance().getManagedAccounts(userID);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		panel.setLayout(new GridLayout(10, 10));
 		JButton accountButton;
-		String myPass = "employee" + ":" + empName + ":" + password;	
+		String myCust; 
 		
-		
-		for(Account acc : myEmployee.copyOfAccountList())
+		for(Account acc : myAccs)
 		{
-			accountButton = new JButton(acc.getAccountHolder() + " 's Account");
+			myCust = BankData.getInstance().getUserByID(acc.getAccountHolderID()).getFirstName();
+
+			accountButton = new JButton(myCust + " 's Account");
 			panel.add(accountButton);
 			accountButton.addActionListener(new ActionListener(){
 				public void actionPerformed(ActionEvent e) {
-					AccountPage accpage = new AccountPage(acc.getAccountHolder(), myPass);
+					AccountPage accpage = new AccountPage(userID, acc.getAccountNumber());
 					dispose();
 					
 				}
 			});
 		}
-		for(AccountApplication aa : myEmployee.pendingApplications)
-		{
-			accountButton = new JButton(aa.getAccountHolder().getUsername() + " 's Account Application");
-			panel.add(accountButton);
-			accountButton.addActionListener(new ActionListener(){
-				public void actionPerformed(ActionEvent e) {
-					AccountApplicationPage accpage = new AccountApplicationPage(aa.getAccountHolder());
-					//dispose();
-					
-				}
-			});
+//		for(AccountApplication aa : myEmployee.pendingApplications)
+//		{
+//			accountButton = new JButton(aa.getAccountHolder().getUsername() + " 's Account Application");
+//			panel.add(accountButton);
+//			accountButton.addActionListener(new ActionListener(){
+//				public void actionPerformed(ActionEvent e) {
+//					AccountApplicationPage accpage = new AccountApplicationPage(aa.getAccountHolder());
+//					//dispose();
+//					
+//				}
+//			});
 		
-		}
+//		}
 		home = new JButton("Back");
 		panel.add(home);
 		home.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
-				MainMenu back = new MainMenu(empName, password, role);
+				MainMenu back = new MainMenu(userID);
 				dispose();
 			}
 		});

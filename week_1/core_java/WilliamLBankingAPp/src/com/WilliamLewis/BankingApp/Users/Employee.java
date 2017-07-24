@@ -16,51 +16,21 @@ import com.WilliamLewis.BankingApp.BankData.Accounts.Account;
  * @author William
  *
  */
-public class Employee implements Serializable{
-	public String Username;
-	private String password;
+public class Employee extends User implements Serializable{
 	private static Logger log = Logger.getRootLogger();
-	public ArrayList<AccountApplication> pendingApplications;
-	private ArrayList<Integer> accountIdsToManage;
+//	public ArrayList<AccountApplication> pendingApplications;
+//	private ArrayList<Integer> accountIdsToManage;
 	private static final long serialVersionUID = 54321L;
 	
 	public Employee()
 	{
-		this.Username = "Improper Method Call";
-		this.password = "";
-		pendingApplications = new ArrayList<AccountApplication>();
-		accountIdsToManage = new ArrayList<Integer>();
-		BankData.getInstance().addEmployee(this);
-	}
-	public Employee(String name, String password)
-	{
-		this.setUsername(name);
-		this.setPassword(password);
-		pendingApplications = new ArrayList<AccountApplication>();
-		accountIdsToManage = new ArrayList<Integer>();
-		BankData.getInstance().addEmployee(this);	
+		super();
 	}
 
-	public void approveApplication(AccountApplication aa)
+	
+	public Employee(Integer userID, String username, String password, String firstName, String lastName)
 	{
-		//Call factory and create account, store that integer in the arraylist of acounts to manage
-		Integer id = AccountFactory.createAccount(aa.getAccountType(), aa.getAccountHolder().getUsername());
-		accountIdsToManage.add(id);
-		BankData.getInstance().removeApp(aa);
-		
-	}
-	public void removeApplication(AccountApplication aa)
-	{
-		//May be redudant, requires some testing
-		this.getPendingApplications().remove(aa);
-		BankData.getInstance().removeApp(aa);
-	}
-	public void approveAll()
-	{
-		for(AccountApplication aa : this.pendingApplications)
-		{
-			approveApplication(aa);
-		}
+		super(userID, username, password, firstName, lastName);
 	}
 	/**
 	 * For use in the GUI
@@ -68,37 +38,9 @@ public class Employee implements Serializable{
 	 */
 	public ArrayList<Account> copyOfAccountList()
 	{
-		ArrayList<Account> myAccs = new ArrayList<Account>();
-		for(Integer key : this.accountIdsToManage)
-		{
-			myAccs.add(BankData.getInstance().getAccount(key));
-		}
-		return myAccs;
+		//Call to AccountImplementDOA to get Accounts with this user's id
+		return new ArrayList<Account>();
 	}
-	public boolean addApplication(AccountApplication aa)
-	{
-		this.pendingApplications.add(aa);
-		return true;
-	}
-	private String getUsername() {
-		return Username;
-	}
-	private void setUsername(String username) {
-		Username = username;
-	}
-	public String getPassword() {
-		return password;
-	}
-	private void setPassword(String password) {
-		this.password = password;
-	}
-	public ArrayList<AccountApplication> getPendingApplications() {
-		return pendingApplications;
-	}
-	private void setPendingApplications(ArrayList<AccountApplication> pendingApplications) {
-		this.pendingApplications = pendingApplications;
-	}
-	
 	
 	
 }
