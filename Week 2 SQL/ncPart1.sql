@@ -1,0 +1,185 @@
+/*NAIM-ZHUM KAMAL CHAU*/
+
+/*SQL Queries*/
+
+/*2.1 SELECT*/
+SELECT * FROM Chinook.Employee;
+SELECT * FROM Chinook.Employee WHERE LastName = 'King';
+SELECT * FROM Chinook.Employee WHERE FirstName = 'Andrew' AND ReportsTo IS NULL;
+/*2.2 ORDER BY*/
+SELECT * FROM Chinook.Album ORDER BY Title DESC;
+Select FirstName FROM Chinook.Customer ORDER BY City ASC;
+/*2.3 INSERT INTO*/
+INSERT INTO Chinook.Genre (GenreId, Name) VALUES (26, 'Coder');
+INSERT INTO Chinook.Genre (GenreId, Name) VALUES (27, 'Mayo');
+INSERT INTO Chinook.Employee (EmployeeId, LastName, FirstName) VALUES (99, 'Leo', 'Oel');
+INSERT INTO Chinook.Employee (EmployeeId, LastName, FirstName) VALUES (100, 'Fake', 'Real');
+INSERT INTO Chinook.Customer (CustomerId, FirstName, LastName, Email) VALUES (98, 'Hal', '9000', 'ninjaStarXXX@gmail.com');
+INSERT INTO Chinook.Customer (CustomerId, FirstName, LastName, Email) VALUES (99, 'Wendy', 'Fries', 'DoubleCheeseBurger@revature.com');
+/*2.4 UPDATE*/
+UPDATE Chinook.Customer SET FirstName = 'Robert', LastName = 'Walter' WHERE FirstName = 'Aaron' AND LastName = 'Mitchell';
+UPDATE Chinook.Artist SET Name = 'CCR' WHERE Name = 'Creedence Clearwater Revival';
+/*2.5 LIKE*/
+SELECT * FROM Chinook.Invoice WHERE BillingAddress LIKE 'T%';
+/*2.6 BETWEEN*/
+SELECT * FROM Chinook.Invoice WHERE Total BETWEEN 15 and 20;
+SELECT * FROM Chinook.Employee WHERE HireDate BETWEEN '01-JUN-2003' AND '01-MAR-2004';
+/*2.7 DELETE correct?*/
+DELETE FROM Chinook.InvoiceLine WHERE InvoiceId IN (SELECT InvoiceId FROM Chinook.Invoice WHERE CustomerId IN (SELECT CustomerId FROM Chinook.Customer WHERE FirstName = 'Robert' AND LastName = 'Walter'));
+DELETE FROM Chinook.Invoice WHERE CustomerId IN (SELECT CustomerId FROM Chinook.Customer WHERE FirstName = 'Robert' AND LastName = 'Walter');
+DELETE FROM Chinook.Customer WHERE FirstName = 'Robert' AND LastName = 'Walter';
+
+/*SQL Functions*/
+
+/*3.1 System Defined Functions*/
+SET SERVEROUT ON;
+CREATE or REPLACE FUNCTION getTIme
+    RETURN VARCHAR2(255) as THE_TIME;
+    BEGIN
+        THE_TIME := TO_CHAR (datetime);
+        return THE_TIME;
+    END;
+    /
+Select getTime from dual;
+
+CREATE OR REPLACE FUNCTION GET_LENGTH(M_ID NUMBER)
+    RETURN NUMBER AS THE_LENGTH NUMBER;
+    STR VARCHAR2(255);
+    BEGIN
+        SELECT NAME INTO STR FROM MEDIATYPE WHERE MEDIATYPEID = M_ID;
+        THE_LENGTH := LENGTH(STR);
+        RETURN THE_LENGTH;
+    END;
+/
+
+DECLARE
+    LENGTH_RETURN NUMBER;
+BEGIN
+    LENGTH_RETURN := GET_LENGTH(2);
+    DBMS_OUTPUT.PUT_LINE(LENGTH_RETURN);
+END;
+/
+/*3.2 System Defined Aggregate Functions*/
+CREATE OR REPLACE FUNCTION GET_AVG
+    RETURN NUMBER AS THE_AVG NUMBER;
+    HOLDER NUMBER;
+    BEGIN
+        SELECT AVG(total) INTO HOLDER FROM INVOICE;
+        THE_AVG := HOLDER;
+        RETURN THE_AVG;
+    END;
+/
+
+DECLARE
+    --
+BEGIN
+    DBMS_OUTPUT.PUT_LINE(GET_AVG);
+END;
+/
+
+CREATE OR REPLACE FUNCTION MOST_EXPENSIVE_TRACK
+    RETURN VARCHAR2 AS THE_TRACK VARCHAR2(255);
+    HOLDER NUMBER;
+    BEGIN
+        SELECT NAME INTO THE_TRACK FROM TRACK WHERE UNITPRICE = (SELECT MAX(UNITPRICE) FROM TRACK) AND ROWNUM = 1;
+        RETURN THE_TRACK;
+    END;
+/
+
+DECLARE
+    RETURN_VALUE VARCHAR2(255);
+BEGIN
+    RETURN_VALUE := MOST_EXPENSIVE_TRACK;
+    dbms_output.put_line(RETURN_VALUE);
+    
+END;
+/
+
+/*3.3 User Defined Scalar Functions*/
+
+CREATE OR REPLACE FUNCTION AVERAGE_INVOICELINE_PRICE
+    RETURN NUMBER AS THE_AVG NUMBER;
+    HOLDER NUMBER;
+    BEGIN
+        SELECT AVG(UNITPRICE) INTO HOLDER FROM INVOICELINE;
+        THE_AVG := HOLDER;
+        RETURN THE_AVG;
+    END;
+/
+
+DECLARE
+    RETURN_VALUE NUMBER;
+BEGIN
+    dbms_output.put_line(AVERAGE_INVOICELINE_PRICE);
+    
+END;
+/
+
+/*3.4 User Defined Table Valued Functions*/
+
+CREATE OR REPLACE FUNCTION EMP_BDAY
+    VARCHAR2 AS THE_NAME VARCHAR2(255);
+    HOLDER NUMBER;
+    BEGIN
+    
+        LOOP
+    
+            SELECT NAME INTO THE_NAME FROM INVOICELINE;
+            HOLDER := HOLDER + 1;
+            dbms_output.put_line('TEEST');
+
+    END;
+/
+
+DECLARE
+    RETURN_VALUE NUMBER;
+BEGIN
+    dbms_output.put_line(AVERAGE_INVOICELINE_PRICE);
+    
+END;
+/
+    
+SELECT * FROM Chinook.Employee WHERE BirthDate > '01-JAN-1968';
+
+/*SQL Stored Procedures*/
+
+
+
+
+
+
+
+/*JOINS*/
+
+/*7.1 INNER*/
+SELECT CUSTOMER.FIRSTNAME, INVOICE.INVOICEID 
+    FROM CUSTOMER INNER JOIN INVOICE 
+    ON CUSTOMER.CUSTOMERID = INVOICE.CUSTOMERID;
+
+/*7.2 OUTER*/
+SELECT CUSTOMER.CUSTOMERID, CUSTOMER.FIRSTNAME, CUSTOMER.LASTNAME, INVOICE.INVOICEID, INVOICE.TOTAL
+    FROM CUSTOMER LEFT OUTER JOIN INVOICE
+    ON CUSTOMER.CUSTOMERID = INVOICE.CUSTOMERID;
+    
+/*7.3 RIGHT*/
+SELECT ARTIST.NAME, ALBUM.TITLE
+    FROM ARTIST RIGHT OUTER JOIN ALBUM
+    ON ALBUM.ARTISTID = ARTIST.ARTISTID;
+    
+/*7.4 CROSS*/
+SELECT * FROM ALBUM CROSS JOIN ARTIST
+    ORDER BY ARTIST.NAME ASC;
+
+/*7.5 SELF*/
+SELECT E.FIRSTNAME AS EMPLOYEE, B.FIRSTNAME AS BOSS
+    FROM EMPLOYEE E, EMPLOYEE B
+    WHERE E.EMPLOYEEID = B.REPORTSTO;
+    
+/*INDEXES*/
+
+/*8.1 CLUSTERED INDEXES*/
+CREATE CLUSTER CLUSTER_FOR_CUSTOMER
+    ( department_number  NUMBER(2) ) 
+    SIZE 512 
+    STORAGE (INITIAL 100K NEXT 50K); 
+    
