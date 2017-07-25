@@ -253,22 +253,7 @@ public class Login implements LoginInterface {
 	
 	@Override
 	public void setAuthUser(int uid) throws SQLException {
-		ResultSet rs = null;
 		String userType = null;
-		String sql = "SELECT Username, Password, Type "
-						+ "FROM Users "
-						+ "WHERE U_ID=?";
-		
-		PreparedStatement pStmt = Driver.conn.prepareStatement(sql);
-		
-		pStmt.setInt(1, uid);
-		
-		// point to the result set of the sql query above
-		rs = pStmt.executeQuery();
-		rs.next();
-		
-		// reset prepared statements
-		pStmt.close();
 		
 		/* need type of user first, then instantiate */
 		userType = getUserType(uid);
@@ -335,17 +320,6 @@ public class Login implements LoginInterface {
 			System.out.println("Username " + userName + " does not exist!");
 		}
 
-	}
-	
-	@Override
-	public void saveUser(User user, String userName, String pw, String type) {
-		user.setUserName(userName);
-		user.setPw(pw);
-		user.setType(type);
-		Driver.userList.add(user);
-		Driver.serialUser.writeUserList(Driver.userList);
-		
-		System.out.println("\nCustomer " + userName + " successfully created.");
 	}
 
 	@Override
@@ -421,9 +395,6 @@ public class Login implements LoginInterface {
 		if(!(userExists(userName))) {
 			System.out.print("Enter password: ");
 			pw = Driver.read.nextLine();
-
-			// save customer to file
-			saveUser(newCustomer, userName, pw, "Customer");
 			
 			// fill in customer fields 
 			newCustomer.setUserName(userName);
@@ -476,9 +447,6 @@ public class Login implements LoginInterface {
 			System.out.print("Enter password: ");
 			pw = Driver.read.nextLine();
 			
-			// save employee to file
-			saveUser(newEmployee, userName, pw, "Employee");
-			
 			// fill in employee fields
 			newEmployee.setUserName(userName);
 			newEmployee.setPw(pw);
@@ -528,9 +496,6 @@ public class Login implements LoginInterface {
 		if(!(userExists(userName))) {
 			System.out.print("Enter password: ");
 			pw = Driver.read.nextLine();
-			
-			// save admin to file
-			saveUser(newAdmin, userName, pw, "Admin");
 			
 			// fill in admin fields
 			newAdmin.setUserName(userName);

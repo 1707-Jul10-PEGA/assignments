@@ -1,14 +1,8 @@
 package com.dv.bankingapp;
 
-import java.io.Serializable;
 import java.sql.SQLException;
 
-abstract public class User implements Serializable {
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -1557053905971757924L;
+abstract public class User {
 
 	private String userName;
 	private String pw;

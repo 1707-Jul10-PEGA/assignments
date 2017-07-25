@@ -5,11 +5,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class Employee extends User {
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 2433760983565719959L;
 	
 	private Customer customer = null;
 	

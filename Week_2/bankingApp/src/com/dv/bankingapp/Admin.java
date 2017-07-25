@@ -6,11 +6,6 @@ import java.sql.SQLException;
 
 public class Admin extends User {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -5495653096119619552L;
-
 	public void viewUserInfo() throws SQLException {
 		String userName = Driver.authUser.getUserName();
 		String sql = null;

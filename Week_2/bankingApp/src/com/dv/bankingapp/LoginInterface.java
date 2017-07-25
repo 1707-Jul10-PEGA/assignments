@@ -68,11 +68,6 @@ public interface LoginInterface {
 	 * return an existing user
 	 */
 	public void promptLogin();
-	
-	/* saveUser
-	 * write user to file
-	 */
-	public void saveUser(User user, String userName, String pw, String type);
 
 	/* insertUser
 	 * return the number of rows inserted; insert the user into the users table within the database

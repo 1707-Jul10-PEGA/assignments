@@ -6,11 +6,6 @@ import java.sql.SQLException;
 
 public class Customer extends User {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -6574601321488325420L;
-
 	private float balance = 0.0f;
 	private int status = 0;
 	ApplicationRequest request = null;
