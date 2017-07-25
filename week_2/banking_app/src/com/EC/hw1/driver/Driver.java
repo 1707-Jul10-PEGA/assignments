@@ -207,7 +207,7 @@ public class Driver {
 			System.out.println("You are not a employee");
 			return;
 		}
-		dao.getAllCustomer(e);		
+		dao.getAllCustomer(e);	
 		System.out.println("Last Login: " + e.getAccount().getLastLogin());
 		log.trace("LOGINED:\n" + e.toString());
 

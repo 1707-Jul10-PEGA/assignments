@@ -1,16 +1,6 @@
 package com.EC.hw1.Model;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.text.DecimalFormat;
-import java.util.ConcurrentModificationException;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.ListIterator;
 import java.util.Scanner;
 
 import org.apache.log4j.Logger;
@@ -127,6 +117,7 @@ public class Customer extends User implements CustomerInterface, Cloneable {
 
 	@Override
 	public void withdraw(double money) {
+		BankAccountDAO dao = DAOUtilities.getBankAccountDAO();
 		if (money < 0) {
 			System.out.println("Cannot withdraw a negative amount of money");
 			return;
@@ -144,9 +135,8 @@ public class Customer extends User implements CustomerInterface, Cloneable {
 							System.out.println("Not enough money in your account");
 							return;
 						}
-						
+						dao.updateChecking(this.getUser_id(), this.getBankAccount().getCashAccount()-money);
 						this.bankAccount.setCashAccount(this.bankAccount.getCashAccount() - money);
-						updateBankersData(this);
 						log.trace(this.getUserName() + " withdrew " + money + " from checking account");
 						valid = false;
 						break;
@@ -156,15 +146,15 @@ public class Customer extends User implements CustomerInterface, Cloneable {
 							valid = false;
 							return;
 						}
+						dao.updateSaving(this.getUser_id(), this.getBankAccount().getSavingAccount()-money);
 						this.bankAccount.setSavingAccount(this.bankAccount.getSavingAccount() - money);
 						log.trace(this.getUserName() + " withdrew " + money + " from saving account");
-						updateBankersData(this);
 						valid = false;
 						break;
 					case 3:
 						log.trace(this.getUserName() + " withdrew " + money + " from credit account");
+						dao.updateCredit(this.getUser_id(), this.getBankAccount().getCreditAccount()-money);
 						this.bankAccount.setCreditAccount(this.bankAccount.getCreditAccount() + money);
-						updateBankersData(this);
 						valid = false;
 						break;
 					}
@@ -228,47 +218,5 @@ public class Customer extends User implements CustomerInterface, Cloneable {
 		return clone;
 	}
 
-	/*
-	 * Note to self: This was way to complicated. Simplier solution was to add a
-	 * attribute to the Customer class and define which he/she was assigned to
-	 */
-	private void updateBankersData(Customer newCustomerData) {
-		File folder = new File("Employees/");
-		File[] listOfFiles = folder.listFiles();
-		List<Employee> empList = new LinkedList<Employee>();
-		for (File emp : listOfFiles) {
-			try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(emp.getPath()))) {
-				Employee e = (Employee) ois.readObject();
-				empList.add(e);
-			} catch (FileNotFoundException e) {
-				log.error("Could not load employees for updateBankersData", e);
-			} catch (IOException e) {
-				log.error("Could not load employees for updateBankersData", e);
-			} catch (ClassNotFoundException e) {
-				log.error("Could not load employees for updateBankersData", e);
-			}
-		}
-		if (empList.size() == 0) {
-			log.error("Cannot update client's information because there are no employees");
-		} else {
-			try {
-				ListIterator<Employee> empIter = empList.listIterator();
-				while (empIter.hasNext()) {
-					Employee emp = empIter.next();
-					Iterator<Customer> custIter = emp.getCustList().iterator();
-					while (custIter.hasNext()) {
-						Customer tmp = custIter.next();//gives up a exception, but we ignore it
-						if (tmp.getUserName().equals(newCustomerData.getUserName())) {
-							custIter.remove(); //remove old data
-							emp.getCustList().add(newCustomerData);// add new customer data
-							BankUtilities.updateFiles(emp);//update file
-						}
-					}
-				} 
-			} catch (ConcurrentModificationException e) {
-				//ignoring exception because it happens after file is updated
-			}
-			
-		}
-	}
+	
 }
