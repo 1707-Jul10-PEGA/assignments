@@ -1,0 +1,133 @@
+		//loading all bank user info
+		
+		Admin myAdmin = new Admin();
+		myAdmin.setfName("Blake");
+		myAdmin.setlName("Trainer");
+		myAdmin.setPass("pass");
+		myAdmin.setuName("nick");
+		myAdmin.setPosition("admin");
+				
+		Customer jo = new Customer();
+		jo.setfName("Troy");
+		jo.setlName("Aikman");
+		jo.setuName("troy");
+		jo.setPass("pass");
+		jo.setPosition("customer");
+		
+		Customer them = new Customer();
+		them.setfName("first");
+		them.setlName("last");
+		them.setuName("first");
+		them.setPass("pass");
+		them.setPosition("customer");
+		
+		Employee me = new Employee();
+		me.setfName("Wendell");
+		me.setlName("Phipps");
+		me.setuName("wendell");
+		me.setPass("pass");
+		me.setPosition("employee");
+		
+		Employee you = new Employee();
+		you.setfName("Master");
+		you.setlName("Chief");
+		you.setPass("pass");
+		you.setuName("chief");
+		you.setPosition("employee");
+
+		you.addAccount(them, "C120983", you);
+
+		Customer ps = new Customer();
+		ps.setPosition("customer");
+		ps.setfName("Joseph");
+		ps.setlName("Khabbaz");
+		ps.setuName("joseph");
+		ps.setPass("pass");
+		customers.add(ps);
+		
+		toApp = new ArrayList<String[]>();
+		String[] toGo = new String[2];
+		toGo[0] = "C1234567";
+		toGo[1] = "joseph";
+		toApp.add(toGo);
+		String[] tog = new String[2];
+		tog[0] = "C9876543";
+		tog[1] = "joseph";
+		toApp.add(tog);
+
+		customers.add(them);
+		customers.add(jo);
+		employees.add(me);
+		employees.add(you);
+		admins.add(myAdmin);
+		
+
+	
+	
+	for(int x = 0; x < customers.size(); x++){
+				dao.saveUser(customers.get(x));
+			}
+			for(int x = 0; x < employees.size(); x++){
+				dao.saveUser(employees.get(x));
+			}
+			for(int x = 0; x < admins.size(); x++){
+				dao.saveUser(admins.get(x));
+			}
+			String insertSQL = "select * from wphipps.bankusers";
+			ResultSet rs = stmt.executeQuery(insertSQL);
+			int x = 0;
+			while(rs.next()){
+				if(rs.getString(4).equals(customers.get(x).getuName())){
+					customers.get(x).setdbID(rs.getInt(1));
+					System.out.println("added cust id");
+				}
+				if(rs.getString(4).equals(employees.get(x).getuName())){
+					employees.get(x).setdbID(rs.getInt(1));
+					System.out.println("added emp id");
+				}
+				if(rs.getString(4).equals(admins.get(x).getuName())){
+					admins.get(x).setdbID(rs.getInt(1));
+					System.out.println("added admin id");
+				}
+				System.out.println("Id: " + rs.getInt(1));
+				System.out.println("first name: " + rs.getString(2));
+				System.out.println("last name: " + rs.getString(3));
+				
+			}
+			
+			
+//				//index 0 has the account number, index 1 has the applicant username
+//					if(getToApprove().size() > 0){
+//			
+//						System.out.println("Approve " + getToApprove().get(0)[0] + " " + getToApprove().get(0)[1] + "?");
+//						String app = scan.nextLine();
+//						switch (app) {
+//						case "1" :
+//							for(int y = 0; y < customers.size(); y++){	
+//								if(getToApprove().get(0)[1].equals(customers.get(y).getuName())){
+//									System.out.println("Approved");
+//									e.addAccount(customers.get(y), toApprove.get(0)[0], e);
+//									toApprove.remove(0);
+//									
+//									empMenu(e, customers);
+//								}
+//							}
+//						break;
+//						case "2" :
+//							System.out.println("Denied");
+//							toApprove.remove(0);
+//						return;
+//						default:
+//							System.out.println("Whoops2. Try again");
+//							empMenu(e, customers);
+//						break;
+//						}
+//			
+//					}
+//					else{
+//						System.out.println("No Accounts to Approve");
+//						empMenu(e, customers);
+//						break;
+//					}
+//					
+			
