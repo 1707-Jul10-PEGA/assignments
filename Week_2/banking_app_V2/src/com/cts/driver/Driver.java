@@ -3,6 +3,7 @@
 package com.cts.driver;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 //import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -171,7 +172,7 @@ public class Driver
 				System.out.println("\t1: VIEW USERS");
 				System.out.println("\t2: APPROVE APPLICATION");
 				System.out.println("\t3: REJECT APPLICATION");
-				System.out.println("\t4: EDIT USER (DOES NOT WORK)");
+				System.out.println("\t4: EDIT USER (DOES NOT WORK 100%)");
 				System.out.println("\t5: LOGOUT");
 				System.out.println("\t0: QUIT");
 				intinput = scan.nextInt();
@@ -250,7 +251,7 @@ public class Driver
 						break;
 						
 					case 4:
-						/*
+						String strinput;
 						System.out.println("\t1: EDIT ADMIN");
 						System.out.println("\t2: EDIT EMPLOYEE");
 						System.out.println("\t3: EDIT CUSTOMER");
@@ -460,7 +461,6 @@ public class Driver
 									}
 								}
 						}
-						*/
 						break;
 					
 					case 5:
