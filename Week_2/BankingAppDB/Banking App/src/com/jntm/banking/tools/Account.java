@@ -1,12 +1,5 @@
 package com.jntm.banking.tools;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.PrintWriter;
 import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -64,12 +57,12 @@ public class Account implements Serializable {
 		ResultSet rs = state.executeQuery(insertSQL);
 
 		while (rs.next()) {
-
-			Account a = new Account(rs.getString(2));
-			a.setBalance(rs.getDouble(4));
-			a.setUniqueID(rs.getDouble(2) + "");
+			
+			Account a = new Account(rs.getString(3));
+			a.setBalance(rs.getDouble(5));
+			a.setUniqueID(rs.getDouble(4) + "");
 			accList.add(a);
-			accountCount++;
+			
 		}
 
 		conn.close();
@@ -113,32 +106,30 @@ public class Account implements Serializable {
 
 	public static void writeAccounts() throws SQLException {
 		log.trace("Accounts being written to file.");
-
-		
-			
-		
 		
 		
 		Connection conn = ConnectionFactory.getInstance().getConnection();
 
-		Statement s = conn.createStatement();
-		
-		s.executeUpdate("Delete from bank_account");
 		
 		String insertSQL = "";
-		s.close();
+		
+		
+		int counter=1;
 		for (Account x : Account.accList) {
 			
-			insertSQL = "INSERT into bank_account (user_id, realAcctID, balance) values((Select user_id from bank_user where user_ID = ?),?,?)";
+			insertSQL = "Update bank_account set user_id=(Select user_id from bank_user where realuserID = ?), realacctid=?, realuserid=?, balance=? where acct_id =?";
+			//insertSQL = "INSERT into bank_account (user_id, realAcctID, realUserID, balance) values((Select user_id from bank_user where realuserID = ?),?,?,?)";
 			PreparedStatement stmt = conn.prepareStatement(insertSQL);
 			stmt.setString(1, x.getOwnerID());
 			stmt.setString(2, x.getUniqueID());
-			stmt.setDouble(3, Double.parseDouble(x.getBalance()));
-
+			stmt.setString(3, x.getOwnerID());
+			stmt.setDouble(4, Double.parseDouble(x.getBalance()));
+			stmt.setDouble(5, counter);
+			counter++;
 			stmt.execute();
 			stmt.close();
 		}
-	
+		counter=1;
 
 		// Clears the text file "accountList"
 		// Then fills it with the contents of accList

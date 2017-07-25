@@ -1,12 +1,5 @@
 package com.jntm.banking.users;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.PrintWriter;
 import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -18,7 +11,6 @@ import java.util.ArrayList;
 import org.apache.log4j.Logger;
 
 import com.jntm.banking.database.ConnectionFactory;
-import com.jntm.banking.tools.Account;
 
 public abstract class User implements Serializable {
 
@@ -59,7 +51,8 @@ public abstract class User implements Serializable {
 		int counter=1;
 		for (User x : User.userList) {
 			insertSQL = "Update bank_user set firstname=?,lastname=?,username=?,pass=?,realUserid=?,usertype=?,empID=? where user_id=?";
-
+			//insertSQL = "Insert into bank_user (firstname,lastname,username,pass,realUserid,usertype,empID) values ( ?,?,?,?,?,?,? ) ";
+			
 			PreparedStatement stmt = conn.prepareStatement(insertSQL);
 			stmt.setString(1, x.getfName());
 			stmt.setString(2, x.getlName());

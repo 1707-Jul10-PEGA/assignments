@@ -1,12 +1,5 @@
 package com.jntm.banking.tools;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.PrintWriter;
 import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -101,14 +94,15 @@ public class Application implements Serializable {
 		Connection conn = ConnectionFactory.getInstance().getConnection();
 		
 		for (Application x : Application.appList) {
-			String insertSQL = "INSERT into bank_application (user_id, realAppID,empID) values((Select user_id from bank_application where user_ID =?),?,?)";
+			
+			//String insertSQL = "Update bank_application set user_id=?,realAppid=?,empID=? where app_id=?"; 
+			String insertSQL = "INSERT into bank_application (user_id, realAppID,empID) values((Select user_id from bank_user where realuserID =?),?,?)";
 			PreparedStatement stmt = conn.prepareStatement(insertSQL);
 
 			stmt.setString(1, x.getUserID());
 			stmt.setString(2, x.getAppID());
 			stmt.setString(3, x.getEmpID());
 			
-			stmt.execute();
 			stmt.close();
 		}
 		conn.close();

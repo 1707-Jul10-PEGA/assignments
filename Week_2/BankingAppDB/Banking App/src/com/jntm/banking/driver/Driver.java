@@ -2,9 +2,7 @@ package com.jntm.banking.driver;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.Scanner;
 
 import org.apache.log4j.Logger;
@@ -41,13 +39,6 @@ public class Driver {
 			e.printStackTrace();
 		} // updating
 
-	
-//		
-		
-		
-
-		//fillDB();
-		
 
 		boolean mainGate = false;
 		while (!mainGate) {
@@ -80,14 +71,12 @@ public class Driver {
 		}
 		// close scanner
 
+		
+		
 		// Close all the ArrayLists and save text files for later use
-		System.out.println("1");
-		Application.writeApplications();
-		System.out.println("2");
-		Account.writeAccounts();
-		System.out.println("3");
 		User.writeUsers();
-		System.out.println("4");
+		Application.writeApplications();
+		Account.writeAccounts();
 		log.trace("Program Closing.\n\n");
 	}
 
@@ -122,11 +111,13 @@ public class Driver {
 		}
 
 		for (Account x : Account.accList) {
-			insertSQL = "INSERT into bank_account (user_id, realAcctID, balance) values((Select user_id from bank_user where realuserID = ?),?,?)";
+
+			insertSQL = "INSERT into bank_account (user_id, realAcctID, realUserID, balance) values((Select user_id from bank_user where realuserID = ?),?,?,?)";
 			PreparedStatement stmt = conn.prepareStatement(insertSQL);
 			stmt.setString(1, x.getOwnerID());
 			stmt.setString(2, x.getUniqueID());
-			stmt.setDouble(3, Double.parseDouble(x.getBalance()));
+			stmt.setString(3, x.getOwnerID());
+			stmt.setDouble(4, Double.parseDouble(x.getBalance()));
 
 			stmt.execute();
 			stmt.close();

@@ -1632,3 +1632,1348 @@
 2017-07-24 22:57:37 TRACE root:41 - Method: Customer.getAssignedEmployeeID
 2017-07-24 22:57:37 TRACE root:41 - Method: Customer.getAssignedEmployeeID
 2017-07-24 22:57:37 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 08:51:38 TRACE root:29 - Program Started.
+2017-07-25 08:51:38 TRACE root:52 - Accounts being read into memory.
+2017-07-25 08:51:38 TRACE root:29 - Program Started.
+2017-07-25 08:51:38 TRACE root:52 - Accounts being read into memory.
+2017-07-25 08:51:40 TRACE root:48 - New Account: 101
+2017-07-25 08:51:40 TRACE root:48 - New Account: 103
+2017-07-25 08:51:40 TRACE root:48 - New Account: 105
+2017-07-25 08:51:40 TRACE root:48 - New Account: 107
+2017-07-25 08:51:40 TRACE root:48 - New Account: 109
+2017-07-25 08:51:40 TRACE root:114 - Users being read into memory.
+2017-07-25 08:51:40 TRACE root:48 - New Account: 101
+2017-07-25 08:51:40 TRACE root:48 - New Account: 103
+2017-07-25 08:51:40 TRACE root:48 - New Account: 105
+2017-07-25 08:51:40 TRACE root:48 - New Account: 107
+2017-07-25 08:51:40 TRACE root:48 - New Account: 109
+2017-07-25 08:51:40 TRACE root:114 - Users being read into memory.
+2017-07-25 08:51:40 TRACE root:23 - New admin created.Jake Maynard 0
+2017-07-25 08:51:40 TRACE root:23 - New admin created.Ad Man 1
+2017-07-25 08:51:40 TRACE root:22 - Employee createdSam Sung 3
+2017-07-25 08:51:40 TRACE root:22 - Employee createdAqua Fina 4
+2017-07-25 08:51:40 TRACE root:22 - Employee createdGold Fish 5
+2017-07-25 08:51:40 TRACE root:29 - Customer created.George Washington 105
+2017-07-25 08:51:40 TRACE root:29 - Customer created.George Michaels 106
+2017-07-25 08:51:40 TRACE root:29 - Customer created.George Jetson 107
+2017-07-25 08:51:40 TRACE root:29 - Customer created.George O'Jungle 108
+2017-07-25 08:51:40 TRACE root:45 - Applications read into memory.
+2017-07-25 08:51:40 TRACE root:23 - New admin created.Jake Maynard 0
+2017-07-25 08:51:40 TRACE root:23 - New admin created.Ad Man 1
+2017-07-25 08:51:40 TRACE root:22 - Employee createdSam Sung 3
+2017-07-25 08:51:40 TRACE root:22 - Employee createdAqua Fina 4
+2017-07-25 08:51:40 TRACE root:22 - Employee createdGold Fish 5
+2017-07-25 08:51:40 TRACE root:29 - Customer created.George Washington 105
+2017-07-25 08:51:40 TRACE root:29 - Customer created.George Michaels 106
+2017-07-25 08:51:40 TRACE root:29 - Customer created.George Jetson 107
+2017-07-25 08:51:40 TRACE root:29 - Customer created.George O'Jungle 108
+2017-07-25 08:51:40 TRACE root:45 - Applications read into memory.
+2017-07-25 08:51:40 TRACE root:50 - Entering Main Menu.
+2017-07-25 08:51:40 TRACE root:50 - Entering Main Menu.
+2017-07-25 08:51:43 TRACE root:99 - Application saved to file.
+2017-07-25 08:51:43 TRACE root:115 - Accounts being written to file.
+2017-07-25 08:51:44 TRACE root:52 - Users being saved to file.
+2017-07-25 08:51:45 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 08:51:45 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 08:51:45 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 08:51:45 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 08:51:45 TRACE root:87 - Program Closing.
+
+
+2017-07-25 08:52:17 TRACE root:29 - Program Started.
+2017-07-25 08:52:17 TRACE root:52 - Accounts being read into memory.
+2017-07-25 08:52:18 TRACE root:48 - New Account: 101
+2017-07-25 08:52:18 TRACE root:48 - New Account: 103
+2017-07-25 08:52:18 TRACE root:48 - New Account: 105
+2017-07-25 08:52:18 TRACE root:48 - New Account: 107
+2017-07-25 08:52:18 TRACE root:48 - New Account: 109
+2017-07-25 08:52:18 TRACE root:114 - Users being read into memory.
+2017-07-25 08:52:18 TRACE root:23 - New admin created.Jake Maynard 0
+2017-07-25 08:52:18 TRACE root:23 - New admin created.Ad Man 1
+2017-07-25 08:52:18 TRACE root:22 - Employee createdSam Sung 3
+2017-07-25 08:52:18 TRACE root:22 - Employee createdAqua Fina 4
+2017-07-25 08:52:18 TRACE root:22 - Employee createdGold Fish 5
+2017-07-25 08:52:18 TRACE root:29 - Customer created.George Washington 105
+2017-07-25 08:52:18 TRACE root:29 - Customer created.George Michaels 106
+2017-07-25 08:52:18 TRACE root:29 - Customer created.George Jetson 107
+2017-07-25 08:52:18 TRACE root:29 - Customer created.George O'Jungle 108
+2017-07-25 08:52:18 TRACE root:45 - Applications read into memory.
+2017-07-25 08:52:19 TRACE root:50 - Entering Main Menu.
+2017-07-25 08:52:20 TRACE root:147 - Login started.
+2017-07-25 08:52:22 TRACE root:155 - Attempted login by: Jake pass
+2017-07-25 08:52:22 TRACE root:171 - Jake Maynard (118) logged in.
+2017-07-25 08:52:24 TRACE root:390 - Logging out.
+2017-07-25 08:52:24 TRACE root:50 - Entering Main Menu.
+2017-07-25 08:52:25 TRACE root:99 - Application saved to file.
+2017-07-25 08:52:25 TRACE root:115 - Accounts being written to file.
+2017-07-25 08:52:26 TRACE root:52 - Users being saved to file.
+2017-07-25 08:52:26 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 08:52:26 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 08:52:26 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 08:52:26 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 08:52:26 TRACE root:87 - Program Closing.
+
+
+2017-07-25 08:52:31 TRACE root:29 - Program Started.
+2017-07-25 08:52:31 TRACE root:52 - Accounts being read into memory.
+2017-07-25 08:52:32 TRACE root:48 - New Account: 101
+2017-07-25 08:52:32 TRACE root:48 - New Account: 103
+2017-07-25 08:52:32 TRACE root:48 - New Account: 105
+2017-07-25 08:52:32 TRACE root:48 - New Account: 107
+2017-07-25 08:52:32 TRACE root:48 - New Account: 109
+2017-07-25 08:52:32 TRACE root:114 - Users being read into memory.
+2017-07-25 08:52:33 TRACE root:23 - New admin created.Jake Maynard 0
+2017-07-25 08:52:33 TRACE root:23 - New admin created.Ad Man 1
+2017-07-25 08:52:33 TRACE root:22 - Employee createdSam Sung 3
+2017-07-25 08:52:33 TRACE root:22 - Employee createdAqua Fina 4
+2017-07-25 08:52:33 TRACE root:22 - Employee createdGold Fish 5
+2017-07-25 08:52:33 TRACE root:29 - Customer created.George Washington 105
+2017-07-25 08:52:33 TRACE root:29 - Customer created.George Michaels 106
+2017-07-25 08:52:33 TRACE root:29 - Customer created.George Jetson 107
+2017-07-25 08:52:33 TRACE root:29 - Customer created.George O'Jungle 108
+2017-07-25 08:52:33 TRACE root:45 - Applications read into memory.
+2017-07-25 08:52:33 TRACE root:50 - Entering Main Menu.
+2017-07-25 08:52:37 TRACE root:147 - Login started.
+2017-07-25 08:52:40 TRACE root:155 - Attempted login by: Jake pass
+2017-07-25 08:52:40 TRACE root:171 - Jake Maynard (118) logged in.
+2017-07-25 08:52:42 TRACE root:295 - User118 is viewing accounts.
+2017-07-25 08:52:42 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 08:52:42 TRACE root:74 - Method: Admin.viewAccounts George Washington uID: 123 eID: 120
+2017-07-25 08:52:42 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 08:52:42 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 08:52:42 TRACE root:74 - Method: Admin.viewAccounts George Michaels uID: 124 eID: 121
+2017-07-25 08:52:42 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 08:52:42 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 08:52:42 TRACE root:74 - Method: Admin.viewAccounts George Jetson uID: 125 eID: 120
+2017-07-25 08:52:42 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 08:52:42 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 08:52:42 TRACE root:74 - Method: Admin.viewAccounts George O'Jungle uID: 126 eID: 122
+2017-07-25 08:52:42 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 08:52:51 TRACE root:390 - Logging out.
+2017-07-25 08:52:51 TRACE root:50 - Entering Main Menu.
+2017-07-25 08:52:52 TRACE root:99 - Application saved to file.
+2017-07-25 08:52:53 TRACE root:115 - Accounts being written to file.
+2017-07-25 08:52:53 TRACE root:52 - Users being saved to file.
+2017-07-25 08:52:53 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 08:52:53 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 08:52:53 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 08:52:53 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 08:52:53 TRACE root:87 - Program Closing.
+
+
+2017-07-25 08:56:26 TRACE root:29 - Program Started.
+2017-07-25 08:56:26 TRACE root:52 - Accounts being read into memory.
+2017-07-25 08:56:27 TRACE root:48 - New Account: 101
+2017-07-25 08:56:27 TRACE root:48 - New Account: 103
+2017-07-25 08:56:27 TRACE root:48 - New Account: 105
+2017-07-25 08:56:27 TRACE root:48 - New Account: 107
+2017-07-25 08:56:27 TRACE root:48 - New Account: 109
+2017-07-25 08:56:27 TRACE root:114 - Users being read into memory.
+2017-07-25 08:56:28 TRACE root:23 - New admin created.Jake Maynard 0
+2017-07-25 08:56:28 TRACE root:23 - New admin created.Ad Man 1
+2017-07-25 08:56:28 TRACE root:22 - Employee createdSam Sung 3
+2017-07-25 08:56:28 TRACE root:22 - Employee createdAqua Fina 4
+2017-07-25 08:56:28 TRACE root:22 - Employee createdGold Fish 5
+2017-07-25 08:56:28 TRACE root:29 - Customer created.George Washington 105
+2017-07-25 08:56:28 TRACE root:29 - Customer created.George Michaels 106
+2017-07-25 08:56:28 TRACE root:29 - Customer created.George Jetson 107
+2017-07-25 08:56:28 TRACE root:29 - Customer created.George O'Jungle 108
+2017-07-25 08:56:28 TRACE root:45 - Applications read into memory.
+2017-07-25 08:56:28 TRACE root:50 - Entering Main Menu.
+2017-07-25 08:56:30 TRACE root:402 - Making New Account
+2017-07-25 08:56:48 TRACE root:29 - Customer created.Customer Customs 109
+2017-07-25 08:56:48 TRACE root:447 - A new Customer has been created.
+2017-07-25 08:56:48 TRACE root:50 - Entering Main Menu.
+2017-07-25 08:56:51 TRACE root:147 - Login started.
+2017-07-25 08:56:54 TRACE root:155 - Attempted login by: Cust pass
+2017-07-25 08:56:54 TRACE root:171 - Customer Customs (109) logged in.
+2017-07-25 08:56:54 TRACE root:183 - User Customer is a customer.
+2017-07-25 08:56:57 TRACE root:197 - User Customer is applying for an account.
+2017-07-25 08:56:57 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 08:56:57 TRACE root:41 - Application Created.
+2017-07-25 08:56:57 TRACE root:37 - Application 100 created.
+2017-07-25 08:56:57 TRACE root:183 - User Customer is a customer.
+2017-07-25 08:57:00 TRACE root:234 - Logging out.
+2017-07-25 08:57:00 TRACE root:50 - Entering Main Menu.
+2017-07-25 08:57:01 TRACE root:99 - Application saved to file.
+2017-07-25 09:01:37 TRACE root:29 - Program Started.
+2017-07-25 09:01:37 TRACE root:52 - Accounts being read into memory.
+2017-07-25 09:01:39 TRACE root:48 - New Account: 101
+2017-07-25 09:01:39 TRACE root:48 - New Account: 103
+2017-07-25 09:01:39 TRACE root:48 - New Account: 105
+2017-07-25 09:01:39 TRACE root:48 - New Account: 107
+2017-07-25 09:01:39 TRACE root:48 - New Account: 109
+2017-07-25 09:01:39 TRACE root:114 - Users being read into memory.
+2017-07-25 09:01:39 TRACE root:23 - New admin created.Jake Maynard 0
+2017-07-25 09:01:39 TRACE root:23 - New admin created.Ad Man 1
+2017-07-25 09:01:39 TRACE root:22 - Employee createdSam Sung 3
+2017-07-25 09:01:39 TRACE root:22 - Employee createdAqua Fina 4
+2017-07-25 09:01:39 TRACE root:22 - Employee createdGold Fish 5
+2017-07-25 09:01:39 TRACE root:29 - Customer created.George Washington 105
+2017-07-25 09:01:39 TRACE root:29 - Customer created.George Michaels 106
+2017-07-25 09:01:39 TRACE root:29 - Customer created.George Jetson 107
+2017-07-25 09:01:39 TRACE root:29 - Customer created.George O'Jungle 108
+2017-07-25 09:01:39 TRACE root:45 - Applications read into memory.
+2017-07-25 09:01:39 TRACE root:50 - Entering Main Menu.
+2017-07-25 09:01:41 TRACE root:147 - Login started.
+2017-07-25 09:01:44 TRACE root:155 - Attempted login by: Cust pass
+2017-07-25 09:01:44 TRACE root:166 - Login failed, returning to main menu.
+2017-07-25 09:01:44 TRACE root:50 - Entering Main Menu.
+2017-07-25 09:01:58 TRACE root:402 - Making New Account
+2017-07-25 09:02:04 TRACE root:29 - Customer created.Cust Cust 109
+2017-07-25 09:02:04 TRACE root:447 - A new Customer has been created.
+2017-07-25 09:02:04 TRACE root:50 - Entering Main Menu.
+2017-07-25 09:02:05 TRACE root:147 - Login started.
+2017-07-25 09:02:08 TRACE root:155 - Attempted login by: Cust pass
+2017-07-25 09:02:08 TRACE root:171 - Cust Cust (109) logged in.
+2017-07-25 09:02:08 TRACE root:183 - User Cust is a customer.
+2017-07-25 09:02:09 TRACE root:197 - User Cust is applying for an account.
+2017-07-25 09:02:09 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 09:02:09 TRACE root:41 - Application Created.
+2017-07-25 09:02:09 TRACE root:37 - Application 100 created.
+2017-07-25 09:02:09 TRACE root:183 - User Cust is a customer.
+2017-07-25 09:02:12 TRACE root:234 - Logging out.
+2017-07-25 09:02:12 TRACE root:50 - Entering Main Menu.
+2017-07-25 09:02:16 TRACE root:147 - Login started.
+2017-07-25 09:02:20 TRACE root:155 - Attempted login by: Jake pass
+2017-07-25 09:02:20 TRACE root:171 - Jake Maynard (118) logged in.
+2017-07-25 09:02:22 TRACE root:39 - Method: Admin.reviewApplications 
+2017-07-25 09:02:26 TRACE root:54 - Application 100 approved.
+2017-07-25 09:02:26 TRACE root:48 - New Account: 111
+2017-07-25 09:02:30 TRACE root:390 - Logging out.
+2017-07-25 09:02:30 TRACE root:50 - Entering Main Menu.
+2017-07-25 09:02:31 TRACE root:99 - Application saved to file.
+2017-07-25 09:02:32 TRACE root:115 - Accounts being written to file.
+2017-07-25 09:05:11 TRACE root:29 - Program Started.
+2017-07-25 09:05:11 TRACE root:52 - Accounts being read into memory.
+2017-07-25 09:05:13 TRACE root:48 - New Account: 101
+2017-07-25 09:05:13 TRACE root:48 - New Account: 103
+2017-07-25 09:05:13 TRACE root:48 - New Account: 105
+2017-07-25 09:05:13 TRACE root:48 - New Account: 107
+2017-07-25 09:05:13 TRACE root:48 - New Account: 109
+2017-07-25 09:05:14 TRACE root:114 - Users being read into memory.
+2017-07-25 09:05:14 TRACE root:23 - New admin created.Jake Maynard 0
+2017-07-25 09:05:14 TRACE root:23 - New admin created.Ad Man 1
+2017-07-25 09:05:14 TRACE root:22 - Employee createdSam Sung 3
+2017-07-25 09:05:14 TRACE root:22 - Employee createdAqua Fina 4
+2017-07-25 09:05:14 TRACE root:22 - Employee createdGold Fish 5
+2017-07-25 09:05:14 TRACE root:29 - Customer created.George Washington 105
+2017-07-25 09:05:14 TRACE root:29 - Customer created.George Michaels 106
+2017-07-25 09:05:14 TRACE root:29 - Customer created.George Jetson 107
+2017-07-25 09:05:14 TRACE root:29 - Customer created.George O'Jungle 108
+2017-07-25 09:05:14 TRACE root:45 - Applications read into memory.
+2017-07-25 09:05:14 TRACE root:50 - Entering Main Menu.
+2017-07-25 09:05:17 TRACE root:402 - Making New Account
+2017-07-25 09:05:23 TRACE root:29 - Customer created.Cust cust 109
+2017-07-25 09:05:23 TRACE root:447 - A new Customer has been created.
+2017-07-25 09:05:23 TRACE root:50 - Entering Main Menu.
+2017-07-25 09:05:28 TRACE root:147 - Login started.
+2017-07-25 09:05:30 TRACE root:155 - Attempted login by: cust psas
+2017-07-25 09:05:30 TRACE root:171 - Cust cust (109) logged in.
+2017-07-25 09:05:30 TRACE root:183 - User Cust is a customer.
+2017-07-25 09:05:32 TRACE root:197 - User Cust is applying for an account.
+2017-07-25 09:05:32 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 09:05:32 TRACE root:41 - Application Created.
+2017-07-25 09:05:32 TRACE root:37 - Application 100 created.
+2017-07-25 09:05:32 TRACE root:183 - User Cust is a customer.
+2017-07-25 09:05:34 TRACE root:234 - Logging out.
+2017-07-25 09:05:34 TRACE root:50 - Entering Main Menu.
+2017-07-25 09:05:35 TRACE root:99 - Application saved to file.
+2017-07-25 09:06:10 TRACE root:29 - Program Started.
+2017-07-25 09:06:10 TRACE root:52 - Accounts being read into memory.
+2017-07-25 09:06:11 TRACE root:48 - New Account: 101
+2017-07-25 09:06:11 TRACE root:48 - New Account: 103
+2017-07-25 09:06:11 TRACE root:48 - New Account: 105
+2017-07-25 09:06:11 TRACE root:48 - New Account: 107
+2017-07-25 09:06:11 TRACE root:48 - New Account: 109
+2017-07-25 09:06:11 TRACE root:114 - Users being read into memory.
+2017-07-25 09:06:12 TRACE root:23 - New admin created.Jake Maynard 0
+2017-07-25 09:06:12 TRACE root:23 - New admin created.Ad Man 1
+2017-07-25 09:06:12 TRACE root:22 - Employee createdSam Sung 3
+2017-07-25 09:06:12 TRACE root:22 - Employee createdAqua Fina 4
+2017-07-25 09:06:12 TRACE root:22 - Employee createdGold Fish 5
+2017-07-25 09:06:12 TRACE root:29 - Customer created.George Washington 105
+2017-07-25 09:06:12 TRACE root:29 - Customer created.George Michaels 106
+2017-07-25 09:06:12 TRACE root:29 - Customer created.George Jetson 107
+2017-07-25 09:06:12 TRACE root:29 - Customer created.George O'Jungle 108
+2017-07-25 09:06:12 TRACE root:45 - Applications read into memory.
+2017-07-25 09:06:13 TRACE root:50 - Entering Main Menu.
+2017-07-25 09:06:16 TRACE root:147 - Login started.
+2017-07-25 09:06:20 TRACE root:155 - Attempted login by: mist pass
+2017-07-25 09:06:20 TRACE root:166 - Login failed, returning to main menu.
+2017-07-25 09:06:20 TRACE root:50 - Entering Main Menu.
+2017-07-25 09:06:22 TRACE root:147 - Login started.
+2017-07-25 09:06:24 TRACE root:155 - Attempted login by: Mist pass
+2017-07-25 09:06:24 TRACE root:166 - Login failed, returning to main menu.
+2017-07-25 09:06:24 TRACE root:50 - Entering Main Menu.
+2017-07-25 09:06:41 TRACE root:147 - Login started.
+2017-07-25 09:06:42 TRACE root:155 - Attempted login by: amer pass
+2017-07-25 09:06:42 TRACE root:171 - George Washington (123) logged in.
+2017-07-25 09:06:42 TRACE root:183 - User George is a customer.
+2017-07-25 09:06:51 TRACE root:197 - User George is applying for an account.
+2017-07-25 09:06:51 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 09:06:51 TRACE root:41 - Application Created.
+2017-07-25 09:06:51 TRACE root:37 - Application 100 created.
+2017-07-25 09:06:51 TRACE root:183 - User George is a customer.
+2017-07-25 09:06:52 TRACE root:234 - Logging out.
+2017-07-25 09:06:52 TRACE root:50 - Entering Main Menu.
+2017-07-25 09:06:54 TRACE root:99 - Application saved to file.
+2017-07-25 09:08:31 TRACE root:29 - Program Started.
+2017-07-25 09:08:31 TRACE root:52 - Accounts being read into memory.
+2017-07-25 09:08:34 TRACE root:48 - New Account: 101
+2017-07-25 09:08:34 TRACE root:48 - New Account: 103
+2017-07-25 09:08:34 TRACE root:48 - New Account: 105
+2017-07-25 09:08:34 TRACE root:48 - New Account: 107
+2017-07-25 09:08:34 TRACE root:48 - New Account: 109
+2017-07-25 09:08:34 TRACE root:114 - Users being read into memory.
+2017-07-25 09:08:37 TRACE root:23 - New admin created.Jake Maynard 0
+2017-07-25 09:08:37 TRACE root:23 - New admin created.Ad Man 1
+2017-07-25 09:08:37 TRACE root:22 - Employee createdSam Sung 3
+2017-07-25 09:08:37 TRACE root:22 - Employee createdAqua Fina 4
+2017-07-25 09:08:37 TRACE root:22 - Employee createdGold Fish 5
+2017-07-25 09:08:37 TRACE root:29 - Customer created.George Washington 105
+2017-07-25 09:08:37 TRACE root:29 - Customer created.George Michaels 106
+2017-07-25 09:08:37 TRACE root:29 - Customer created.George Jetson 107
+2017-07-25 09:08:37 TRACE root:29 - Customer created.George O'Jungle 108
+2017-07-25 09:08:38 TRACE root:45 - Applications read into memory.
+2017-07-25 09:08:39 TRACE root:50 - Entering Main Menu.
+2017-07-25 09:08:41 TRACE root:147 - Login started.
+2017-07-25 09:08:43 TRACE root:155 - Attempted login by: amer pass
+2017-07-25 09:08:43 TRACE root:171 - George Washington (123) logged in.
+2017-07-25 09:08:43 TRACE root:183 - User George is a customer.
+2017-07-25 09:08:44 TRACE root:197 - User George is applying for an account.
+2017-07-25 09:08:44 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 09:08:44 TRACE root:41 - Application Created.
+2017-07-25 09:08:44 TRACE root:37 - Application 100 created.
+2017-07-25 09:08:44 TRACE root:183 - User George is a customer.
+2017-07-25 09:08:46 TRACE root:234 - Logging out.
+2017-07-25 09:08:46 TRACE root:50 - Entering Main Menu.
+2017-07-25 09:08:48 TRACE root:99 - Application saved to file.
+2017-07-25 09:09:03 TRACE root:29 - Program Started.
+2017-07-25 09:09:03 TRACE root:52 - Accounts being read into memory.
+2017-07-25 09:09:04 TRACE root:48 - New Account: 101
+2017-07-25 09:09:04 TRACE root:48 - New Account: 103
+2017-07-25 09:09:04 TRACE root:48 - New Account: 105
+2017-07-25 09:09:04 TRACE root:48 - New Account: 107
+2017-07-25 09:09:04 TRACE root:48 - New Account: 109
+2017-07-25 09:09:04 TRACE root:114 - Users being read into memory.
+2017-07-25 09:09:04 TRACE root:23 - New admin created.Jake Maynard 0
+2017-07-25 09:09:04 TRACE root:23 - New admin created.Ad Man 1
+2017-07-25 09:09:04 TRACE root:22 - Employee createdSam Sung 3
+2017-07-25 09:09:04 TRACE root:22 - Employee createdAqua Fina 4
+2017-07-25 09:09:04 TRACE root:22 - Employee createdGold Fish 5
+2017-07-25 09:09:04 TRACE root:29 - Customer created.George Washington 105
+2017-07-25 09:09:04 TRACE root:29 - Customer created.George Michaels 106
+2017-07-25 09:09:04 TRACE root:29 - Customer created.George Jetson 107
+2017-07-25 09:09:04 TRACE root:29 - Customer created.George O'Jungle 108
+2017-07-25 09:09:05 TRACE root:45 - Applications read into memory.
+2017-07-25 09:09:07 TRACE root:50 - Entering Main Menu.
+2017-07-25 09:09:09 TRACE root:147 - Login started.
+2017-07-25 09:09:11 TRACE root:155 - Attempted login by: amer pass
+2017-07-25 09:09:11 TRACE root:171 - George Washington (123) logged in.
+2017-07-25 09:09:11 TRACE root:183 - User George is a customer.
+2017-07-25 09:09:16 TRACE root:197 - User George is applying for an account.
+2017-07-25 09:09:16 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 09:09:16 TRACE root:41 - Application Created.
+2017-07-25 09:09:16 TRACE root:37 - Application 100 created.
+2017-07-25 09:09:16 TRACE root:183 - User George is a customer.
+2017-07-25 09:09:18 TRACE root:234 - Logging out.
+2017-07-25 09:09:18 TRACE root:50 - Entering Main Menu.
+2017-07-25 09:09:19 TRACE root:99 - Application saved to file.
+2017-07-25 09:10:37 TRACE root:29 - Program Started.
+2017-07-25 09:10:37 TRACE root:52 - Accounts being read into memory.
+2017-07-25 09:10:38 TRACE root:48 - New Account: 101
+2017-07-25 09:10:38 TRACE root:48 - New Account: 103
+2017-07-25 09:10:38 TRACE root:48 - New Account: 105
+2017-07-25 09:10:38 TRACE root:48 - New Account: 107
+2017-07-25 09:10:38 TRACE root:48 - New Account: 109
+2017-07-25 09:10:38 TRACE root:114 - Users being read into memory.
+2017-07-25 09:10:39 TRACE root:23 - New admin created.Jake Maynard 0
+2017-07-25 09:10:39 TRACE root:23 - New admin created.Ad Man 1
+2017-07-25 09:10:39 TRACE root:22 - Employee createdSam Sung 3
+2017-07-25 09:10:39 TRACE root:22 - Employee createdAqua Fina 4
+2017-07-25 09:10:39 TRACE root:22 - Employee createdGold Fish 5
+2017-07-25 09:10:39 TRACE root:29 - Customer created.George Washington 105
+2017-07-25 09:10:39 TRACE root:29 - Customer created.George Michaels 106
+2017-07-25 09:10:39 TRACE root:29 - Customer created.George Jetson 107
+2017-07-25 09:10:39 TRACE root:29 - Customer created.George O'Jungle 108
+2017-07-25 09:10:39 TRACE root:45 - Applications read into memory.
+2017-07-25 09:10:39 TRACE root:50 - Entering Main Menu.
+2017-07-25 09:10:41 TRACE root:147 - Login started.
+2017-07-25 09:10:43 TRACE root:155 - Attempted login by: amer pass
+2017-07-25 09:10:43 TRACE root:171 - George Washington (123) logged in.
+2017-07-25 09:10:43 TRACE root:183 - User George is a customer.
+2017-07-25 09:10:44 TRACE root:197 - User George is applying for an account.
+2017-07-25 09:10:44 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 09:10:44 TRACE root:41 - Application Created.
+2017-07-25 09:10:44 TRACE root:37 - Application 100 created.
+2017-07-25 09:10:44 TRACE root:183 - User George is a customer.
+2017-07-25 09:10:45 TRACE root:234 - Logging out.
+2017-07-25 09:10:45 TRACE root:50 - Entering Main Menu.
+2017-07-25 09:10:46 TRACE root:99 - Application saved to file.
+2017-07-25 09:11:28 TRACE root:29 - Program Started.
+2017-07-25 09:11:28 TRACE root:52 - Accounts being read into memory.
+2017-07-25 09:11:30 TRACE root:48 - New Account: 101
+2017-07-25 09:11:30 TRACE root:48 - New Account: 103
+2017-07-25 09:11:30 TRACE root:48 - New Account: 105
+2017-07-25 09:11:30 TRACE root:48 - New Account: 107
+2017-07-25 09:11:30 TRACE root:48 - New Account: 109
+2017-07-25 09:11:30 TRACE root:114 - Users being read into memory.
+2017-07-25 09:11:31 TRACE root:23 - New admin created.Jake Maynard 0
+2017-07-25 09:11:31 TRACE root:23 - New admin created.Ad Man 1
+2017-07-25 09:11:31 TRACE root:22 - Employee createdSam Sung 3
+2017-07-25 09:11:31 TRACE root:22 - Employee createdAqua Fina 4
+2017-07-25 09:11:31 TRACE root:22 - Employee createdGold Fish 5
+2017-07-25 09:11:31 TRACE root:29 - Customer created.George Washington 105
+2017-07-25 09:11:31 TRACE root:29 - Customer created.George Michaels 106
+2017-07-25 09:11:31 TRACE root:29 - Customer created.George Jetson 107
+2017-07-25 09:11:31 TRACE root:29 - Customer created.George O'Jungle 108
+2017-07-25 09:11:31 TRACE root:45 - Applications read into memory.
+2017-07-25 09:11:31 TRACE root:50 - Entering Main Menu.
+2017-07-25 09:11:32 TRACE root:147 - Login started.
+2017-07-25 09:11:34 TRACE root:155 - Attempted login by: amer pass
+2017-07-25 09:11:34 TRACE root:171 - George Washington (123) logged in.
+2017-07-25 09:11:34 TRACE root:183 - User George is a customer.
+2017-07-25 09:11:35 TRACE root:197 - User George is applying for an account.
+2017-07-25 09:11:35 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 09:11:35 TRACE root:41 - Application Created.
+2017-07-25 09:11:35 TRACE root:37 - Application 100 created.
+2017-07-25 09:11:35 TRACE root:183 - User George is a customer.
+2017-07-25 09:11:36 TRACE root:234 - Logging out.
+2017-07-25 09:11:36 TRACE root:50 - Entering Main Menu.
+2017-07-25 09:11:37 TRACE root:99 - Application saved to file.
+2017-07-25 09:11:38 TRACE root:115 - Accounts being written to file.
+2017-07-25 09:11:39 TRACE root:52 - Users being saved to file.
+2017-07-25 09:11:40 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 09:11:40 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 09:11:40 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 09:11:41 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 09:11:41 TRACE root:87 - Program Closing.
+
+
+2017-07-25 09:12:15 TRACE root:29 - Program Started.
+2017-07-25 09:12:15 TRACE root:52 - Accounts being read into memory.
+2017-07-25 09:12:16 TRACE root:48 - New Account: 101
+2017-07-25 09:12:16 TRACE root:48 - New Account: 103
+2017-07-25 09:12:16 TRACE root:48 - New Account: 105
+2017-07-25 09:12:16 TRACE root:48 - New Account: 107
+2017-07-25 09:12:16 TRACE root:48 - New Account: 109
+2017-07-25 09:12:16 TRACE root:114 - Users being read into memory.
+2017-07-25 09:12:17 TRACE root:23 - New admin created.Jake Maynard 0
+2017-07-25 09:12:17 TRACE root:23 - New admin created.Ad Man 1
+2017-07-25 09:12:17 TRACE root:22 - Employee createdSam Sung 3
+2017-07-25 09:12:17 TRACE root:22 - Employee createdAqua Fina 4
+2017-07-25 09:12:17 TRACE root:22 - Employee createdGold Fish 5
+2017-07-25 09:12:17 TRACE root:29 - Customer created.George Washington 105
+2017-07-25 09:12:17 TRACE root:29 - Customer created.George Michaels 106
+2017-07-25 09:12:17 TRACE root:29 - Customer created.George Jetson 107
+2017-07-25 09:12:17 TRACE root:29 - Customer created.George O'Jungle 108
+2017-07-25 09:12:17 TRACE root:45 - Applications read into memory.
+2017-07-25 09:12:17 TRACE root:41 - Application Created.
+2017-07-25 09:12:17 TRACE root:50 - Entering Main Menu.
+2017-07-25 09:12:18 TRACE root:147 - Login started.
+2017-07-25 09:12:22 TRACE root:155 - Attempted login by: amer pass
+2017-07-25 09:12:22 TRACE root:171 - George Washington (123) logged in.
+2017-07-25 09:12:22 TRACE root:183 - User George is a customer.
+2017-07-25 09:12:24 TRACE root:234 - Logging out.
+2017-07-25 09:12:24 TRACE root:50 - Entering Main Menu.
+2017-07-25 09:12:26 TRACE root:147 - Login started.
+2017-07-25 09:12:28 TRACE root:155 - Attempted login by: Jake pass
+2017-07-25 09:12:28 TRACE root:171 - Jake Maynard (118) logged in.
+2017-07-25 09:12:30 TRACE root:39 - Method: Admin.reviewApplications 
+2017-07-25 09:12:33 TRACE root:54 - Application 100 approved.
+2017-07-25 09:12:33 TRACE root:48 - New Account: 111
+2017-07-25 09:12:35 TRACE root:390 - Logging out.
+2017-07-25 09:12:35 TRACE root:50 - Entering Main Menu.
+2017-07-25 09:12:36 TRACE root:99 - Application saved to file.
+2017-07-25 09:12:36 TRACE root:115 - Accounts being written to file.
+2017-07-25 09:12:48 TRACE root:29 - Program Started.
+2017-07-25 09:12:48 TRACE root:52 - Accounts being read into memory.
+2017-07-25 09:12:54 TRACE root:114 - Users being read into memory.
+2017-07-25 09:12:56 TRACE root:23 - New admin created.Jake Maynard 0
+2017-07-25 09:12:56 TRACE root:23 - New admin created.Ad Man 1
+2017-07-25 09:12:56 TRACE root:22 - Employee createdSam Sung 3
+2017-07-25 09:12:56 TRACE root:22 - Employee createdAqua Fina 4
+2017-07-25 09:12:56 TRACE root:22 - Employee createdGold Fish 5
+2017-07-25 09:12:56 TRACE root:29 - Customer created.George Washington 105
+2017-07-25 09:12:56 TRACE root:29 - Customer created.George Michaels 106
+2017-07-25 09:12:56 TRACE root:29 - Customer created.George Jetson 107
+2017-07-25 09:12:56 TRACE root:29 - Customer created.George O'Jungle 108
+2017-07-25 09:12:56 TRACE root:45 - Applications read into memory.
+2017-07-25 09:12:58 TRACE root:41 - Application Created.
+2017-07-25 09:12:58 TRACE root:50 - Entering Main Menu.
+2017-07-25 09:13:03 TRACE root:99 - Application saved to file.
+2017-07-25 09:24:24 TRACE root:29 - Program Started.
+2017-07-25 09:24:24 TRACE root:52 - Accounts being read into memory.
+2017-07-25 09:24:30 TRACE root:114 - Users being read into memory.
+2017-07-25 09:24:30 TRACE root:23 - New admin created.Jake Maynard 0
+2017-07-25 09:24:30 TRACE root:23 - New admin created.Ad Man 1
+2017-07-25 09:24:30 TRACE root:22 - Employee createdSam Sung 3
+2017-07-25 09:24:30 TRACE root:22 - Employee createdAqua Fina 4
+2017-07-25 09:24:30 TRACE root:22 - Employee createdGold Fish 5
+2017-07-25 09:24:30 TRACE root:29 - Customer created.George Washington 105
+2017-07-25 09:24:30 TRACE root:29 - Customer created.George Michaels 106
+2017-07-25 09:24:30 TRACE root:29 - Customer created.George Jetson 107
+2017-07-25 09:24:30 TRACE root:29 - Customer created.George O'Jungle 108
+2017-07-25 09:24:30 TRACE root:45 - Applications read into memory.
+2017-07-25 09:24:31 TRACE root:41 - Application Created.
+2017-07-25 09:24:31 TRACE root:50 - Entering Main Menu.
+2017-07-25 09:24:32 TRACE root:99 - Application saved to file.
+2017-07-25 09:24:33 TRACE root:115 - Accounts being written to file.
+2017-07-25 09:24:33 TRACE root:52 - Users being saved to file.
+2017-07-25 09:24:33 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 09:24:34 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 09:24:34 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 09:24:34 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 09:24:34 TRACE root:87 - Program Closing.
+
+
+2017-07-25 09:29:09 TRACE root:29 - Program Started.
+2017-07-25 09:29:09 TRACE root:52 - Accounts being read into memory.
+2017-07-25 09:29:09 TRACE root:114 - Users being read into memory.
+2017-07-25 09:29:09 TRACE root:45 - Applications read into memory.
+2017-07-25 09:29:10 TRACE root:50 - Entering Main Menu.
+2017-07-25 09:29:12 TRACE root:99 - Application saved to file.
+2017-07-25 09:29:13 TRACE root:115 - Accounts being written to file.
+2017-07-25 09:29:47 TRACE root:29 - Program Started.
+2017-07-25 09:29:47 TRACE root:52 - Accounts being read into memory.
+2017-07-25 09:29:48 TRACE root:114 - Users being read into memory.
+2017-07-25 09:29:48 TRACE root:45 - Applications read into memory.
+2017-07-25 09:29:51 TRACE root:50 - Entering Main Menu.
+2017-07-25 09:29:54 TRACE root:99 - Application saved to file.
+2017-07-25 09:29:54 TRACE root:115 - Accounts being written to file.
+2017-07-25 09:30:49 TRACE root:29 - Program Started.
+2017-07-25 09:30:49 TRACE root:52 - Accounts being read into memory.
+2017-07-25 09:30:49 TRACE root:114 - Users being read into memory.
+2017-07-25 09:30:49 TRACE root:45 - Applications read into memory.
+2017-07-25 09:30:51 TRACE root:50 - Entering Main Menu.
+2017-07-25 09:30:52 TRACE root:99 - Application saved to file.
+2017-07-25 09:30:52 TRACE root:115 - Accounts being written to file.
+2017-07-25 09:31:14 TRACE root:29 - Program Started.
+2017-07-25 09:31:14 TRACE root:52 - Accounts being read into memory.
+2017-07-25 09:31:14 TRACE root:114 - Users being read into memory.
+2017-07-25 09:31:14 TRACE root:45 - Applications read into memory.
+2017-07-25 09:31:15 TRACE root:50 - Entering Main Menu.
+2017-07-25 09:31:16 TRACE root:99 - Application saved to file.
+2017-07-25 09:31:17 TRACE root:115 - Accounts being written to file.
+2017-07-25 09:32:47 TRACE root:29 - Program Started.
+2017-07-25 09:32:47 TRACE root:52 - Accounts being read into memory.
+2017-07-25 09:32:47 TRACE root:114 - Users being read into memory.
+2017-07-25 09:32:47 TRACE root:45 - Applications read into memory.
+2017-07-25 09:32:48 TRACE root:50 - Entering Main Menu.
+2017-07-25 09:32:52 TRACE root:99 - Application saved to file.
+2017-07-25 09:32:52 TRACE root:115 - Accounts being written to file.
+2017-07-25 09:33:27 TRACE root:29 - Program Started.
+2017-07-25 09:33:27 TRACE root:52 - Accounts being read into memory.
+2017-07-25 09:33:27 TRACE root:114 - Users being read into memory.
+2017-07-25 09:33:27 TRACE root:45 - Applications read into memory.
+2017-07-25 09:33:28 TRACE root:50 - Entering Main Menu.
+2017-07-25 09:33:30 TRACE root:99 - Application saved to file.
+2017-07-25 09:33:30 TRACE root:115 - Accounts being written to file.
+2017-07-25 09:34:28 TRACE root:29 - Program Started.
+2017-07-25 09:34:28 TRACE root:52 - Accounts being read into memory.
+2017-07-25 09:34:28 TRACE root:114 - Users being read into memory.
+2017-07-25 09:34:28 TRACE root:45 - Applications read into memory.
+2017-07-25 09:34:29 TRACE root:50 - Entering Main Menu.
+2017-07-25 09:34:30 TRACE root:52 - Users being saved to file.
+2017-07-25 09:34:31 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 09:34:31 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 09:34:31 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 09:34:31 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 09:34:31 TRACE root:99 - Application saved to file.
+2017-07-25 09:34:31 TRACE root:115 - Accounts being written to file.
+2017-07-25 09:38:10 TRACE root:29 - Program Started.
+2017-07-25 09:38:10 TRACE root:52 - Accounts being read into memory.
+2017-07-25 09:38:10 TRACE root:114 - Users being read into memory.
+2017-07-25 09:38:10 TRACE root:45 - Applications read into memory.
+2017-07-25 09:38:11 TRACE root:50 - Entering Main Menu.
+2017-07-25 09:38:12 TRACE root:52 - Users being saved to file.
+2017-07-25 09:38:13 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 09:38:13 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 09:38:13 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 09:38:13 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 09:38:13 TRACE root:99 - Application saved to file.
+2017-07-25 09:38:13 TRACE root:115 - Accounts being written to file.
+2017-07-25 09:39:08 TRACE root:29 - Program Started.
+2017-07-25 09:39:08 TRACE root:52 - Accounts being read into memory.
+2017-07-25 09:39:09 TRACE root:114 - Users being read into memory.
+2017-07-25 09:39:09 TRACE root:45 - Applications read into memory.
+2017-07-25 09:39:10 TRACE root:50 - Entering Main Menu.
+2017-07-25 09:39:11 TRACE root:52 - Users being saved to file.
+2017-07-25 09:39:12 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 09:39:12 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 09:39:12 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 09:39:12 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 09:39:12 TRACE root:99 - Application saved to file.
+2017-07-25 09:39:12 TRACE root:115 - Accounts being written to file.
+2017-07-25 09:52:51 TRACE root:29 - Program Started.
+2017-07-25 09:52:51 TRACE root:52 - Accounts being read into memory.
+2017-07-25 09:52:51 TRACE root:115 - Users being read into memory.
+2017-07-25 09:52:51 TRACE root:45 - Applications read into memory.
+2017-07-25 09:52:53 TRACE root:23 - New admin created.Jake Maynard 18
+2017-07-25 09:52:53 TRACE root:23 - New admin created.Ad Man 19
+2017-07-25 09:52:53 TRACE root:22 - Employee createdSam Sung 21
+2017-07-25 09:52:53 TRACE root:22 - Employee createdAqua Fina 22
+2017-07-25 09:52:53 TRACE root:22 - Employee createdGold Fish 23
+2017-07-25 09:52:53 TRACE root:29 - Customer created.George Washington 123
+2017-07-25 09:52:53 TRACE root:29 - Customer created.George Michaels 124
+2017-07-25 09:52:53 TRACE root:29 - Customer created.George Jetson 125
+2017-07-25 09:52:53 TRACE root:29 - Customer created.George O'Jungle 126
+2017-07-25 09:52:53 TRACE root:48 - New Account: 106
+2017-07-25 09:52:53 TRACE root:96 - Successful Deposit. 123
+2017-07-25 09:52:53 TRACE root:97 - Method: Customer.depositAccount106 34.45
+2017-07-25 09:52:53 TRACE root:48 - New Account: 107
+2017-07-25 09:52:53 TRACE root:96 - Successful Deposit. 124
+2017-07-25 09:52:53 TRACE root:97 - Method: Customer.depositAccount107 98.09
+2017-07-25 09:52:53 TRACE root:48 - New Account: 108
+2017-07-25 09:52:53 TRACE root:96 - Successful Deposit. 125
+2017-07-25 09:52:53 TRACE root:97 - Method: Customer.depositAccount108 33.33
+2017-07-25 09:52:53 TRACE root:48 - New Account: 109
+2017-07-25 09:52:53 TRACE root:96 - Successful Deposit. 126
+2017-07-25 09:52:53 TRACE root:97 - Method: Customer.depositAccount109 44.44
+2017-07-25 09:52:53 TRACE root:48 - New Account: 110
+2017-07-25 09:52:53 TRACE root:96 - Successful Deposit. 123
+2017-07-25 09:52:53 TRACE root:97 - Method: Customer.depositAccount110 23000.0
+2017-07-25 09:52:53 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 09:52:53 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 09:52:53 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 09:52:53 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 09:55:22 TRACE root:29 - Program Started.
+2017-07-25 09:55:22 TRACE root:52 - Accounts being read into memory.
+2017-07-25 09:55:22 TRACE root:115 - Users being read into memory.
+2017-07-25 09:55:22 TRACE root:45 - Applications read into memory.
+2017-07-25 09:55:29 TRACE root:29 - Program Started.
+2017-07-25 09:55:29 TRACE root:52 - Accounts being read into memory.
+2017-07-25 09:55:30 TRACE root:115 - Users being read into memory.
+2017-07-25 09:55:30 TRACE root:45 - Applications read into memory.
+2017-07-25 09:57:10 TRACE root:29 - Program Started.
+2017-07-25 09:57:10 TRACE root:52 - Accounts being read into memory.
+2017-07-25 09:57:10 TRACE root:115 - Users being read into memory.
+2017-07-25 09:57:10 TRACE root:45 - Applications read into memory.
+2017-07-25 09:57:20 TRACE root:23 - New admin created.Jake Maynard 18
+2017-07-25 09:57:20 TRACE root:23 - New admin created.Ad Man 19
+2017-07-25 09:57:20 TRACE root:22 - Employee createdSam Sung 21
+2017-07-25 09:57:20 TRACE root:22 - Employee createdAqua Fina 22
+2017-07-25 09:57:20 TRACE root:22 - Employee createdGold Fish 23
+2017-07-25 09:57:20 TRACE root:29 - Customer created.George Washington 123
+2017-07-25 09:57:20 TRACE root:29 - Customer created.George Michaels 124
+2017-07-25 09:57:20 TRACE root:29 - Customer created.George Jetson 125
+2017-07-25 09:57:20 TRACE root:29 - Customer created.George O'Jungle 126
+2017-07-25 09:57:20 TRACE root:48 - New Account: 106
+2017-07-25 09:57:20 TRACE root:96 - Successful Deposit. 123
+2017-07-25 09:57:20 TRACE root:97 - Method: Customer.depositAccount106 34.45
+2017-07-25 09:57:20 TRACE root:48 - New Account: 107
+2017-07-25 09:57:20 TRACE root:96 - Successful Deposit. 124
+2017-07-25 09:57:20 TRACE root:97 - Method: Customer.depositAccount107 98.09
+2017-07-25 09:57:20 TRACE root:48 - New Account: 108
+2017-07-25 09:57:20 TRACE root:96 - Successful Deposit. 125
+2017-07-25 09:57:20 TRACE root:97 - Method: Customer.depositAccount108 33.33
+2017-07-25 09:57:20 TRACE root:48 - New Account: 109
+2017-07-25 09:57:20 TRACE root:96 - Successful Deposit. 126
+2017-07-25 09:57:20 TRACE root:97 - Method: Customer.depositAccount109 44.44
+2017-07-25 09:57:20 TRACE root:48 - New Account: 110
+2017-07-25 09:57:20 TRACE root:96 - Successful Deposit. 123
+2017-07-25 09:57:20 TRACE root:97 - Method: Customer.depositAccount110 23000.0
+2017-07-25 09:59:15 TRACE root:29 - Program Started.
+2017-07-25 09:59:15 TRACE root:52 - Accounts being read into memory.
+2017-07-25 09:59:15 TRACE root:115 - Users being read into memory.
+2017-07-25 09:59:15 TRACE root:45 - Applications read into memory.
+2017-07-25 09:59:16 TRACE root:23 - New admin created.Jake Maynard 18
+2017-07-25 09:59:16 TRACE root:23 - New admin created.Ad Man 19
+2017-07-25 09:59:16 TRACE root:22 - Employee createdSam Sung 21
+2017-07-25 09:59:16 TRACE root:22 - Employee createdAqua Fina 22
+2017-07-25 09:59:16 TRACE root:22 - Employee createdGold Fish 23
+2017-07-25 09:59:16 TRACE root:29 - Customer created.George Washington 123
+2017-07-25 09:59:16 TRACE root:29 - Customer created.George Michaels 124
+2017-07-25 09:59:16 TRACE root:29 - Customer created.George Jetson 125
+2017-07-25 09:59:16 TRACE root:29 - Customer created.George O'Jungle 126
+2017-07-25 09:59:16 TRACE root:48 - New Account: 106
+2017-07-25 09:59:16 TRACE root:96 - Successful Deposit. 123
+2017-07-25 09:59:16 TRACE root:97 - Method: Customer.depositAccount106 34.45
+2017-07-25 09:59:16 TRACE root:48 - New Account: 107
+2017-07-25 09:59:16 TRACE root:96 - Successful Deposit. 124
+2017-07-25 09:59:16 TRACE root:97 - Method: Customer.depositAccount107 98.09
+2017-07-25 09:59:16 TRACE root:48 - New Account: 108
+2017-07-25 09:59:16 TRACE root:96 - Successful Deposit. 125
+2017-07-25 09:59:16 TRACE root:97 - Method: Customer.depositAccount108 33.33
+2017-07-25 09:59:16 TRACE root:48 - New Account: 109
+2017-07-25 09:59:16 TRACE root:96 - Successful Deposit. 126
+2017-07-25 09:59:16 TRACE root:97 - Method: Customer.depositAccount109 44.44
+2017-07-25 09:59:16 TRACE root:48 - New Account: 110
+2017-07-25 09:59:16 TRACE root:96 - Successful Deposit. 123
+2017-07-25 09:59:16 TRACE root:97 - Method: Customer.depositAccount110 23000.0
+2017-07-25 09:59:17 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 09:59:17 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 09:59:17 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 09:59:17 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 09:59:50 TRACE root:29 - Program Started.
+2017-07-25 09:59:50 TRACE root:52 - Accounts being read into memory.
+2017-07-25 09:59:50 TRACE root:115 - Users being read into memory.
+2017-07-25 09:59:50 TRACE root:45 - Applications read into memory.
+2017-07-25 09:59:52 TRACE root:23 - New admin created.Jake Maynard 18
+2017-07-25 09:59:52 TRACE root:23 - New admin created.Ad Man 19
+2017-07-25 09:59:52 TRACE root:22 - Employee createdSam Sung 21
+2017-07-25 09:59:52 TRACE root:22 - Employee createdAqua Fina 22
+2017-07-25 09:59:52 TRACE root:22 - Employee createdGold Fish 23
+2017-07-25 09:59:52 TRACE root:29 - Customer created.George Washington 123
+2017-07-25 09:59:52 TRACE root:29 - Customer created.George Michaels 124
+2017-07-25 09:59:52 TRACE root:29 - Customer created.George Jetson 125
+2017-07-25 09:59:52 TRACE root:29 - Customer created.George O'Jungle 126
+2017-07-25 09:59:52 TRACE root:48 - New Account: 106
+2017-07-25 09:59:52 TRACE root:96 - Successful Deposit. 123
+2017-07-25 09:59:52 TRACE root:97 - Method: Customer.depositAccount106 34.45
+2017-07-25 09:59:52 TRACE root:48 - New Account: 107
+2017-07-25 09:59:52 TRACE root:96 - Successful Deposit. 124
+2017-07-25 09:59:52 TRACE root:97 - Method: Customer.depositAccount107 98.09
+2017-07-25 09:59:52 TRACE root:48 - New Account: 108
+2017-07-25 09:59:52 TRACE root:96 - Successful Deposit. 125
+2017-07-25 09:59:52 TRACE root:97 - Method: Customer.depositAccount108 33.33
+2017-07-25 09:59:52 TRACE root:48 - New Account: 109
+2017-07-25 09:59:52 TRACE root:96 - Successful Deposit. 126
+2017-07-25 09:59:52 TRACE root:97 - Method: Customer.depositAccount109 44.44
+2017-07-25 09:59:52 TRACE root:48 - New Account: 110
+2017-07-25 09:59:52 TRACE root:96 - Successful Deposit. 123
+2017-07-25 09:59:52 TRACE root:97 - Method: Customer.depositAccount110 23000.0
+2017-07-25 09:59:53 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 09:59:53 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 09:59:53 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 09:59:53 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 09:59:53 TRACE root:95 - Entering Main Menu.
+2017-07-25 09:59:55 TRACE root:52 - Users being saved to file.
+2017-07-25 10:04:17 TRACE root:29 - Program Started.
+2017-07-25 10:04:17 TRACE root:52 - Accounts being read into memory.
+2017-07-25 10:04:17 TRACE root:115 - Users being read into memory.
+2017-07-25 10:04:17 TRACE root:45 - Applications read into memory.
+2017-07-25 10:04:18 TRACE root:23 - New admin created.Jake Maynard 18
+2017-07-25 10:04:18 TRACE root:23 - New admin created.Ad Man 19
+2017-07-25 10:04:18 TRACE root:22 - Employee createdSam Sung 21
+2017-07-25 10:04:18 TRACE root:22 - Employee createdAqua Fina 22
+2017-07-25 10:04:18 TRACE root:22 - Employee createdGold Fish 23
+2017-07-25 10:04:18 TRACE root:29 - Customer created.George Washington 123
+2017-07-25 10:04:18 TRACE root:29 - Customer created.George Michaels 124
+2017-07-25 10:04:18 TRACE root:29 - Customer created.George Jetson 125
+2017-07-25 10:04:18 TRACE root:29 - Customer created.George O'Jungle 126
+2017-07-25 10:04:18 TRACE root:48 - New Account: 106
+2017-07-25 10:04:18 TRACE root:96 - Successful Deposit. 123
+2017-07-25 10:04:18 TRACE root:97 - Method: Customer.depositAccount106 34.45
+2017-07-25 10:04:19 TRACE root:48 - New Account: 107
+2017-07-25 10:04:19 TRACE root:96 - Successful Deposit. 124
+2017-07-25 10:04:19 TRACE root:97 - Method: Customer.depositAccount107 98.09
+2017-07-25 10:04:19 TRACE root:48 - New Account: 108
+2017-07-25 10:04:19 TRACE root:96 - Successful Deposit. 125
+2017-07-25 10:04:19 TRACE root:97 - Method: Customer.depositAccount108 33.33
+2017-07-25 10:04:19 TRACE root:48 - New Account: 109
+2017-07-25 10:04:19 TRACE root:96 - Successful Deposit. 126
+2017-07-25 10:04:19 TRACE root:97 - Method: Customer.depositAccount109 44.44
+2017-07-25 10:04:19 TRACE root:48 - New Account: 110
+2017-07-25 10:04:19 TRACE root:96 - Successful Deposit. 123
+2017-07-25 10:04:19 TRACE root:97 - Method: Customer.depositAccount110 23000.0
+2017-07-25 10:04:19 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 10:04:19 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 10:04:19 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 10:04:19 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 10:04:19 TRACE root:95 - Entering Main Menu.
+2017-07-25 10:04:21 TRACE root:52 - Users being saved to file.
+2017-07-25 10:05:02 TRACE root:29 - Program Started.
+2017-07-25 10:05:02 TRACE root:52 - Accounts being read into memory.
+2017-07-25 10:05:02 TRACE root:115 - Users being read into memory.
+2017-07-25 10:05:02 TRACE root:45 - Applications read into memory.
+2017-07-25 10:05:04 TRACE root:23 - New admin created.Jake Maynard 18
+2017-07-25 10:05:04 TRACE root:23 - New admin created.Ad Man 19
+2017-07-25 10:05:04 TRACE root:22 - Employee createdSam Sung 21
+2017-07-25 10:05:04 TRACE root:22 - Employee createdAqua Fina 22
+2017-07-25 10:05:04 TRACE root:22 - Employee createdGold Fish 23
+2017-07-25 10:05:04 TRACE root:29 - Customer created.George Washington 123
+2017-07-25 10:05:04 TRACE root:29 - Customer created.George Michaels 124
+2017-07-25 10:05:04 TRACE root:29 - Customer created.George Jetson 125
+2017-07-25 10:05:04 TRACE root:29 - Customer created.George O'Jungle 126
+2017-07-25 10:05:04 TRACE root:48 - New Account: 106
+2017-07-25 10:05:04 TRACE root:96 - Successful Deposit. 123
+2017-07-25 10:05:04 TRACE root:97 - Method: Customer.depositAccount106 34.45
+2017-07-25 10:05:04 TRACE root:48 - New Account: 107
+2017-07-25 10:05:04 TRACE root:96 - Successful Deposit. 124
+2017-07-25 10:05:04 TRACE root:97 - Method: Customer.depositAccount107 98.09
+2017-07-25 10:05:04 TRACE root:48 - New Account: 108
+2017-07-25 10:05:04 TRACE root:96 - Successful Deposit. 125
+2017-07-25 10:05:04 TRACE root:97 - Method: Customer.depositAccount108 33.33
+2017-07-25 10:05:04 TRACE root:48 - New Account: 109
+2017-07-25 10:05:04 TRACE root:96 - Successful Deposit. 126
+2017-07-25 10:05:04 TRACE root:97 - Method: Customer.depositAccount109 44.44
+2017-07-25 10:05:04 TRACE root:48 - New Account: 110
+2017-07-25 10:05:04 TRACE root:96 - Successful Deposit. 123
+2017-07-25 10:05:04 TRACE root:97 - Method: Customer.depositAccount110 23000.0
+2017-07-25 10:05:31 TRACE root:29 - Program Started.
+2017-07-25 10:05:32 TRACE root:52 - Accounts being read into memory.
+2017-07-25 10:05:32 TRACE root:115 - Users being read into memory.
+2017-07-25 10:05:32 TRACE root:45 - Applications read into memory.
+2017-07-25 10:05:36 TRACE root:95 - Entering Main Menu.
+2017-07-25 10:05:37 TRACE root:52 - Users being saved to file.
+2017-07-25 10:05:48 TRACE root:29 - Program Started.
+2017-07-25 10:05:48 TRACE root:52 - Accounts being read into memory.
+2017-07-25 10:05:49 TRACE root:115 - Users being read into memory.
+2017-07-25 10:05:49 TRACE root:45 - Applications read into memory.
+2017-07-25 10:05:50 TRACE root:95 - Entering Main Menu.
+2017-07-25 10:05:52 TRACE root:52 - Users being saved to file.
+2017-07-25 10:05:52 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 10:05:52 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 10:05:52 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 10:05:53 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 10:05:53 TRACE root:99 - Application saved to file.
+2017-07-25 10:05:54 TRACE root:115 - Accounts being written to file.
+2017-07-25 10:06:05 TRACE root:29 - Program Started.
+2017-07-25 10:06:05 TRACE root:52 - Accounts being read into memory.
+2017-07-25 10:06:05 TRACE root:115 - Users being read into memory.
+2017-07-25 10:06:05 TRACE root:45 - Applications read into memory.
+2017-07-25 10:06:07 TRACE root:95 - Entering Main Menu.
+2017-07-25 10:06:09 TRACE root:52 - Users being saved to file.
+2017-07-25 10:06:09 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 10:06:09 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 10:06:09 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 10:06:09 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 10:06:09 TRACE root:99 - Application saved to file.
+2017-07-25 10:06:10 TRACE root:115 - Accounts being written to file.
+2017-07-25 10:11:03 TRACE root:29 - Program Started.
+2017-07-25 10:11:03 TRACE root:52 - Accounts being read into memory.
+2017-07-25 10:11:04 TRACE root:115 - Users being read into memory.
+2017-07-25 10:11:04 TRACE root:45 - Applications read into memory.
+2017-07-25 10:11:05 TRACE root:99 - Entering Main Menu.
+2017-07-25 10:12:19 TRACE root:52 - Users being saved to file.
+2017-07-25 10:12:19 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 10:12:19 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 10:12:19 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 10:12:19 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 10:12:19 TRACE root:99 - Application saved to file.
+2017-07-25 10:12:19 TRACE root:115 - Accounts being written to file.
+2017-07-25 10:15:09 TRACE root:29 - Program Started.
+2017-07-25 10:15:09 TRACE root:52 - Accounts being read into memory.
+2017-07-25 10:15:09 TRACE root:115 - Users being read into memory.
+2017-07-25 10:15:10 TRACE root:45 - Applications read into memory.
+2017-07-25 10:15:11 TRACE root:23 - New admin created.Jake Maynard 18
+2017-07-25 10:15:11 TRACE root:23 - New admin created.Ad Man 19
+2017-07-25 10:15:11 TRACE root:22 - Employee createdSam Sung 21
+2017-07-25 10:15:11 TRACE root:22 - Employee createdAqua Fina 22
+2017-07-25 10:15:11 TRACE root:22 - Employee createdGold Fish 23
+2017-07-25 10:15:11 TRACE root:29 - Customer created.George Washington 123
+2017-07-25 10:15:11 TRACE root:29 - Customer created.George Michaels 124
+2017-07-25 10:15:11 TRACE root:29 - Customer created.George Jetson 125
+2017-07-25 10:15:11 TRACE root:29 - Customer created.George O'Jungle 126
+2017-07-25 10:15:11 TRACE root:48 - New Account: 106
+2017-07-25 10:15:11 TRACE root:96 - Successful Deposit. 123
+2017-07-25 10:15:11 TRACE root:97 - Method: Customer.depositAccount106 34.45
+2017-07-25 10:15:11 TRACE root:48 - New Account: 107
+2017-07-25 10:15:11 TRACE root:96 - Successful Deposit. 124
+2017-07-25 10:15:11 TRACE root:97 - Method: Customer.depositAccount107 98.09
+2017-07-25 10:15:11 TRACE root:48 - New Account: 108
+2017-07-25 10:15:11 TRACE root:96 - Successful Deposit. 125
+2017-07-25 10:15:11 TRACE root:97 - Method: Customer.depositAccount108 33.33
+2017-07-25 10:15:11 TRACE root:48 - New Account: 109
+2017-07-25 10:15:11 TRACE root:96 - Successful Deposit. 126
+2017-07-25 10:15:11 TRACE root:97 - Method: Customer.depositAccount109 44.44
+2017-07-25 10:15:11 TRACE root:48 - New Account: 110
+2017-07-25 10:15:11 TRACE root:96 - Successful Deposit. 123
+2017-07-25 10:15:11 TRACE root:97 - Method: Customer.depositAccount110 23000.0
+2017-07-25 10:15:11 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 10:15:11 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 10:15:11 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 10:15:12 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 10:15:12 TRACE root:99 - Entering Main Menu.
+2017-07-25 10:15:14 TRACE root:132 - Program Closing.
+
+
+2017-07-25 10:19:44 TRACE root:29 - Program Started.
+2017-07-25 10:19:44 TRACE root:52 - Accounts being read into memory.
+2017-07-25 10:19:46 TRACE root:48 - New Account: 101
+2017-07-25 10:19:46 TRACE root:48 - New Account: 103
+2017-07-25 10:19:46 TRACE root:48 - New Account: 105
+2017-07-25 10:19:46 TRACE root:48 - New Account: 107
+2017-07-25 10:19:46 TRACE root:48 - New Account: 109
+2017-07-25 10:19:46 TRACE root:115 - Users being read into memory.
+2017-07-25 10:19:46 TRACE root:23 - New admin created.Jake Maynard 0
+2017-07-25 10:19:46 TRACE root:23 - New admin created.Ad Man 1
+2017-07-25 10:19:46 TRACE root:22 - Employee createdSam Sung 3
+2017-07-25 10:19:46 TRACE root:22 - Employee createdAqua Fina 4
+2017-07-25 10:19:46 TRACE root:22 - Employee createdGold Fish 5
+2017-07-25 10:19:46 TRACE root:29 - Customer created.George Washington 105
+2017-07-25 10:19:46 TRACE root:29 - Customer created.George Michaels 106
+2017-07-25 10:19:46 TRACE root:29 - Customer created.George Jetson 107
+2017-07-25 10:19:46 TRACE root:29 - Customer created.George O'Jungle 108
+2017-07-25 10:19:46 TRACE root:45 - Applications read into memory.
+2017-07-25 10:19:47 TRACE root:99 - Entering Main Menu.
+2017-07-25 10:19:55 TRACE root:52 - Users being saved to file.
+2017-07-25 10:19:55 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 10:19:55 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 10:19:55 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 10:19:55 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 10:19:55 TRACE root:99 - Application saved to file.
+2017-07-25 10:19:55 TRACE root:115 - Accounts being written to file.
+2017-07-25 10:25:22 TRACE root:29 - Program Started.
+2017-07-25 10:25:22 TRACE root:52 - Accounts being read into memory.
+2017-07-25 10:26:02 TRACE root:29 - Program Started.
+2017-07-25 10:26:02 TRACE root:52 - Accounts being read into memory.
+2017-07-25 10:26:03 TRACE root:115 - Users being read into memory.
+2017-07-25 10:26:04 TRACE root:45 - Applications read into memory.
+2017-07-25 10:26:04 TRACE root:23 - New admin created.Jake Maynard 0
+2017-07-25 10:26:04 TRACE root:23 - New admin created.Ad Man 1
+2017-07-25 10:26:04 TRACE root:22 - Employee createdSam Sung 3
+2017-07-25 10:26:04 TRACE root:22 - Employee createdAqua Fina 4
+2017-07-25 10:26:04 TRACE root:22 - Employee createdGold Fish 5
+2017-07-25 10:26:04 TRACE root:29 - Customer created.George Washington 105
+2017-07-25 10:26:04 TRACE root:29 - Customer created.George Michaels 106
+2017-07-25 10:26:04 TRACE root:29 - Customer created.George Jetson 107
+2017-07-25 10:26:04 TRACE root:29 - Customer created.George O'Jungle 108
+2017-07-25 10:26:04 TRACE root:48 - New Account: 101
+2017-07-25 10:26:04 TRACE root:96 - Successful Deposit. 105
+2017-07-25 10:26:04 TRACE root:97 - Method: Customer.depositAccount101 34.45
+2017-07-25 10:26:04 TRACE root:48 - New Account: 102
+2017-07-25 10:26:04 TRACE root:96 - Successful Deposit. 106
+2017-07-25 10:26:04 TRACE root:97 - Method: Customer.depositAccount102 98.09
+2017-07-25 10:26:04 TRACE root:48 - New Account: 103
+2017-07-25 10:26:04 TRACE root:96 - Successful Deposit. 107
+2017-07-25 10:26:04 TRACE root:97 - Method: Customer.depositAccount103 33.33
+2017-07-25 10:26:04 TRACE root:48 - New Account: 104
+2017-07-25 10:26:04 TRACE root:96 - Successful Deposit. 108
+2017-07-25 10:26:04 TRACE root:97 - Method: Customer.depositAccount104 44.44
+2017-07-25 10:26:04 TRACE root:48 - New Account: 105
+2017-07-25 10:26:04 TRACE root:96 - Successful Deposit. 105
+2017-07-25 10:26:04 TRACE root:97 - Method: Customer.depositAccount105 23000.0
+2017-07-25 10:26:05 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 10:26:05 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 10:26:05 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 10:26:05 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 10:26:05 TRACE root:99 - Entering Main Menu.
+2017-07-25 10:26:08 TRACE root:132 - Program Closing.
+
+
+2017-07-25 10:26:48 TRACE root:29 - Program Started.
+2017-07-25 10:26:48 TRACE root:52 - Accounts being read into memory.
+2017-07-25 10:26:49 TRACE root:48 - New Account: 101
+2017-07-25 10:26:49 TRACE root:48 - New Account: 103
+2017-07-25 10:26:49 TRACE root:48 - New Account: 105
+2017-07-25 10:26:49 TRACE root:48 - New Account: 107
+2017-07-25 10:26:49 TRACE root:48 - New Account: 109
+2017-07-25 10:26:50 TRACE root:115 - Users being read into memory.
+2017-07-25 10:26:50 TRACE root:23 - New admin created.Jake Maynard 0
+2017-07-25 10:26:50 TRACE root:23 - New admin created.Ad Man 1
+2017-07-25 10:26:50 TRACE root:22 - Employee createdSam Sung 3
+2017-07-25 10:26:50 TRACE root:22 - Employee createdAqua Fina 4
+2017-07-25 10:26:50 TRACE root:22 - Employee createdGold Fish 5
+2017-07-25 10:26:50 TRACE root:29 - Customer created.George Washington 105
+2017-07-25 10:26:50 TRACE root:29 - Customer created.George Michaels 106
+2017-07-25 10:26:50 TRACE root:29 - Customer created.George Jetson 107
+2017-07-25 10:26:50 TRACE root:29 - Customer created.George O'Jungle 108
+2017-07-25 10:26:50 TRACE root:45 - Applications read into memory.
+2017-07-25 10:26:50 TRACE root:99 - Entering Main Menu.
+2017-07-25 10:26:53 TRACE root:52 - Users being saved to file.
+2017-07-25 10:26:56 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 10:26:56 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 10:26:56 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 10:26:56 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 10:26:56 TRACE root:99 - Application saved to file.
+2017-07-25 10:26:57 TRACE root:115 - Accounts being written to file.
+2017-07-25 10:33:34 TRACE root:29 - Program Started.
+2017-07-25 10:33:34 TRACE root:52 - Accounts being read into memory.
+2017-07-25 10:33:36 TRACE root:115 - Users being read into memory.
+2017-07-25 10:33:36 TRACE root:45 - Applications read into memory.
+2017-07-25 10:33:36 TRACE root:23 - New admin created.Jake Maynard 0
+2017-07-25 10:33:36 TRACE root:23 - New admin created.Ad Man 1
+2017-07-25 10:33:36 TRACE root:22 - Employee createdSam Sung 3
+2017-07-25 10:33:36 TRACE root:22 - Employee createdAqua Fina 4
+2017-07-25 10:33:36 TRACE root:22 - Employee createdGold Fish 5
+2017-07-25 10:33:36 TRACE root:29 - Customer created.George Washington 105
+2017-07-25 10:33:36 TRACE root:29 - Customer created.George Michaels 106
+2017-07-25 10:33:36 TRACE root:29 - Customer created.George Jetson 107
+2017-07-25 10:33:36 TRACE root:29 - Customer created.George O'Jungle 108
+2017-07-25 10:33:36 TRACE root:48 - New Account: 101
+2017-07-25 10:33:36 TRACE root:96 - Successful Deposit. 105
+2017-07-25 10:33:36 TRACE root:97 - Method: Customer.depositAccount101 34.45
+2017-07-25 10:33:37 TRACE root:48 - New Account: 102
+2017-07-25 10:33:37 TRACE root:96 - Successful Deposit. 106
+2017-07-25 10:33:37 TRACE root:97 - Method: Customer.depositAccount102 98.09
+2017-07-25 10:33:37 TRACE root:48 - New Account: 103
+2017-07-25 10:33:37 TRACE root:96 - Successful Deposit. 107
+2017-07-25 10:33:37 TRACE root:97 - Method: Customer.depositAccount103 33.33
+2017-07-25 10:33:37 TRACE root:48 - New Account: 104
+2017-07-25 10:33:37 TRACE root:96 - Successful Deposit. 108
+2017-07-25 10:33:37 TRACE root:97 - Method: Customer.depositAccount104 44.44
+2017-07-25 10:33:37 TRACE root:48 - New Account: 105
+2017-07-25 10:33:37 TRACE root:96 - Successful Deposit. 105
+2017-07-25 10:33:37 TRACE root:97 - Method: Customer.depositAccount105 23000.0
+2017-07-25 10:33:37 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 10:33:37 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 10:33:37 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 10:33:37 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 10:33:37 TRACE root:97 - Entering Main Menu.
+2017-07-25 10:33:41 TRACE root:130 - Program Closing.
+
+
+2017-07-25 10:34:15 TRACE root:29 - Program Started.
+2017-07-25 10:34:15 TRACE root:52 - Accounts being read into memory.
+2017-07-25 10:34:17 TRACE root:48 - New Account: 102
+2017-07-25 10:34:17 TRACE root:48 - New Account: 104
+2017-07-25 10:34:17 TRACE root:48 - New Account: 106
+2017-07-25 10:34:17 TRACE root:48 - New Account: 108
+2017-07-25 10:34:17 TRACE root:48 - New Account: 110
+2017-07-25 10:34:17 TRACE root:115 - Users being read into memory.
+2017-07-25 10:34:18 TRACE root:23 - New admin created.Jake Maynard 0
+2017-07-25 10:34:18 TRACE root:23 - New admin created.Ad Man 1
+2017-07-25 10:34:18 TRACE root:22 - Employee createdSam Sung 3
+2017-07-25 10:34:18 TRACE root:22 - Employee createdAqua Fina 4
+2017-07-25 10:34:18 TRACE root:22 - Employee createdGold Fish 5
+2017-07-25 10:34:18 TRACE root:29 - Customer created.George Washington 105
+2017-07-25 10:34:18 TRACE root:29 - Customer created.George Michaels 106
+2017-07-25 10:34:18 TRACE root:29 - Customer created.George Jetson 107
+2017-07-25 10:34:18 TRACE root:29 - Customer created.George O'Jungle 108
+2017-07-25 10:34:18 TRACE root:45 - Applications read into memory.
+2017-07-25 10:34:19 TRACE root:97 - Entering Main Menu.
+2017-07-25 10:34:20 TRACE root:52 - Users being saved to file.
+2017-07-25 10:34:21 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 10:34:21 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 10:34:21 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 10:34:21 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 10:34:21 TRACE root:99 - Application saved to file.
+2017-07-25 10:34:22 TRACE root:115 - Accounts being written to file.
+2017-07-25 10:49:42 TRACE root:29 - Program Started.
+2017-07-25 10:49:42 TRACE root:23 - New admin created.Jake Maynard 0
+2017-07-25 10:49:42 TRACE root:23 - New admin created.Ad Man 1
+2017-07-25 10:49:42 TRACE root:22 - Employee createdSam Sung 3
+2017-07-25 10:49:42 TRACE root:22 - Employee createdAqua Fina 4
+2017-07-25 10:49:42 TRACE root:22 - Employee createdGold Fish 5
+2017-07-25 10:49:42 TRACE root:29 - Customer created.George Washington 105
+2017-07-25 10:49:42 TRACE root:29 - Customer created.George Michaels 106
+2017-07-25 10:49:42 TRACE root:29 - Customer created.George Jetson 107
+2017-07-25 10:49:42 TRACE root:29 - Customer created.George O'Jungle 108
+2017-07-25 10:49:42 TRACE root:48 - New Account: 101
+2017-07-25 10:49:42 TRACE root:96 - Successful Deposit. 105
+2017-07-25 10:49:42 TRACE root:97 - Method: Customer.depositAccount101 34.45
+2017-07-25 10:49:42 TRACE root:48 - New Account: 102
+2017-07-25 10:49:42 TRACE root:96 - Successful Deposit. 106
+2017-07-25 10:49:42 TRACE root:97 - Method: Customer.depositAccount102 98.09
+2017-07-25 10:49:42 TRACE root:48 - New Account: 103
+2017-07-25 10:49:42 TRACE root:96 - Successful Deposit. 107
+2017-07-25 10:49:42 TRACE root:97 - Method: Customer.depositAccount103 33.33
+2017-07-25 10:49:42 TRACE root:48 - New Account: 104
+2017-07-25 10:49:42 TRACE root:96 - Successful Deposit. 108
+2017-07-25 10:49:42 TRACE root:97 - Method: Customer.depositAccount104 44.44
+2017-07-25 10:49:42 TRACE root:48 - New Account: 105
+2017-07-25 10:49:42 TRACE root:96 - Successful Deposit. 105
+2017-07-25 10:49:42 TRACE root:97 - Method: Customer.depositAccount105 23000.0
+2017-07-25 10:49:44 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 10:49:44 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 10:49:44 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 10:49:44 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 10:49:44 TRACE root:103 - Entering Main Menu.
+2017-07-25 10:49:46 TRACE root:136 - Program Closing.
+
+
+2017-07-25 10:51:11 TRACE root:29 - Program Started.
+2017-07-25 10:51:11 TRACE root:52 - Accounts being read into memory.
+2017-07-25 10:51:13 TRACE root:48 - New Account: 102
+2017-07-25 10:51:13 TRACE root:48 - New Account: 104
+2017-07-25 10:51:13 TRACE root:48 - New Account: 106
+2017-07-25 10:51:13 TRACE root:48 - New Account: 108
+2017-07-25 10:51:13 TRACE root:48 - New Account: 110
+2017-07-25 10:51:13 TRACE root:115 - Users being read into memory.
+2017-07-25 10:51:13 TRACE root:23 - New admin created.Jake Maynard 0
+2017-07-25 10:51:13 TRACE root:23 - New admin created.Ad Man 1
+2017-07-25 10:51:13 TRACE root:22 - Employee createdSam Sung 3
+2017-07-25 10:51:13 TRACE root:22 - Employee createdAqua Fina 4
+2017-07-25 10:51:13 TRACE root:22 - Employee createdGold Fish 5
+2017-07-25 10:51:13 TRACE root:29 - Customer created.George Washington 105
+2017-07-25 10:51:13 TRACE root:29 - Customer created.George Michaels 106
+2017-07-25 10:51:13 TRACE root:29 - Customer created.George Jetson 107
+2017-07-25 10:51:13 TRACE root:29 - Customer created.George O'Jungle 108
+2017-07-25 10:51:13 TRACE root:45 - Applications read into memory.
+2017-07-25 10:51:13 TRACE root:103 - Entering Main Menu.
+2017-07-25 10:51:18 TRACE root:52 - Users being saved to file.
+2017-07-25 10:51:18 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 10:51:18 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 10:51:18 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 10:51:18 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 10:51:18 TRACE root:99 - Application saved to file.
+2017-07-25 10:51:18 TRACE root:115 - Accounts being written to file.
+2017-07-25 11:08:58 TRACE root:29 - Program Started.
+2017-07-25 11:08:58 TRACE root:52 - Accounts being read into memory.
+2017-07-25 11:08:59 TRACE root:115 - Users being read into memory.
+2017-07-25 11:09:00 TRACE root:45 - Applications read into memory.
+2017-07-25 11:09:00 TRACE root:23 - New admin created.Jake Maynard 0
+2017-07-25 11:09:00 TRACE root:23 - New admin created.Ad Man 1
+2017-07-25 11:09:00 TRACE root:22 - Employee createdSam Sung 3
+2017-07-25 11:09:00 TRACE root:22 - Employee createdAqua Fina 4
+2017-07-25 11:09:00 TRACE root:22 - Employee createdGold Fish 5
+2017-07-25 11:09:00 TRACE root:29 - Customer created.George Washington 105
+2017-07-25 11:09:00 TRACE root:29 - Customer created.George Michaels 106
+2017-07-25 11:09:00 TRACE root:29 - Customer created.George Jetson 107
+2017-07-25 11:09:00 TRACE root:29 - Customer created.George O'Jungle 108
+2017-07-25 11:09:00 TRACE root:48 - New Account: 101
+2017-07-25 11:09:00 TRACE root:96 - Successful Deposit. 105
+2017-07-25 11:09:00 TRACE root:97 - Method: Customer.depositAccount101 34.45
+2017-07-25 11:09:00 TRACE root:48 - New Account: 102
+2017-07-25 11:09:00 TRACE root:96 - Successful Deposit. 106
+2017-07-25 11:09:00 TRACE root:97 - Method: Customer.depositAccount102 98.09
+2017-07-25 11:09:00 TRACE root:48 - New Account: 103
+2017-07-25 11:09:00 TRACE root:96 - Successful Deposit. 107
+2017-07-25 11:09:00 TRACE root:97 - Method: Customer.depositAccount103 33.33
+2017-07-25 11:09:00 TRACE root:48 - New Account: 104
+2017-07-25 11:09:00 TRACE root:96 - Successful Deposit. 108
+2017-07-25 11:09:00 TRACE root:97 - Method: Customer.depositAccount104 44.44
+2017-07-25 11:09:00 TRACE root:48 - New Account: 105
+2017-07-25 11:09:00 TRACE root:96 - Successful Deposit. 105
+2017-07-25 11:09:00 TRACE root:97 - Method: Customer.depositAccount105 23000.0
+2017-07-25 11:09:00 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 11:09:00 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 11:09:00 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 11:09:00 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 11:09:00 TRACE root:103 - Entering Main Menu.
+2017-07-25 11:09:04 TRACE root:136 - Program Closing.
+
+
+2017-07-25 11:09:42 TRACE root:29 - Program Started.
+2017-07-25 11:09:42 TRACE root:52 - Accounts being read into memory.
+2017-07-25 11:09:44 TRACE root:48 - New Account: 101
+2017-07-25 11:09:44 TRACE root:48 - New Account: 102
+2017-07-25 11:09:44 TRACE root:48 - New Account: 103
+2017-07-25 11:09:44 TRACE root:48 - New Account: 104
+2017-07-25 11:09:44 TRACE root:48 - New Account: 105
+2017-07-25 11:09:44 TRACE root:115 - Users being read into memory.
+2017-07-25 11:09:44 TRACE root:23 - New admin created.Jake Maynard 0
+2017-07-25 11:09:44 TRACE root:23 - New admin created.Ad Man 1
+2017-07-25 11:09:44 TRACE root:22 - Employee createdSam Sung 3
+2017-07-25 11:09:44 TRACE root:22 - Employee createdAqua Fina 4
+2017-07-25 11:09:44 TRACE root:22 - Employee createdGold Fish 5
+2017-07-25 11:09:44 TRACE root:29 - Customer created.George Washington 105
+2017-07-25 11:09:44 TRACE root:29 - Customer created.George Michaels 106
+2017-07-25 11:09:44 TRACE root:29 - Customer created.George Jetson 107
+2017-07-25 11:09:44 TRACE root:29 - Customer created.George O'Jungle 108
+2017-07-25 11:09:44 TRACE root:45 - Applications read into memory.
+2017-07-25 11:09:44 TRACE root:103 - Entering Main Menu.
+2017-07-25 11:09:52 TRACE root:52 - Users being saved to file.
+2017-07-25 11:09:52 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 11:09:52 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 11:09:52 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 11:09:52 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 11:09:52 TRACE root:99 - Application saved to file.
+2017-07-25 11:09:53 TRACE root:114 - Accounts being written to file.
+2017-07-25 11:11:01 TRACE root:29 - Program Started.
+2017-07-25 11:11:01 TRACE root:52 - Accounts being read into memory.
+2017-07-25 11:11:02 TRACE root:115 - Users being read into memory.
+2017-07-25 11:11:02 TRACE root:45 - Applications read into memory.
+2017-07-25 11:11:03 TRACE root:23 - New admin created.Jake Maynard 0
+2017-07-25 11:11:03 TRACE root:23 - New admin created.Ad Man 1
+2017-07-25 11:11:03 TRACE root:22 - Employee createdSam Sung 3
+2017-07-25 11:11:03 TRACE root:22 - Employee createdAqua Fina 4
+2017-07-25 11:11:03 TRACE root:22 - Employee createdGold Fish 5
+2017-07-25 11:11:03 TRACE root:29 - Customer created.George Washington 105
+2017-07-25 11:11:03 TRACE root:29 - Customer created.George Michaels 106
+2017-07-25 11:11:03 TRACE root:29 - Customer created.George Jetson 107
+2017-07-25 11:11:03 TRACE root:29 - Customer created.George O'Jungle 108
+2017-07-25 11:11:03 TRACE root:48 - New Account: 101
+2017-07-25 11:11:03 TRACE root:96 - Successful Deposit. 105
+2017-07-25 11:11:03 TRACE root:97 - Method: Customer.depositAccount101 34.45
+2017-07-25 11:11:03 TRACE root:48 - New Account: 102
+2017-07-25 11:11:03 TRACE root:96 - Successful Deposit. 106
+2017-07-25 11:11:03 TRACE root:97 - Method: Customer.depositAccount102 98.09
+2017-07-25 11:11:03 TRACE root:48 - New Account: 103
+2017-07-25 11:11:03 TRACE root:96 - Successful Deposit. 107
+2017-07-25 11:11:03 TRACE root:97 - Method: Customer.depositAccount103 33.33
+2017-07-25 11:11:03 TRACE root:48 - New Account: 104
+2017-07-25 11:11:03 TRACE root:96 - Successful Deposit. 108
+2017-07-25 11:11:03 TRACE root:97 - Method: Customer.depositAccount104 44.44
+2017-07-25 11:11:03 TRACE root:48 - New Account: 105
+2017-07-25 11:11:03 TRACE root:96 - Successful Deposit. 105
+2017-07-25 11:11:03 TRACE root:97 - Method: Customer.depositAccount105 23000.0
+2017-07-25 11:11:03 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 11:11:03 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 11:11:03 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 11:11:03 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 11:11:03 TRACE root:103 - Entering Main Menu.
+2017-07-25 11:11:09 TRACE root:140 - Program Closing.
+
+
+2017-07-25 11:13:42 TRACE root:29 - Program Started.
+2017-07-25 11:13:42 TRACE root:52 - Accounts being read into memory.
+2017-07-25 11:13:44 TRACE root:48 - New Account: 101
+2017-07-25 11:13:44 TRACE root:48 - New Account: 102
+2017-07-25 11:13:44 TRACE root:48 - New Account: 103
+2017-07-25 11:13:44 TRACE root:48 - New Account: 104
+2017-07-25 11:13:44 TRACE root:48 - New Account: 105
+2017-07-25 11:13:44 TRACE root:115 - Users being read into memory.
+2017-07-25 11:13:44 TRACE root:23 - New admin created.Jake Maynard 0
+2017-07-25 11:13:44 TRACE root:23 - New admin created.Ad Man 1
+2017-07-25 11:13:44 TRACE root:22 - Employee createdSam Sung 3
+2017-07-25 11:13:44 TRACE root:22 - Employee createdAqua Fina 4
+2017-07-25 11:13:44 TRACE root:22 - Employee createdGold Fish 5
+2017-07-25 11:13:44 TRACE root:29 - Customer created.George Washington 105
+2017-07-25 11:13:44 TRACE root:29 - Customer created.George Michaels 106
+2017-07-25 11:13:44 TRACE root:29 - Customer created.George Jetson 107
+2017-07-25 11:13:44 TRACE root:29 - Customer created.George O'Jungle 108
+2017-07-25 11:13:44 TRACE root:45 - Applications read into memory.
+2017-07-25 11:13:44 TRACE root:51 - Entering Main Menu.
+2017-07-25 11:13:50 TRACE root:52 - Users being saved to file.
+2017-07-25 11:13:50 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 11:13:50 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 11:13:50 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 11:13:50 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 11:13:50 TRACE root:99 - Application saved to file.
+2017-07-25 11:13:50 TRACE root:115 - Accounts being written to file.
+2017-07-25 11:15:01 TRACE root:29 - Program Started.
+2017-07-25 11:15:01 TRACE root:52 - Accounts being read into memory.
+2017-07-25 11:15:02 TRACE root:48 - New Account: 101
+2017-07-25 11:15:02 TRACE root:48 - New Account: 102
+2017-07-25 11:15:02 TRACE root:48 - New Account: 103
+2017-07-25 11:15:02 TRACE root:48 - New Account: 104
+2017-07-25 11:15:02 TRACE root:48 - New Account: 105
+2017-07-25 11:15:02 TRACE root:115 - Users being read into memory.
+2017-07-25 11:15:03 TRACE root:23 - New admin created.Jake Maynard 0
+2017-07-25 11:15:03 TRACE root:23 - New admin created.Ad Man 1
+2017-07-25 11:15:03 TRACE root:22 - Employee createdSam Sung 3
+2017-07-25 11:15:03 TRACE root:22 - Employee createdAqua Fina 4
+2017-07-25 11:15:03 TRACE root:22 - Employee createdGold Fish 5
+2017-07-25 11:15:03 TRACE root:29 - Customer created.George Washington 105
+2017-07-25 11:15:03 TRACE root:29 - Customer created.George Michaels 106
+2017-07-25 11:15:03 TRACE root:29 - Customer created.George Jetson 107
+2017-07-25 11:15:03 TRACE root:29 - Customer created.George O'Jungle 108
+2017-07-25 11:15:03 TRACE root:45 - Applications read into memory.
+2017-07-25 11:15:03 TRACE root:51 - Entering Main Menu.
+2017-07-25 11:15:07 TRACE root:52 - Users being saved to file.
+2017-07-25 11:15:07 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 11:15:07 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 11:15:07 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 11:15:07 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 11:15:07 TRACE root:99 - Application saved to file.
+2017-07-25 11:15:07 TRACE root:115 - Accounts being written to file.
+2017-07-25 11:15:08 TRACE root:86 - Program Closing.
+
+
+2017-07-25 11:17:09 TRACE root:27 - Program Started.
+2017-07-25 11:17:09 TRACE root:45 - Accounts being read into memory.
+2017-07-25 11:17:11 TRACE root:41 - New Account: 101
+2017-07-25 11:17:11 TRACE root:41 - New Account: 102
+2017-07-25 11:17:11 TRACE root:41 - New Account: 103
+2017-07-25 11:17:11 TRACE root:41 - New Account: 104
+2017-07-25 11:17:11 TRACE root:41 - New Account: 105
+2017-07-25 11:17:11 TRACE root:107 - Users being read into memory.
+2017-07-25 11:17:11 TRACE root:23 - New admin created.Jake Maynard 0
+2017-07-25 11:17:11 TRACE root:23 - New admin created.Ad Man 1
+2017-07-25 11:17:11 TRACE root:22 - Employee createdSam Sung 3
+2017-07-25 11:17:11 TRACE root:22 - Employee createdAqua Fina 4
+2017-07-25 11:17:11 TRACE root:22 - Employee createdGold Fish 5
+2017-07-25 11:17:11 TRACE root:29 - Customer created.George Washington 105
+2017-07-25 11:17:11 TRACE root:29 - Customer created.George Michaels 106
+2017-07-25 11:17:11 TRACE root:29 - Customer created.George Jetson 107
+2017-07-25 11:17:11 TRACE root:29 - Customer created.George O'Jungle 108
+2017-07-25 11:17:11 TRACE root:38 - Applications read into memory.
+2017-07-25 11:17:11 TRACE root:45 - Entering Main Menu.
+2017-07-25 11:17:13 TRACE root:142 - Login started.
+2017-07-25 11:17:17 TRACE root:150 - Attempted login by: amer pass
+2017-07-25 11:17:17 TRACE root:166 - George Washington (105) logged in.
+2017-07-25 11:17:17 TRACE root:178 - User George is a customer.
+2017-07-25 11:17:36 TRACE root:196 - User George is checking an account.
+2017-07-25 11:17:36 TRACE root:56 - Method: Customer.checkAccount
+2017-07-25 11:17:36 TRACE root:178 - User George is a customer.
+2017-07-25 11:17:50 TRACE root:192 - User George is applying for an account.
+2017-07-25 11:17:50 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 11:17:50 TRACE root:34 - Application Created.
+2017-07-25 11:17:50 TRACE root:37 - Application 100 created.
+2017-07-25 11:17:50 TRACE root:178 - User George is a customer.
+2017-07-25 11:17:52 TRACE root:229 - Logging out.
+2017-07-25 11:17:52 TRACE root:45 - Entering Main Menu.
+2017-07-25 11:17:55 TRACE root:142 - Login started.
+2017-07-25 11:17:58 TRACE root:150 - Attempted login by: Sam pass
+2017-07-25 11:17:58 TRACE root:166 - Sam Sung (102) logged in.
+2017-07-25 11:17:58 TRACE root:241 - User Sam is an employee.
+2017-07-25 11:18:00 TRACE root:252 - User102 is reviewing applications
+2017-07-25 11:18:00 TRACE root:26 - Applications being reviewed.
+2017-07-25 11:18:02 TRACE root:48 - Application 100 denied.
+2017-07-25 11:18:02 TRACE root:241 - User Sam is an employee.
+2017-07-25 11:20:12 TRACE root:266 - Logging out.
+2017-07-25 11:20:12 TRACE root:45 - Entering Main Menu.
+2017-07-25 11:20:29 TRACE root:44 - Users being saved to file.
+2017-07-25 11:20:30 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 11:20:30 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 11:20:30 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 11:20:30 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 11:20:30 TRACE root:92 - Application saved to file.
+2017-07-25 11:20:30 TRACE root:108 - Accounts being written to file.
+2017-07-25 11:20:30 TRACE root:80 - Program Closing.
+
+
+2017-07-25 11:20:41 TRACE root:27 - Program Started.
+2017-07-25 11:20:41 TRACE root:45 - Accounts being read into memory.
+2017-07-25 11:20:42 TRACE root:41 - New Account: 101
+2017-07-25 11:20:42 TRACE root:41 - New Account: 102
+2017-07-25 11:20:42 TRACE root:41 - New Account: 103
+2017-07-25 11:20:42 TRACE root:41 - New Account: 104
+2017-07-25 11:20:42 TRACE root:41 - New Account: 105
+2017-07-25 11:20:42 TRACE root:107 - Users being read into memory.
+2017-07-25 11:20:43 TRACE root:23 - New admin created.Jake Maynard 0
+2017-07-25 11:20:43 TRACE root:23 - New admin created.Ad Man 1
+2017-07-25 11:20:43 TRACE root:22 - Employee createdSam Sung 3
+2017-07-25 11:20:43 TRACE root:22 - Employee createdAqua Fina 4
+2017-07-25 11:20:43 TRACE root:22 - Employee createdGold Fish 5
+2017-07-25 11:20:43 TRACE root:29 - Customer created.George Washington 105
+2017-07-25 11:20:43 TRACE root:29 - Customer created.George Michaels 106
+2017-07-25 11:20:43 TRACE root:29 - Customer created.George Jetson 107
+2017-07-25 11:20:43 TRACE root:29 - Customer created.George O'Jungle 108
+2017-07-25 11:20:43 TRACE root:38 - Applications read into memory.
+2017-07-25 11:20:43 TRACE root:45 - Entering Main Menu.
+2017-07-25 11:20:44 TRACE root:142 - Login started.
+2017-07-25 11:20:46 TRACE root:150 - Attempted login by: amer pass
+2017-07-25 11:20:46 TRACE root:166 - George Washington (105) logged in.
+2017-07-25 11:20:46 TRACE root:178 - User George is a customer.
+2017-07-25 11:20:48 TRACE root:192 - User George is applying for an account.
+2017-07-25 11:20:48 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 11:20:48 TRACE root:34 - Application Created.
+2017-07-25 11:20:48 TRACE root:37 - Application 100 created.
+2017-07-25 11:20:48 TRACE root:178 - User George is a customer.
+2017-07-25 11:20:49 TRACE root:229 - Logging out.
+2017-07-25 11:20:49 TRACE root:45 - Entering Main Menu.
+2017-07-25 11:20:50 TRACE root:44 - Users being saved to file.
+2017-07-25 11:20:51 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 11:20:51 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 11:20:51 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 11:20:51 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 11:20:51 TRACE root:92 - Application saved to file.
+2017-07-25 11:20:51 TRACE root:108 - Accounts being written to file.
+2017-07-25 11:20:52 TRACE root:80 - Program Closing.
+
+
+2017-07-25 11:22:23 TRACE root:27 - Program Started.
+2017-07-25 11:22:23 TRACE root:45 - Accounts being read into memory.
+2017-07-25 11:22:24 TRACE root:41 - New Account: 101
+2017-07-25 11:22:24 TRACE root:41 - New Account: 102
+2017-07-25 11:22:24 TRACE root:41 - New Account: 103
+2017-07-25 11:22:24 TRACE root:41 - New Account: 104
+2017-07-25 11:22:24 TRACE root:41 - New Account: 105
+2017-07-25 11:22:24 TRACE root:107 - Users being read into memory.
+2017-07-25 11:22:24 TRACE root:23 - New admin created.Jake Maynard 0
+2017-07-25 11:22:24 TRACE root:23 - New admin created.Ad Man 1
+2017-07-25 11:22:24 TRACE root:22 - Employee createdSam Sung 3
+2017-07-25 11:22:24 TRACE root:22 - Employee createdAqua Fina 4
+2017-07-25 11:22:24 TRACE root:22 - Employee createdGold Fish 5
+2017-07-25 11:22:24 TRACE root:29 - Customer created.George Washington 105
+2017-07-25 11:22:24 TRACE root:29 - Customer created.George Michaels 106
+2017-07-25 11:22:24 TRACE root:29 - Customer created.George Jetson 107
+2017-07-25 11:22:24 TRACE root:29 - Customer created.George O'Jungle 108
+2017-07-25 11:22:24 TRACE root:38 - Applications read into memory.
+2017-07-25 11:22:25 TRACE root:45 - Entering Main Menu.
+2017-07-25 11:22:39 TRACE root:142 - Login started.
+2017-07-25 11:22:41 TRACE root:150 - Attempted login by: amer pass
+2017-07-25 11:22:41 TRACE root:166 - George Washington (105) logged in.
+2017-07-25 11:22:41 TRACE root:178 - User George is a customer.
+2017-07-25 11:22:43 TRACE root:192 - User George is applying for an account.
+2017-07-25 11:22:43 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 11:22:43 TRACE root:34 - Application Created.
+2017-07-25 11:22:43 TRACE root:37 - Application 100 created.
+2017-07-25 11:22:43 TRACE root:178 - User George is a customer.
+2017-07-25 11:22:45 TRACE root:229 - Logging out.
+2017-07-25 11:22:45 TRACE root:45 - Entering Main Menu.
+2017-07-25 11:22:46 TRACE root:44 - Users being saved to file.
+2017-07-25 11:22:46 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 11:22:46 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 11:22:46 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 11:22:46 TRACE root:41 - Method: Customer.getAssignedEmployeeID
+2017-07-25 11:22:46 TRACE root:92 - Application saved to file.
+2017-07-25 11:22:46 TRACE root:108 - Accounts being written to file.
+2017-07-25 11:22:47 TRACE root:80 - Program Closing.
+
+
