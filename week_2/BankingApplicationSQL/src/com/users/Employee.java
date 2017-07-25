@@ -26,7 +26,7 @@ public class Employee extends User implements Menu, Serializable {
 	}
 
 	private static String[] menuStrings = {
-			"\n=====\nMENU\n=====\n1 )View balances\n2 )Deny/Approve\n3 )End session\n=====\n",
+			"\n=====\nMENU\n=====\n1 )View balances\n2 )Deny/Approve\n3 )Create customer account\n4) End session\n=====\n",
 			"Enter deposit amount: ", "Enter withdrawal amount: ", "** BYE **" };
 	private static String[] optionString = { "Enter an option (1, 2, 3, ..): " };
 	private int menuIndex;
@@ -60,6 +60,14 @@ public class Employee extends User implements Menu, Serializable {
 			}
 			return true;
 		case "3":
+			try {
+				ed.createUser(this.getUser_id());
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return true;
+		case "4":
 			return false;
 		default:
 			return true;

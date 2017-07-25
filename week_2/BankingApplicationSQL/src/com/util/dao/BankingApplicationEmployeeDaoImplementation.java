@@ -117,7 +117,59 @@ public class BankingApplicationEmployeeDaoImplementation extends BankingApplicat
 		System.out.println("End of approve/deny process");
 		rs.close();
 		pstmt.close();
+
+	}
+
+	public void createUser(int bankerID) throws SQLException {
+		Scanner scan = new Scanner(System.in);
+		System.out.println("Creating a new customer...");
+		System.out.print("Enter first name: ");
+		String firstname = scan.nextLine();
+		System.out.print("Enter last name: ");
+		String lastName = scan.nextLine();
+		int age = 0;
+		scan = new Scanner(System.in);
+		while (true) {
+			try{
+			System.out.print("Enter age: ");
+			age = scan.nextInt();
+			break;
+			}catch(InputMismatchException e){
+				System.out.println("Input a valid age.");
+			}
+		}
+		scan = new Scanner(System.in);
+		System.out.print("Enter username: ");
+		String userName = scan.nextLine();
+		scan = new Scanner(System.in);
+		System.out.print("Enter password: ");
+		String passWord = scan.nextLine();
+
+		String sqlStatement = "INSERT INTO ALLUSERS VALUES(0,?,?,?,?,0,?)";
+		PreparedStatement pstmt = conn.prepareStatement(sqlStatement);
+		pstmt.setString(1, passWord);
+		pstmt.setString(2, firstname);
+		pstmt.setString(3, lastName);
+		pstmt.setInt(4, age);
+		pstmt.setString(5, userName);
+		ResultSet rs = pstmt.executeQuery();
 		
+		
+		sqlStatement = "SELECT USER_ID FROM ALLUSERS WHERE USERNAME = ?";
+		pstmt = conn.prepareStatement(sqlStatement);
+		pstmt.setString(1, userName);
+		rs = pstmt.executeQuery();
+		
+		rs.next();
+		int cID = rs.getInt(1);
+		
+		sqlStatement = "INSERT INTO CUSTOMER VALUES(? , ?)";
+		pstmt = conn.prepareStatement(sqlStatement);
+		pstmt.setInt(1, cID);
+		pstmt.setInt(2, bankerID);
+		pstmt.executeQuery();
+		
+
 	}
 
 	public static void main(String[] args) {
