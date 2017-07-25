@@ -125,10 +125,12 @@ public class BalanceViewer {
 		{
 			if ("Approve".equals(approval))
 			{
+				connect.insertLogTable("appeals", "Worker");
 				connect.updateBalanceInfo(valueBalance.getLoginID(), "approved", "applicationStatus");
 			}
 			if ("Deny".equals(approval))
 			{
+				connect.insertLogTable("denial", "Worker");
 				connect.updateBalanceInfo(valueBalance.getLoginID(), "denied", "applicationStatus");
 			}
 		}

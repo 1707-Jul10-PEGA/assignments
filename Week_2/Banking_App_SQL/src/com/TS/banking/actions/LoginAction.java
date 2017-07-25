@@ -102,6 +102,7 @@ public class LoginAction {
 	{
 		BankingAppDaoImpl connect = new BankingAppDaoImpl();
 		LoginInfo value = new LoginInfo();
+		
 		try {
 			value = connect.getLoginInfo(id, 0);
 			if (value == null)

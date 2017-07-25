@@ -6,6 +6,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Savepoint;
 import java.sql.Statement;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import com.TS.banking.pojo.BalanceInfo;
 import com.TS.banking.pojo.LoginInfo;
@@ -227,5 +230,47 @@ public class BankingAppDaoImpl implements BankingAppDao {
 		conn.commit();
 		conn.setAutoCommit(true);
 		return num;
+	}
+
+	@Override
+	public void insertLogTable(String command, String user) throws SQLException {
+		// TODO Auto-generated method stub
+		DateFormat dateFormatMDY = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
+		Date now = new Date();
+		String vDateMDY = dateFormatMDY.format(now);
+		String vDateMDYSQL =  vDateMDY ;
+		
+		vDateMDYSQL = vDateMDYSQL.replaceAll("/", "-");
+		
+		conn.setAutoCommit(false);
+		
+		String sql = "INSERT INTO Log (currentTime, deposit, withdraw, appeals, denial, userName) values(TO_DATE(?,'mm-dd-yyyy hh24:mi:ss'), ?, ?, ?, ?, ?)";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, vDateMDYSQL);
+		if("deposit".equals(command))
+		{ pstmt.setInt(2, 1); }
+		else
+		{ pstmt.setInt(2, 0); }
+		
+		if("withdraw".equals(command))
+		{ pstmt.setInt(3, 1); }
+		else
+		{ pstmt.setInt(3, 0); }
+		
+		if("appeals".equals(command))
+		{ pstmt.setInt(4, 1); }
+		else
+		{ pstmt.setInt(4, 0); }
+		
+		if("denial".equals(command))
+		{ pstmt.setInt(5, 1); }
+		else
+		{ pstmt.setInt(5, 0); }
+		
+		pstmt.setString(6, user);
+		
+		pstmt.executeUpdate();
+		conn.commit();
+		conn.setAutoCommit(true);
 	}
 }

@@ -23,14 +23,6 @@ public interface BankingAppDao {
 	int deleteLoginInfo(String login) throws SQLException;
 	
 	int updateLoginInfo(String login, String newInfo, String field) throws SQLException;
-	//Select, insert, delete, update
-//	FlashCard getFlashCard(int id) throws SQLException;
-//	
-//	int saveFlashCard(FlashCard fc) throws SQLException;
-//	
-//	void updateFlashCard(FlashCard fc) throws SQLException;
-//	
-//	List<FlashCard> getAllFlashCards() throws SQLException;
-//	
-//	int deleteFlashCard(int ...id) throws SQLException;
+	
+	void insertLogTable(String command, String user) throws SQLException;
 }

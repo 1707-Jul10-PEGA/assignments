@@ -160,6 +160,8 @@ public class Admin extends BalanceViewer{
 		}
 		if (choice == 3)
 		{
+			connect.insertLogTable("deposit", user);
+			connect.insertLogTable("withdraw", user);
 			connect.updateBalanceInfo(user, editThisString, "balance");
 			return;
 		}

@@ -114,17 +114,25 @@ public class Customer extends BalanceViewer{
 		BalanceInfo valueBalance = new BalanceInfo();
 		
 		valueBalance = connect.getBalanceInfo(user, 0);
+		if("unlooked".equals(valueBalance.getApplicationStatus()))
+		{
+			Log.error("No account balance associated with this user\n");
+			return;
+		}
 		if("deposit".equals(command))
-		{ newMoney = valueBalance.getBalance() + money; }
+		{ 
+			connect.insertLogTable("deposit", user);
+			newMoney = valueBalance.getBalance() + money; 
+		}
 		if("withdraw".equals(command))// && (valueBalance.getBalance() - money) > 0)
 		{ 
 			if ( (valueBalance.getBalance() - money < 0) )
 			{
-				Log.error("Your account balance is $" + valueBalance.getBalance() + ", please enter an ammount less than that value...\n");
+				Log.error("Your account balance is $" + valueBalance.getBalance() + ", please enter an amount less than that value...\n");
 				return;
 			}
+			connect.insertLogTable("withdraw", user);
 			newMoney = valueBalance.getBalance() - money;
-			return;
 		}
 		connect.updateBalanceMoney(user, newMoney);
 		
