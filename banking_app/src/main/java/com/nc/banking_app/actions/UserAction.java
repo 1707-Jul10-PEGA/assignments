@@ -5,6 +5,7 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Scanner;
 
+import com.nc.banking_app.users.Account;
 import com.nc.banking_app.users.UserFactory;
 import com.nc.banking_app.users.Users;
 
@@ -26,23 +27,24 @@ public class UserAction implements Serializable {
 			boolean flag = true;
 			// Loops forever until user put in Q
 			while (flag) {
-				System.err.println("ApplyForAccount(A) or ViewBalance(V) or Withdraw(W) or Deposit(D) or Quit(Q)");
+				System.err.println("CreateAccount(C) or ViewAccounts(V) or Withdraw(W) or Deposit(D) or Quit(Q)");
 				userInput = sc.nextLine();
 
 				// Apply for account
-				if ("A".equalsIgnoreCase(userInput)) {
-					cApplyForAccount(myList, userIndex);
+				if ("C".equalsIgnoreCase(userInput)) {
+					cCreateAccount(myList.get(userIndex));
 					ld.listToFile(myList);
 					// View accoount's balance
 				} else if ("V".equalsIgnoreCase(userInput)) {
-					cViewBalance(myList.get(userIndex));
+					cViewAccounts(myList.get(userIndex));
+					ld.listToFile(myList);
 					// Withdraw from account
 				} else if ("W".equalsIgnoreCase(userInput)) {
-					cWithdraw(myList, userIndex);
+					cWithdraw(myList.get(userIndex));
 					ld.listToFile(myList);
 					// Deposit from account
 				} else if ("D".equalsIgnoreCase(userInput)) {
-					cDeposit(myList, userIndex);
+					cDeposit(myList.get(userIndex));
 					ld.listToFile(myList);
 					// Quit from section
 				} else if ("Q".equalsIgnoreCase(userInput)) {
@@ -87,14 +89,14 @@ public class UserAction implements Serializable {
 					aEditAnyAccount(myList);
 					ld.listToFile(myList);
 				} else if ("C".equalsIgnoreCase(userInput)) {
-					String type ="";
-					do{
-						System.out.println("What is the type? Customer(C), Employee(E) or Admin(A)");
+					String type = "";
+					do {
+						System.err.println("What is the type? Customer(C), Employee(E) or Admin(A)");
 						type = sc.nextLine();
-					}while("C".equalsIgnoreCase(type) || "E".equalsIgnoreCase(type) || "A".equalsIgnoreCase(type));
+					} while ("C".equalsIgnoreCase(type) || "E".equalsIgnoreCase(type) || "A".equalsIgnoreCase(type));
 					String name = new String();
-					while(name.isEmpty()){
-						System.out.println("What is the name? ");
+					while (name.isEmpty()) {
+						System.err.println("What is the name? ");
 						name = sc.nextLine();
 					}
 					Users newUser = userFactory.getType(type, name, 0.0, 0);
@@ -116,7 +118,6 @@ public class UserAction implements Serializable {
 								myList.remove(x);
 							}
 						}
-
 					}
 
 					ld.listToFile(myList);
@@ -131,91 +132,181 @@ public class UserAction implements Serializable {
 	}
 
 	private void aViewAnyAccounts(List<Users> myList) {
-		// Display all name
-		for (int x = 0; x < myList.size(); x++) {
-			System.out.print(myList.get(x).getName() + ", ");
-		}
-
 		while (true) {
-			System.err.print("\nPick user or Quit(Q)");
-			String name = sc.nextLine();
-			// Ignore name if empty
-			if (name.isEmpty()) {
-				// Exit section
-			} else if ("Q".equalsIgnoreCase(name)) {
+			String input = new String();
+			int userID = 0;
+			int accID = 0;
+			boolean flag = false;
+
+			for (int x = 0; x < myList.size(); x++) {
+				String marker = "";
+				if (myList.get(x).getType().equalsIgnoreCase("Customer")) {
+					marker = "(C)";
+				} else if (myList.get(x).getType().equalsIgnoreCase("Employee")) {
+					marker = "(E)";
+				} else if (myList.get(x).getType().equalsIgnoreCase("Admin")) {
+					marker = "(A)";
+				}
+
+				System.out.print(myList.get(x).getName() + marker + ", ");
+
+			}
+			// Get name or exit section
+			System.err.println("\nThe user's name or Quit(Q)");
+			input = sc.nextLine();
+
+			for (int x = 0; x < myList.size(); x++) {
+				if (myList.get(x).getName().equalsIgnoreCase(input)) {
+					userID = x;
+					flag = true;
+					break;
+				}
+			}
+
+			if ("Q".equalsIgnoreCase(input)) {
 				break;
-				// Look at account
-			} else {
+			} else if (flag) {
+				// Look at all users on the list
+				for (int y = 0; y < myList.get(userID).getAccount().size(); y++) {
+					System.out.print(myList.get(userID).getAccount().get(y).getAccName());
+				}
+				System.err.println("\nThe account's name or Quit(Q)");
+				input = sc.nextLine();
 
-				for (int x = 0; x < myList.size(); x++) {
-					if (myList.get(x).getName().equalsIgnoreCase(name)) {
-						System.out.println("Name: " + myList.get(x).getName());
-						System.out.println("Type: " + myList.get(x).getType());
-						System.out.println("Balance: " + myList.get(x).getBalance());
-						if (myList.get(x).getMemeber() == 0) {
-							System.out.println("Account Status: Not Activated");
-						} else if (myList.get(x).getMemeber() == -1) {
-							System.out.println("Account Status: Wait For Approval");
-						} else if (myList.get(x).getMemeber() == 1) {
-							System.out.println("Account Status: Activated");
-						}
+				for (int y = 0; y < myList.get(userID).getAccount().size(); y++) {
+					if (myList.get(userID).getAccount().get(y).getAccName().equalsIgnoreCase(input)) {
+						System.out
+								.println("The balance is $" + myList.get(userID).getAccount().get(accID).getBalance());
+						break;
 					}
-
 				}
 			}
 		}
 	}
 
 	private void aEditAnyAccount(List<Users> myList) throws IOException, NumberFormatException, ClassNotFoundException {
-		//
-		//
+
 		for (int x = 0; x < myList.size(); x++) {
-			System.out.print(myList.get(x).getName() + ", ");
+			String marker = "";
+			if (myList.get(x).getType().equalsIgnoreCase("Customer")) {
+				marker = "(C)";
+			} else if (myList.get(x).getType().equalsIgnoreCase("Employee")) {
+				marker = "(E)";
+			} else if (myList.get(x).getType().equalsIgnoreCase("Admin")) {
+				marker = "(A)";
+			}
+			System.out.print(myList.get(x).getName() + marker + ", ");
 		}
 
 		while (true) {
 			System.err.println("\nPick user or Quit(Q)");
 			String name = sc.nextLine();
-			// Ignore name if empty
-			if (name.isEmpty()) {
-				// Exit section
-			} else if ("Q".equalsIgnoreCase(name)) {
+			boolean flag = false;
+			int userID = 0;
+			for (int x = 0; x < myList.size(); x++) {
+				if (myList.get(x).getName().equalsIgnoreCase(name)) {
+					userID = x;
+					flag = true;
+					break;
+				}
+			}
+			if ("Q".equalsIgnoreCase(name)) {
 				break;
 				// Look at account
-			} else {
+			} else if (flag) {
 
-				for (int x = 0; x < myList.size(); x++) {
-					if (name.equalsIgnoreCase(myList.get(x).getName())) {
-						while (true) {
-							System.err.println("Edit Name(N) or Balance(B) or AccountStatus(A) or Quit(Q)");
-							String userInput = sc.nextLine();
-							if ("N".equalsIgnoreCase(userInput)) {
-								System.out.println("What is the new name? ");
-								myList.get(x).setName(sc.nextLine());
-								ld.listToFile(myList);
-							} else if ("B".equalsIgnoreCase(userInput)) {
-								System.out.println("What is the new balance? ");
-								double b = sc.nextDouble();
-								if (b > 0) {
-									myList.get(x).setBalance(b);
-									ld.listToFile(myList);
-								}
-
-							} else if ("A".equalsIgnoreCase(userInput)) {
-								System.err.println(
-										"What is the new account status? NotActivated(0) or WaitForApproval(-1) or Activated(1)");
-								int acc = sc.nextInt();
-								if (acc == 0 || acc == 1 || acc == -1) {
-									myList.get(x).setMemeber(acc);
-									ld.listToFile(myList);
-								}
-
-							} else if ("Q".equalsIgnoreCase(userInput)) {
+				while (true) {
+					System.err.println("Edit Name(N) or Account(A) or Quit(Q)");
+					String userInput = sc.nextLine();
+					if ("N".equalsIgnoreCase(userInput)) {
+						while(true){
+							System.err.println("What is the new name? ");
+							name = sc.nextLine();
+							if(name.isEmpty()){
+								
+							} else{
+								myList.get(userID).setName(name);
 								break;
 							}
 						}
-					}
+						
+					} else if ("A".equalsIgnoreCase(userInput)) {
+						
+						for (int y = 0; y < myList.get(userID).getAccount().size(); y++) {
+								System.out.print(myList.get(userID).getAccount().get(y).getAccName() + ", ");
+						}
+						System.err.println("\nPick account or Quit(Q)");
+						String accN = sc.nextLine();
+						flag = false;
+						int accID = 0;
+						for (int y = 0; y < myList.get(userID).getAccount().size(); y++) {
+							if (accN.equalsIgnoreCase(myList.get(userID).getAccount().get(y).getAccName())) {
+								accID = y;
+								flag = true;
+								break;
+							}
+						}
+						if ("Q".equalsIgnoreCase(accN)) {
+							break;
+						} else if (flag) {
 
+							while (true) {
+
+								System.err.println("Edit Name(N) or Status(S) or Balance(B) or Delete(D) or QuitProcess(Q)");
+								userInput = sc.nextLine();
+								if (userInput.isEmpty()) {
+
+								} else if ("N".equalsIgnoreCase(userInput)) {
+									while(true){
+										System.err.println("What is the new name? ");
+										name = sc.nextLine();
+										if(name.isEmpty()){
+											
+										} else{
+											myList.get(userID).getAccount().get(accID).setAccName(name);;
+											break;
+										}
+									}
+								} 
+								else if ("D".equalsIgnoreCase(userInput)) {
+									myList.get(userID).getAccount().remove(accID);
+									break;
+								} else if ("S".equalsIgnoreCase(userInput)) {
+									while(true){
+										System.err.println("Inactive(I) or Active(A) or Waiting(W)");
+										String input = sc.nextLine();
+										if("I".equalsIgnoreCase(input)){
+											myList.get(userID).getAccount().get(accID).setActive(0);
+											break;
+										}else if ("A".equalsIgnoreCase(input)){
+											myList.get(userID).getAccount().get(accID).setActive(1);
+											break;
+										}else if("W".equalsIgnoreCase(input)){
+											myList.get(userID).getAccount().get(accID).setActive(-1);
+											break;
+										}
+									}
+								}else if ("B".equalsIgnoreCase(userInput)) {
+									while(true){
+										System.err.println("What is the new balance? or Quit(Q)");
+										double input = sc.nextDouble();
+										if(input >= 0){
+											myList.get(userID).getAccount().get(accID).setBalance(input);
+											System.out.println("The new balance is $" + myList.get(userID).getAccount().get(accID).getBalance());
+											break;
+										}
+									}
+									
+								}
+								else if ("Q".equalsIgnoreCase(userInput)) {
+									break;
+								}
+							}
+						}
+						
+					} else if ("Q".equalsIgnoreCase(userInput)) {
+						break;
+					}
 				}
 			}
 		}
@@ -223,22 +314,45 @@ public class UserAction implements Serializable {
 
 	// employee's action of viewing anyone's balance
 	private void eViewCustomersBalances(List<Users> myList) {
-		String name = new String();
 		while (true) {
+			String input = new String();
+			int userID = 0;
+			int accID = 0;
+			boolean flag = false;
 
+			for (int x = 0; x < myList.size(); x++) {
+				if (myList.get(x).getType().equalsIgnoreCase("Customer")) {
+					System.out.println(myList.get(x).getName() + ", ");
+				}
+			}
 			// Get name or exit section
 			System.err.println("The user's name or Quit(Q)");
-			name = sc.nextLine();
-			if (name.isEmpty()) {
-			} else if ("Q".equalsIgnoreCase(name)) {
+			input = sc.nextLine();
+
+			for (int x = 0; x < myList.size(); x++) {
+				if (myList.get(x).getName().equalsIgnoreCase(input)
+						&& myList.get(x).getType().equalsIgnoreCase("Customer")) {
+					userID = x;
+					flag = true;
+					break;
+				}
+			}
+
+			if ("Q".equalsIgnoreCase(input)) {
 				break;
-			} else {
+			} else if (flag) {
 				// Look at all users on the list
-				for (int x = 0; x < myList.size(); x++) {
-					if (myList.get(x).getName().equalsIgnoreCase(name)) {
-						// Display balance
-						System.out.println(
-								myList.get(x).getName() + "'s balance is $" + myList.get(x).getBalance() + "\n");
+				for (int y = 0; y < myList.get(userID).getAccount().size(); y++) {
+					System.out.println(myList.get(userID).getAccount().get(y).getAccName());
+				}
+				System.err.println("The account's name or Quit(Q)");
+				input = sc.nextLine();
+
+				for (int y = 0; y < myList.get(userID).getAccount().size(); y++) {
+					if (myList.get(userID).getAccount().get(y).getAccName().equalsIgnoreCase(input)
+							&& myList.get(userID).getType().equalsIgnoreCase("Customer")) {
+						System.out
+								.println("The balance is $" + myList.get(userID).getAccount().get(accID).getBalance());
 						break;
 					}
 				}
@@ -248,86 +362,225 @@ public class UserAction implements Serializable {
 
 	// employee's action of Approve or Deny accounts (NOT DONE YET)
 	private void eApproveDenyApplications(List<Users> myList) throws IOException {
-		String name = new String();
-		String userInput = new String();
-
 		while (true) {
-
+			String name = new String();
+			String accN = new String();
+			String userInput = new String();
+			boolean flag = false;
 			// Check and select a name
 			for (int x = 0; x < myList.size(); x++) {
-				if (myList.get(x).getMemeber() == -1) {
-					System.out.print(myList.get(x).getName() + ", ");
+				for (int y = 0; y < myList.get(x).getAccount().size(); y++) {
+					if (myList.get(x).getAccount().get(y).getActive() == -1) {
+						System.out.println(myList.get(x).getName() + ", ");
+						break;
+					}
 				}
 			}
 			System.err.println("\nPick user or Quit(Q)");
+			int userID = 0;
 			name = sc.nextLine();
+			for (int x = 0; x < myList.size(); x++) {
+				for (int y = 0; y < myList.get(x).getAccount().size(); y++) {
+					if (myList.get(x).getName().equalsIgnoreCase(name)
+							&& myList.get(x).getAccount().get(y).getActive() == -1) {
+						flag = true;
+						userID = x;
+						break;
+					}
+					if (flag) {
+						break;
+					}
+				}
+			}
 			// Ignore name if empty
-			if (name.isEmpty()) {
-				// Exit section
-			} else if ("Q".equalsIgnoreCase(name)) {
+			if ("Q".equalsIgnoreCase(name)) {
 				break;
-				// Approve or Deny accounts
-			} else {
 
-				for (int x = 0; x < myList.size(); x++) {
-					if (name.equalsIgnoreCase(myList.get(x).getName()) && myList.get(x).getMemeber() == -1) {
-						System.err.println(
-								"Approve(A) or Deny(D) " + myList.get(x).getName() + "'s Account or QuitProcess(Q)");
-						userInput = sc.nextLine();
-						if ("A".equalsIgnoreCase(userInput)) {
-							// Approve by Changing member from -1 to 1
-							myList.get(x).setMemeber(1);
-							break;
-						} else if ("D".equalsIgnoreCase(userInput)) {
-							// Deny by Changing member from -1 to 0
-							myList.get(x).setMemeber(0);
-							break;
-						} else if ("Q".equalsIgnoreCase(userInput)) {
+			} else if (flag) {
+				while (true) {
+					for (int y = 0; y < myList.get(userID).getAccount().size(); y++) {
+						if (myList.get(userID).getAccount().get(y).getActive() == -1) {
+							System.out.print(myList.get(userID).getAccount().get(y).getAccName() + ", ");
+						}
+					}
+					System.err.println("Pick account or Quit(Q)");
+					accN = sc.nextLine();
+					flag = false;
+					int accID = 0;
+					for (int y = 0; y < myList.get(userID).getAccount().size(); y++) {
+						if (accN.equalsIgnoreCase(myList.get(userID).getAccount().get(y).getAccName())
+								&& myList.get(userID).getAccount().get(y).getActive() == -1) {
+							accID = y;
+							flag = true;
 							break;
 						}
 					}
+					if ("Q".equalsIgnoreCase(accN)) {
+						break;
+					} else if (flag) {
 
+						while (true) {
+
+							System.err.println("Approve(A) or Deny(D) or QuitProcess(Q)");
+							userInput = sc.nextLine();
+							if (userInput.isEmpty()) {
+
+							} else if ("A".equalsIgnoreCase(userInput)) {
+								myList.get(userID).getAccount().get(accID).setActive(1);
+								break;
+							} else if ("D".equalsIgnoreCase(userInput)) {
+								myList.get(userID).getAccount().get(accID).setActive(0);
+								break;
+							}
+						}
+					}
 				}
 			}
 		}
 	}
 
-	public void cApplyForAccount(List<Users> myList, int userIndex) throws IOException {
-		if (myList.get(userIndex).getMemeber() == 0) {
-			// Flag that tells if user wants to apply
-			myList.get(userIndex).setMemeber(-1);
-		}
-		
-	}
+	public void cCreateAccount(Users user) throws IOException {
+		while (true) {
+			String name = new String();
+			System.err.println("What is your new account's name? or Quit(Q)");
+			name = sc.nextLine();
+			if (name.isEmpty()) {
 
-	public void cViewBalance(Users user) {
-		if (user.getMemeber() == 1) {
-			System.out.println("$" + user.getBalance() + "\n");
-		}
-	}
-
-	public void cWithdraw(List<Users> myList, int userIndex) {
-		if (myList.get(userIndex).getMemeber() == 1) {
-			double money = -1;
-			System.out.println("How much do you want to withdraw? $");
-			money = sc.nextDouble();
-			if (money > 0 && money <= myList.get(userIndex).getBalance()) {
-				myList.get(userIndex).setBalance(myList.get(userIndex).getBalance() - money);
+			} else if ("Q".equalsIgnoreCase(name)) {
+				break;
+			} else {
+				Account newA = new Account(name);
+				user.getAccount().add(newA);
 			}
 		}
-
 	}
 
-	public void cDeposit(List<Users> myList, int userIndex) {
-		if (myList.get(userIndex).getMemeber() == 1) {
-			double money = -1;
-			System.out.println("How much do you want to deposit? $");
-			money = sc.nextDouble();
-			if (money > 0) {
-				myList.get(userIndex).setBalance(myList.get(userIndex).getBalance() + money);
+	public void cViewAccounts(Users user) {
+		while (true) {
+			String name = new String();
+			for (int x = 0; x < user.getAccount().size(); x++) {
+				String marker = "";
+				if (user.getAccount().get(x).getActive() == 0) {
+					marker = "(Inactive)";
+				} else if (user.getAccount().get(x).getActive() == -1) {
+					marker = "(Waiting)";
+				} else if (user.getAccount().get(x).getActive() == 1) {
+					marker = "(Active)";
+				}
+				System.out.print(user.getAccount().get(x).getAccName() + marker + ", ");
 			}
 
-		}
+			System.err.println("\nChoose an account? or Quit(Q)");
+			name = sc.nextLine();
+			if (name.isEmpty()) {
 
+			} else if ("Q".equalsIgnoreCase(name)) {
+				break;
+			} else {
+				for (int x = 0; x < user.getAccount().size(); x++) {
+					if (user.getAccount().get(x).getAccName().equalsIgnoreCase(name)) {
+						System.out.println(user.getAccount().get(x).getAccName() + " has $"
+								+ user.getAccount().get(x).getBalance());
+						if (user.getAccount().get(x).getActive() == 0) {
+							while (true) {
+								System.err.println("Do you want to activate? Yes(Y) or No(N)");
+								String input = sc.nextLine();
+								if (input.isEmpty()) {
+								} else if ("Y".equalsIgnoreCase(input)) {
+									user.getAccount().get(x).setActive(-1);
+									System.out.println("Waiting for employee review...");
+									break;
+								} else if ("N".equalsIgnoreCase(input)) {
+									break;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+	public void cWithdraw(Users user) {
+		String name = new String();
+		boolean flag = false;
+		while (true) {
+			for (int x = 0; x < user.getAccount().size(); x++) {
+				if (user.getAccount().get(x).getActive() == 1) {
+					System.out.print(user.getAccount().get(x).getAccName() + ", ");
+				}
+			}
+
+			System.err.println("\nChoose an account? or Quit(Q)");
+			name = sc.nextLine();
+			flag = false;
+			for (int x = 0; x < user.getAccount().size(); x++) {
+				if (user.getAccount().get(x).getAccName().equalsIgnoreCase(name)
+						&& user.getAccount().get(x).getActive() == 1) {
+					flag = true;
+					break;
+				}
+			}
+			if ("Q".equalsIgnoreCase(name)) {
+				break;
+			} else if (flag) {
+				for (int x = 0; x < user.getAccount().size(); x++) {
+					if (user.getAccount().get(x).getAccName().equalsIgnoreCase(name)
+							&& user.getAccount().get(x).getActive() == 1) {
+						double money = -1;
+						System.err.println("How much do you want to withdraw?");
+						money = sc.nextDouble();
+						if (money > 0 && money <= user.getAccount().get(x).getBalance()) {
+							double newB = user.getAccount().get(x).getBalance() - money;
+							user.getAccount().get(x).setBalance(newB);
+							System.out.println("Your new balance is: $" + user.getAccount().get(x).getBalance());
+							break;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	public void cDeposit(Users user) { /// List<Users> myList, int userIndex
+		String name = new String();
+		boolean flag = false;
+
+		while (true) {
+			for (int x = 0; x < user.getAccount().size(); x++) {
+				if (user.getAccount().get(x).getActive() == 1) {
+					System.out.print(user.getAccount().get(x).getAccName() + ", ");
+				}
+			}
+
+			System.err.println("\nChoose an account? or Quit(Q)");
+			name = sc.nextLine();
+			flag = false;
+			for (int x = 0; x < user.getAccount().size(); x++) {
+				if (user.getAccount().get(x).getAccName().equalsIgnoreCase(name)
+						&& user.getAccount().get(x).getActive() == 1) {
+					flag = true;
+					break;
+				}
+			}
+			if ("Q".equalsIgnoreCase(name)) {
+				break;
+			} else if (flag) {
+				for (int x = 0; x < user.getAccount().size(); x++) {
+					if (user.getAccount().get(x).getAccName().equalsIgnoreCase(name)
+							&& user.getAccount().get(x).getActive() == 1) {
+						double money = -1;
+						System.err.println("How much do you want to deposit?");
+						money = sc.nextDouble();
+						if (money > 0) {
+							double newB = user.getAccount().get(x).getBalance() + money;
+							user.getAccount().get(x).setBalance(newB);
+							System.out.println("Your new balance is: $" + user.getAccount().get(x).getBalance());
+							break;
+						}
+					}
+				}
+			}
+		}
 	}
 }

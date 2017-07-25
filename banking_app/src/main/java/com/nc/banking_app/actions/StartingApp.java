@@ -2,6 +2,7 @@ package com.nc.banking_app.actions;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.sql.Connection;
 import java.util.List;
 import java.util.Scanner;
 
@@ -17,7 +18,7 @@ public class StartingApp  implements Serializable{
 	private UserFactory userFactory = new UserFactory();
 	private LoadData ld = new LoadData();
 
-	public int control(List<Users> myList) throws IOException, NumberFormatException, ClassNotFoundException {
+	public int control(List<Users> myList, Connection conn) throws IOException, NumberFormatException, ClassNotFoundException {
 		String userInput = "P";
 		int currentUser = -1;
 
