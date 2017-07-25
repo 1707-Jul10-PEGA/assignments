@@ -5,7 +5,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
+import java.util.Scanner;
 
 import com.connection.ConnectionFactory;
 import com.interfaces.BankingApplicationDao;
@@ -23,7 +25,6 @@ public class BankingApplicationDaoImplementation implements BankingApplicationDa
 		// TODO Auto-generated constructor stub
 		setup();
 	}
-
 
 	public List<Customer.Account> viewBalances(int userID) throws SQLException{
 		String sqlStatement = "SELECT * FROM ACCOUNTS WHERE CUSTOMER_ID = ? AND ACCOUNT_STATUS = 'ACTIVE'";

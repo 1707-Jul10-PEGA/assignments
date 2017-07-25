@@ -15,7 +15,7 @@ public class Admin extends Employee implements Menu, Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = -6198406213991514241L;
-	private static String[] menuString = { "\n=====\nMENU\n=====\n1 )Run SQL commands\n2) Deposit into any account\n3) Withdrawl from any account \n4) Approve or deny for any employee \n5) View any customer balances \n6) END\n=====\n" };
+	private static String[] menuString = { "\n=====\nMENU\n=====\n1 )Run SQL commands\n2) Deposit into any account\n3) Withdrawl from any account \n4) Approve or deny for any employee \n5) View any customer balances \n6) Create employee\n7) END\n=====\n" };
 	private static String[] optionString = { "Select an option:" };
 	private int menuIndex;
 
@@ -67,6 +67,14 @@ public class Admin extends Employee implements Menu, Serializable {
 			}
 			return true;
 		case "6":
+			try {
+				ad.createEmployee();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return true;
+		case "7":
 			return false;
 		default:
 			return true;
