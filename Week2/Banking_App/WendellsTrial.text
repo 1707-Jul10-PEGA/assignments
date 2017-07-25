@@ -1,0 +1,141 @@
+Hello!, are you a new user(NEW) or an existing user(EXISTING)
+blake
+Invalid command. Try NEW(N) or EXISTING(E)
+new
+Hello new user.
+Input name.
+null
+Input #ID.
+
+
+
+
+ 
+ 
+-.
+#9.0f
+3454
+Input user type.(CUSTOMER(C), EMPLOYEE(E), ADMIN(A)
+a
+Hello NULL!
+Coming Soon in 1.1a
+Hello!, are you a new user(NEW) or an existing user(EXISTING)
+existi
+Hello existing user
+Input name. (QUIT) to exit to main.
+quit
+Hello!, are you a new user(NEW) or an existing user(EXISTING)
+e
+Hello existing user
+Input name. (QUIT) to exit to main.
+quit
+Hello!, are you a new user(NEW) or an existing user(EXISTING)
+ist
+Invalid command. Try NEW(N) or EXISTING(E)
+e
+Hello existing user
+Input name. (QUIT) to exit to main.
+jl;sfe
+Input #ID.
+1234.
+141
+Failed to find user. Try again.
+Input name. (QUIT) to exit to main.
+quit
+Hello!, are you a new user(NEW) or an existing user(EXISTING)
+n
+Hello new user.
+Input name.
+wendell
+Input #ID.
+3
+Input user type.(CUSTOMER(C), EMPLOYEE(E), ADMIN(A)
+c
+Hello WENDELL!
+No application. Would you like to apply? (Y/N)
+nyes
+Invalid command. Try again.
+No application. Would you like to apply? (Y/N)
+yesh
+Invalid command. Try again.
+No application. Would you like to apply? (Y/N)
+yes
+Thank you for applying. Please contact the nearest employee.
+Hello!, are you a new user(NEW) or an existing user(EXISTING)
+n
+Hello new user.
+Input name.
+phipps
+Input #ID.
+4
+Input user type.(CUSTOMER(C), EMPLOYEE(E), ADMIN(A)
+e
+Hello PHIPPS!
+What would you like to do? NEXTAPPLICATION(A), VIEWCUSTOMERBALANCE(V),QUIT(Q)
+a
+Customer [applicationStatus()=PENDING, viewBalance()=-1.0, getName()=WENDELL]
+APPROVE(A) or DENY(D)?
+a
+Application approved for WENDELL
+What would you like to do? NEXTAPPLICATION(A), VIEWCUSTOMERBALANCE(V),QUIT(Q)
+v
+List of users:[C5, WENDELL, C1, C2]
+Who's account would you like to see?
+c5
+Customer [applicationStatus()=APPROVED, viewBalance()=0.0, getName()=C5]
+What would you like to do? NEXTAPPLICATION(A), VIEWCUSTOMERBALANCE(V),QUIT(Q)
+d
+Invalid command. Try again.
+What would you like to do? NEXTAPPLICATION(A), VIEWCUSTOMERBALANCE(V),QUIT(Q)
+v
+List of users:[C5, WENDELL, C1, C2]
+Who's account would you like to see?
+q
+Customer not found!
+Who's account would you like to see?
+r
+Customer not found!
+Who's account would you like to see?
+h
+Customer not found!
+Who's account would you like to see?
+w
+Customer not found!
+Who's account would you like to see?
+wendell
+Customer [applicationStatus()=APPROVED, viewBalance()=0.0, getName()=WENDELL]
+What would you like to do? NEXTAPPLICATION(A), VIEWCUSTOMERBALANCE(V),QUIT(Q)
+q
+Thank you for stopping by!
+Hello!, are you a new user(NEW) or an existing user(EXISTING)
+e
+Hello existing user
+Input name. (QUIT) to exit to main.
+wendell  
+Input #ID.
+  2 
+Failed to find user. Try again.
+Input name. (QUIT) to exit to main.
+Input #ID.
+3  
+Failed to find user. Try again.
+Input name. (QUIT) to exit to main.
+Input #ID.
+3 
+Failed to find user. Try again.
+Input name. (QUIT) to exit to main.
+Input #ID.
+QUIT
+QUIT
+123456
+Failed to find user. Try again.
+Input name. (QUIT) to exit to main.
+str
+Input #ID.
+1234
+Failed to find user. Try again.
+Input name. (QUIT) to exit to main.
+quit
+Hello!, are you a new user(NEW) or an existing user(EXISTING)
+quit
+Good Bye!
