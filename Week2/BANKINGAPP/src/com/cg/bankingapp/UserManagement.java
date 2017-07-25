@@ -53,17 +53,17 @@ public class UserManagement {
 		if (typeOfaccount == 1 || typeOfaccount == 2) {
 			amountToDeposit = userInput.getInputDouble("Deposit Amount: ");
 			if (typeOfaccount == 1) {
-				accounts.add(new CheckingsAccount(amountToDeposit, 0));
+				accounts.add(new CheckingsAccount(amountToDeposit));
 			} else {
-				accounts.add(new SavingsAccount(amountToDeposit, 0));
+				accounts.add(new SavingsAccount(amountToDeposit));
 			}
 
 		} else {
 			checkingsDeposit = userInput.getInputDouble("Checkings\nDeposit Amount: ");
 			savingsDeposit = userInput.getInputDouble("Savings\nDeposit Amount: ");
 
-			accounts.add(new CheckingsAccount(checkingsDeposit, 0));
-			accounts.add(new SavingsAccount(savingsDeposit, 0));
+			accounts.add(new CheckingsAccount(checkingsDeposit));
+			accounts.add(new SavingsAccount(savingsDeposit));
 		}
 
 		c = new Customer(firstname, lastname, username, password, accounts, 0);
@@ -86,7 +86,17 @@ public class UserManagement {
 			// User exist does the password match?
 			if (bAppDaoImpl.checkPassword(password)) {
 				User user = bAppDaoImpl.getUser(username);
-				this.ShowMenu(user);
+				if (user.getStatus() == -1) {
+					if ("customer".equals(user.getAccessRights())) {
+						System.out.println("Your account has been deactivated. Talk to a banker.");
+						System.out.println("By the way we donated your money to charity. Thank you, see you soon.");
+					} else {
+						System.out.println("Your account has been deactivated. Talk to your system adminsitrator.");
+					}
+					return 2;
+				} else {
+					this.ShowMenu(user);
+				}
 				return 1;
 			} else {
 				return -1;
@@ -183,6 +193,7 @@ public class UserManagement {
 		return 0;
 	}
 
+	// Customer menu
 	private void CustomerMenu(Customer user) {
 		int response;
 
@@ -210,9 +221,9 @@ public class UserManagement {
 		Customer c;
 
 		c = (Customer) bAppDaoImpl.getUser(username);
-		if (c != null && c.getManagedby() == user.getUsername() && c.getApproved() == 1) {
+		if (c != null && c.getApproved() == 1) {
 			System.out.println("Name: " + c.getFirstname() + " " + c.getLastname() + "\n" + c.getBalance());
-		} else if (c != null && c.getApproved() == 2) {
+		} else if (c != null && c.getApproved() == 0) {
 			System.out.println("Customer was not approved.");
 			do {
 
@@ -256,7 +267,7 @@ public class UserManagement {
 						customer.setApproved(0);
 
 					}
-					customer.setManagedby(user.getUsername());
+					customer.setManagedby(user.getUserid());
 					bAppDaoImpl.addUser(customer);
 					bAppDaoImpl.logToTable(activity, user, 0, 0);
 
@@ -278,7 +289,8 @@ public class UserManagement {
 			response = userInput.getInputInt(str);
 			if (response == 1) {
 				System.out.println(user.getUsername() + " was succefully removed.");
-				// users.remove(user.getUsername());
+				user.setStatus(-1);
+				bAppDaoImpl.deactivateUser(user);
 				return 0;
 			} else if (response == 2) {
 				System.out.println(user.getUsername() + " was not removed.");
@@ -299,12 +311,16 @@ public class UserManagement {
 		do {
 			response = userInput.getInputInt(str);
 			if (response == 1) {
-				/*
-				 * ArrayList<User> user = new ArrayList<User>(users.values()); int counter = 1;
-				 * for (User i : user) { if (i.getAccessRights().equals("employee")) {
-				 * System.out.println(counter + "." + i.toString()); counter++; } }
-				 * System.out.println();
-				 */
+				ArrayList<User> users = bAppDaoImpl.getUsers();
+				int counter = 1;
+				for (User i : users) {
+					if (i.getAccessRights().equals("employee")) {
+						System.out.println(counter + "." + i.toString());
+						counter++;
+					}
+				}
+				System.out.println();
+
 			} else if (response == 2) {
 				/*
 				 * String e = userInput.getInputString("Enter employee username: "); employee =
@@ -336,13 +352,16 @@ public class UserManagement {
 
 				}
 			} else if (response == 4) {
-				/*
-				 * String e = userInput.getInputString("Enter employee username: "); if
-				 * (users.get(e) != null && users.get(e).getAccessRights().equals("employee")) {
-				 * ; this.removeUser(users.get(e));
-				 * 
-				 * } else { System.out.println("Employee not found."); }
-				 */
+
+				String username = userInput.getInputString("Enter employee username: ");
+				User user = bAppDaoImpl.getUser(username);
+				if ( user != null && user.getAccessRights().equals("employee")) {
+					this.removeUser(user);
+
+				} else {
+					System.out.println("Employee not found.");
+				}
+
 			} else if (response > 5) {
 				System.out.println("Please make a valid choice");
 			}

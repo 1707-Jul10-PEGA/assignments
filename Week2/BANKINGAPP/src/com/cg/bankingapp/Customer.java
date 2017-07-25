@@ -9,7 +9,7 @@ public class Customer extends User implements Serializable {
 	private static final long serialVersionUID = 2118251608993389226L;
 	private CheckingsAccount checkings;
 	private SavingsAccount savings;
-	private String managedby;
+	private int managedby;
 	private int customerLevel;
 
 	// Constructor for existing user
@@ -145,16 +145,16 @@ public class Customer extends User implements Serializable {
 	/**
 	 * @return the managedby
 	 */
-	public String getManagedby() {
+	public int getManagedby() {
 		return managedby;
 	}
 
 	/**
-	 * @param managedby
+	 * @param i
 	 *            the managedby to set
 	 */
-	public void setManagedby(String managedby) {
-		this.managedby = managedby;
+	public void setManagedby(int i) {
+		this.managedby = i;
 	}
 
 	/**

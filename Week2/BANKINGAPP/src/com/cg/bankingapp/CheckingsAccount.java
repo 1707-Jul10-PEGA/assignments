@@ -10,20 +10,17 @@ public class CheckingsAccount extends Account implements Serializable {
 	private static final long serialVersionUID = 3079936417772L;
 	// Variables
 	private double balance;
-	private int status;
 	private int accountNumber;
 
-	public CheckingsAccount( double balance, int status) {
+	public CheckingsAccount( double balance) {
 		super("checkings");
 		this.balance = balance;
-		this.status = status;
 	}
 	
-	public CheckingsAccount(int accountid, double balance, int status) {
+	public CheckingsAccount(int accountid, double balance) {
 		super("checkings");
 		this.accountNumber = accountid;
 		this.balance = balance;
-		this.status = status;
 	}
 
 	/*
@@ -64,14 +61,6 @@ public class CheckingsAccount extends Account implements Serializable {
 
 	protected void setBalance(Double newBalance) {
 		this.balance = newBalance;
-	}
-
-	public int getStatus() {
-		return status;
-	}
-
-	public void setStatus(int status) {
-		this.status = status;
 	}
 
 	public int getAccountNumber() {

@@ -8,8 +8,6 @@ import java.util.ArrayList;
 
 public class BankAppDaoImpl implements BankAppDao {
 	private Connection connection = null;
-	private PreparedStatement preparedStatement = null;
-	private ResultSet resultSet = null;
 
 	public BankAppDaoImpl() {
 		setup();
@@ -17,12 +15,18 @@ public class BankAppDaoImpl implements BankAppDao {
 
 	private void setup() {
 		connection = ConnectionFactory.getInstatnce().getConnection();
-		
+
 	}
+	/*
+	 * private void close() { try { connection.close(); } catch (SQLException e) {
+	 * e.printStackTrace(); } }
+	 */
 
 	@Override
 	public Boolean checkUsername(String username) {
 		String sql = "SELECT USERNAME FROM USERINFO WHERE USERNAME=?";
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
 		try {
 			preparedStatement = connection.prepareStatement(sql);
 			preparedStatement.setString(1, username);
@@ -41,26 +45,14 @@ public class BankAppDaoImpl implements BankAppDao {
 		return false;
 	}
 
-	public void newUser(User user) {
-		if ("admin".equals(user.getAccessRights())) {
-
-		} else if ("employee".equals(user.getAccessRights())) {
-
-		} else {
-			if (((Customer) user).getApproved() == 1) {
-
-			} else {
-
-			}
-		}
-
-	}
-
 	@Override
 	public Boolean checkPassword(String password) {
 
 		String sql = "SELECT PASSWORD FROM USERINFO WHERE PASSWORD=?";
 		String p = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+
 		try {
 			preparedStatement = connection.prepareStatement(sql);
 			preparedStatement.setString(1, password);
@@ -84,6 +76,8 @@ public class BankAppDaoImpl implements BankAppDao {
 		String firstname, lastname, password;
 		int userid, privilege, status;
 		String sql = "SELECT * FROM USERINFO WHERE USERNAME=?";
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
 		try {
 			preparedStatement = connection.prepareStatement(sql);
 			preparedStatement.setString(1, username);
@@ -101,13 +95,16 @@ public class BankAppDaoImpl implements BankAppDao {
 				status = resultSet.getInt("STATUS");
 
 				if (privilege == 0) {
-					Admin admin = new Admin(userid,firstname, lastname, username, password, status);
+					Admin admin = new Admin(userid, firstname, lastname, username, password, status);
+					preparedStatement.close();
 					return admin;
 				} else if (privilege == 1) {
-					Employee employee = new Employee(userid,firstname, lastname, username, password, status);
+					Employee employee = new Employee(userid, firstname, lastname, username, password, status);
+					preparedStatement.close();
 					return employee;
 				} else if (privilege == 2) {
 					Customer customer = getCustomer(userid, firstname, lastname, username, password, status);
+					preparedStatement.close();
 					return customer;
 				}
 			}
@@ -122,7 +119,7 @@ public class BankAppDaoImpl implements BankAppDao {
 	private Customer getCustomer(int userid, String firstname, String lastname, String username, String password,
 			int status) {
 		ArrayList<Account> accounts = availableAccounts(userid);
-		Customer customer = new Customer(userid,firstname, lastname, username, password, accounts, status);
+		Customer customer = new Customer(userid, firstname, lastname, username, password, accounts, status);
 		return customer;
 
 	}
@@ -130,7 +127,8 @@ public class BankAppDaoImpl implements BankAppDao {
 	private ArrayList<Account> availableAccounts(int userid) {
 		String sql = "SELECT * FROM BANKACCOUNTS WHERE USER_ID=?";
 		ArrayList<Account> accounts = new ArrayList<Account>();
-
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
 		try {
 			preparedStatement = connection.prepareStatement(sql);
 			preparedStatement.setInt(1, userid);
@@ -141,15 +139,15 @@ public class BankAppDaoImpl implements BankAppDao {
 				int accountid = resultSet.getInt("ACCOUNTID");
 				double balance = resultSet.getDouble("BALANCE");
 				int accountType = resultSet.getInt("ACCOUNT_TYPEID");
-				int status = resultSet.getInt("STATUS");
 				if (accountType == 1) {
-					CheckingsAccount checkingsAccount = new CheckingsAccount(accountid, balance, status);
+					CheckingsAccount checkingsAccount = new CheckingsAccount(accountid, balance);
 					accounts.add(checkingsAccount);
 				} else if (accountType == 2) {
-					SavingsAccount savingsAccount = new SavingsAccount(accountid, balance, status);
+					SavingsAccount savingsAccount = new SavingsAccount(accountid, balance);
 					accounts.add(savingsAccount);
 				}
 			}
+			preparedStatement.close();
 			return accounts;
 		} catch (SQLException e) {
 			Log.log("Sql exception getting accounts", 3);
@@ -158,25 +156,31 @@ public class BankAppDaoImpl implements BankAppDao {
 
 	}
 
-	//Add to the corresponding tables
+	// Add to the corresponding tables
 	public void addUser(User user) {
-		
+
 		if ("admin".equals(user.getAccessRights())) {
 			Admin admin = (Admin) user;
-			addToUserTable(admin.getFirstname(), admin.getLastname(), admin.getUsername(), admin.getPassword(), 0, admin.getStatus());
+			addToUserTable(admin.getFirstname(), admin.getLastname(), admin.getUsername(), admin.getPassword(), 0,
+					admin.getStatus());
 		} else if ("employee".equals(user.getAccessRights())) {
 			Employee employee = (Employee) user;
-			addToUserTable(employee.getFirstname(), employee.getLastname(), employee.getUsername(), employee.getPassword(), 1, employee.getStatus());
+			addToUserTable(employee.getFirstname(), employee.getLastname(), employee.getUsername(),
+					employee.getPassword(), 1, employee.getStatus());
 		} else {
 			Customer customer = (Customer) user;
-			addToUserTable(customer.getFirstname(), customer.getLastname(), customer.getUsername(), customer.getPassword(), 2, customer.getApproved());
+			addToUserTable(customer.getFirstname(), customer.getLastname(), customer.getUsername(),
+					customer.getPassword(), 2, customer.getApproved());
 			addToBankTable(customer);
 		}
 
 	}
+
 	// Adds a user to the table
-	private void addToUserTable(String firstname,String lastname, String username, String password, int privilege, int status) {
+	private void addToUserTable(String firstname, String lastname, String username, String password, int privilege,
+			int status) {
 		String sql = "INSERT INTO USERINFO VALUES(USER_SEQUENCE.NEXTVAL,?,?,?,?,?,?)";
+		PreparedStatement preparedStatement = null;
 		try {
 			connection.setAutoCommit(true);
 			preparedStatement = connection.prepareStatement(sql);
@@ -184,34 +188,37 @@ public class BankAppDaoImpl implements BankAppDao {
 			preparedStatement.setString(2, lastname);
 			preparedStatement.setString(3, username);
 			preparedStatement.setString(4, password);
-			preparedStatement.setInt(5,  privilege);
-			preparedStatement.setInt(6,  status);
+			preparedStatement.setInt(5, privilege);
+			preparedStatement.setInt(6, status);
 			preparedStatement.executeQuery();
-			
+			preparedStatement.close();
 		} catch (SQLException e) {
 			Log.log("Sql exception getting user", 3);
 		}
 	}
-	
+
 	public void addToBankTable(Customer customer) {
-		
+
 	}
-	
+
 	public void logToTable(String activity, User user, int accountid, double amount) {
 		String sql = "INSERT INTO LOGS VALUES(LOG_SEQUENCE.NEXTVAL,?,?,?,?,?)";
+		PreparedStatement preparedStatement = null;
 		try {
+			connection.setAutoCommit(true);
 			preparedStatement = connection.prepareStatement(sql);
 			preparedStatement.setTimestamp(1, java.sql.Timestamp.from(java.time.Instant.now()));
 			preparedStatement.setString(2, activity);
 			preparedStatement.setInt(3, user.getUserid());
-			if("customer".equals(user.getAccessRights())){
+			if ("customer".equals(user.getAccessRights())) {
 				preparedStatement.setInt(4, accountid);
 				preparedStatement.setDouble(5, amount);
-			}else {
+			} else {
 				preparedStatement.setNull(4, java.sql.Types.INTEGER);
 				preparedStatement.setNull(5, java.sql.Types.INTEGER);
 			}
 			preparedStatement.executeQuery();
+			preparedStatement.close();
 
 		} catch (SQLException e) {
 			Log.log("Sql exception - error logging to table. ", 3);
@@ -221,11 +228,14 @@ public class BankAppDaoImpl implements BankAppDao {
 
 	public void updateBalance(int accountid, double balance) {
 		String sql = "UPDATE BANKACCOUNTS SET BALANCE=? WHERE ACCOUNTID=? ";
+		PreparedStatement preparedStatement = null;
 		try {
+			connection.setAutoCommit(true);
 			preparedStatement = connection.prepareStatement(sql);
 			preparedStatement.setDouble(1, balance);
 			preparedStatement.setInt(2, accountid);
 			preparedStatement.executeQuery();
+			preparedStatement.close();
 
 		} catch (SQLException e) {
 			Log.log("Sql exception - error withdrawing money from user account. ", 3);
@@ -234,13 +244,48 @@ public class BankAppDaoImpl implements BankAppDao {
 	}
 
 	public Object updateUsername(String username) {
-		// TODO Auto-generated method stub
+
 		return null;
 	}
 
 	public ArrayList<User> getUsers() {
-		// TODO Auto-generated method stub
-		return null;
+		String sql = "SELECT USERNAME FROM USERINFO";
+		ArrayList<User> users = new ArrayList<User>();
+		String username;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+		try {
+			preparedStatement = connection.prepareStatement(sql);
+			resultSet = preparedStatement.executeQuery();
+
+			while (resultSet.next()) {
+				username = resultSet.getString("USERNAME");
+				User user = getUser(username);
+				Log.log("Adding user to users list " + username, 2);
+				users.add(user);
+			}
+		} catch (SQLException e) {
+			Log.log("Sql exception - error retriving users from the database. ", 3);
+			e.printStackTrace();
+		}
+		return users;
+	}
+
+	public void deactivateUser(User user) {
+		String sql = "UPDATE USERINFO SET STATUS=? WHERE USERID=? ";
+		PreparedStatement preparedStatement = null;
+		try {
+			connection.setAutoCommit(true);
+			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setDouble(1, -1);
+			preparedStatement.setInt(2, user.getUserid());
+			preparedStatement.executeQuery();
+			preparedStatement.close();
+
+		} catch (SQLException e) {
+			Log.log("Sql exception - error deactivating user with "+ user.getUserid(), 3);
+			e.printStackTrace();
+		}
 	}
 
 }

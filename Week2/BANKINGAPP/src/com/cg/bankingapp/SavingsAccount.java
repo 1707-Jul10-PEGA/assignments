@@ -10,20 +10,17 @@ public class SavingsAccount extends Account implements Serializable{
 	//Variables
 	private double interestPercent;
 	private double balance;
-	private int status;
 	private int accountNumber;
 	
-	public SavingsAccount(double balance, int status) {
+	public SavingsAccount(double balance) {
 		super("savings");
 		this.balance = balance;
-		this.status = status;
 	}
 	
-	public SavingsAccount(int accountid, double balance, int status) {
+	public SavingsAccount(int accountid, double balance) {
 		super("savings");
 		this.balance = balance;
 		this.accountNumber = accountid;
-		this.status = status;
 	}
 
 	
@@ -81,15 +78,7 @@ public class SavingsAccount extends Account implements Serializable{
 	public void setInterestPercent(double interestPercent) {
 		this.interestPercent = interestPercent;
 	}
-
-	public int getStatus() {
-		return status;
-	}
-
-	public void setStatus(int status) {
-		this.status = status;
-	}
-
+	
 	public int getAccountNumber() {
 		return accountNumber;
 	}
