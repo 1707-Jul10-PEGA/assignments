@@ -74,6 +74,11 @@ public abstract class User {
 	protected void setUserID(Integer userID) {
 		this.userID = userID;
 	}
+	@Override
+	public String toString() {
+		return "User [Username=" + Username + ", password=" + password + ", FirstName=" + FirstName + ", LastName="
+				+ LastName + ", userID=" + userID + "]";
+	}
 	
 
 }

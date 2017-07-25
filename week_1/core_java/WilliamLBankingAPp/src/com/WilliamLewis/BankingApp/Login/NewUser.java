@@ -1,9 +1,13 @@
 package com.WilliamLewis.BankingApp.Login;
 
 import javax.swing.*;
+
+import com.WilliamLewis.BankingApp.JDBC.DoAs.UserImplementDOA;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
+import java.sql.SQLException;
 import java.util.*;
 
 public class NewUser extends JFrame {
@@ -17,24 +21,8 @@ public class NewUser extends JFrame {
     super("Registration");
 
     create = new JButton("Create");
-    newUserPanel = new JPanel();
     txuserer = new JTextField(15);
     passer = new JPasswordField(15);
-
-    //Set options for creating account type.
-//    JPanel typePanel = new JPanel();
-//    typePanel.setLayout(new BoxLayout(typePanel, BoxLayout.Y_AXIS));
-//    
-//    newUserPanel.add(typePanel);
- String[] petStrings = { "Bird", "Cat", "Dog", "Rabbit", "Pig" };
-
-  //Create the combo box, select item at index 4.
-  //Indices start at 0, so 4 specifies the pig.
-  JComboBox petList = new JComboBox(petStrings);
-  petList.setSelectedIndex(4);
-  
-  newUserPanel.add(petList);
-
 
     
     setSize(300,200);
@@ -54,20 +42,6 @@ public class NewUser extends JFrame {
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setVisible(true);
 
-    Writer writer = null;
-    File check = new File("userPass.txt");
-    if(check.exists()){
-
-      //Checks if the file exists. will not add anything if the file does exist.
-    }else{
-      try{
-        File texting = new File("userPass.txt");
-        writer = new BufferedWriter(new FileWriter(texting));
-        writer.write("message");
-      }catch(IOException e){
-        e.printStackTrace();
-      }
-    }
 
 
 
@@ -75,19 +49,24 @@ public class NewUser extends JFrame {
     create.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
         try {
-    File file = new File("userPass.txt");
-    Scanner scan = new Scanner(file);;
 
-      FileWriter filewrite = new FileWriter(file, true);
+      String userName = txuserer.getText();
+      String passWord = passer.getText();
+      
+      
+      try {
+			int UserID = UserImplementDOA.getInstance().getUserIdOnLogin(userName, passWord);
+			JOptionPane.showMessageDialog(null, "I'm sorry, that username is already taken, please try again");
+			txuserer.setText("");
+			passer.setText("");
+			txuserer.requestFocus();
+			
+		} catch (SQLException ee) {
 
-      String usertxter = " ";
-      String passtxter = " ";
-      String punamer = txuserer.getText();
-      String ppaswder = passer.getText();
-      while (scan.hasNext()) {
-        usertxter = scan.nextLine();
-        passtxter = scan.nextLine();
-      }
+			dispose();
+			MainMenu menu = new MainMenu(UserID);
+	
+		}
 
         if(punamer.equals(usertxter) && ppaswder.equals(passtxter)) {
            JOptionPane.showMessageDialog(null,"Username is already in use");

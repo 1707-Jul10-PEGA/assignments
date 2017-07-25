@@ -24,7 +24,7 @@ public class BankData implements Serializable {
 
 	private Map<Integer, User> mapUserIDToUser;
 	private ArrayList<Account> currentAccounts;
-	private ArrayList<Integer> currentApplications;
+	private ArrayList<Account> currentApplications;
 	
 	private static final long serialVersionUID = 7526472295622776147L;
 	private String filename = "BankData.txt";
@@ -32,7 +32,7 @@ public class BankData implements Serializable {
 	private static Logger log = Logger.getRootLogger();
 
 	private BankData() {		
-		this.currentApplications = new ArrayList<Integer>();
+		this.currentApplications = new ArrayList<Account>();
 		this.currentAccounts = new ArrayList<Account>();
 		this.mapUserIDToUser = new HashMap<Integer, User>();
 		log.trace("Empty BankData build");
@@ -74,13 +74,21 @@ public class BankData implements Serializable {
 		
 		try {
 			//log.debug("Built hashmap, attempting to get all Accounts");
-			this.currentAccounts = AccountImplementDOA.getInstance().getAllAccounts();
+			this.currentAccounts = AccountImplementDOA.getInstance().getAllActiveAccounts();
 			log.debug("Added all accounts");
 		} catch (SQLException e) {
-			log.debug("failed to retrieve all accounts");
+			log.debug("failed to retrieve all active accounts");
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		try{
+			this.currentApplications = AccountImplementDOA.getInstance().getAllPendingAccounts();
+		}catch (SQLException e) {
+			log.debug("failed to retrieve Pending Accounts");
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	
 		//Populate Users
 		//THEN populate accounts, as account creation relies on looking at the userlist
 		
@@ -120,7 +128,13 @@ public class BankData implements Serializable {
 		}
 		this.currentAccounts.add(acc);
 		this.mapUserIDToUser.put(acc.getOwnerID(), acc.getMyOwner());
-//		this.accountIDs.put(acc.getAccountHolder(), key);
+		try {
+			AccountImplementDOA.getInstance().createAccount(acc, acc.getOwnerID(), acc.getAccountManagerID());
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			log.error("Faild to add new account to Database");
+			e.printStackTrace();
+		}
 		log.debug("Successfully added the following account: " + acc.toString());
 		log.debug("Size of map after adding account: " + this.currentAccounts.size());
 
@@ -140,18 +154,16 @@ public class BankData implements Serializable {
 	 * The following methods all work to keep track of applications for an account
 	 * Refactor note: perhaps move these to the AcountApplication class, or some helper class.
 	 */
-	//Purely for quick reference 
 	public void addApp(Account acc) {
-		this.currentApplications.add(acc.getAccountNumber());
+		this.currentApplications.add(acc);
 	}
 	/**
 	 * Removes application from the BankData lists and from the relevant employee;=
-	 * @param aa acountapplication to be removed
+	 * @param aa acountapplication to be removed GUI
 	 */
 	public void removeApp(Account aa) {
 		
-				currentApplications.remove(aa.getAccountNumber());
-				currentAccounts.remove(aa);
+				currentApplications.remove(aa);
 			
 	}
 
@@ -159,6 +171,8 @@ public class BankData implements Serializable {
 		//Add a call to the AccountDoA
 		try {
 			AccountImplementDOA.getInstance().approveAccount(acc);
+			currentAccounts.add(acc);
+			currentApplications.remove(acc);
 		} catch (SQLException e) {
 			log.error("BankData struggled to approve this account!");
 			// TODO Auto-generated catch block
@@ -166,21 +180,10 @@ public class BankData implements Serializable {
 		}
 	}
 
-	public ArrayList<Integer> getCurrentApplications() {
+	public ArrayList<Account> getCurrentApplicationAccounts() {
 		return currentApplications;
 	}
 	
-	//For the GUI
-	public ArrayList<Account> getCurrentApplicationAccounts(){
-		ArrayList<Account> myAccCopy = new ArrayList<Account>();
-		Account dummy;
-		for(Integer e : currentApplications)
-		{
-			dummy = getAccount(e);
-			myAccCopy.add(dummy);
-		}
-		return myAccCopy;
-	}
 	
 	public void addUser(User user){
 		try {
@@ -235,31 +238,5 @@ public class BankData implements Serializable {
 		
 		return myAccs;
 	}
-//	public static void clearForTesting(){
-//	theBank = null;
-//	
-//}
-//public static BankData getTestInstance(){
-//	if (theBank == null) {
-//		log.trace("Rebuilding BankData");
-//		theBank = new BankData();
-//		return theBank;
-//	}
-//	return theBank;
-//}
-//	public void saveData() {
-//	BankDataSerializer serialize = new BankDataSerializer();
-//	serialize.writeBankData(theBank, filename);
-//	log.trace("Data has been saved to: " + filename);
-//}
-//	// May be a call to the serializer later to retrieve data from .txt file
-//	private void initializeData() {
-//		BankDataSerializer serialize = new BankDataSerializer();
-//		if (serialize.readBankData(filename) == null) {
-//			log.error("No Bank File Found");
-//			return;
-//		}
-//		theBank = serialize.readBankData(filename);
-//		log.trace("Data has been read from: " + filename);
 
 }

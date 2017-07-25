@@ -22,13 +22,16 @@ public class MainMenu extends JFrame {
 		super("Welcome");
 
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		panel.setLayout(new GridLayout(3, 3));
+		panel.setLayout(new GridLayout(2, 3));
 
 		admin = new JButton("Admin");
 		employee = new JButton("Employee");
 		customer = new JButton("Customer");
 		login = new JButton("Back");
-		
+		admin.setPreferredSize(new Dimension(200, 100));
+		employee.setPreferredSize(new Dimension(200, 100));
+		customer.setPreferredSize(new Dimension(200, 100));
+		login.setPreferredSize(new Dimension(200, 100));
 		
 		panel.add(login);
 		panel.add(admin);
@@ -37,6 +40,7 @@ public class MainMenu extends JFrame {
 		// button.setFont(new Font("Courier", Font.PLAIN, 36));
 
 		pack();
+		setLocationRelativeTo(null);
 		setVisible(true);
 
 		admin.addActionListener(new ActionListener() {

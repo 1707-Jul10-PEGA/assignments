@@ -26,6 +26,7 @@ public class AdminPage extends JFrame{
 		{
 			myCust = BankData.getInstance().getUserByID(acc.getAccountHolderID()).getFirstName();
 			accountButton = new JButton(myCust + " 's Account");
+			accountButton.setPreferredSize(new Dimension(160, 60));
 			panel.add(accountButton);
 			accountButton.addActionListener(new ActionListener(){
 				public void actionPerformed(ActionEvent e) {
@@ -35,20 +36,23 @@ public class AdminPage extends JFrame{
 				}
 			});
 		}
-//		for(AccountApplication aa : BankData.getInstance().getCurrentApplications())
-//		{
-//			accountButton = new JButton(aa.getAccountHolder().getUsername() + " 's Account Application");
-//			panel.add(accountButton);
-//			accountButton.addActionListener(new ActionListener(){
-//				public void actionPerformed(ActionEvent e) {
-//					AccountApplicationPage accpage = new AccountApplicationPage(aa.getAccountHolder());
-//					//dispose();
-//					
-//				}
-//			});
-//		
-//		}
+		for(Account acc : BankData.getInstance().getCurrentApplicationAccounts())
+		{
+			myCust = BankData.getInstance().getUserByID(acc.getAccountHolderID()).getFirstName();
+			accountButton = new JButton(myCust + " 's Account Application");
+			accountButton.setPreferredSize(new Dimension(160, 60));
+			panel.add(accountButton);
+			accountButton.addActionListener(new ActionListener(){
+				public void actionPerformed(ActionEvent e) {
+					AccountApplicationPage accpage = new AccountApplicationPage(acc);
+					//dispose();
+					
+				}
+			});
+		
+		}
 		home = new JButton("Login");
+		home.setPreferredSize(new Dimension(160, 60));
 		panel.add(home);
 		home.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
@@ -57,6 +61,7 @@ public class AdminPage extends JFrame{
 			}
 		});
 		pack();
+		setLocationRelativeTo(null);
 		setVisible(true);
 		
 	}

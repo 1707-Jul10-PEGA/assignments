@@ -1,6 +1,7 @@
 package com.WilliamLewis.BankingApp.Login;
 
 import java.awt.Container;
+import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -33,6 +34,7 @@ public class EmployeePage extends JFrame{
 			myCust = BankData.getInstance().getUserByID(acc.getAccountHolderID()).getFirstName();
 
 			accountButton = new JButton(myCust + " 's Account");
+			accountButton.setPreferredSize(new Dimension(160, 60));
 			panel.add(accountButton);
 			accountButton.addActionListener(new ActionListener(){
 				public void actionPerformed(ActionEvent e) {
@@ -42,20 +44,23 @@ public class EmployeePage extends JFrame{
 				}
 			});
 		}
-//		for(AccountApplication aa : myEmployee.pendingApplications)
-//		{
-//			accountButton = new JButton(aa.getAccountHolder().getUsername() + " 's Account Application");
-//			panel.add(accountButton);
-//			accountButton.addActionListener(new ActionListener(){
-//				public void actionPerformed(ActionEvent e) {
-//					AccountApplicationPage accpage = new AccountApplicationPage(aa.getAccountHolder());
-//					//dispose();
-//					
-//				}
-//			});
+		for(Account acc : BankData.getInstance().getCurrentApplicationAccounts())
+		{
+			myCust = BankData.getInstance().getUserByID(acc.getAccountHolderID()).getFirstName();
+			accountButton = new JButton(myCust + " 's Account Application");
+			accountButton.setPreferredSize(new Dimension(160, 60));
+			panel.add(accountButton);
+			accountButton.addActionListener(new ActionListener(){
+				public void actionPerformed(ActionEvent e) {
+					AccountApplicationPage accpage = new AccountApplicationPage(acc);
+					//dispose();
+					
+				}
+			});
 		
-//		}
+		}
 		home = new JButton("Back");
+		home.setPreferredSize(new Dimension(160, 60));
 		panel.add(home);
 		home.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
@@ -64,6 +69,7 @@ public class EmployeePage extends JFrame{
 			}
 		});
 		pack();
+		setLocationRelativeTo(null);
 		setVisible(true);
 		
 	}

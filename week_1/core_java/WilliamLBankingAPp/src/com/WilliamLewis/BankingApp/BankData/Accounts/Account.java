@@ -45,6 +45,16 @@ public class Account implements AccountInterface, Serializable {
 		this.setMyOwner(own);
 		this.setAccountNumber(accountNum);
 		this.setAccountBalance(0);
+		this.setAccountHolderID(own.getUserID());
+		Integer managerID = -1;
+		try {
+			managerID = AccountImplementDOA.getInstance().leastBurdenedEmployee();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			log.debug("Two parameter constructor of account failed to find an employee. Check Account Factory.");
+			e.printStackTrace();
+		}
+		this.setAccountManagerID(managerID);
 	}
 
 	public Account(User own, Integer accountNum, double balance) {

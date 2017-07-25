@@ -32,15 +32,7 @@ public class Employee extends User implements Serializable{
 	{
 		super(userID, username, password, firstName, lastName);
 	}
-	/**
-	 * For use in the GUI
-	 * @return
-	 */
-	public ArrayList<Account> copyOfAccountList()
-	{
-		//Call to AccountImplementDOA to get Accounts with this user's id
-		return new ArrayList<Account>();
-	}
+
 	
 	
 }

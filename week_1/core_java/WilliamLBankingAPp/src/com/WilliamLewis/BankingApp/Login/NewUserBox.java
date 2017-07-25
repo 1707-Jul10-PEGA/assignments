@@ -108,22 +108,5 @@ public class NewUserBox extends JFrame {
 			}
 		});
 	}
-	public void makeUser(String user, String pass, String role)
-	{
-		switch(role.toLowerCase())
-		{
-		case "admin": 
-		{
-			new Admin(user, pass);
-		}
-			break;
-		case "employee":
-			new Employee(user, pass);
-			break;
-		case "customer":
-			new Customer(user, pass);
-			break;
-		}
-	}
 
 }

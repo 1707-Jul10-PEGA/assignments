@@ -15,12 +15,6 @@ public class Driver {
 		LoginGUI  main = new LoginGUI();
 		
 		
-//		Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
-//
-//	        	public void run() {
-//	        	BankData.getInstance().saveData();
-//	        }
-//	    }));
 	}
 
 	

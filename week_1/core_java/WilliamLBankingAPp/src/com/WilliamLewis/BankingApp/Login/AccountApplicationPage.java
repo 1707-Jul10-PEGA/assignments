@@ -15,9 +15,9 @@ public class AccountApplicationPage extends JFrame {
 		JButton deny;
 		Container panel = getContentPane();
 		
-		public AccountApplicationPage(Customer accountName){
-			super(accountName.getUsername());
-			AccountApplication thisApp = BankData.getInstance().getAccApp(accountName);
+		public AccountApplicationPage(Account acc){
+			super(acc.getMyOwner().getFirstName() + "'s account Application");
+			
 			this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			panel.setLayout(new GridLayout(2, 2));
 			
@@ -29,14 +29,14 @@ public class AccountApplicationPage extends JFrame {
 			
 			approve.addActionListener(new ActionListener(){
 				public void actionPerformed(ActionEvent e) {
-					BankData.getInstance().approveApplication(thisApp);
+					BankData.getInstance().approveApplication(acc);
 					dispose();
 				}
 				
 			});
 			deny.addActionListener(new ActionListener(){
 				public void actionPerformed(ActionEvent e) {
-					BankData.getInstance().removeApp(thisApp);
+					BankData.getInstance().removeApp(acc);
 					dispose();
 				}
 				

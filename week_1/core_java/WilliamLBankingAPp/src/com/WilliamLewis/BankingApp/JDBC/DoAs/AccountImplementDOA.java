@@ -11,6 +11,7 @@ import java.util.List;
 import org.apache.log4j.Logger;
 
 import com.WilliamLewis.BankingApp.JDBC.Connection.ConnectionFactory;
+import com.WilliamLewis.BankingApp.Users.User;
 import com.WilliamLewis.BankingApp.BankData.BankData;
 import com.WilliamLewis.BankingApp.BankData.Accounts.Account;
 
@@ -51,7 +52,7 @@ public class AccountImplementDOA {
 		Boolean norolled = true;
 		
 		String sql = "insert into account(AccountID, Balance, UserIDHolder, UserIDManager, Status"
-				+ ") values(?, ?, ?, ?, ?, ?)";
+				+ ") values(?, ?, ?, ?, ?)";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setInt(1, acc.getAccountNumber());
 		pstmt.setDouble(2, acc.getAccountBalance());
@@ -128,6 +129,30 @@ public class AccountImplementDOA {
 		return;
 
 	}
+	public void denyAccount(Account acc) throws SQLException{
+		setup();
+		conn.setAutoCommit(false);
+		
+		
+		String sql = "DELETE * FROM Account Where ACCOUNTID = ?";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setInt(1, acc.getAccountNumber());
+
+		Savepoint s = conn.setSavepoint();
+		
+		int num = pstmt.executeUpdate();
+
+		if (num > 1){
+			
+			conn.rollback(s);
+		}
+		conn.commit();
+		
+		conn.setAutoCommit(true);
+		end();
+		return;
+
+	}
 
 	public ArrayList<Account> getAllAccounts() throws SQLException{
 		setup();
@@ -150,13 +175,55 @@ public class AccountImplementDOA {
 		end();
 		return myAccs;
 	}
+	public ArrayList<Account> getAllActiveAccounts() throws SQLException{
+		setup();
+		conn.setAutoCommit(false);
+		
+		ArrayList<Account> myAccs = new ArrayList<Account>();
+		
+		String sql = "SELECT * FROM ACCOUNT Where Status = 2";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.executeQuery();
+		ResultSet rs = pstmt.getResultSet();
+		Account myAcc = null;
+		while(rs.next())
+		{
+		myAcc = new Account(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getInt(4));
+		myAccs.add(myAcc);
+		}
+		
+		conn.setAutoCommit(true);
+		end();
+		return myAccs;
+	}
+	public ArrayList<Account> getAllPendingAccounts() throws SQLException{
+		setup();
+		conn.setAutoCommit(false);
+		
+		ArrayList<Account> myAccs = new ArrayList<Account>();
+		
+		String sql = "SELECT * FROM ACCOUNT Where Status = 1";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.executeQuery();
+		ResultSet rs = pstmt.getResultSet();
+		Account myAcc = null;
+		while(rs.next())
+		{
+		myAcc = new Account(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getInt(4));
+		myAccs.add(myAcc);
+		}
+		
+		conn.setAutoCommit(true);
+		end();
+		return myAccs;
+	}
 	public ArrayList<Account> getAccountsToManage(Integer EmployeeID) throws SQLException{
 		setup();
 		conn.setAutoCommit(false);
 		
 		ArrayList<Account> myAccs = new ArrayList<Account>();
 		
-		String sql = "SELECT * FROM ACCOUNT WHERE UserIDManager = ?;";
+		String sql = "SELECT * FROM ACCOUNT WHERE UserIDManager = ? AND Status = 2;";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setInt(1, EmployeeID);
 
@@ -191,19 +258,53 @@ public class AccountImplementDOA {
 		myAcc = new Account(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getInt(4));
 		myAccs.add(myAcc);
 		}	
+		conn.setAutoCommit(true);
 		end();
 		return myAccs;
 	}
-	public void leastBurdenedEmployee() throws SQLException{
+	public ArrayList<Account> getPendingApplicationsOnEmpID(User user) throws SQLException{
+		setup();
+		conn.setAutoCommit(false);
+		
+		ArrayList<Account> myAccs = new ArrayList<Account>();
+		
+		String sql = "SELECT * FROM ACCOUNT WHERE Status = 1 AND UserIDManager = ?;";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setInt(1, user.getUserID());
+
+		pstmt.executeQuery();
+		
+		ResultSet rs = pstmt.getResultSet();
+		Account myAcc = null;
+		while(rs.next())
+		{
+		myAcc = new Account(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getInt(4));
+		myAccs.add(myAcc);
+		}	
+		conn.setAutoCommit(true);
+		end();
+		return myAccs;
+	}
+	public Integer leastBurdenedEmployee() throws SQLException{
+		setup();
+		conn.setAutoCommit(false);
 		//TODO find the Employee whose ID occures least in the Account table
 		// SELECT UserIDManager FROM ACCOUNT WHERE 
-		// SELECT * FROM ACCOUNT GROUP BY UserIDManager (how to select least)
-	}
-
-
-	public int deleteAccount(int... ids) throws SQLException{
-		// TODO Auto-generated method stub
-		return 0;
+		String sql = "Select UserIDManager From Account Group By UserIDManager Order By Count(UserIDManager) asc"; //Grab only first row
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		
+		ResultSet rs = pstmt.executeQuery();
+		Integer myInt = -1;
+		if(rs.next())
+		{
+			myInt = rs.getInt(1);
+		}
+		else{
+			log.debug("Couldn't retrieve an employeeID");
+		}
+		conn.setAutoCommit(true);
+		end();
+		return myInt;
 	}
 
 }
