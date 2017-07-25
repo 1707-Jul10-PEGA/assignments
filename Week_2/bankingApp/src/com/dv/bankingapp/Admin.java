@@ -1,174 +1,338 @@
 package com.dv.bankingapp;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public class Admin extends User {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -5495653096119619552L;
+
+	public void viewUserInfo() throws SQLException {
+		String userName = Driver.authUser.getUserName();
+		String sql = null;
+		PreparedStatement pStmt = null;
+		ResultSet rs = null;
+		
+		// query the database for the correct user
+		sql = "SELECT Username, Password, Type "
+				+ "FROM Users "
+				+ "WHERE Username=?";
+		
+		pStmt = Driver.conn.prepareStatement(sql);
+		pStmt.setString(1, userName);
+		
+		rs = pStmt.executeQuery();
+		
+		
+		if(rs.next()) {
+			System.out.println("\n===== Account Information =====");
+			System.out.println("Account type: " + rs.getString(3));
+			System.out.println("Username: " + rs.getString(1));
+			System.out.println("Password: " + rs.getString(2));
+		}
+		
+		else {
+			System.out.println("You no longer exist in the database!");
+		}
+		
+		pStmt.close();
+		rs.close();
+	}
 	
 	@Override
-	public void viewAccount() {
-		System.out.println("\n===== Account Information =====");
-		System.out.println("Account type: " + this.getType());
-		System.out.println("Username : " + this.getUserName());
-		System.out.println("Password : " + this.getPw());
+	public void viewAccount() throws SQLException {
+		viewUserInfo();
 	}
 	
 	/* viewAllAccounts
 	 * view all accounts in the system
 	 */
-	public void viewAllAccounts() {
-		for(User u : Driver.userList) {
-			System.out.println(u);
+	public void viewAllAccounts() throws SQLException {
+		String sql = null;
+		PreparedStatement pStmt = null;
+		ResultSet rs = null;
+		
+		// query the database for all users
+		sql = "SELECT Username, Password, Type "
+				+ "FROM Users ";
+		
+		pStmt = Driver.conn.prepareStatement(sql);
+		
+		rs = pStmt.executeQuery();
+		
+		System.out.println("\n===== All users =====");
+		while(rs.next()) {
+			System.out.println("Type: " + rs.getString(3));
+			System.out.println("Username: " + rs.getString(1));
+			System.out.println("Password: " + rs.getString(2));
+			System.out.println();
 		}
+	}
 	
+	/* userExists
+	 * return true if user exists within the database
+	 */
+	public boolean userExists(String userName) throws SQLException {
+		String sql = null;
+		PreparedStatement pStmt = null;
+		ResultSet rs = null;
+		
+		sql = "SELECT Username "
+				+ "FROM Users "
+				+ "WHERE Username=?";
+		
+		pStmt = Driver.conn.prepareStatement(sql);
+		pStmt.setString(1, userName);
+		
+		rs = pStmt.executeQuery();
+		
+		if(rs.next()) {
+			return true;
+		}
+		
+		return false;
 	}
 	
 	/* printUserInfo
 	 * print all the information about the user
 	 */
-	public void printUserInfo(User user) {
-		System.out.println("\n===== User Account Information =====");
-		System.out.println("Account Type: " + user.getType());
-		System.out.println("Username: " + user.getUserName());
-		System.out.println("Password: " + user.getPw());
+	public void printUserInfo(String userName) throws SQLException {
+		String sql, type = null;
+		PreparedStatement pStmt = null;
+		ResultSet rs = null;
 		
-		if(user instanceof Customer) {
-			switch(((Customer) user).getStatus()) {
-			case 0:
-				System.out.println("Status: Not yet applied");
-				break;
-			case 1:
-				System.out.println("Status: Pending");
-				break;
-			case 2:
-				System.out.println("Status: Denied");
-				break;
-			case 3:
-				System.out.println("Status: Verified");
-				break;
-			default:
-				System.out.println("Status: Unknown");
-				break;
+		// get user and type
+		sql = "SELECT Username, Password, Type "
+				+ "FROM Users "
+				+ "WHERE Username=?";
+		
+		pStmt = Driver.conn.prepareStatement(sql);
+		pStmt.setString(1, userName);
+		
+		rs = pStmt.executeQuery();
+		rs.next();
+		
+		type = rs.getString(3);
+		
+		System.out.println("\n===== User Account Information =====");
+		System.out.println("Account Type: " + type);
+		System.out.println("Username: " + rs.getString(1));
+		System.out.println("Password: " + rs.getString(2));
+		
+		pStmt.close();
+		rs.close();
+		
+		if(type.equals("Customer")) {
 			
+			// get specific customer info
+			sql = "SELECT Balance, Status "
+					+ "FROM Customers "
+					+ "WHERE Username=?";
+			
+			pStmt = Driver.conn.prepareStatement(sql);
+			pStmt.setString(1, userName);
+			
+			rs = pStmt.executeQuery();
+			rs.next();
+			
+			switch(rs.getInt(2)) {
+				case 0:
+					System.out.println("Status: Not yet applied");
+					break;
+				case 1:
+					System.out.println("Status: Pending");
+					break;
+				case 2:
+					System.out.println("Status: Denied");
+					break;
+				case 3:
+					System.out.println("Status: Verified");
+					break;
+				default:
+					System.out.println("Status: Unknown");
+					break;
 			}
 
-			System.out.println("Balance: $" + ((Customer) user).getBalance());
+			System.out.println("Balance: $" + rs.getFloat(1));
 		}
 		
-		if(user instanceof Employee) {
-			if(((Employee) user).getCustomer() == null) {
+		else if(type.equals("Employee")) {
+			
+			// get specific employee info
+			sql = "SELECT C_Username "
+					+ "FROM Employees "
+					+ "WHERE Username=?";
+			
+			pStmt.close();
+			rs.close();
+
+			pStmt = Driver.conn.prepareStatement(sql);
+			pStmt.setString(1, userName);
+			
+			rs = pStmt.executeQuery();
+			rs.next();
+			
+			if(rs.getString(1) == null) {
 				System.out.println("No customer associated.");
 			}
 			
 			else {
-				System.out.println("Customer: " + ((Employee) user).getCustomer().getUserName());
+				System.out.println("Customer: " + rs.getString(1));
 			}
 		}
-	
 	}
 
-	/* editUserAccount
+	/* viewUserAccount
 	 * edit the account of a user
 	 */
-	public void viewUserAccount() {
-		int i = 0;
-		int userListSize = Driver.userList.size();
-		String userName;
-		User user = null;
+	public void viewUserAccount() throws SQLException {
+		String userName = null;
 	
-		System.out.println("\nList of accounts: ");
 		viewAllAccounts();
 		
 		// enter userName of account
 		System.out.print("Enter name of user to edit: ");
 		userName = Driver.read.nextLine();
 		
-		// search for user with userName and grab that user
-		while(i < userListSize){
-			if(Driver.userList.get(i).getUserName().equals(userName)) {
-				user = Driver.userList.get(i);
-			}
+		// check if user exists and query their info
+		if(userExists(userName)) {
+
+			// query all user info
+			printUserInfo(userName);
 			
-			i++;
-		}
-		
-		if(user == null) {
-			System.out.println("User " + userName + " was not found!");
 		}
 		
 		else {
-			printUserInfo(user);
+			System.out.println("User " + userName + " not found!");
 		}
+	}
+	
+	/* deleteAssociatedCustomer
+	 * if an employee has an associated customer, delete them
+	 */
+	public void deleteAssociatedCustomer(String customerName) throws SQLException {
+		String sql = null;
+		PreparedStatement pStmt = null;
+		
+		sql = "UPDATE Employees "
+				+ "SET C_Username=? "
+				+ "WHERE C_Username=?";
+		
+		pStmt = Driver.conn.prepareStatement(sql);
+		pStmt.setString(1, null);
+		pStmt.setString(2, customerName);
+		
+		pStmt.executeQuery();
+	}
 
+	/* deleteApplicationRequest
+	 * delete the application request for the customer
+	 */
+	public void deleteApplicationRequest(String customerName) throws SQLException {
+		String sql = null;
+		PreparedStatement pStmt = null;
+		
+		sql = "DELETE FROM ApplicationRequests "
+				+ "WHERE C_Username=?";
+		
+		pStmt = Driver.conn.prepareStatement(sql);
+		pStmt.setString(1, customerName);
+
+		pStmt.executeUpdate();
 	}
 	
 	/* deleteUser
 	 * delete the specified user from users.txt
 	 */
-	public void deleteUser(User user) {
-		int i = 0;
-		int userListSize = Driver.userList.size();
-		String associatedCustomer;
-		User currUser;
-	
-		// if customer to be deleted is associated with an employee
-		// remove the associated customer from the employee
-		if(user instanceof Customer) {
-			while(i<userListSize) {
-				currUser = (Driver.userList.get(i));
-				
-				if(currUser instanceof Employee) {
-					associatedCustomer = ((Employee) currUser).getCustomer().getUserName();
-					if(associatedCustomer.equals(user.getUserName())) {
-						((Employee) Driver.userList.get(i)).setCustomer(null);
-					}
-				}
+	public void deleteUser(String userName) throws SQLException {
+		String sql, type = null;
+		PreparedStatement pStmt = null;
+		ResultSet rs = null;
+		
+		// get user and type
+		sql = "SELECT Username, Password, Type "
+				+ "FROM Users "
+				+ "WHERE Username=?";
+		
+		pStmt = Driver.conn.prepareStatement(sql);
+		pStmt.setString(1, userName);
+		
+		rs = pStmt.executeQuery();
+		rs.next();
+		
+		type = rs.getString(3);
 
-				i++;
-			}
+		// check what type of user is being deleted
+		if(type.equals("Customer")) {
+			
+			// check the employee table if they are associated with a customer, if so, set associated customer to null
+			deleteAssociatedCustomer(userName);
+			
+			// check application requests if this customer has a request, if so, delete their request
+			deleteApplicationRequest(userName);
+			
+			// delete the customer from the customers table
+			pStmt.close();
+			
+			sql = "DELETE FROM Customers "
+					+ "WHERE Username=?";
+
+			pStmt = Driver.conn.prepareStatement(sql);
+			pStmt.setString(1, userName);
+			
+			pStmt.executeUpdate();
 		}
-	
-		// update file
-		Driver.userList.remove(user);
-		Driver.serialUser.writeUserList(Driver.userList);
-		System.out.println("Successfully deleted user " + user.getUserName());
+		
+		// if user type is an employee, remove the employee from the employees table
+		else if(type.equals("Employee")) {
+			pStmt.close();
+			sql = "DELETE FROM Employees "
+					+ "WHERE Username=?";
+
+			pStmt = Driver.conn.prepareStatement(sql);
+			pStmt.setString(1, userName);
+			
+			pStmt.executeUpdate();
+		}
+		
+		// finally, delete the user from the users table
+		pStmt.close();
+		
+		sql = "DELETE FROM Users "
+				+ "WHERE Username=?";
+		
+		pStmt = Driver.conn.prepareStatement(sql);
+		pStmt.setString(1, userName);
+		
+		pStmt.executeUpdate();
+		
+		System.out.println("Successfully deleted user " + userName);
 	}
 	
 	/* deleteUserAccount
 	 * delete the account of a user
 	 */
-	public void deleteUserAccount() {
-		int i = 0;
-		int userListSize = Driver.userList.size();
-		String userName;
-		User user = null;
+	public void deleteUserAccount() throws SQLException {
+		String userName = null;
 		
-		System.out.println("\nList of accounts: ");
 		viewAllAccounts();
 		
 		// enter userName of account
 		System.out.print("Enter name of user to delete: ");
 		userName = Driver.read.nextLine();
 		
-		// search for user with userName and grab that user
-		while(i < userListSize) {
-			if(Driver.userList.get(i).getUserName().equals(userName)) {
-				user = Driver.userList.get(i);
-			}
-			
-			i++;
-		}
-		
-		if(user == null) {
-			System.out.println("User " + userName + " was not found!");
+		// if user exists, delete the user account
+		if(userExists(userName)) {
+			deleteUser(userName);
 		}
 		
 		else {
-			deleteUser(user);
+			System.out.println("User " + userName + " does not exist!");
 		}
-	
 	}
 	
 }

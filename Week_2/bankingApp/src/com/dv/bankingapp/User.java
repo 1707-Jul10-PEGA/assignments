@@ -1,6 +1,7 @@
 package com.dv.bankingapp;
 
 import java.io.Serializable;
+import java.sql.SQLException;
 
 abstract public class User implements Serializable {
 
@@ -37,10 +38,15 @@ abstract public class User implements Serializable {
 		this.type = type;
 	}
 	
+	/* viewUserInfo
+	 * query and view the general information about the user
+	 */
+	abstract public void viewUserInfo() throws SQLException;
+	
 	/* viewAccount
 	 * view account information for specific user
 	 */
-	abstract public void viewAccount();
+	abstract public void viewAccount() throws SQLException;
 
 	@Override
 	public String toString() {

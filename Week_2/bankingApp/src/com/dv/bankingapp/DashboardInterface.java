@@ -1,5 +1,7 @@
 package com.dv.bankingapp;
 
+import java.sql.SQLException;
+
 public interface DashboardInterface {
 	
 	/* updateUser
@@ -10,17 +12,17 @@ public interface DashboardInterface {
 	/* doCustomerOption
 	 * return true if option succeeds
 	 */
-	public boolean doCustomerOption(int code);
+	public boolean doCustomerOption(int code) throws SQLException;
 
 	/* doEmployeeOption
 	 * return true if option succeeds
 	 */
-	public boolean doEmployeeOption(int code);
+	public boolean doEmployeeOption(int code) throws SQLException;
 
 	/* doAdminOption
 	 * return true if option succeeds
 	 */
-	public boolean doAdminOption(int code);
+	public boolean doAdminOption(int code) throws SQLException;
 
 	/* getIntegerCode
 	 * returns an integer from user input
@@ -45,11 +47,11 @@ public interface DashboardInterface {
 	/* printOptions
 	 * view options for user 
 	 */
-	public void viewOptions();
+	public void viewOptions() throws SQLException;
 
 	/* prompt
 	 * main prompt for the dashboard
 	 */
-	public void prompt();
+	public void prompt() throws SQLException;
 
 }

@@ -3,6 +3,7 @@ package com.dv.bankingapp;
 import java.io.File;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -80,7 +81,12 @@ public class Driver {
 		
 		if(authUser != null) {
 			System.out.println("===== Welcome " + authUser.getUserName() + " =====");
-			dashboard.prompt();
+
+			try {
+				dashboard.prompt();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 		
 		else {

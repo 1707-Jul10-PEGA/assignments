@@ -30,50 +30,56 @@ public class Customer extends User {
 	public void setStatus(int status) {
 		this.status = status;
 	}
-
+	
 	@Override
-	public void viewAccount() {
-		// get the username from the customer
+	public void viewUserInfo() throws SQLException {
 		String userName = Driver.authUser.getUserName();
 		String sql = null;
 		PreparedStatement pStmt = null;
 		ResultSet rs = null;
 		
-		// query the database for the correct customer
+		// query the database for the correct user
 		sql = "SELECT Username, Password, Type "
 				+ "FROM Users "
 				+ "WHERE Username=?";
 		
-		try {
-			pStmt = Driver.conn.prepareStatement(sql);
-			pStmt.setString(1, userName);
-			
-			rs = pStmt.executeQuery();
-			rs.next();
-
-			System.out.println("\n===== Account Information =====");
-			System.out.println("Account type: " + rs.getString(3));
-			System.out.println("Username: " + rs.getString(1));
-			System.out.println("Password: " + rs.getString(2));
-			
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		pStmt = Driver.conn.prepareStatement(sql);
+		pStmt.setString(1, userName);
 		
-		try {
-			sql = "SELECT Status "
-					+ "FROM Customers "
-					+ "WHERE Username=?";
-			
-			pStmt.close();
+		rs = pStmt.executeQuery();
+		rs.next();
 
-
-		} catch (SQLException e) {
-			
-		}
+		System.out.println("\n===== Account Information =====");
+		System.out.println("Account type: " + rs.getString(3));
+		System.out.println("Username: " + rs.getString(1));
+		System.out.println("Password: " + rs.getString(2));
 		
-		switch(this.getStatus()) {
+		pStmt.close();
+		rs.close();
+	}
+
+	@Override
+	public void viewAccount() throws SQLException {
+		String userName = Driver.authUser.getUserName();
+		String sql = null;
+		PreparedStatement pStmt = null;
+		ResultSet rs = null;
+		
+		viewUserInfo();
+		
+		// view user specific info
+		sql = "SELECT Status "
+				+ "FROM Customers "
+				+ "WHERE Username=?";
+		
+		pStmt = Driver.conn.prepareStatement(sql);
+		pStmt.setString(1, userName);
+		
+		rs = pStmt.executeQuery();
+		rs.next();
+
+		// check the customers current status
+		switch(rs.getInt(1)) {
 			case 0:	
 				System.out.println("ATTENTION: You have not yet applied for an account.");
 				break;
@@ -90,7 +96,7 @@ public class Customer extends User {
 				System.out.println("WARNING: Unknown application status!");
 				break;
 		}
-
+		
 	}
 	
 	/* getApplicationStatus
@@ -192,13 +198,35 @@ public class Customer extends User {
 		}
 		
 	}
+	
+	/* getBalance
+	 * query the database for the customer's balance
+	 */
+	public float selectBalance() throws SQLException {
+		String userName = Driver.authUser.getUserName();
+		String sql = null;
+		PreparedStatement pStmt = null;
+		ResultSet rs = null;
+		
+		sql = "SELECT Balance "
+				+ "FROM Customers "
+				+ "WHERE Username=?";
+		
+		pStmt = Driver.conn.prepareStatement(sql);
+		pStmt.setString(1, userName);
+		
+		rs = pStmt.executeQuery();
+		rs.next();
+		
+		return rs.getFloat(1);
+	}
 	 
 	 /* viewBalance
 	  * view the current balance
 	  */
-	public void viewBalance() {
+	public void viewBalance() throws SQLException {
 		System.out.println("\n===== Your Account Balance =====");
-		System.out.println("$" + this.getBalance());
+		System.out.println("$" + selectBalance());
 	}
 	
 	/* getFloat
@@ -221,85 +249,112 @@ public class Customer extends User {
 		}
 		
 		return value;
+	}
 	
+	/* updateDeposit
+	 * deposit given amount and update the database
+	 */
+	public void updateDeposit(float currBalance, float amount) throws SQLException {
+		String userName = Driver.authUser.getUserName();
+		String sql = null;
+		PreparedStatement pStmt = null;
+		ResultSet rs = null;
+		float newBalance = 0.0f;
+		
+		// get the current balance and set the new balance
+		newBalance = currBalance + amount;
+		
+		sql = "UPDATE Customers "
+				+ "SET Balance=?"
+				+ "WHERE Username=?";
+		
+		pStmt = Driver.conn.prepareStatement(sql);
+		pStmt.setFloat(1, newBalance);
+		pStmt.setString(2, userName);
+		
+		rs = pStmt.executeQuery();
+		rs.next();
+		
+		pStmt.close();
+		rs.close();
+	}
+
+	/* updateWithdraw
+	 * withdraw given amount and update the database
+	 */
+	public void updateWithdraw(float currBalance, float amount) throws SQLException {
+		String userName = Driver.authUser.getUserName();
+		String sql = null;
+		PreparedStatement pStmt = null;
+		ResultSet rs = null;
+		float newBalance = 0.0f;
+		
+		// get the current balance and set the new balance
+		newBalance = currBalance - amount;
+		
+		sql = "UPDATE Customers "
+				+ "SET Balance=?"
+				+ "WHERE Username=?";
+		
+		pStmt = Driver.conn.prepareStatement(sql);
+		pStmt.setFloat(1, newBalance);
+		pStmt.setString(2, userName);
+		
+		rs = pStmt.executeQuery();
+		rs.next();
+		
+		pStmt.close();
+		rs.close();
 	}
 	  
 	 /* deposit
 	  * deposit money into your account
 	  */
-	public void deposit(User authUser) {
-		int index = 0;
-		float amount, newBalance;
+	public void deposit() throws SQLException {
+		float currBalance, amount = 0.0f;
+		
+		// get the current balance from the database
+		currBalance = selectBalance();
 	
 		System.out.println("\n===== Deposit =====");
-		System.out.println("Here is your current balance: $" + ((Customer) authUser).getBalance());
+		System.out.println("Here is your current balance: $" + currBalance);
 		System.out.println("How much money would you like to deposit?");
 		System.out.print("$ ");
 		
 		amount = getFloat();
 		
 		if(amount > 0) { 
-			newBalance = ((Customer) authUser).getBalance() + amount;
-			((Customer) authUser).setBalance(newBalance);
 			
-			while(!(Driver.userList.get(index).getUserName().equals(authUser.getUserName()))) {
-				index++;
-			}
-			
-			// update the old user and save
-			Driver.userList.remove(index);
-			Driver.serialUser.writeUserList(Driver.userList);
-			
-			// update the new user and save
-			Driver.userList.add(authUser);
-			Driver.serialUser.writeUserList(Driver.userList);
-
-			// refresh the local list
-			Driver.userList = Driver.serialUser.readUserList();
-			
+			// update customer's balance in the database
+			updateDeposit(currBalance, amount);
 			System.out.println("You successfully deposited $" + amount + ".");
-		
 		}
 		
 		else {
 			System.out.println("You must deposit a positive value!");
 		}
-
 	}
 	   
 	 /* withdraw
 	  * withdraw money out of your account
 	  */
-	public void withdraw(User authUser) {
-		int index = 0;
-		float amount, newBalance;
+	public void withdraw() throws SQLException {
+		float currBalance, amount = 0.0f;
+		
+		// get the current balance from the database
+		currBalance = selectBalance();
 	
 		System.out.println("\n===== Withdraw =====");
-		System.out.println("Here is your current balance: $" + ((Customer) authUser).getBalance());
+		System.out.println("Here is your current balance: $" + currBalance);
 		System.out.println("How much money would you like to withdraw?");
 		System.out.print("$ ");
 		
 		amount = getFloat();
 		
-		if(amount <= ((Customer) authUser).getBalance()) {
-			newBalance = ((Customer) authUser).getBalance() - amount;
-			((Customer) authUser).setBalance(newBalance);
+		if(amount <= currBalance) {
 			
-			while(!(Driver.userList.get(index).getUserName().equals(authUser.getUserName()))) {
-				index++;
-			}
-			
-			// update the old user and save
-			Driver.userList.remove(index);
-			Driver.serialUser.writeUserList(Driver.userList);
-			
-			// update the new user and save
-			Driver.userList.add(authUser);
-			Driver.serialUser.writeUserList(Driver.userList);
-
-			// refresh the local list
-			Driver.userList = Driver.serialUser.readUserList();
-			
+			// update customer's balance in the database
+			updateWithdraw(currBalance, amount);
 			System.out.println("You successfully withdrew $" + amount + ".");
 		
 		}

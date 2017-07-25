@@ -5,7 +5,7 @@ import java.sql.SQLException;
 public class Dashboard implements DashboardInterface {
 	
 	@Override
-	public boolean doCustomerOption(int code) {
+	public boolean doCustomerOption(int code) throws SQLException {
 		boolean loopBack = true;
 	
 		switch(code) {
@@ -13,11 +13,7 @@ public class Dashboard implements DashboardInterface {
 				((Customer) Driver.authUser).viewAccount();
 				break;
 			case 1:
-				try {
-					((Customer) Driver.authUser).apply();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
+				((Customer) Driver.authUser).apply();
 				break;
 			case 2:
 
@@ -33,7 +29,7 @@ public class Dashboard implements DashboardInterface {
 			case 3:
 
 				if(((Customer) Driver.authUser).getStatus() == 3) {
-					((Customer) Driver.authUser).deposit(Driver.authUser);
+					((Customer) Driver.authUser).deposit();
 				}
 				
 				else {
@@ -44,7 +40,7 @@ public class Dashboard implements DashboardInterface {
 			case 4:
 
 				if(((Customer) Driver.authUser).getStatus() == 3) {
-					((Customer) Driver.authUser).withdraw(Driver.authUser);
+					((Customer) Driver.authUser).withdraw();
 				}
 				
 				else {
@@ -63,7 +59,7 @@ public class Dashboard implements DashboardInterface {
 	}
 
 	@Override
-	public boolean doEmployeeOption(int code) {
+	public boolean doEmployeeOption(int code) throws SQLException {
 		boolean loopBack = true;
 
 		switch(code) {
@@ -74,10 +70,10 @@ public class Dashboard implements DashboardInterface {
 				((Employee) Driver.authUser).viewApplications();
 				break;
 			case 2:
-				((Employee) Driver.authUser).approveApp(Driver.authUser);
+				((Employee) Driver.authUser).approveApp();
 				break;
 			case 3:
-				((Employee) Driver.authUser).viewBalance();
+				((Employee) Driver.authUser).selectCustomerBalance();
 				break;
 			case 4:
 				((Employee) Driver.authUser).denyApp();
@@ -93,7 +89,7 @@ public class Dashboard implements DashboardInterface {
 	}
 
 	@Override
-	public boolean doAdminOption(int code) {
+	public boolean doAdminOption(int code) throws SQLException {
 		boolean loopBack = true;
 	
 		switch(code) {
@@ -180,7 +176,7 @@ public class Dashboard implements DashboardInterface {
 	}
 
 	@Override
-	public void viewOptions() {
+	public void viewOptions() throws SQLException {
 		int code = 0;
 		boolean loop = true;
 		String authUserType = Driver.authUser.getType();
@@ -209,7 +205,7 @@ public class Dashboard implements DashboardInterface {
 	}
 
 	@Override
-	public void prompt() {
+	public void prompt() throws SQLException {
 	
 		viewOptions();
 		
