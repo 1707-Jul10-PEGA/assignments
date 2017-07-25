@@ -1,4 +1,4 @@
-package com.rb.driver;
+/*package com.rb.driver;
 
 
 import com.rb.users.Admin;
@@ -15,19 +15,16 @@ import static com.rb.driver.Driver.SCAN;
 
 public final class Bank implements Serializable {
 	
-	/**
-     * 
-     */
     private static final long serialVersionUID = -7287576941330520886L;
 
-    private final HashMap<String, User> USER_MAP 
+/*    private final HashMap<String, User> USER_MAP 
 	    = new HashMap<String, User>();
 	
 	private static int NEXT_USER_ID = 0;
 	
-	private static int NEXT_ACCOUNT_ID = 0;
+	private static int NEXT_ACCOUNT_ID = 0;*/
 	
-	static Bank getBank(){
+/*	static Bank getBank(){
 	    
 	    String fileLocation = "src\\main\\resources\\bankOutput.txt";
 	    Bank bank = null;
@@ -67,7 +64,7 @@ public final class Bank implements Serializable {
 		
 		System.out.println("New system: please setup admin account.");
 		
-		do{
+		/*do{
 			System.out.print("Please enter a username: ");
 			
 			name = readString();
@@ -107,8 +104,8 @@ public final class Bank implements Serializable {
 		} while (badPass);
 		
 		Admin firstUser = new Admin(name, pass1);
-		addUser(firstUser);
-	}
+		addUser(firstUser);*/
+/*	}
 	
 	
 	private String readString(){
@@ -123,12 +120,12 @@ public final class Bank implements Serializable {
 		return input;
 	}
 	
-	public User getUserFromMap(String name){
+	/*public User getUserFromMap(String name){
 		return USER_MAP.get(name);
 	}
 	
 	public void addUser(User toAdd){
-		USER_MAP.put(toAdd.getName(), toAdd);
+		USER_MAP.put(toAdd.getUsername(), toAdd);
 	}
 	
 	public static int getNEXT_USER_ID() {
@@ -151,6 +148,6 @@ public final class Bank implements Serializable {
 	    });
 	    
 	    return userGroup;
-	}
+	}*/
 	
-}
+//}

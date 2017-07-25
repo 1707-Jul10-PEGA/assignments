@@ -1,5 +1,9 @@
 package com.rb.users;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import com.rb.accounts.Account;
 import com.rb.accounts.Checking;
 import com.rb.accounts.Savings;
 
@@ -22,12 +26,14 @@ public class AdminEditCustMenu extends Menu {
             
             mainMenuInput = readInput();
             
+            List<Account> accounts = new ArrayList<Account>();
+            
             switch(mainMenuInput){
             case 1:
                 
                 System.out.println("Which account do you want " 
                         + "to add funds to?");
-                customer.printAccounts();
+                accounts = customer.printAccounts();
                 
                 subMenuInput = readInput() - 1;
 
@@ -36,11 +42,11 @@ public class AdminEditCustMenu extends Menu {
                 amount = readAmount();
                 
                 
-                if (subMenuInput < 0 || subMenuInput >= customer.accountTotal()
+                if (subMenuInput < 0 || subMenuInput >= accounts.size()
                         || amount <= 0.0) {
                     
                 } else {
-                    customer.accessAccount(subMenuInput).changeBalance(admin, amount);
+                    accounts.get(subMenuInput).changeBalance(admin, amount);
                 }
                 break;
             
@@ -48,7 +54,7 @@ public class AdminEditCustMenu extends Menu {
                 
                 System.out.println("Which account do you want " 
                     +"to remove funds from?");
-                customer.printAccounts();
+                accounts = customer.printAccounts();
                 
                 subMenuInput = readInput() - 1;
                 
@@ -57,12 +63,12 @@ public class AdminEditCustMenu extends Menu {
                 amount = readAmount();
                 
                 
-                if(subMenuInput < 0 || subMenuInput >= customer.accountTotal()
+                if(subMenuInput < 0 || subMenuInput >= accounts.size()
                         || amount <= 0.0){
                     
                 } else {
                     amount *= -1;
-                    customer.accessAccount(subMenuInput).changeBalance(admin, amount);
+                    accounts.get(subMenuInput).changeBalance(admin, amount);
                 }
                 
                 break;
@@ -78,9 +84,9 @@ public class AdminEditCustMenu extends Menu {
                 if(subMenuInput == 0) {
                     break;
                 }else if (subMenuInput == 1) {
-                    customer.addAccount(new Checking());
+                    new Checking(customer);
                 }else if (subMenuInput == 2) {
-                    customer.addAccount(new Savings());
+                    new Savings(customer);
                 }else{
                     // TODO error logging
                 }

@@ -1,9 +1,11 @@
 package com.rb.users;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import static com.rb.driver.Driver.BANK_SYSTEM;
-
+import static com.rb.driver.Driver.USER_DAO;
 
 public class AdminMenu extends Menu {
 
@@ -19,7 +21,7 @@ public class AdminMenu extends Menu {
             String name = null;
             String password = null;
             
-            ArrayList<User> userGroup;
+            List<User> userGroup = new ArrayList<User>();
 
             System.out.println("Choose an action:");
             System.out.println("  1 - View/Edit customer accounts");
@@ -33,7 +35,12 @@ public class AdminMenu extends Menu {
             switch (mainMenuInput) {
             case 1:
                 
-                userGroup = BANK_SYSTEM.theBank.getAllUsers(0);
+                try {
+                    userGroup = USER_DAO.getAllUsersOfType(2);
+                } catch (SQLException e1) {
+                    // TODO Auto-generated catch block
+                    e1.printStackTrace();
+                }
                 
                 if(userGroup.isEmpty()){
                     System.out.println("No customers in database.");
@@ -58,7 +65,12 @@ public class AdminMenu extends Menu {
                 
             case 2:
                 
-                userGroup = BANK_SYSTEM.theBank.getAllUsers(1);
+                try {
+                    userGroup = USER_DAO.getAllUsersOfType(1);
+                } catch (SQLException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
                 
                 System.out.println("Which employee do you want to view?");
                 
@@ -84,7 +96,7 @@ public class AdminMenu extends Menu {
 
                 Employee newEmployee = new Employee(name, password);
                 
-                BANK_SYSTEM.theBank.addUser(newEmployee);
+            //    BANK_SYSTEM.theBank.addUser(newEmployee);
                 
                 System.out.println("Thank you, your account has been created.");
                 
@@ -98,7 +110,7 @@ public class AdminMenu extends Menu {
 
                 Admin newAdmin = new Admin(name, password);
 
-                BANK_SYSTEM.theBank.addUser(newAdmin);
+         //       BANK_SYSTEM.theBank.addUser(newAdmin);
                 
                 System.out.println("Thank you, your account has been created.");
                 
@@ -118,7 +130,7 @@ public class AdminMenu extends Menu {
 
     }
     
-    private static void userDisplay(ArrayList<User> userGroup) {
+    private static void userDisplay(List<User> userGroup) {
         
         if (userGroup.isEmpty()) {
             System.out.println("No accounts found.");

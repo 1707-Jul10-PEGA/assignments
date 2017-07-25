@@ -2,6 +2,10 @@ package com.rb.users;
 
 import static com.rb.driver.Driver.LOG;
 
+import java.util.List;
+
+import com.rb.accounts.Account;
+
 public class EmployeeMenu extends Menu {
 
     public static void employeeMenu(Employee employee) {
@@ -24,25 +28,27 @@ public class EmployeeMenu extends Menu {
             switch (mainMenuInput) {
             case 1:
                 
-                employee.viewApplications();
+                List<Account> applications = employee.viewApplications();
 
                 System.out.print("Choose option number to select account: ");
 
                 subMenuInput = readInput();
 
-                if (subMenuInput >= 0 && subMenuInput < employee.appQueueSize()) {
+                if (subMenuInput >= 0 && subMenuInput < applications.size()) {
 
-                    employee.getApplication(subMenuInput - 1);
-
+                    Account approve = applications.get(subMenuInput - 1);
+                    
+                    approve.toString();
+                    
                     System.out.println("Approve this account?");
                     System.out.println("  1 - Yes\n  2 - No");
 
                     thirdMenuInput = readInput();
                     
                     if (thirdMenuInput == 1) {
-                        employee.appDecision(subMenuInput - 1, true);
+                        employee.appDecision(approve, true);
                     } else if (thirdMenuInput == 2) {
-                        employee.appDecision(subMenuInput - 1, false);
+                        employee.appDecision(approve, false);
                     } else {
                         System.out.println("Invalid selection.");
                     }
@@ -55,17 +61,17 @@ public class EmployeeMenu extends Menu {
 
                 System.out.println(
                         "Which customer's accounts do you want to view?");
-                employee.printCustomers();
-
+                List<Customer> customers = employee.printCustomers();
+                
                 subMenuInput = readInput() - 1;
 
                 if (subMenuInput < 0) {
                     // TODO error and log
-                } else if (subMenuInput >= employee.customers.size()) {
+                } else if (subMenuInput >= customers.size()) {
                     // TODO error and log
                 } else {
 
-                    Customer viewing = employee.customers.get(subMenuInput);
+                    Customer viewing = customers.get(subMenuInput);
 
                     System.out.println(
                             "Here are " + viewing.getName() + "'s accounts");

@@ -1,7 +1,12 @@
 package com.rb.users;
 
 import static com.rb.driver.Driver.SCAN;
-import static com.rb.driver.Driver.BANK_SYSTEM;
+//import static com.rb.driver.Driver.BANK_SYSTEM;
+import static com.rb.driver.Driver.USER_DAO;
+
+import java.sql.SQLException;
+
+import static com.rb.driver.Driver.ACCOUNT_DAO;
 
 public abstract class Menu {
 	
@@ -58,16 +63,24 @@ public abstract class Menu {
             System.out.print("Please enter a username: ");
 
             name = readString();
-
+            
             if (name == null) {
                 System.out.println(
                         "Invalid input, " + "please try again.");
-            } else if (BANK_SYSTEM.theBank.getUserFromMap(name) != null) {
-                System.out.println(
-                        name + " is unavailable. Please try again.");
-            } else {
-                badName = false;
-            }
+            } else
+                try {
+                    if (USER_DAO.usernameOpen(name)) {
+                        System.out.println(
+                                name + " is unavailable. Please try again.");
+                    } else {
+                        badName = false;
+                    }
+                } catch (SQLException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                    
+                    System.out.println("An error occurred, please try again.");
+                }
 
         } while (badName);
 	    

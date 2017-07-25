@@ -2,13 +2,16 @@ package com.rb.driver;
 
 import com.rb.users.*;
 
-import java.io.FileOutputStream;
+/*import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.ObjectOutputStream;
+import java.io.ObjectOutputStream;*/
 import java.util.Scanner;
 
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
+
+import com.rb.dao.AccountDaoImpl;
+import com.rb.dao.UserDaoImpl;
 
 public class Driver {
 
@@ -16,9 +19,13 @@ public class Driver {
     
     public static Driver BANK_SYSTEM;
     
+    public static UserDaoImpl USER_DAO;
+    
+    public static AccountDaoImpl ACCOUNT_DAO;
+    
     public static Logger LOG = Logger.getRootLogger();
     
-    public Bank theBank;
+ //   public Bank theBank;
 
     public static void main(String[] args) {
 
@@ -38,8 +45,12 @@ public class Driver {
 
         boolean loop = true;
 
-        theBank = Bank.getBank();
+   //     theBank = Bank.getBank();
 
+        USER_DAO = new UserDaoImpl();
+        
+        ACCOUNT_DAO = new AccountDaoImpl();
+        
         User activeUser = null;
 
         do {
@@ -50,21 +61,20 @@ public class Driver {
 
                 switch (activeUser.getAccess()) {
                 case 0:
-                    CustomerMenu.customerMenu((Customer) activeUser);
+                    AdminMenu.adminMenu((Admin) activeUser);
                     break;
                 case 1:
                     EmployeeMenu.employeeMenu((Employee) activeUser);
                     break;
                 case 2:
-                    AdminMenu.adminMenu((Admin) activeUser);
+                    CustomerMenu.customerMenu((Customer) activeUser);
                     break;
                 default:
-
                     break;
                 }
 
                 System.out.println("Logging out.\n");
-                if (activeUser.getAccess() == 2) {
+                if (activeUser.getAccess() == 0) {
                     System.out.println("Stop system?\n");
                     System.out.println("  1 - Continue");
                     System.out.println("  2 - Shut down");
@@ -89,7 +99,7 @@ public class Driver {
         
         // Serialize data
         
-        String fileLocation = "src/main/resources/bankOutput.txt";
+        /*String fileLocation = "src/main/resources/bankOutput.txt";
         
         try{
             
@@ -102,7 +112,7 @@ public class Driver {
             System.out.println("Status successfully saved");
         }catch(IOException e){
             // TODO error logging
-        }
+        }*/
         
     }
 

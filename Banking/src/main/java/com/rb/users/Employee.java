@@ -1,10 +1,14 @@
 package com.rb.users;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
+
 import com.rb.accounts.*;
 import static com.rb.driver.Driver.BANK_SYSTEM;
 import static com.rb.driver.Driver.LOG;
-
+import static com.rb.driver.Driver.USER_DAO;
+import static com.rb.driver.Driver.ACCOUNT_DAO;
 
 public class Employee extends User {
 
@@ -13,107 +17,86 @@ public class Employee extends User {
      */
     private static final long serialVersionUID = -513958991337598058L;
 
-    ArrayList<Customer> customers;
+  //  List<Customer> customers;
 
-    private final ArrayList<Customer> applicantQueue =
+ /*   private final List<Customer> applicantQueue =
             new ArrayList<Customer>();
 
-    private final ArrayList<Integer> appTypeQueue = new ArrayList<Integer>();
-
+    private final List<Integer> appTypeQueue = new ArrayList<Integer>();
+*/
     Employee(String name, String password) {
         super(1, name, password);
-        customers = new ArrayList<Customer>();
+  //      customers = new ArrayList<Customer>();
+    }
+
+    public Employee(String name, String pass, int id) {
+        super(1, name, pass, id);
     }
 
     void newCustomer(String name, String pass) {
 
         Customer newCust = new Customer(this, name, pass);
 
-        customers.add(newCust);
+  //      customers.add(newCust);
         
-        BANK_SYSTEM.theBank.addUser(newCust);
-
     }
 
-    void addApplicant(Customer customer, Integer type) {
-        applicantQueue.add(customer);
-        appTypeQueue.add(type);
-    }
-
-    void viewApplications() {
-
+    List<Account> viewApplications() {
+        
+        List<Account> applicantQueue = new ArrayList<Account>();
+        
+        try{
+            applicantQueue = ACCOUNT_DAO.getApplications(this);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        
         for (int i = 0; i < applicantQueue.size(); i++) {
 
             String output = "";
 
-            output += (i + 1) + "  " + applicantQueue.get(i).getName()
+            output += (i + 1) + "  " + applicantQueue.get(i).getOwner().getName()
                     + " wants to open a ";
-
-            if (appTypeQueue.get(i) == 1) {
-                output += "savings account";
-            } else if (appTypeQueue.get(i) == 2) {
-                output += "checking account";
-            }
 
             System.out.println(output);
         }
-
-    }
-
-    void getApplication(int index) {
-        String output = "";
-
-        output += (index + 1) + "  " + applicantQueue.get(index).getName()
-                + " wants to open a ";
-
-        if (appTypeQueue.get(index) == 1) {
-            output += "checking account";
-        } else if (appTypeQueue.get(index) == 2) {
-            output += "savings account";
-        }
-
-        System.out.println(output);
-        
+        return applicantQueue;
     }
     
-    int appQueueSize(){
-        return applicantQueue.size();
-    }
-    
-    void appDecision(int index, boolean approved) {
-        Customer customer = applicantQueue.get(index);
-        Integer type = appTypeQueue.get(index);
+    void appDecision(Account approve, boolean approved) {
 
         if (approved) {
-
-            Account newAccount = null;
-
-            if (type == 1) {
-                LOG.trace( getName() + " approved " + customer.getName()
-                    + " for a checking account");
-                newAccount = new Checking();
-            } else if (type == 2) {
-                LOG.trace( getName() + " approved " + customer.getName()
-                + " for a savings account");
-                newAccount = new Savings();
-            } else {
-                System.out.println("Error in account type");
+            
+            approve.setStatus(1);
+            try{
+                ACCOUNT_DAO.updateAccount(approve);
+                System.out.println(approve.toString() + " was approved");
+            }catch (SQLException e){
+                e.printStackTrace();
+                approve.setStatus(0);
             }
-
-            if (newAccount != null) {
-                customer.addAccount(newAccount);
-                applicantQueue.remove(index);
-                appTypeQueue.remove(index);
+        }else{
+            approve.setStatus(2);
+            try{
+                ACCOUNT_DAO.updateAccount(approve);
+                System.out.println(approve.toString() + " was denied");
+            }catch(SQLException e){
+                e.printStackTrace();
+                approve.setStatus(0);
             }
-
-        } else {
-            applicantQueue.remove(index);
-            appTypeQueue.remove(index);
         }
     }
 
-    void printCustomers() {
-
+    List<Customer> printCustomers() {
+        
+        List<Customer> customers = new ArrayList<Customer>();
+        try {
+            customers = USER_DAO.getEmployeeCustomers(this);
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        
         if (customers.isEmpty()) {
             System.out.println("No customers found.");
         } else {
@@ -127,7 +110,7 @@ public class Employee extends User {
 
             System.out.println(output);
         }
-
+        return customers;
     }
 
 }

@@ -3,6 +3,9 @@ package com.rb.users;
 import static com.rb.driver.Driver.LOG;
 
 import java.text.NumberFormat;
+import java.util.ArrayList;
+import java.util.List;
+import com.rb.accounts.Account;
 
 public class CustomerMenu extends Menu {
 	
@@ -25,12 +28,14 @@ public class CustomerMenu extends Menu {
 			
 			mainMenuInput = readInput();
 			
+			List<Account> accounts = new ArrayList<Account>();
+			
 			switch(mainMenuInput){
 			case 1:
 				
 				System.out.println("Which account do you want " 
 						+ "to deposit into?");
-				customer.printAccounts();
+				accounts = customer.printAccounts();
 				
 				subMenuInput = readInput();
 
@@ -43,11 +48,11 @@ public class CustomerMenu extends Menu {
 					
 				} else {
 				    
-				    LOG.trace(customer.getName() + " deposited " 
-                            + form.format(amount) + " into account: " 
-                            + customer.accessAccount(subMenuInput).toString());
+//				    LOG.trace(customer.getName() + " deposited " 
+//                            + form.format(amount) + " into account: " 
+//                            + customer.accessAccount(subMenuInput).toString());
 				    
-					customer.accessAccount(subMenuInput).deposit(amount);
+					accounts.get(subMenuInput).deposit(amount);
 				}
 				break;
 			
@@ -64,16 +69,16 @@ public class CustomerMenu extends Menu {
 				amount = readAmount();
 				
 				
-				if(subMenuInput < 0 || subMenuInput >= customer.accountTotal()
+				if(subMenuInput < 0 || subMenuInput >= accounts.size()
 				        || amount <= 0.0){
 					// TODO error logging
 				} else {
 				    
-				    LOG.trace(customer.getName() + " withdrew " 
-				            + form.format(amount) + " from account: " 
-				            + customer.accessAccount(subMenuInput).toString());
+//				    LOG.trace(customer.getName() + " withdrew " 
+//				            + form.format(amount) + " from account: " 
+//				            + customer.accessAccount(subMenuInput).toString());
 				    
-					customer.accessAccount(subMenuInput).withdraw(amount);
+					accounts.get(subMenuInput).withdraw(amount);
 				}
 				
 				break;
