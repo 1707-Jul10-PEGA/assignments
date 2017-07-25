@@ -4,11 +4,15 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
 import org.apache.log4j.Logger;
 
+import com.TS.banking.pojo.BalanceInfo;
+import com.TS.banking.pojo.LoginInfo;
+import com.TS.banking.resources.BankingAppDaoImpl;
 import com.TS.banking.resources.Storage;
 import com.TS.banking.resources.UserInputTest;
 
@@ -24,7 +28,7 @@ public class LoginAction {
 	/*
 	 * Login screen where customers may login or apply for accounts
 	 */
-	public static boolean login()
+	public static boolean login() throws SQLException
 	{
 		Scanner scan = new Scanner(System.in);
 		Scanner scanline = new Scanner(System.in);
@@ -96,64 +100,90 @@ public class LoginAction {
 	 */
 	private static boolean searchBalanceInfo(String id, String passcode) throws FileNotFoundException
 	{
-		BufferedReader br = new BufferedReader(new FileReader(filename));
-		String tokenizedString;
-		int stringChecker = 0;
-		int found = 0;
-		
-		/*Searches through LoginInfo.txt*/
+		BankingAppDaoImpl connect = new BankingAppDaoImpl();
+		LoginInfo value = new LoginInfo();
 		try {
-		    String line = br.readLine();
-
-		    while (line != null) {
-		    	StringTokenizer tokenizer = new StringTokenizer(line);
-				while (tokenizer.hasMoreTokens())
-				{
-					tokenizedString = tokenizer.nextToken();
-					
-					if (passcode.equals(tokenizedString) && found == 1 && stringChecker < 3)
-					{ found += 1; }
-					if (id.equals(tokenizedString) && found == 0 && stringChecker < 3)
-					{ 
-						Storage.userID = tokenizedString;
-						found += 1; 
-					}
-					if (found == 2)
-					{ tokenizedString = tokenizer.nextToken(); }
-					if (found == 2 && (Integer.valueOf(tokenizedString) == 1 || Integer.valueOf(tokenizedString) == 2 || Integer.valueOf(tokenizedString) == 3 ))
-					{
-						privilege = Integer.valueOf(tokenizedString);
-						return true; 
-					}
-					
-					stringChecker += 1;
-					if(stringChecker == 4)
-					{
-						Log.error("ERROR! Log file has been corrupted\n\n");
-						ERROR = true;
-						return false;
-					}
-					if(!tokenizer.hasMoreTokens())
-					{
-						stringChecker = 0;
-						found = 0;
-					}
-				}
-
-		        line = br.readLine();
-		    }
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally {
-		    try {
-				br.close();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			value = connect.getLoginInfo(id, 0);
+			if (value == null)
+			{ return false; }
+			
+			if (value.getLoginPassword().equals(passcode))
+			{
+				Storage.userID = value.getLoginID();
+				privilege = value.getPosition();
+				return true;
 			}
+			
+			return false;
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
 		}
+		Log.error("ERROR! Application has been corrupted\n\n");
+		ERROR = true;
 		return false;
+	
+		/*
+		 * Implementation with txt files from previous iteration of banking app
+		 */
+//		BufferedReader br = new BufferedReader(new FileReader(filename));
+//		String tokenizedString;
+//		int stringChecker = 0;
+//		int found = 0;
+//		
+//		/*Searches through LoginInfo.txt*/
+//		try {
+//		    String line = br.readLine();
+//
+//		    while (line != null) {
+//		    	StringTokenizer tokenizer = new StringTokenizer(line);
+//				while (tokenizer.hasMoreTokens())
+//				{
+//					tokenizedString = tokenizer.nextToken();
+//					
+//					if (passcode.equals(tokenizedString) && found == 1 && stringChecker < 3)
+//					{ found += 1; }
+//					if (id.equals(tokenizedString) && found == 0 && stringChecker < 3)
+//					{ 
+//						Storage.userID = tokenizedString;
+//						found += 1; 
+//					}
+//					if (found == 2)
+//					{ tokenizedString = tokenizer.nextToken(); }
+//					if (found == 2 && (Integer.valueOf(tokenizedString) == 1 || Integer.valueOf(tokenizedString) == 2 || Integer.valueOf(tokenizedString) == 3 ))
+//					{
+//						privilege = Integer.valueOf(tokenizedString);
+//						return true; 
+//					}
+//					
+//					stringChecker += 1;
+//					if(stringChecker == 4)
+//					{
+//						Log.error("ERROR! Log file has been corrupted\n\n");
+//						ERROR = true;
+//						return false;
+//					}
+//					if(!tokenizer.hasMoreTokens())
+//					{
+//						stringChecker = 0;
+//						found = 0;
+//					}
+//				}
+//
+//		        line = br.readLine();
+//		    }
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} finally {
+//		    try {
+//				br.close();
+//			} catch (IOException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//		}
+//		return false;
 	}
 	
 	/*
@@ -161,116 +191,156 @@ public class LoginAction {
 	 * will be stored in the same file as the other accounts but will be flagged as
 	 * "unlooked". "Unlooked" accounts will be skipped until the application is approved
 	 */
-	private static void apply() throws FileNotFoundException
+	private static void apply() throws FileNotFoundException, SQLException
 	{
+		BankingAppDaoImpl connect = new BankingAppDaoImpl();
+		LoginInfo loginCheck = new LoginInfo();
 		Scanner scanLine = new Scanner(System.in);
 		String onlineID;
-		String passcode;
-		
+		String passcode;		
 		String firstName;
 		String lastName;
-		String balance = "0.00";
-		
-		boolean exists = true;
+		Double balance = 0.00;
 		
 		Log.info("ACCOUNT APPLICATION START...\n");
-		/*Asks for online ID from user*/
-		int onlineIDCheck = 0;
-		do
+		while(true)
 		{
-			/*Checks to make sure there are no whitespaces in user input*/
-			do
+			
+			Log.info("What will be your Online ID: ");
+			onlineID = scanLine.nextLine();
+			loginCheck = connect.getLoginInfo(onlineID, 0);
+			if(loginCheck != null)
 			{
-				Log.info("What will be your Online ID: ");
-				onlineID = scanLine.nextLine();
-				if(UserInputTest.testNoWhitespace(onlineID) == false)
-				{
-					Log.error("ID may not contain a space\n");
-					onlineIDCheck = 1;
-					continue;
-				}
-				onlineIDCheck = 0;
-			}while(onlineIDCheck == 1);
-			/*Checks to make sure online ID is not already registered*/
-			BufferedReader ch = new BufferedReader(new FileReader(filename));
-			String tokenizedString;
-			try {
-			    String line = ch.readLine();
-			    while (line != null) {
-			    	StringTokenizer tokenizer = new StringTokenizer(line);
-			    	if(!tokenizer.hasMoreTokens())
-			    		break;
-					tokenizedString = tokenizer.nextToken();
-			        if(onlineID.equals(tokenizedString))
-			        {
-			        	exists = false;
-			        	Log.error("\nThis ID already exists! please type another ID\n");
-			        	break;
-			        }
-			      
-			        line = ch.readLine();
-			    }
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} finally {
-			    try {
-					ch.close();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			} 
-		}while(!exists);
+				Log.error("\nThis ID already exists! please type another ID\n");
+				continue;
+			}
+			break;
+		}
 		
-		/*Asks for passcode from user, checks to make sure there are no whitespaces*/
-		int passcodeCheck = 0;
-		do
+		while(true)
 		{
 			Log.info("What will be your passcode: ");
 			passcode = scanLine.nextLine();
 			if(UserInputTest.testNoWhitespace(passcode) == false)
 			{
 				Log.error("Passcode may not contain a space\n");
-				passcodeCheck = 1;
 				continue;
 			}
-			passcodeCheck = 0;
-		}while(passcodeCheck == 1);
+			break;
+			
+		}
 		
-		/*Asks for first name from user, checks to make sure there are no white spaces*/
-		int firstNameCheck = 0;
-		do
-		{
-			Log.info("First Name: ");
-			firstName = scanLine.nextLine();
-			if(UserInputTest.testNoWhitespace(firstName) == false)
-			{
-				Log.error("First Name may not contain a space\n");
-				firstNameCheck = 1;
-				continue;
-			}
-			firstNameCheck = 0;
-		}while(firstNameCheck == 1);
+		Log.info("First Name: ");
+		firstName = scanLine.nextLine();
+		Log.info("Last Name: ");
+		lastName = scanLine.nextLine();
+		connect.insertLoginInfo(onlineID, passcode, 1);
+		connect.insertBalanceInfo("unlooked", onlineID, firstName, lastName, balance);
 		
-		/*Asks for last name from user, checks to make sure there are no white spaces*/
-		int lastNameCheck = 0;
-		do
-		{
-			Log.info("Last Name: ");
-			lastName = scanLine.nextLine();
-			if(UserInputTest.testNoWhitespace(lastName) == false)
-			{
-				Log.error("Last Name may not contain a space\n");
-				lastNameCheck = 1;
-				continue;
-			}
-			lastNameCheck = 0;
-		}while(lastNameCheck == 1);
-		
-		loginLog.trace(onlineID + " " + passcode + " " + 1);
-		balanceLog.trace("unlooked" + " " + onlineID + " " + firstName + " " + lastName + " " + balance);
+		/*
+		 * Old method that persisted using txt files...
+		 */
+//		boolean exists = true;
+//		
+//		Log.info("ACCOUNT APPLICATION START...\n");
+//		/*Asks for online ID from user*/
+//		int onlineIDCheck = 0;
+//		do
+//		{
+//			/*Checks to make sure there are no whitespaces in user input*/
+//			do
+//			{
+//				Log.info("What will be your Online ID: ");
+//				onlineID = scanLine.nextLine();
+//				if(UserInputTest.testNoWhitespace(onlineID) == false)
+//				{
+//					Log.error("ID may not contain a space\n");
+//					onlineIDCheck = 1;
+//					continue;
+//				}
+//				onlineIDCheck = 0;
+//			}while(onlineIDCheck == 1);
+//			/*Checks to make sure online ID is not already registered*/
+//			BufferedReader ch = new BufferedReader(new FileReader(filename));
+//			String tokenizedString;
+//			try {
+//			    String line = ch.readLine();
+//			    while (line != null) {
+//			    	StringTokenizer tokenizer = new StringTokenizer(line);
+//			    	if(!tokenizer.hasMoreTokens())
+//			    		break;
+//					tokenizedString = tokenizer.nextToken();
+//			        if(onlineID.equals(tokenizedString))
+//			        {
+//			        	exists = false;
+//			        	Log.error("\nThis ID already exists! please type another ID\n");
+//			        	break;
+//			        }
+//			      
+//			        line = ch.readLine();
+//			    }
+//			} catch (IOException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			} finally {
+//			    try {
+//					ch.close();
+//				} catch (IOException e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				}
+//			} 
+//		}while(!exists);
+//		
+//		/*Asks for passcode from user, checks to make sure there are no whitespaces*/
+//		int passcodeCheck = 0;
+//		do
+//		{
+//			Log.info("What will be your passcode: ");
+//			passcode = scanLine.nextLine();
+//			if(UserInputTest.testNoWhitespace(passcode) == false)
+//			{
+//				Log.error("Passcode may not contain a space\n");
+//				passcodeCheck = 1;
+//				continue;
+//			}
+//			passcodeCheck = 0;
+//		}while(passcodeCheck == 1);
+//		
+//		/*Asks for first name from user, checks to make sure there are no white spaces*/
+//		int firstNameCheck = 0;
+//		do
+//		{
+//			Log.info("First Name: ");
+//			firstName = scanLine.nextLine();
+//			if(UserInputTest.testNoWhitespace(firstName) == false)
+//			{
+//				Log.error("First Name may not contain a space\n");
+//				firstNameCheck = 1;
+//				continue;
+//			}
+//			firstNameCheck = 0;
+//		}while(firstNameCheck == 1);
+//		
+//		/*Asks for last name from user, checks to make sure there are no white spaces*/
+//		int lastNameCheck = 0;
+//		do
+//		{
+//			Log.info("Last Name: ");
+//			lastName = scanLine.nextLine();
+//			if(UserInputTest.testNoWhitespace(lastName) == false)
+//			{
+//				Log.error("Last Name may not contain a space\n");
+//				lastNameCheck = 1;
+//				continue;
+//			}
+//			lastNameCheck = 0;
+//		}while(lastNameCheck == 1);
+//		
+//		loginLog.trace(onlineID + " " + passcode + " " + 1);
+//		balanceLog.trace("unlooked" + " " + onlineID + " " + firstName + " " + lastName + " " + balance);
 	}
+	
 	public static void error()
 	{
 		Log.error("ERROR! Log file has been corrupted\n\n");

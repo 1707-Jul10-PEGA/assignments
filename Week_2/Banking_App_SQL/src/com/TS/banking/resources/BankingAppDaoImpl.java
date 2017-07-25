@@ -23,54 +23,161 @@ public class BankingAppDaoImpl implements BankingAppDao {
 	}
 	
 	@Override
-	public boolean getBalanceInfo(String login, int task) throws SQLException {
+	public BalanceInfo getBalanceInfo(String login, int task) throws SQLException {
 		// TODO Auto-generated method stub
-		return false;
+		boolean check = false;
+		BalanceInfo values = new BalanceInfo();
+		
+		conn.setAutoCommit(false);
+
+		if(task == 2)
+		{
+			String sql = "SELECT * FROM BalanceInfo WHERE applicationStatus='unlooked'";
+			Statement stmt = conn.createStatement();
+			ResultSet rss = stmt.executeQuery(sql);
+			if(!rss.next())
+			{ return null; }
+			values.setApplicationStatus(rss.getString(1));
+			values.setLoginID(rss.getString(2));
+			values.setFirstName(rss.getString(3));
+			values.setLastName(rss.getString(4));
+			values.setBalance(rss.getDouble(5));
+			System.out.println("\nAPPLICATION TO APPROVE...");
+			System.out.println("Online ID : " + values.getLoginID());
+        	System.out.println("First Name: " + values.getFirstName());
+        	System.out.println("Last Name : " + values.getLastName());
+			
+			return values;
+		}
+		
+		String sql = "SELECT * FROM BalanceInfo WHERE loginID=?";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, login);
+		ResultSet rs = pstmt.executeQuery();
+		while(rs.next())
+		{
+			values.setApplicationStatus(rs.getString(1));
+			//if (task == 1) { System.out.print(values.ge()); }
+			values.setLoginID(rs.getString(2));
+			//if (task == 1) { System.out.print(values.getLoginPassword()); }
+			values.setFirstName(rs.getString(3));
+			//if (task == 1) { System.out.println(values.getPosition()); }
+			values.setLastName(rs.getString(4));
+			
+			values.setBalance(rs.getDouble(5));
+
+			check = true;
+		}
+		
+		conn.commit();
+		conn.setAutoCommit(true);
+		
+		if (check == false)
+		{ return null; }
+		return values;
 	}
 
 	@Override
 	public int insertBalanceInfo(String status, String login, String firstName, String lastName, Double money)
 			throws SQLException {
 		// TODO Auto-generated method stub
-		return 0;
+		conn.setAutoCommit(false);
+		
+		String sql = "INSERT INTO BalanceInfo(applicationStatus, loginID, firstName, lastName, balance) values(?, ?, ?, ?, ?)";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, status);
+		pstmt.setString(2, login);
+		pstmt.setString(3, firstName);
+		pstmt.setString(4, lastName);
+		pstmt.setDouble(5, money);
+		
+		int num = pstmt.executeUpdate();
+		conn.commit();
+		conn.setAutoCommit(true);
+		return num;
 	}
 
 	@Override
 	public int deleteBalanceInfo(String login) throws SQLException {
 		// TODO Auto-generated method stub
-		return 0;
+		conn.setAutoCommit(false);
+		
+		String sql = "DELETE FROM BalanceInfo WHERE loginID=?";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, login);
+
+		int num = pstmt.executeUpdate();
+		conn.commit();
+		conn.setAutoCommit(true);
+		return num;
 	}
 
 	@Override
 	public int updateBalanceInfo(String login, String newInfo, String field) throws SQLException {
 		// TODO Auto-generated method stub
-		return 0;
-	}
+		conn.setAutoCommit(false);
+		
+		String tempSQL= "UPDATE BalanceInfo SET $field=? WHERE loginID=?";
+		String sql = tempSQL.replace("$field", field);
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, newInfo);
+		if ("balance".equals(field))
+		{
+			pstmt.setDouble(1, Double.valueOf(newInfo));
+		}
+		pstmt.setString(2, login);
 
+		int num = pstmt.executeUpdate();
+		conn.commit();
+		conn.setAutoCommit(true);
+		return num;
+	}
+	
 	@Override
-	public boolean getLoginInfo(String login, int task) throws SQLException {
+	public int updateBalanceMoney(String login, Double money) throws SQLException {
 		// TODO Auto-generated method stub
 		conn.setAutoCommit(false);
 		
+		String sql= "UPDATE BalanceInfo SET balance=? WHERE loginID=?";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setDouble(1, money);
+		pstmt.setString(2, login);
+
+		int num = pstmt.executeUpdate();
+		conn.commit();
+		conn.setAutoCommit(true);
+		return num;
+	}
+
+	@Override
+	public LoginInfo getLoginInfo(String login, int task) throws SQLException {
+		// TODO Auto-generated method stub
+		boolean check = false;
+		LoginInfo values = new LoginInfo();
+		
+		conn.setAutoCommit(false);
+
 		String sql = "SELECT * FROM LoginInfo WHERE loginID=?";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, login);
-		ResultSet rs = pstmt.executeQuery(sql);
-		if (task == 1)
+		ResultSet rs = pstmt.executeQuery();
+		while(rs.next())
 		{
-			while(rs.next())
-			{
-				System.out.println("Id is: " + rs.getInt(1));
-				System.out.println("Question is: " + rs.getString(2));
-				System.out.println("Answer is : " + rs.getString(3));
-			}
+			values.setLoginID(rs.getString(1));
+			if (task == 1) { System.out.print(values.getLoginID()); }
+			values.setLoginPassword(rs.getString(2));
+			if (task == 1) { System.out.print(values.getLoginPassword()); }
+			values.setPosition(rs.getInt(3));
+			if (task == 1) { System.out.println(values.getPosition()); }
+			check = true;
 		}
 		
-		if (rs.next() == false)
-		{ return false; }
 		conn.commit();
 		conn.setAutoCommit(true);
-		return true;
+		
+		if (check == false)
+		{ return null; }
+		return values;
 	}
 
 	@Override
@@ -83,17 +190,10 @@ public class BankingAppDaoImpl implements BankingAppDao {
 		pstmt.setString(1, login);
 		pstmt.setString(2, password);
 		pstmt.setInt(3, role);
-		//return pstmt.executeUpdate();
-
-		Savepoint s = conn.setSavepoint();
+		
 		int num = pstmt.executeUpdate();
-		ResultSet rs = pstmt.getGeneratedKeys();
-		if (num > 1){
-			conn.rollback();
-		}
 		conn.commit();
 		conn.setAutoCommit(true);
-		//return rs.getInt(1);
 		return num;
 	}
 
@@ -105,17 +205,10 @@ public class BankingAppDaoImpl implements BankingAppDao {
 		String sql = "DELETE FROM LoginInfo WHERE loginID=?";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, login);
-		//return pstmt.executeUpdate();
 
-		Savepoint s = conn.setSavepoint();
 		int num = pstmt.executeUpdate();
-		ResultSet rs = pstmt.getGeneratedKeys();
-		if (num > 1){
-			conn.rollback();
-		}
 		conn.commit();
 		conn.setAutoCommit(true);
-		//return rs.getInt(1);
 		return num;
 	}
 
@@ -129,18 +222,10 @@ public class BankingAppDaoImpl implements BankingAppDao {
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, newInfo);
 		pstmt.setString(2, login);
-		//return pstmt.executeUpdate();
 
-		Savepoint s = conn.setSavepoint();
 		int num = pstmt.executeUpdate();
-		ResultSet rs = pstmt.getGeneratedKeys();
-		if (num > 1){
-			conn.rollback();
-		}
 		conn.commit();
 		conn.setAutoCommit(true);
-		//return rs.getInt(1);
 		return num;
 	}
-
 }

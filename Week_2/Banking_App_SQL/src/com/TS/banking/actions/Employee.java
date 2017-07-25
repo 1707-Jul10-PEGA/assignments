@@ -7,6 +7,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
@@ -24,7 +25,7 @@ public class Employee extends BalanceViewer{
 	/*
 	 * Invokes a menu for employees that are logged in
 	 */
-	public static void menuAction() {
+	public static void menuAction() throws SQLException {
 		// TODO Auto-generated method stub
 		Scanner scan = new Scanner(System.in);
 		Scanner scanLine = new Scanner(System.in);

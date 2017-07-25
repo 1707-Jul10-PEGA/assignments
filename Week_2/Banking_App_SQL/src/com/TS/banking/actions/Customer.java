@@ -6,11 +6,14 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
 import org.apache.log4j.Logger;
 
+import com.TS.banking.pojo.BalanceInfo;
+import com.TS.banking.resources.BankingAppDaoImpl;
 import com.TS.banking.resources.Storage;
 import com.TS.banking.resources.UserInputTest;
 
@@ -23,7 +26,7 @@ public class Customer extends BalanceViewer{
 	/*
 	 * Invokes a menu for customers that are logged in
 	 */
-	public static void menuAction() {
+	public static void menuAction() throws SQLException {
 		// TODO Auto-generated method stub
 		Scanner scan = new Scanner(System.in);
 		Scanner scanDouble = new Scanner(System.in);
@@ -104,115 +107,137 @@ public class Customer extends BalanceViewer{
 	 * takes in the money, the command (withdraw or deposit), and the user's name in order to
 	 * iterate the file, find the user and his/her balance, and withdraw or deposit from the balance
 	 */
-	private static void withdrawOrDeposit(double money, String command, String user) throws IOException
+	private static void withdrawOrDeposit(double money, String command, String user) throws IOException, SQLException
 	{
-		File test = new File("test.txt"); /////////
-		File File = new File("BalanceInfo.txt");
-		BufferedReader withdrawer = new BufferedReader(new FileReader(File));
+		double newMoney = 0;
+		BankingAppDaoImpl connect = new BankingAppDaoImpl();
+		BalanceInfo valueBalance = new BalanceInfo();
 		
-		File tempFile = new File("tempBalanceInfo.txt");
-		BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile));
-		
-		int balanceInfoFields = 0;
-		boolean flag = false;
-		
-		String statusStore = ""; //Used for storing a specific output string (the appplication status)
-		/*finds the user in the file, and either deposits or withdraws from the balance*/
-		String tokenizedString;
-		try {
-		    String line = withdrawer.readLine();
-
-		    while (line != null) {
-		    	
-		    	StringTokenizer tokenizer = new StringTokenizer(line);
-				while (tokenizer.hasMoreTokens())
-				{
-					tokenizedString = tokenizer.nextToken();
-
-					if(balanceInfoFields == 0 && ("unlooked".equals(tokenizedString) || "denied".equals(tokenizedString)))
-					{
-						statusStore = tokenizedString;
-						break;
-					}
-					else
-					{
-						statusStore = "approved";
-					}
-					if(balanceInfoFields == 1 && !user.equals(tokenizedString))
-					{
-						balanceInfoFields = 0;
-						break;
-					}
-					/*balance fields initializing sequence*/
-					if(balanceInfoFields == 1)
-					{
-						flag = true;
-						Storage.userID = user; 
-						writer.write(statusStore + " ");
-						writer.write(Storage.userID + " ");
-					}
-					if(balanceInfoFields == 2)
-					{ 
-						Storage.firstName = tokenizedString; 
-						writer.write(Storage.firstName + " ");
-					}
-					if(balanceInfoFields == 3)
-					{ 
-						Storage.lastName = tokenizedString; 
-						writer.write(Storage.lastName + " ");
-					}
-					/*This is where the withdrawal or deposit happens*/
-					if(balanceInfoFields == 4)
-					{ 
-						double calculateMoney = 0.0;
-						if("deposit".equals(command))
-						{
-							calculateMoney = Double.valueOf(tokenizedString) + money;
-						}
-						
-						if((Double.valueOf(tokenizedString) - money) < 0 && (!"deposit".equals(command)) )
-						{
-							Log.error("Your account balance is $" + tokenizedString + ", please enter an ammount less than that value...\n");
-							writer.write(tokenizedString + "\n");
-							balanceInfoFields = 0;
-							break;
-							
-						}
-						if("withdraw".equals(command) && (Double.valueOf(tokenizedString) - money) > 0)
-						{
-							calculateMoney = Double.valueOf(tokenizedString) - money;
-						}
-						
-						Storage.money = calculateMoney;
-						writer.write(String.valueOf(Storage.money + "\n"));	
-						balanceInfoFields = 0;
-						break;
-					}
-					
-					balanceInfoFields += 1;
-				}
-				if (flag == false)
-				{
-					writer.write(line + "\n");
-				}
-				flag = false;
-		        line = withdrawer.readLine();
-		    }
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally {
-		    try {
-				withdrawer.close();
-				writer.close();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+		valueBalance = connect.getBalanceInfo(user, 0);
+		if("deposit".equals(command))
+		{ newMoney = valueBalance.getBalance() + money; }
+		if("withdraw".equals(command))// && (valueBalance.getBalance() - money) > 0)
+		{ 
+			if ( (valueBalance.getBalance() - money < 0) )
+			{
+				Log.error("Your account balance is $" + valueBalance.getBalance() + ", please enter an ammount less than that value...\n");
+				return;
 			}
+			newMoney = valueBalance.getBalance() - money;
+			return;
 		}
-		/*Writes the value of the temporary file to the main file and then deletes the temporary file*/
-		Storage.replaceFile();
-		tempFile.delete();
+		connect.updateBalanceMoney(user, newMoney);
+		
+		/*
+		 * Old method used when Banking App persisted using txt files
+		 */
+//		File test = new File("test.txt"); /////////
+//		File File = new File("BalanceInfo.txt");
+//		BufferedReader withdrawer = new BufferedReader(new FileReader(File));
+//		
+//		File tempFile = new File("tempBalanceInfo.txt");
+//		BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile));
+//		
+//		int balanceInfoFields = 0;
+//		boolean flag = false;
+//		
+//		String statusStore = ""; //Used for storing a specific output string (the appplication status)
+//		/*finds the user in the file, and either deposits or withdraws from the balance*/
+//		String tokenizedString;
+//		try {
+//		    String line = withdrawer.readLine();
+//
+//		    while (line != null) {
+//		    	
+//		    	StringTokenizer tokenizer = new StringTokenizer(line);
+//				while (tokenizer.hasMoreTokens())
+//				{
+//					tokenizedString = tokenizer.nextToken();
+//
+//					if(balanceInfoFields == 0 && ("unlooked".equals(tokenizedString) || "denied".equals(tokenizedString)))
+//					{
+//						statusStore = tokenizedString;
+//						break;
+//					}
+//					else
+//					{
+//						statusStore = "approved";
+//					}
+//					if(balanceInfoFields == 1 && !user.equals(tokenizedString))
+//					{
+//						balanceInfoFields = 0;
+//						break;
+//					}
+//					/*balance fields initializing sequence*/
+//					if(balanceInfoFields == 1)
+//					{
+//						flag = true;
+//						Storage.userID = user; 
+//						writer.write(statusStore + " ");
+//						writer.write(Storage.userID + " ");
+//					}
+//					if(balanceInfoFields == 2)
+//					{ 
+//						Storage.firstName = tokenizedString; 
+//						writer.write(Storage.firstName + " ");
+//					}
+//					if(balanceInfoFields == 3)
+//					{ 
+//						Storage.lastName = tokenizedString; 
+//						writer.write(Storage.lastName + " ");
+//					}
+//					/*This is where the withdrawal or deposit happens*/
+//					if(balanceInfoFields == 4)
+//					{ 
+//						double calculateMoney = 0.0;
+//						if("deposit".equals(command))
+//						{
+//							calculateMoney = Double.valueOf(tokenizedString) + money;
+//						}
+//						
+//						if((Double.valueOf(tokenizedString) - money) < 0 && (!"deposit".equals(command)) )
+//						{
+//							Log.error("Your account balance is $" + tokenizedString + ", please enter an ammount less than that value...\n");
+//							writer.write(tokenizedString + "\n");
+//							balanceInfoFields = 0;
+//							break;
+//							
+//						}
+//						if("withdraw".equals(command) && (Double.valueOf(tokenizedString) - money) > 0)
+//						{
+//							calculateMoney = Double.valueOf(tokenizedString) - money;
+//						}
+//						
+//						Storage.money = calculateMoney;
+//						writer.write(String.valueOf(Storage.money + "\n"));	
+//						balanceInfoFields = 0;
+//						break;
+//					}
+//					
+//					balanceInfoFields += 1;
+//				}
+//				if (flag == false)
+//				{
+//					writer.write(line + "\n");
+//				}
+//				flag = false;
+//		        line = withdrawer.readLine();
+//		    }
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} finally {
+//		    try {
+//				withdrawer.close();
+//				writer.close();
+//			} catch (IOException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//		}
+//		/*Writes the value of the temporary file to the main file and then deletes the temporary file*/
+//		Storage.replaceFile();
+//		tempFile.delete();
 	}
 	
 	private Customer()

@@ -2,6 +2,7 @@ package com.TS.banking.driver;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.sql.SQLException;
 
 import com.TS.banking.actions.Admin;
 import com.TS.banking.actions.Customer;
@@ -10,7 +11,7 @@ import com.TS.banking.actions.LoginAction;
 
 public class Driver {
 
-	public static void main(String[] args) throws FileNotFoundException {
+	public static void main(String[] args) throws FileNotFoundException, SQLException {
 		// TODO Auto-generated method stub
 		while(true)
 		{

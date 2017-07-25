@@ -7,11 +7,14 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
 import org.apache.log4j.Logger;
 
+import com.TS.banking.pojo.BalanceInfo;
+import com.TS.banking.resources.BankingAppDaoImpl;
 import com.TS.banking.resources.Storage;
 import com.TS.banking.resources.UserInputTest;
 
@@ -24,7 +27,7 @@ public class Admin extends BalanceViewer{
 	/*
 	 * Invokes a menu for admins that are logged in
 	 */
-	public static void menuAction() throws FileNotFoundException {
+	public static void menuAction() throws FileNotFoundException, SQLException {
 		// TODO Auto-generated method stub
 		Scanner scan = new Scanner(System.in);
 		Scanner scanLine = new Scanner(System.in);
@@ -82,6 +85,12 @@ public class Admin extends BalanceViewer{
 							informationCheck = 1;
 							continue;
 						}
+						if(Integer.valueOf(decision) < 1 || Integer.valueOf(decision) > 4)
+						{
+							Log.info("Invalid choice\n");
+							informationCheck = 1;
+							continue;
+						}
 						informationCheck = 0;
 					}while(informationCheck == 1);
 					
@@ -135,118 +144,141 @@ public class Admin extends BalanceViewer{
 	 * another string to search for the person's account to edit and then edits the account information
 	 * by writing to a temporary file and rewriting to the main file
 	 */
-	private static void editAccounts(String editThisString, int choice, String user) throws IOException
+	private static void editAccounts(String editThisString, int choice, String user) throws IOException, SQLException
 	{
-		File File = new File("BalanceInfo.txt");
-		BufferedReader br = new BufferedReader(new FileReader(File));
-		
-		File tempFile = new File("tempBalanceInfo.txt");
-		BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile));
-		
-		int balanceInfoFields = 0;
-		boolean flag = false;
-		
-		String statusStore = "";
-		
-		/*reads from file and writes editted information to temporary file*/
-		String tokenizedString;
-		try {
-		    String line = br.readLine();
-		    
-		    while (line != null) {
-		    	StringTokenizer tokenizer = new StringTokenizer(line);
-				while (tokenizer.hasMoreTokens())
-				{
-					tokenizedString = tokenizer.nextToken();
-
-					if(balanceInfoFields == 0 && ("unlooked".equals(tokenizedString) || "denied".equals(tokenizedString)))
-					{
-						statusStore = tokenizedString;
-						break;
-					}
-					if(balanceInfoFields == 0 && "approved".equals(tokenizedString))
-					{
-						statusStore = "approved";
-					}
-					if(balanceInfoFields == 1 && !user.equals(tokenizedString))
-					{
-						balanceInfoFields = 0;
-						break;
-					}
-					/*balance fields writing to file*/
-					if(balanceInfoFields == 1)
-					{
-						flag = true;
-						Storage.userID = user; 
-						writer.write(statusStore + " ");
-						writer.write(Storage.userID + " ");
-					}
-					if(balanceInfoFields == 2)
-					{ 
-						if(choice == 1)
-						{
-							Storage.firstName = editThisString;
-							writer.write(Storage.firstName + " ");
-						}
-						else
-						{
-							Storage.firstName = tokenizedString; 
-							writer.write(Storage.firstName + " ");
-						}
-					}
-					if(balanceInfoFields == 3)
-					{ 
-						if(choice == 2)
-						{
-							Storage.lastName = editThisString;
-							writer.write(Storage.lastName + " ");
-						}
-						else
-						{
-							Storage.lastName = tokenizedString; 
-							writer.write(Storage.lastName + " ");
-						}
-					}
-					if(balanceInfoFields == 4)
-					{ 
-						if(choice == 3)
-						{
-							Storage.money = Double.valueOf(editThisString);
-							writer.write(Storage.money + "\n");
-						}
-						else
-						{
-							Storage.money = Double.valueOf(tokenizedString + "\n");
-							writer.write(tokenizedString + "\n");
-						}
-						balanceInfoFields = 0;
-						break;
-					}
-					
-					balanceInfoFields += 1;
-				}
-				if (flag == false)
-				{
-					writer.write(line + "\n");
-				}
-				flag = false;
-		        line = br.readLine();
-		    }
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally {
-		    try {
-				br.close();
-				writer.close();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+		BankingAppDaoImpl connect = new BankingAppDaoImpl();
+		BalanceInfo valueBalance = new BalanceInfo();
+		if (choice == 1)
+		{ 
+			connect.updateBalanceInfo(user, editThisString, "firstName");
+			return;
 		}
-		/*temporary file is rewritten to main file, then deleted*/
-		Storage.replaceFile();
-		tempFile.delete();
+		if (choice == 2)
+		{ 
+			connect.updateBalanceInfo(user, editThisString, "lastName");
+			return;
+		}
+		if (choice == 3)
+		{
+			connect.updateBalanceInfo(user, editThisString, "balance");
+			return;
+		}
+		Log.error("Invalid Choice\n");
+		return;
+		
+		/*
+		 * Old method of banking app that used txt files to persist information
+		 */
+//		File File = new File("BalanceInfo.txt");
+//		BufferedReader br = new BufferedReader(new FileReader(File));
+//		
+//		File tempFile = new File("tempBalanceInfo.txt");
+//		BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile));
+//		
+//		int balanceInfoFields = 0;
+//		boolean flag = false;
+//		
+//		String statusStore = "";
+//		
+//		/*reads from file and writes editted information to temporary file*/
+//		String tokenizedString;
+//		try {
+//		    String line = br.readLine();
+//		    
+//		    while (line != null) {
+//		    	StringTokenizer tokenizer = new StringTokenizer(line);
+//				while (tokenizer.hasMoreTokens())
+//				{
+//					tokenizedString = tokenizer.nextToken();
+//
+//					if(balanceInfoFields == 0 && ("unlooked".equals(tokenizedString) || "denied".equals(tokenizedString)))
+//					{
+//						statusStore = tokenizedString;
+//						break;
+//					}
+//					if(balanceInfoFields == 0 && "approved".equals(tokenizedString))
+//					{
+//						statusStore = "approved";
+//					}
+//					if(balanceInfoFields == 1 && !user.equals(tokenizedString))
+//					{
+//						balanceInfoFields = 0;
+//						break;
+//					}
+//					/*balance fields writing to file*/
+//					if(balanceInfoFields == 1)
+//					{
+//						flag = true;
+//						Storage.userID = user; 
+//						writer.write(statusStore + " ");
+//						writer.write(Storage.userID + " ");
+//					}
+//					if(balanceInfoFields == 2)
+//					{ 
+//						if(choice == 1)
+//						{
+//							Storage.firstName = editThisString;
+//							writer.write(Storage.firstName + " ");
+//						}
+//						else
+//						{
+//							Storage.firstName = tokenizedString; 
+//							writer.write(Storage.firstName + " ");
+//						}
+//					}
+//					if(balanceInfoFields == 3)
+//					{ 
+//						if(choice == 2)
+//						{
+//							Storage.lastName = editThisString;
+//							writer.write(Storage.lastName + " ");
+//						}
+//						else
+//						{
+//							Storage.lastName = tokenizedString; 
+//							writer.write(Storage.lastName + " ");
+//						}
+//					}
+//					if(balanceInfoFields == 4)
+//					{ 
+//						if(choice == 3)
+//						{
+//							Storage.money = Double.valueOf(editThisString);
+//							writer.write(Storage.money + "\n");
+//						}
+//						else
+//						{
+//							Storage.money = Double.valueOf(tokenizedString + "\n");
+//							writer.write(tokenizedString + "\n");
+//						}
+//						balanceInfoFields = 0;
+//						break;
+//					}
+//					
+//					balanceInfoFields += 1;
+//				}
+//				if (flag == false)
+//				{
+//					writer.write(line + "\n");
+//				}
+//				flag = false;
+//		        line = br.readLine();
+//		    }
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} finally {
+//		    try {
+//				br.close();
+//				writer.close();
+//			} catch (IOException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//		}
+//		/*temporary file is rewritten to main file, then deleted*/
+//		Storage.replaceFile();
+//		tempFile.delete();
 	}
 	
 	private Admin()

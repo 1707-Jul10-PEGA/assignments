@@ -6,7 +6,7 @@ import com.TS.banking.pojo.BalanceInfo;
 import com.TS.banking.pojo.LoginInfo;
 
 public interface BankingAppDao {
-	boolean getBalanceInfo(String login, int task) throws SQLException;
+	BalanceInfo getBalanceInfo(String login, int task) throws SQLException;
 	
 	int insertBalanceInfo(String status, String login, String firstName, String lastName, Double money) throws SQLException;
 	
@@ -14,7 +14,9 @@ public interface BankingAppDao {
 	
 	int updateBalanceInfo(String login, String newInfo, String field) throws SQLException;
 	
-	boolean getLoginInfo(String login, int task) throws SQLException;
+	int updateBalanceMoney(String login, Double money) throws SQLException;
+	
+	LoginInfo getLoginInfo(String login, int task) throws SQLException;
 	
 	int insertLoginInfo(String login, String password, int role) throws SQLException;
 	
