@@ -1,59 +1,30 @@
-package com.revature.bankingapp.entities.person;
+package com.revature.bankingapp.entities.user;
 
-import java.io.Serializable;
 import java.util.UUID;
 
 import com.revature.bankingapp.interfaces.PersonInterface;
 
-public class Person implements PersonInterface, Serializable{
+public class SystemUser implements PersonInterface{
 	
-	
+
+	private final UUID userId;
 	private String firstname;
-	private String lastName;
+	private String lastname;
 	private String username;
 	private String password;
 	private String dob;
 	private String address;
-	private static final long serialVersionUID = 4655748803545285103L;
-
 	
-	
-	/* UserId's are unique within the system. There is no need
-	 * for special Ids to diferentiate employees from customers
-	 * CAN ONLY BE INITIALIZED ONCE*/
-	private final UUID userId;
 	
 	/**
 	 * Default constructor.Sets a random UI without setting the rest of the
 	 * elements
 	 */
-	public Person() {
+	public SystemUser() {
 		this.userId = UUID.randomUUID();
 	}
 	
-	/**
-	 * Creates a new Person with the specified parameters. 
-	 * Used to retrieve users from the database.
-	 * 
-	 * @param firsttname	-User first name
-	 * @param lastName	-User last name
-	 * @param username	-User user name
-	 * @param dob		-User date of birth
-	 * @param address	-User address
-	 * @param age		-User Ages
-	 * @param userId	-User unique identifier
-	 */
-	public Person(String firstname, String lastName, String username, String password, String dob, String address, UUID userId) {
-		super();
-		this.firstname = firstname;
-		this.lastName = lastName;
-		this.username = username;
-		this.password = password;
-		this.dob = dob;
-		this.address = address;
-		this.userId = userId;
-	}
-
+	
 	/**
 	 * Creates a new person with the given parameters.
 	 * Used to generate a new Person with a new ID
@@ -62,18 +33,31 @@ public class Person implements PersonInterface, Serializable{
 	 * @param lastName	-User last name
 	 * @param username	-User user name
 	 * @param dob		-User date of birth
-	 * @param address	-User address
+	 * @param address	-User address 
 	 * @param age		-User Ages
 	 */
-	public Person(String firstname, String lastName, String username, String password, String dob, String address) {
+	public SystemUser(String firstname, String lastname, String username, String password, String dob, String address) {
 		super();
+		this.userId = UUID.randomUUID();
 		this.firstname = firstname;
-		this.lastName = lastName;
+		this.lastname = lastname;
 		this.username = username;
 		this.password = password;
 		this.dob = dob;
 		this.address = address;
-		this.userId = UUID.randomUUID();
+		
+	}
+	
+	public SystemUser(String firstname, String lastname, String username, String password, String dob, String address, String userId) {
+		super();
+		this.userId = UUID.fromString(userId);
+		this.firstname = firstname;
+		this.lastname = lastname;
+		this.username = username;
+		this.password = password;
+		this.dob = dob;
+		this.address = address;
+		
 	}
 
 	public int login(int id) {
@@ -95,11 +79,11 @@ public class Person implements PersonInterface, Serializable{
 	}
 
 	public String getLastName() {
-		return lastName;
+		return lastname;
 	}
 
 	public void setLastName(String lastName) {
-		this.lastName = lastName;
+		this.lastname = lastName;
 	}
 
 	public String getUsername() {
@@ -126,10 +110,6 @@ public class Person implements PersonInterface, Serializable{
 		this.address = address;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-
 	public UUID getUserId() {
 		return userId;
 	}
@@ -146,7 +126,7 @@ public class Person implements PersonInterface, Serializable{
 	public String toString() {
 		return ""
 				+ "First Name: " + firstname + "\n"
-				+ "Last Name: " + lastName + "\n"
+				+ "Last Name: " + lastname + "\n"
 				+ "Username: " + username + "\n"
 				+ "Password: " + password + "\n"
 				+ "Date of Birth: " + dob + "\n"

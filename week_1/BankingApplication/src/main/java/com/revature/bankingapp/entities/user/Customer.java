@@ -1,4 +1,4 @@
-package com.revature.bankingapp.entities.person;
+package com.revature.bankingapp.entities.user;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -8,7 +8,7 @@ import com.revature.bankingapp.entities.account.BankAccount;
 import com.revature.bankingapp.entities.account.CheckingAccount;
 import com.revature.bankingapp.entities.account.SavingsAccount;
 
-public class Customer extends Person {
+public class Customer extends SystemUser {
 
 	private String customerSince;
 	private SavingsAccount saving;
@@ -20,7 +20,7 @@ public class Customer extends Person {
 	}
 
 	public Customer(String firstname, String lastName, String username,String password, String dob, String address, UUID userId, String customerSince) {
-		super(firstname, lastName, username, password,dob, address, userId);
+		super(firstname, lastName, username, password,dob, address);
 		this.customerSince = customerSince;
 	}
 

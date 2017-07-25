@@ -7,75 +7,71 @@ import java.util.Scanner;
 
 import javax.swing.text.AbstractDocument;
 
-import com.revature.bankingapp.entities.person.Administrator;
-import com.revature.bankingapp.entities.person.Customer;
-import com.revature.bankingapp.entities.person.Employee;
-import com.revature.bankingapp.entities.person.Person;
+import com.revature.bankingapp.entities.user.Customer;
+import com.revature.bankingapp.entities.user.Employee;
+import com.revature.bankingapp.entities.user.SystemUser;
+
+import oracle.net.aso.c;
 
 public class Login {
 
-	private int loginAttempts = 0;
 	
-	public void login() throws FileNotFoundException, ClassNotFoundException, IOException {
-		
+	private int MAX_LOG_IN_ATTEMPTS = 2;
+	private int attempts = MAX_LOG_IN_ATTEMPTS;
+	private String type = "";
+
+	public int login() throws FileNotFoundException, ClassNotFoundException, IOException {
+
 		Scanner sc = new Scanner(System.in);
-		String type = "";
 
-		System.out.println("Please enter your credentials:");
+		while (!(type.equals("4"))) {
 
-		System.out.println("Username:");
+			System.out.println("Please enter your credentials (case sensitive) or type 2 to exit:");
 
-		String username = sc.nextLine();
+			if (type.equals("4")) {
+				return -1;
+			}
 
-		System.out.println("Password:");
+			System.out.println("Username:");
 
-		String password = sc.nextLine();
+			String username = sc.nextLine();
+
+			System.out.println("Password:");
+
+			String password = sc.nextLine();
+
+			Authentication auth = new Authentication();
+
+			SystemUser s = new SystemUser();
+			s = auth.userAuthentication(username, password, s);
+
+			if (s != null) {	
+				System.out.println("\nAccess Granted!\n");
+				
+				
+			} else if (incorrectCredentialsMessage() == -1) {
+				return -1;
+			}
 		
-		while(!(type.equals("1") || type.equals("2") || type.equals("3") || type.equals("4")) ) {
-			System.out.println("What type of user are you?\n1)Customer\n2)Employee\n3)Administrator\n4)Exit Program");
-			type = sc.nextLine();
-		}		
-		
-		Authentication auth = new Authentication();
-
-		switch (type) {
-		case "1":
-			
-			Customer c = (Customer) auth.userAuthentication(username, password,"customer");
-			if(c != null) {
-				System.out.println("Access Granted!\n");
-				CustomerDashboard cd = new CustomerDashboard();
-				cd.customerDashboard(c);
-			}
-			break;
-
-		case "2":
-			Employee e = (Employee) auth.userAuthentication(username, password,"employee");
-			if(e != null) {
-				System.out.println("Access Granted!\n");
-				EmployeeDashboard ed = new EmployeeDashboard();
-				ed.dashboard(e);				
-			}
-			break;
-
-		case "3":
-			Administrator a = (Administrator) auth.userAuthentication(username, password,"administrator");
-			if(a != null) {
-				System.out.println("Access Granted!\n");
-				AdministratorDashboard ad = new AdministratorDashboard();
-				ad.dashboard(a);				
-			}
-			break;
-
-			
-		case "exit":
-
-			break;
-
-		default:
-			break;
 		}
 
+		return -1;
+
+	}
+
+	private int incorrectCredentialsMessage() {
+		// TODO Auto-generated method stub
+		System.out.println();
+		System.out.println("Incorrect Credentials or User is not in the system.");
+		type = "0";
+		attempts--;
+		if (attempts == 0) {
+			System.out.println("You ran out of attempts. System will go into lock down. ");
+			return -1;
+		} else {
+			System.out.println("You have " + attempts + " login attempts left.");
+			return 1;
+		}
 	}
 
 }

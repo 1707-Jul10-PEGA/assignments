@@ -2,43 +2,48 @@ package com.revature.bankingapp.main;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
-import com.revature.bankingapp.entities.person.Customer;
-import com.revature.bankingapp.entities.person.Person;
-import com.revature.bankingapp.interfaces.AuthenticationInterface;
-import com.revature.bankingapp.utils.Serializer;
+import com.revature.bankingapp.entities.user.Customer;
+import com.revature.bankingapp.entities.user.Employee;
+import com.revature.bankingapp.entities.user.SystemUser;
+import com.revature.bankingapp.dao.SystemUserDao;
 
-public class Authentication implements AuthenticationInterface {
+public class Authentication {
 
-	@Override
-	public <T> Person userAuthentication(String username, String password,String type)throws FileNotFoundException, ClassNotFoundException, IOException {
-		
-		Serializer serializer = new Serializer<>();
-		
-		ArrayList<T> personList = new ArrayList<T>();
-		personList = (ArrayList<T>) serializer.getPersonDatabase(type);
-					
-		for (T p : personList) {
+	Connection conn = null;
+	ResultSet resultSet = null;
+	Statement statement = null;
 
-			if (((Person) p).getUsername().equals(username)) {
-				if (((Person) p).getPassword().equals(password)) {
-					return (Person) p;
-				}
+	public <T> SystemUser userAuthentication(String username, String password, SystemUser u)
+			throws FileNotFoundException, IOException {
+
+		SystemUser user = null;
+
+		SystemUserDao userdao = new SystemUserDao();
+
+		userdao.setup();
+		try {
+			user = userdao.getUserByUsername(username);
+
+			if (user != null) {
+				if (!user.getPassword().equals(password)) {
+					return null;
+				}else
+					return user;
 			}
 
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		
-		
-		
-		return null;
+
+		System.out.println(user);
+
+		return user;
 
 	}
-
-	@Override
-	public int loginAttemptsViolation() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
 }

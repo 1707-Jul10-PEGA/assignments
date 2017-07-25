@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.time.LocalTime;
 import java.util.UUID;
 
-import com.revature.bankingapp.entities.person.Customer;
+import com.revature.bankingapp.entities.user.Customer;
 import com.revature.bankingapp.interfaces.BankAccountInterface;
 
 public class BankAccount implements BankAccountInterface, Serializable {
@@ -49,7 +49,7 @@ public class BankAccount implements BankAccountInterface, Serializable {
 	public boolean withdraw(double ammount) {
 		// TODO Auto-generated method stub
 		
-		if(this.getStatus().equals("pending")) {
+		if(!this.getStatus().equals("active")) {
 			System.out.println("We are sorry, you cannot withdraw at this time."
 					+ " This account is under application review. Thank you for your patience");
 			return false;

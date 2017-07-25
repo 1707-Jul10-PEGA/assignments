@@ -8,8 +8,8 @@ import java.util.concurrent.atomic.LongAdder;
 
 import com.revature.bankingapp.entities.account.CheckingAccount;
 import com.revature.bankingapp.entities.account.SavingsAccount;
-import com.revature.bankingapp.entities.person.Customer;
-import com.revature.bankingapp.entities.person.Employee;
+import com.revature.bankingapp.entities.user.Customer;
+import com.revature.bankingapp.entities.user.Employee;
 
 public class EmployeeDashboard {
 

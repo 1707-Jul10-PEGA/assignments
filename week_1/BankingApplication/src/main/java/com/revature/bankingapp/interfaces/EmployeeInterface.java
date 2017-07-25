@@ -2,7 +2,7 @@ package com.revature.bankingapp.interfaces;
 
 import com.revature.bankingapp.entities.account.BankAccount;
 import com.revature.bankingapp.entities.account.BankAccoutApplication;
-import com.revature.bankingapp.entities.person.Customer;
+import com.revature.bankingapp.entities.user.Customer;
 
 public interface EmployeeInterface {
 
