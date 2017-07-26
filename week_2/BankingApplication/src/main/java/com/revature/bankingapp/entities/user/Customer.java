@@ -5,8 +5,6 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 import com.revature.bankingapp.entities.account.BankAccount;
-import com.revature.bankingapp.entities.account.CheckingAccount;
-import com.revature.bankingapp.entities.account.SavingsAccount;
 
 
 public class Customer extends SystemUser{

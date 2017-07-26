@@ -61,10 +61,13 @@ public class Login {
 				break;
 			case "2":
 				Employee e;
+				
 				e = auth.employeeAuthentication(username, password);
+				
 				if (e != null) {
 					System.out.println("\nAccess Granted!\n");
-					//proceed to Employee Dashboard
+					EmployeeDashboard dashboard = new EmployeeDashboard();
+					return dashboard.employeeDashboard(e);
 
 				} else if (incorrectCredentialsMessage() == -1) {
 					return -1;

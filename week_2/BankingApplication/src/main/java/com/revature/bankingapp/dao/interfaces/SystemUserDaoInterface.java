@@ -9,7 +9,7 @@ import com.revature.bankingapp.entities.user.SystemUser;
 
 public interface SystemUserDaoInterface {
 
-	SystemUser getSysteUser(String id) throws SQLException;
+	SystemUser getSysteUserById(String id) throws SQLException;
 
 	int saveSystemUser(SystemUser user);
 

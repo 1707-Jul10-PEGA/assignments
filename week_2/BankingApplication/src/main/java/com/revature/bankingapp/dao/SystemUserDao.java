@@ -12,6 +12,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
 import java.util.Properties;
+import java.util.UUID;
+
 import com.revature.bankingapp.utils.ConnectionFactory;
 import com.revature.bankingapp.dao.interfaces.SystemUserDaoInterface;
 import com.revature.bankingapp.entities.user.Customer;
@@ -25,13 +27,12 @@ public class SystemUserDao implements SystemUserDaoInterface {
 	ConnectionFactory connFactory = null;
 
 	@Override
-	public SystemUser getSysteUser(String id) throws SQLException {
+	public SystemUser getSysteUserById(String id) throws SQLException {
 		// TODO Auto-generated method stub
-
-		String sql = "SELECT * FROM SYSTEM_USER WHERE USER_ID = " + id;
-		PreparedStatement preparedStatement = conn.prepareStatement(sql);
-		preparedStatement.setInt(1, 1001);
-		resultSet = preparedStatement.executeQuery(sql);
+		conn = connFactory.getConnection();
+		String sql = "SELECT * FROM SYSTEM_USER WHERE USER_ID = '" + id + "'";
+		Statement statement = conn.createStatement();
+		resultSet = statement.executeQuery(sql);
 
 		SystemUser user = null;
 
@@ -43,11 +44,18 @@ public class SystemUserDao implements SystemUserDaoInterface {
 			String password = resultSet.getString("PASS_WORD");
 			String dob = resultSet.getString("DOB");
 			String address = resultSet.getString("ADDRESS");
-			user = new SystemUser(firstname, lastname, username, password, dob, address, user_id);
+			conn.close();
+			return user = new SystemUser(firstname, lastname, username, password, dob, address, user_id);
+			
 		}
-
+		conn.close();
 		return user;
 	}
+	
+	public SystemUser getSysteUserById(UUID id) throws SQLException {
+		return getSysteUserById(id.toString());
+	}
+	
 
 	@Override
 	public SystemUser getUserByUsername(String usernameIn) throws SQLException {
@@ -106,6 +114,7 @@ public class SystemUserDao implements SystemUserDaoInterface {
 	public SystemUserDao() {
 		try {
 			setup();
+			
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -5,23 +5,16 @@ import com.revature.bankingapp.entities.user.Customer;
 
 public interface EmployeeInterface {
 
-	public void viewCustomerAccount(Customer c, BankAccount a);
+	public void loadCustomerList();
 	
-	/**
-	 * Employee will decide if application is denied or approved
-	 * @param a	-Account Application
-	 * @return -True if application was approved, False otherwise
-	 */
-	public boolean assesApplication(Customer c);
+	public void viewCustomerAccount();
+			
+	public void viewAccountApplications();
 	
+	public boolean assesAccountApplication();
 	
-	/**
-	 * Adds a customer the employee customer list
-	 * @param c	-Customer to be added
-	 * @return	-True if customer was added successful, false otherwise
-	 */
-	public boolean addCustomerToAssignedList(Customer c);
+	public boolean modifyAccount();
 	
-	
+	public void saveChangesAndExit();
 	
 }

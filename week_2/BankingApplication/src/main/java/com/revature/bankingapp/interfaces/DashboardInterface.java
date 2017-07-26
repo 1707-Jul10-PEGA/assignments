@@ -8,8 +8,9 @@ public interface DashboardInterface {
 	
 	public boolean deposit();
 	
-	public boolean createAccount();
+	public boolean applyForAccount();
 
+	public boolean saveChangesAndExit();
 	
 }
 
