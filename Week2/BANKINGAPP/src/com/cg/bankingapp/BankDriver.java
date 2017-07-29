@@ -31,6 +31,7 @@ public class BankDriver {
 			}
 		} while (exit != 3);
 		inout.cleanUp();
+		Log.log("Exiting program...", 1);
 	}
 
 }

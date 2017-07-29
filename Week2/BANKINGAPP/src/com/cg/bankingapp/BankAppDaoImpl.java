@@ -171,7 +171,7 @@ public class BankAppDaoImpl implements BankAppDao {
 			Customer customer = (Customer) user;
 			addToUserTable(customer.getFirstname(), customer.getLastname(), customer.getUsername(),
 					customer.getPassword(), 2, customer.getApproved());
-			addToBankTable(customer);
+			addAccounts(customer);
 		}
 
 	}
@@ -195,10 +195,6 @@ public class BankAppDaoImpl implements BankAppDao {
 		} catch (SQLException e) {
 			Log.log("Sql exception getting user", 3);
 		}
-	}
-
-	public void addToBankTable(Customer customer) {
-
 	}
 
 	public void logToTable(String activity, User user, int accountid, double amount) {
@@ -283,7 +279,55 @@ public class BankAppDaoImpl implements BankAppDao {
 			preparedStatement.close();
 
 		} catch (SQLException e) {
-			Log.log("Sql exception - error deactivating user with "+ user.getUserid(), 3);
+			Log.log("Sql exception - error deactivating user with " + user.getUserid(), 3);
+			e.printStackTrace();
+		}
+	}
+
+	public void customerApproved(Customer user) {
+		String sql = "UPDATE USERINFO SET STATUS=? WHERE USERID=? ";
+		PreparedStatement preparedStatement = null;
+		try {
+			connection.setAutoCommit(true);
+			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setDouble(1, 1);
+			preparedStatement.setInt(2, user.getUserid());
+			preparedStatement.executeQuery();
+			preparedStatement.close();
+
+		} catch (SQLException e) {
+			Log.log("Sql exception - error reversing a user appplication with userid:  " + user.getUserid(), 3);
+			e.printStackTrace();
+		}
+	}
+
+	private void addAccounts(Customer customer) {
+		CheckingsAccount checkingsAccount = customer.getCheckings();
+		SavingsAccount savingsAccount = customer.getSavings();
+
+		if (checkingsAccount != null) {
+			this.addAccount(checkingsAccount, customer);
+		}
+		if (savingsAccount != null) {
+			this.addAccount(savingsAccount, customer);
+		}
+	}
+
+	private void addAccount(Account account, Customer customer) {
+		Customer customer2 = (Customer) this.getUser(customer.getUsername());
+		String sql = "INSERT INTO BANKACCOUNTS VALUES(ACCOUNT_SEQUENCE.NEXTVAL,?,?,?) ";
+		PreparedStatement preparedStatement = null;
+		try {
+			connection.setAutoCommit(true);
+			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setDouble(1, account.getBalance());
+			preparedStatement.setInt(2, customer2.getUserid());
+			preparedStatement.setInt(3, account.getAccountType());
+			preparedStatement.executeQuery();
+			preparedStatement.close();
+
+		} catch (SQLException e) {
+			Log.log("Sql exception - error adding accounts to database for :  " + customer.getUserid(), 3);
 			e.printStackTrace();
 		}
 	}

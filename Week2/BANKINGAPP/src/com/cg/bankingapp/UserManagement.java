@@ -162,10 +162,10 @@ public class UserManagement {
 				System.out.println("Please choose a valid option.");
 			}
 		} while (response > 2);
-
 		return 0;
-
+		
 	}
+	
 
 	// Deposit to customer account
 	private int deposit(Customer user) {
@@ -231,6 +231,8 @@ public class UserManagement {
 				if (response == 1) {
 					c.setApproved(1);
 					System.out.println(c.getFirstname() + " " + c.getLastname() + " approved.");
+					bAppDaoImpl.customerApproved(c);
+					bAppDaoImpl.logToTable("Application denial was reversed for userid" + c.getUserid() , user, 0,0);
 				} else if (response == 2) {
 					System.out.println(c.getFirstname() + " " + c.getLastname() + " denied.");
 				} else {

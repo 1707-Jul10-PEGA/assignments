@@ -10,8 +10,13 @@ public abstract class Account{
 	public abstract int deposit(Double money);
 	public abstract double getBalance();
 	protected abstract void setBalance(Double newBalance);
-	public String getAccountType() {
-		return accountType;
+	public int getAccountType() {
+		if("checkings".equals(accountType)) {
+			return 1;
+		}else{
+			return 2;
+		}
+		
 	}
 	public void setAccountType(String accountType) {
 		this.accountType = accountType;

@@ -18,10 +18,10 @@ public class Customer extends User implements Serializable {
 		super(userid, firstname, lastname, username, password, "customer", status);
 		
 		for (Account i : accounts) {
-			if ("checkings".equals(i.getAccountType())) {
+			if (i.getAccountType() == 1) {
 				checkings = (CheckingsAccount) i;
 				customerLevel++;
-			} else if ("savings".equals(i.getAccountType())) {
+			} else if (i.getAccountType() == 2) {
 				savings = (SavingsAccount) i;
 				customerLevel++;
 			}
@@ -36,10 +36,10 @@ public class Customer extends User implements Serializable {
 			int status) {
 		super(firstname, lastname, username, password, "customer", status);
 		for (Account i : accounts) {
-			if ("checkings".equals(i.getAccountType())) {
+			if (i.getAccountType() == 1) {
 				checkings = (CheckingsAccount) i;
 				customerLevel++;
-			} else if ("savings".equals(i.getAccountType())) {
+			} else if (i.getAccountType() == 2) {
 				savings = (SavingsAccount) i;
 				customerLevel++;
 			}
@@ -170,6 +170,14 @@ public class Customer extends User implements Serializable {
 	 */
 	public void setCustomerLevel(int customerLevel) {
 		this.customerLevel = customerLevel;
+	}
+	
+	public CheckingsAccount getCheckings() {
+		return checkings;
+	}
+	
+	public SavingsAccount getSavings() {
+		return savings;
 	}
 
 	@Override
